@@ -5,33 +5,33 @@
     <meta charset="utf-8" />
     <title>Pages - Admin Dashboard UI Kit - Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" href="pages/ico/60.png">
-    <link rel="apple-touch-icon" sizes="76x76" href="pages/ico/76.png">
-    <link rel="apple-touch-icon" sizes="120x120" href="pages/ico/120.png">
-    <link rel="apple-touch-icon" sizes="152x152" href="pages/ico/152.png">
-    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="apple-touch-icon" href="{{ asset('page/ico/60.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('page/ico/76.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('page/ico/120.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('page/ico/152.png') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <meta content="" name="description" />
     <meta content="" name="author" />
-    <link href="assets/plugins/pace/pace-theme-flash.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/font-awesome/css/font-awesome.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/jquery-scrollbar/jquery.scrollbar.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/select2/css/select2.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/nvd3/nv.d3.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/plugins/mapplic/css/mapplic.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/rickshaw/rickshaw.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
-    <link href="assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="assets/css/dashboard.widgets.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="pages/css/pages-icons.css" rel="stylesheet" type="text/css">
-    <link class="main-stylesheet" href="pages/css/themes/modern.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/pace/pace-theme-flash.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/jquery-scrollbar/jquery.scrollbar.css') }}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('') }}assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('') }}assets/plugins/nvd3/nv.d3.min.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('') }}assets/plugins/mapplic/css/mapplic.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('') }}assets/plugins/rickshaw/rickshaw.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('') }}assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('') }}assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('') }}assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('') }}assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('') }}assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('') }}assets/css/dashboard.widgets.css" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('') }}page/css/pages-icons.css" rel="stylesheet" type="text/css">
+    <link class="main-stylesheet" href="{{ asset('') }}page/css/themes/modern.css" rel="stylesheet" type="text/css" />
   </head>
   <body class="fixed-header horizontal-menu horizontal-app-menu dashboard">
     <!-- START PAGE-CONTAINER -->
@@ -40,7 +40,7 @@
         <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-menu text-white" data-toggle="horizontal-menu"></a>
         <div class="">
           <div class="brand inline no-border hidden-xs-down">
-            <img src="assets/img/logo_white.png" alt="logo" data-src="assets/img/logo_white.png" data-src-retina="assets/img/logo_white_2x.png" width="78" height="22">
+            <img src="{{ asset('') }}assets/img/logo_white.png" alt="logo" data-src="{{ asset('') }}assets/img/logo_white.png" data-src-retina="{{ asset('') }}assets/img/logo_white_2x.png" width="78" height="22">
           </div>
           <!-- START NOTIFICATION LIST -->
           <ul class="hidden-md-down notification-list no-margin hidden-sm-down b-grey b-l b-r no-style p-l-30 p-r-20">
@@ -129,7 +129,7 @@
                       <div class="notification-item unread clearfix">
                         <div class="heading">
                           <div class="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
-                            <img width="30" height="30" data-src-retina="assets/img/profiles/1x.jpg" data-src="assets/img/profiles/1.jpg" alt="" src="assets/img/profiles/1.jpg">
+                            <img width="30" height="30" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" alt="" src="{{ asset('') }}assets/img/profiles/1.jpg">
                           </div>
                           <a href="#" class="text-complete pull-left">
                             <span class="bold">Revox Design Labs</span>
@@ -178,7 +178,7 @@
           <div class="dropdown pull-right">
             <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="thumbnail-wrapper d32 circular inline sm-m-r-5">
-                <img src="assets/img/profiles/avatar.jpg" alt="" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg" width="32" height="32">
+                <img src="{{ asset('') }}assets/img/profiles/avatar.jpg" alt="" data-src="{{ asset('') }}assets/img/profiles/avatar.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg" width="32" height="32">
                 </span>
             </button>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
@@ -522,7 +522,7 @@
                 <div class="card social-card share share-other full-width m-b-10 d-flex flex-1 full-height no-border sm-vh-75" data-social="item">
                   <div class="circle" data-toggle="tooltip" title="Label" data-container="body">
                   </div>
-                  <div class="card-content flex-1" data-pages-bg-image="assets/img/social_new.jpg">
+                  <div class="card-content flex-1" data-pages-bg-image="{{ asset('') }}assets/img/social_new.jpg">
                     <ul class="buttons ">
                       <li>
                         <a href="#"><i class="fa fa-expand"></i>
@@ -548,7 +548,7 @@
                   </div>
                   <div class="card-header clearfix">
                     <div class="user-pic">
-                      <img alt="Avatar" width="33" height="33" data-src-retina="assets/img/profiles/avatar_small2x.jpg" data-src="assets/img/profiles/avatar.jpg" src="assets/img/profiles/avatar_small2x.jpg">
+                      <img alt="Avatar" width="33" height="33" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg" data-src="{{ asset('') }}assets/img/profiles/avatar.jpg" src="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg">
                     </div>
                     <h5>David Nester</h5>
                     <h6>Shared a link on your wall</h6>
@@ -828,7 +828,7 @@
                             </div>
                           </div>
                           <div class="col-2 text-center">
-                            <a href="#" class="block m-t-15"><img src="assets/img/plus.svg"></a>
+                            <a href="#" class="block m-t-15"><img src="{{ asset('') }}assets/img/plus.svg"></a>
                           </div>
                         </div>
                       </div>
@@ -1378,7 +1378,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/1x.jpg" data-src="assets/img/profiles/1.jpg" src="assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">ava flores</span>
@@ -1396,7 +1396,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/2x.jpg" data-src="assets/img/profiles/2.jpg" src="assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">bella mccoy</span>
@@ -1409,7 +1409,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/3x.jpg" data-src="assets/img/profiles/3.jpg" src="assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">bob stephens</span>
@@ -1427,7 +1427,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/4x.jpg" data-src="assets/img/profiles/4.jpg" src="assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">carole roberts</span>
@@ -1440,7 +1440,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/5x.jpg" data-src="assets/img/profiles/5.jpg" src="assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">christopher perez</span>
@@ -1458,7 +1458,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/6x.jpg" data-src="assets/img/profiles/6.jpg" src="assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">danielle fletcher</span>
@@ -1471,7 +1471,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/7x.jpg" data-src="assets/img/profiles/7.jpg" src="assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">david sutton</span>
@@ -1489,7 +1489,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/8x.jpg" data-src="assets/img/profiles/8.jpg" src="assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">earl hamilton</span>
@@ -1502,7 +1502,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/9x.jpg" data-src="assets/img/profiles/9.jpg" src="assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">elaine lawrence</span>
@@ -1515,7 +1515,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/1x.jpg" data-src="assets/img/profiles/1.jpg" src="assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">ellen grant</span>
@@ -1528,7 +1528,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/2x.jpg" data-src="assets/img/profiles/2.jpg" src="assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">erik taylor</span>
@@ -1541,7 +1541,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/3x.jpg" data-src="assets/img/profiles/3.jpg" src="assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">everett wagner</span>
@@ -1559,7 +1559,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/4x.jpg" data-src="assets/img/profiles/4.jpg" src="assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">freddie gomez</span>
@@ -1577,7 +1577,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/5x.jpg" data-src="assets/img/profiles/5.jpg" src="assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">glen jensen</span>
@@ -1590,7 +1590,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/6x.jpg" data-src="assets/img/profiles/6.jpg" src="assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">gwendolyn walker</span>
@@ -1608,7 +1608,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/7x.jpg" data-src="assets/img/profiles/7.jpg" src="assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">janet romero</span>
@@ -1626,7 +1626,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/8x.jpg" data-src="assets/img/profiles/8.jpg" src="assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">kim martinez</span>
@@ -1644,7 +1644,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/9x.jpg" data-src="assets/img/profiles/9.jpg" src="assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">lawrence white</span>
@@ -1657,7 +1657,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/1x.jpg" data-src="assets/img/profiles/1.jpg" src="assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">leroy bell</span>
@@ -1670,7 +1670,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/2x.jpg" data-src="assets/img/profiles/2.jpg" src="assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">letitia carr</span>
@@ -1683,7 +1683,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/3x.jpg" data-src="assets/img/profiles/3.jpg" src="assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">lucy castro</span>
@@ -1701,7 +1701,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/4x.jpg" data-src="assets/img/profiles/4.jpg" src="assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">mae hayes</span>
@@ -1714,7 +1714,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/5x.jpg" data-src="assets/img/profiles/5.jpg" src="assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marilyn owens</span>
@@ -1727,7 +1727,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/6x.jpg" data-src="assets/img/profiles/6.jpg" src="assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marlene cole</span>
@@ -1740,7 +1740,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/7x.jpg" data-src="assets/img/profiles/7.jpg" src="assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marsha warren</span>
@@ -1753,7 +1753,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/8x.jpg" data-src="assets/img/profiles/8.jpg" src="assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marsha dean</span>
@@ -1766,7 +1766,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/9x.jpg" data-src="assets/img/profiles/9.jpg" src="assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">mia diaz</span>
@@ -1785,7 +1785,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/1x.jpg" data-src="assets/img/profiles/1.jpg" src="assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">noah elliott</span>
@@ -1803,7 +1803,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/2x.jpg" data-src="assets/img/profiles/2.jpg" src="assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">phyllis hamilton</span>
@@ -1821,7 +1821,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/3x.jpg" data-src="assets/img/profiles/3.jpg" src="assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">raul rodriquez</span>
@@ -1834,7 +1834,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/4x.jpg" data-src="assets/img/profiles/4.jpg" src="assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">rhonda barnett</span>
@@ -1847,7 +1847,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/5x.jpg" data-src="assets/img/profiles/5.jpg" src="assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">roberta king</span>
@@ -1865,7 +1865,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/6x.jpg" data-src="assets/img/profiles/6.jpg" src="assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">scott armstrong</span>
@@ -1878,7 +1878,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/7x.jpg" data-src="assets/img/profiles/7.jpg" src="assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">sebastian austin</span>
@@ -1891,7 +1891,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/8x.jpg" data-src="assets/img/profiles/8.jpg" src="assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">sofia davis</span>
@@ -1909,7 +1909,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/9x.jpg" data-src="assets/img/profiles/9.jpg" src="assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">terrance young</span>
@@ -1922,7 +1922,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/1x.jpg" data-src="assets/img/profiles/1.jpg" src="assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">theodore woods</span>
@@ -1935,7 +1935,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/2x.jpg" data-src="assets/img/profiles/2.jpg" src="assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">todd wood</span>
@@ -1948,7 +1948,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/3x.jpg" data-src="assets/img/profiles/3.jpg" src="assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">tommy jenkins</span>
@@ -1966,7 +1966,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="assets/img/profiles/4x.jpg" data-src="assets/img/profiles/4.jpg" src="assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">wilma hicks</span>
@@ -2009,7 +2009,7 @@
                 <!-- BEGIN From Them Message  !-->
                 <div class="message clearfix">
                   <div class="profile-img-wrapper m-t-5 inline">
-                    <img class="col-top" width="30" height="30" src="assets/img/profiles/avatar_small.jpg" alt="" data-src="assets/img/profiles/avatar_small.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg">
+                    <img class="col-top" width="30" height="30" src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" alt="" data-src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg">
                   </div>
                   <div class="chat-bubble from-them">
                     Hey
@@ -2033,7 +2033,7 @@
                 <!-- BEGIN From Them Message  !-->
                 <div class="message clearfix">
                   <div class="profile-img-wrapper m-t-5 inline">
-                    <img class="col-top" width="30" height="30" src="assets/img/profiles/avatar_small.jpg" alt="" data-src="assets/img/profiles/avatar_small.jpg" data-src-retina="assets/img/profiles/avatar_small2x.jpg">
+                    <img class="col-top" width="30" height="30" src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" alt="" data-src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg">
                   </div>
                   <div class="chat-bubble from-them">
                     Yea
@@ -2071,7 +2071,7 @@
         <!-- BEGIN Overlay Header !-->
         <div class="container-fluid">
           <!-- BEGIN Overlay Logo !-->
-          <img class="overlay-brand" src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
+          <img class="overlay-brand" src="{{ asset('') }}assets/img/logo.png" alt="logo" data-src="{{ asset('') }}assets/img/logo.png" data-src-retina="{{ asset('') }}assets/img/logo_2x.png" width="78" height="22">
           <!-- END Overlay Logo !-->
           <!-- BEGIN Overlay Close !-->
           <a href="#" class="close-icon-light overlay-close text-black fs-16">
@@ -2111,7 +2111,7 @@
                   <!-- BEGIN Search Result Item Thumbnail !-->
                   <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
                     <div>
-                      <img width="50" height="50" src="assets/img/profiles/avatar.jpg" data-src="assets/img/profiles/avatar.jpg" data-src-retina="assets/img/profiles/avatar2x.jpg" alt="">
+                      <img width="50" height="50" src="{{ asset('') }}assets/img/profiles/avatar.jpg" data-src="{{ asset('') }}assets/img/profiles/avatar.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar2x.jpg" alt="">
                     </div>
                   </div>
                   <!-- END Search Result Item Thumbnail !-->
@@ -2202,52 +2202,52 @@
     </div>
     <!-- END OVERLAY -->
     <!-- BEGIN VENDOR JS -->
-    <script src="assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/modernizr.custom.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/tether/js/tether.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-actual/jquery.actual.min.js"></script>
-    <script src="assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/select2/js/select2.full.min.js"></script>
-    <script type="text/javascript" src="assets/plugins/classie/classie.js"></script>
-    <script src="assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/pace/pace.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/modernizr.custom.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/tether/js/tether.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-actual/jquery.actual.min.js"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/plugins/select2/js/select2.full.min.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/plugins/classie/classie.js"></script>
+    <script src="{{ asset('') }}assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/lib/d3.v3.js" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/nv.d3.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/src/utils.js" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/src/tooltip.js" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/src/interactiveLayer.js" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/src/models/axis.js" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/src/models/line.js" type="text/javascript"></script>
-    <script src="assets/plugins/nvd3/src/models/lineWithFocusChart.js" type="text/javascript"></script>
-    <script src="assets/plugins/mapplic/js/hammer.js"></script>
-    <script src="assets/plugins/mapplic/js/jquery.mousewheel.js"></script>
-    <script src="assets/plugins/mapplic/js/mapplic.js"></script>
-    <script src="assets/plugins/rickshaw/rickshaw.min.js"></script>
-    <script src="assets/plugins/jquery-metrojs/MetroJs.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/skycons/skycons.js" type="text/javascript"></script>
-    <script src="assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <script src="assets/plugins/moment/moment.min.js"></script>
-    <script src="assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
-    <script src="assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js" type="text/javascript"></script>
-    <script type="text/javascript" src="assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
-    <script type="text/javascript" src="assets/plugins/datatables-responsive/js/lodash.min.js"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/lib/d3.v3.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/nv.d3.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/src/utils.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/src/tooltip.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/src/interactiveLayer.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/src/models/axis.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/src/models/line.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/nvd3/src/models/lineWithFocusChart.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/mapplic/js/hammer.js"></script>
+    <script src="{{ asset('') }}assets/plugins/mapplic/js/jquery.mousewheel.js"></script>
+    <script src="{{ asset('') }}assets/plugins/mapplic/js/mapplic.js"></script>
+    <script src="{{ asset('') }}assets/plugins/rickshaw/rickshaw.min.js"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-metrojs/MetroJs.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/skycons/skycons.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/moment/moment.min.js"></script>
+    <script src="{{ asset('') }}assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
+    <script type="text/javascript" src="{{ asset('') }}assets/plugins/datatables-responsive/js/lodash.min.js"></script>
     <!-- END VENDOR JS -->
     <!-- BEGIN CORE TEMPLATE JS -->
-    <script src="pages/js/pages.min.js"></script>
+    <script src="{{ asset('') }}page/js/pages.min.js"></script>
     <!-- END CORE TEMPLATE JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="assets/js/dashboard.js" type="text/javascript"></script>
-    <script src="assets/js/scripts.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/js/dashboard.js" type="text/javascript"></script>
+    <script src="{{ asset('') }}assets/js/scripts.js" type="text/javascript"></script>
     <!-- END PAGE LEVEL JS -->
   </body>
 </html>
