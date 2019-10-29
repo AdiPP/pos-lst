@@ -3,12 +3,12 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
-    <title>Pages - Admin Dashboard UI Kit - Dashboard</title>
+    <title>POSLST - @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
-    <link rel="apple-touch-icon" href="{{ asset('page/ico/60.png') }}">
-    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('page/ico/76.png') }}">
-    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('page/ico/120.png') }}">
-    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('page/ico/152.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('pages/ico/60.png') }}">
+    <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('pages/ico/76.png') }}">
+    <link rel="apple-touch-icon" sizes="120x120" href="{{ asset('pages/ico/120.png') }}">
+    <link rel="apple-touch-icon" sizes="152x152" href="{{ asset('pages/ico/152.png') }}">
     <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-touch-fullscreen" content="yes">
@@ -20,18 +20,23 @@
     <link href="{{ asset('assets/plugins/font-awesome/css/font-awesome.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/plugins/jquery-scrollbar/jquery.scrollbar.css') }}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{{ asset('assets/plugins/select2/css/select2.min.css') }}" rel="stylesheet" type="text/css" media="screen" />
-    <link href="{{ asset('') }}assets/plugins/switchery/css/switchery.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="{{ asset('') }}assets/plugins/nvd3/nv.d3.min.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="{{ asset('') }}assets/plugins/mapplic/css/mapplic.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('') }}assets/plugins/rickshaw/rickshaw.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('') }}assets/plugins/bootstrap-datepicker/css/datepicker3.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('') }}assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" media="screen">
-    <link href="{{ asset('') }}assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('') }}assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('') }}assets/plugins/datatables-responsive/css/datatables.responsive.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="{{ asset('') }}assets/css/dashboard.widgets.css" rel="stylesheet" type="text/css" media="screen" />
-    <link href="{{ asset('') }}page/css/pages-icons.css" rel="stylesheet" type="text/css">
-    <link class="main-stylesheet" href="{{ asset('') }}page/css/themes/modern.css" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/switchery/css/switchery.min.css') }}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('assets/plugins/nvd3/nv.d3.min.css') }}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('assets/plugins/mapplic/css/mapplic.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/rickshaw/rickshaw.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/bootstrap-datepicker/css/datepicker3.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker-bs3.css') }}" rel="stylesheet" type="text/css" media="screen">
+    <link href="{{ asset('assets/plugins/jquery-datatable/media/css/dataTables.bootstrap.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/jquery-datatable/extensions/FixedColumns/css/dataTables.fixedColumns.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/plugins/datatables-responsive/css/datatables.responsive.css') }}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('assets/css/dashboard.widgets.css') }}" rel="stylesheet" type="text/css" media="screen" />
+    <link href="{{ asset('pages/css/pages-icons.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- LARAVEL DEFAULT STYLE -->
+    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
+    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+
+    <link class="main-stylesheet" href="{{ asset('pages/css/themes/modern.css') }}" rel="stylesheet" type="text/css" />
   </head>
   <body class="fixed-header horizontal-menu horizontal-app-menu dashboard">
     <!-- START PAGE-CONTAINER -->
@@ -40,145 +45,29 @@
         <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-menu text-white" data-toggle="horizontal-menu"></a>
         <div class="">
           <div class="brand inline no-border hidden-xs-down">
-            <img src="{{ asset('') }}assets/img/logo_white.png" alt="logo" data-src="{{ asset('') }}assets/img/logo_white.png" data-src-retina="{{ asset('') }}assets/img/logo_white_2x.png" width="78" height="22">
+            <a href="{{ url('/') }}">
+              <div style="width: 78px; height: ;">
+                <span class="bold" style="color: white; font-size: 15px;">POSLST</span>
+              </div>
+                {{-- <img src="{{ asset('assets/img/logo_white.png') }}" alt="logo" data-src="{{ asset('assets/img/logo_white.png') }}" data-src-retina="{{ asset('assets/img/logo_white_2x.png') }}" width="78" height="22"> --}}
+            </a>
           </div>
           <!-- START NOTIFICATION LIST -->
-          <ul class="hidden-md-down notification-list no-margin hidden-sm-down b-grey b-l b-r no-style p-l-30 p-r-20">
-            <li class="p-r-10 inline">
-              <div class="dropdown">
-                <a href="javascript:;" id="notification-center" class="header-icon pg pg-world" data-toggle="dropdown">
-                  <span class="bubble"></span>
-                </a>
-                <!-- START Notification Dropdown -->
-                <div class="dropdown-menu notification-toggle" role="menu" aria-labelledby="notification-center">
-                  <!-- START Notification -->
-                  <div class="notification-panel">
-                    <!-- START Notification Body-->
-                    <div class="notification-body scrollable">
-                      <!-- START Notification Item-->
-                      <div class="notification-item unread clearfix">
-                        <!-- START Notification Item-->
-                        <div class="heading open">
-                          <a href="#" class="text-complete pull-left">
-                            <i class="pg-map fs-16 m-r-10"></i>
-                            <span class="bold">Carrot Design</span>
-                            <span class="fs-12 m-l-10">David Nester</span>
-                          </a>
-                          <div class="pull-right">
-                            <div class="thumbnail-wrapper d16 circular inline m-t-15 m-r-10 toggle-more-details">
-                              <div><i class="fa fa-angle-left"></i>
-                              </div>
-                            </div>
-                            <span class=" time">few sec ago</span>
-                          </div>
-                          <div class="more-details">
-                            <div class="more-details-inner">
-                              <h5 class="semi-bold fs-16">“Apple’s Motivation - Innovation <br>
-                                                            distinguishes between <br>
-                                                            A leader and a follower.”</h5>
-                              <p class="small hint-text">
-                                Commented on john Smiths wall.
-                                <br> via pages framework.
-                              </p>
-                            </div>
-                          </div>
-                        </div>
-                        <!-- END Notification Item-->
-                        <!-- START Notification Item Right Side-->
-                        <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
-                          <a href="#" class="mark"></a>
-                        </div>
-                        <!-- END Notification Item Right Side-->
-                      </div>
-                      <!-- START Notification Body-->
-                      <!-- START Notification Item-->
-                      <div class="notification-item  clearfix">
-                        <div class="heading">
-                          <a href="#" class="text-danger pull-left">
-                            <i class="fa fa-exclamation-triangle m-r-10"></i>
-                            <span class="bold">98% Server Load</span>
-                            <span class="fs-12 m-l-10">Take Action</span>
-                          </a>
-                          <span class="pull-right time">2 mins ago</span>
-                        </div>
-                        <!-- START Notification Item Right Side-->
-                        <div class="option">
-                          <a href="#" class="mark"></a>
-                        </div>
-                        <!-- END Notification Item Right Side-->
-                      </div>
-                      <!-- END Notification Item-->
-                      <!-- START Notification Item-->
-                      <div class="notification-item  clearfix">
-                        <div class="heading">
-                          <a href="#" class="text-warning-dark pull-left">
-                            <i class="fa fa-exclamation-triangle m-r-10"></i>
-                            <span class="bold">Warning Notification</span>
-                            <span class="fs-12 m-l-10">Buy Now</span>
-                          </a>
-                          <span class="pull-right time">yesterday</span>
-                        </div>
-                        <!-- START Notification Item Right Side-->
-                        <div class="option">
-                          <a href="#" class="mark"></a>
-                        </div>
-                        <!-- END Notification Item Right Side-->
-                      </div>
-                      <!-- END Notification Item-->
-                      <!-- START Notification Item-->
-                      <div class="notification-item unread clearfix">
-                        <div class="heading">
-                          <div class="thumbnail-wrapper d24 circular b-white m-r-5 b-a b-white m-t-10 m-r-10">
-                            <img width="30" height="30" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" alt="" src="{{ asset('') }}assets/img/profiles/1.jpg">
-                          </div>
-                          <a href="#" class="text-complete pull-left">
-                            <span class="bold">Revox Design Labs</span>
-                            <span class="fs-12 m-l-10">Owners</span>
-                          </a>
-                          <span class="pull-right time">11:00pm</span>
-                        </div>
-                        <!-- START Notification Item Right Side-->
-                        <div class="option" data-toggle="tooltip" data-placement="left" title="mark as read">
-                          <a href="#" class="mark"></a>
-                        </div>
-                        <!-- END Notification Item Right Side-->
-                      </div>
-                      <!-- END Notification Item-->
-                    </div>
-                    <!-- END Notification Body-->
-                    <!-- START Notification Footer-->
-                    <div class="notification-footer text-center">
-                      <a href="#" class="">Read all notifications</a>
-                      <a data-toggle="refresh" class="portlet-refresh text-black pull-right" href="#">
-                        <i class="pg-refresh_new"></i>
-                      </a>
-                    </div>
-                    <!-- START Notification Footer-->
-                  </div>
-                  <!-- END Notification -->
-                </div>
-                <!-- END Notification Dropdown -->
-              </div>
-            </li>
-            <li class="p-r-10 inline">
-              <a href="#" class="header-icon pg pg-link"></a>
-            </li>
-            <li class="p-r-10 inline">
-              <a href="#" class="header-icon pg pg-thumbs"></a>
-            </li>
-          </ul>
+          
           <!-- END NOTIFICATIONS LIST -->
-          <a href="#" class="search-link hidden-md-down" data-toggle="search"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a>
+        </div>
+        <div>
+          <a href="#" class="ml-0 search-link hidden-md-down" data-toggle="search"><i class="pg-search"></i>Type anywhere to <span class="bold">search</span></a>
         </div>
         <div class="d-flex align-items-center">
           <!-- START User Info-->
           <div class="pull-left p-r-10 fs-14 font-heading hidden-md-down text-white">
-            <span class="semi-bold">David</span> <span class="">Nest</span>
+            <span class="semi-bold">Adi</span> <span class="">Permana Putra</span>
           </div>
           <div class="dropdown pull-right">
             <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
               <span class="thumbnail-wrapper d32 circular inline sm-m-r-5">
-                <img src="{{ asset('') }}assets/img/profiles/avatar.jpg" alt="" data-src="{{ asset('') }}assets/img/profiles/avatar.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg" width="32" height="32">
+                <img src="{{ asset('assets/img/profiles/avatar.jpg') }}" alt="" data-src="{{ asset('assets/img/profiles/avatar.jpg') }}" data-src-retina="{{ asset('assets/img/profiles/avatar_small2x.jpg') }}" width="32" height="32">
                 </span>
             </button>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown" role="menu">
@@ -192,7 +81,8 @@
             </div>
           </div>
           <!-- END User Info-->
-          <a href="#" class="header-icon pg pg-alt_menu btn-link m-l-10 sm-no-margin d-inline-block" data-toggle="quickview" data-toggle-element="#quickview"></a>
+          <a href="#" class=""><i class="header-icon m-l-10 fa fa-sign-out" style="font-size: 16px;"></i></a>
+          {{-- <a href="#" class="header-icon pg pg-alt_menu btn-link m-l-10 sm-no-margin d-inline-block" data-toggle="quickview" data-toggle-element="#quickview"></a> --}}
         </div>
       </div>
       <div class="bg-white">
@@ -201,163 +91,41 @@
             <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-close" data-toggle="horizontal-menu">
             </a>
             <ul>
-              <li class=" active">
-                <a href="index.html">Dashboard</a>
+              <li class="">
+                <a href="{{ url('/', []) }}">Dashboard</a>
               </li>
-              <li>
-                <a href="social.html"><span class="title">Social</span></a>
+              <li class="
+                @if (config('global.active_nav') === 'laporan')
+                    {{ 'active' }}
+                @endif">
+                <a href="/laporan"><span class="title">Laporan</span></a>
               </li>
-              <li>
-                <a href="javascript:;"><span class="title">Calendar</span>
+              <li class="
+                @if (config('global.active_nav') === 'produk')
+                  {{ 'active' }}
+                @endif">
+                <a href="javascript:;"><span class="title">Produk</span>
             <span class=" arrow"></span></a>
                 <ul class="">
                   <li class="">
-                    <a href="calendar.html">Basic</a>
+                    <a href="{{ url('/produk', []) }}">Produk</a>
                   </li>
                   <li class="">
-                    <a href="calendar_lang.html">Languages</a>
-                  </li>
-                  <li class="">
-                    <a href="calendar_month.html">Month</a>
-                  </li>
-                  <li class="">
-                    <a href="calendar_lazy.html">Lazy load</a>
-                  </li>
-                  <li class="">
-                    <a href="http://pages.revox.io/dashboard/2.1.0/doc/#calendar" target="_blank">Documentation</a>
+                    <a href="{{ url('/produk/kategori', []) }}">Kategori</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="javascript:;"><span class="title">UI Elements</span>
-            <span class=" arrow"></span></a>
+                <a href="javascript:;"><span class="title">Bisnis</span>
+                <span class=" arrow"></span></a>
                 <ul class="">
                   <li class="">
-                    <a href="color.html">Color</a>
-                  </li>
-                  <li class="">
-                    <a href="typography.html">Typography</a>
-                  </li>
-                  <li class="">
-                    <a href="icons.html">Icons</a>
-                  </li>
-                  <li class="">
-                    <a href="buttons.html">Buttons</a>
-                  </li>
-                  <li class="">
-                    <a href="notifications.html">Notifications</a>
-                  </li>
-                  <li class="">
-                    <a href="modals.html">Modals</a>
-                  </li>
-                  <li class="">
-                    <a href="progress.html">Progress &amp; Activity</a>
-                  </li>
-                  <li class="">
-                    <a href="tabs_accordian.html">Tabs &amp; Accordions</a>
-                  </li>
-                  <li class="">
-                    <a href="sliders.html">Sliders</a>
-                  </li>
-                  <li class="">
-                    <a href="tree_view.html">Tree View</a>
-                  </li>
-                  <li class="">
-                    <a href="nestables.html">Nestable</a>
+                    <a href="#">Anggota</a>
                   </li>
                 </ul>
               </li>
               <li>
-                <a href="javascript:;">
-                  <span class="title">Forms</span>
-                  <span class=" arrow"></span>
-                </a>
-                <ul class="">
-                  <li class="">
-                    <a href="form_elements.html">Form Elements</a>
-                  </li>
-                  <li class="">
-                    <a href="form_layouts.html">Form Layouts</a>
-                  </li>
-                  <li class="">
-                    <a href="form_wizard.html">Form Wizard</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="builder.html">
-                  <span class="title">Builder</span>
-                </a>
-              </li>
-              <li>
-                <a href="cards.html">
-                  <span class="title">Cards</span>
-                </a>
-              </li>
-              <li>
-                <a href="views.html">
-                  <span class="title">Views</span>
-                </a>
-              </li>
-              <li>
-                <a href="javascript:;"><span class="title">Tables</span>
-            <span class=" arrow"></span></a>
-                <ul class="">
-                  <li class="">
-                    <a href="tables.html">Basic Tables</a>
-                  </li>
-                  <li class="">
-                    <a href="datatables.html">Data Tables</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="javascript:;"><span class="title">Maps</span>
-            <span class=" arrow"></span></a>
-                <ul class="">
-                  <li class="">
-                    <a href="google_map.html">Google Maps</a>
-                  </li>
-                  <li class="">
-                    <a href="vector_map.html">Vector Maps</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="charts.html"><span class="title">Charts</span></a>
-              </li>
-              <li>
-                <a href="javascript:;"><span class="title">Extra</span>
-            <span class=" arrow"></span></a>
-                <ul class="">
-                  <li class="">
-                    <a href="invoice.html">Invoice</a>
-                  </li>
-                  <li class="">
-                    <a href="404.html">404 Page</a>
-                  </li>
-                  <li class="">
-                    <a href="500.html">500 Page</a>
-                  </li>
-                  <li class="">
-                    <a href="blank_template.html">Blank Page</a>
-                  </li>
-                  <li class="">
-                    <a href="login.html">Login</a>
-                  </li>
-                  <li class="">
-                    <a href="register.html">Register</a>
-                  </li>
-                  <li class="">
-                    <a href="lock_screen.html">Lockscreen</a>
-                  </li>
-                  <li class="">
-                    <a href="gallery.html">Gallery</a>
-                  </li>
-                  <li class="">
-                    <a href="timeline.html">Timeline</a>
-                  </li>
-                </ul>
+                <a href="#"><span class="title">POS</span></a>
               </li>
             </ul>
             <a href="#" class="search-link d-flex justify-content-between align-items-center hidden-lg-up" data-toggle="search">Tap here to search <i class="pg-search float-right"></i></a>
@@ -374,631 +142,13 @@
           <div class="bg-white">
             <div class="container">
               <ol class="breadcrumb breadcrumb-alt">
-                <li class="breadcrumb-item"><a href="#">Home</a></li>
-                <li class="breadcrumb-item active">Dashboard</li>
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
               </ol>
             </div>
           </div>
           <!-- END BREADCRUMBS -->
           <!-- START CONTAINER FLUID -->
-          <div class="container sm-padding-10 p-t-20 p-l-0 p-r-0">
-            <!-- START ROW -->
-            <div class="row">
-              <div class="col-lg-3 col-sm-6 d-flex flex-column">
-                <!-- START WIDGET widget_map_sales-->
-                <!-- START ITEM -->
-                <div class="card social-card share  full-width m-b-10 no-border" data-social="item">
-                  <div class="card-header ">
-                    <h5 class="text-complete pull-left fs-12">News <i
-									class="fa fa-circle text-complete fs-11"></i></h5>
-                    <div class="pull-right small hint-text">
-                      5,345 <i class="fa fa-comment-o"></i>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="card-description">
-                    <h3>Ebola outbreak: Clinical drug trials to start next month as death toll mounts</h3>
-                  </div>
-                  <div class="card-footer clearfix">
-                    <div class="pull-left">via <span class="text-complete">CNN</span>
-                    </div>
-                    <div class="pull-right hint-text">
-                      Apr 23
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-                <!-- END ITEM -->
-                <!-- END WIDGET -->
-                <!-- START WIDGET widget_weekly_sales_card-->
-                <div class="card no-border widget-loader-bar m-b-10">
-                  <div class="container-xs-height full-height">
-                    <div class="row-xs-height">
-                      <div class="col-xs-height col-top">
-                        <div class="card-header  top-left top-right">
-                          <div class="card-title">
-                            <span class="font-montserrat fs-11 all-caps">Weekly Sales <i class="fa fa-chevron-right"></i>
-				                        </span>
-                          </div>
-                          <div class="card-controls">
-                            <ul>
-                              <li><a href="#" class="portlet-refresh text-black" data-toggle="refresh"><i class="portlet-icon portlet-icon-refresh"></i></a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row-xs-height">
-                      <div class="col-xs-height col-top">
-                        <div class="p-l-20 p-t-50 p-b-40 p-r-20">
-                          <h3 class="no-margin p-b-5">$24,000</h3>
-                          <span class="small hint-text pull-left">71% of total goal</span>
-                          <span class="pull-right small text-primary">$23,000</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row-xs-height">
-                      <div class="col-xs-height col-bottom">
-                        <div class="progress progress-small m-b-0">
-                          <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                          <div class="progress-bar progress-bar-primary" style="width:71%"></div>
-                          <!-- END BOOTSTRAP PROGRESS -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END WIDGET -->
-                <!-- START WIDGET widget_weekly_sales_card-->
-                <div class="card no-border widget-loader-bar m-b-10">
-                  <div class="container-xs-height full-height">
-                    <div class="row-xs-height">
-                      <div class="col-xs-height col-top">
-                        <div class="card-header  top-left top-right">
-                          <div class="card-title">
-                            <span class="font-montserrat fs-11 all-caps">Page Visits <i class="fa fa-chevron-right"></i>
-				                        </span>
-                          </div>
-                          <div class="card-controls">
-                            <ul>
-                              <li><a href="#" class="portlet-refresh text-black" data-toggle="refresh"><i class="portlet-icon portlet-icon-refresh"></i></a>
-                              </li>
-                            </ul>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row-xs-height">
-                      <div class="col-xs-height col-top">
-                        <div class="p-l-20 p-t-50 p-b-40 p-r-20">
-                          <h3 class="no-margin p-b-5">423</h3>
-                          <span class="small hint-text pull-left">22% higher</span>
-                          <span class="pull-right small text-danger">$23,000</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="row-xs-height">
-                      <div class="col-xs-height col-bottom">
-                        <div class="progress progress-small m-b-0">
-                          <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                          <div class="progress-bar progress-bar-danger" style="width:15%"></div>
-                          <!-- END BOOTSTRAP PROGRESS -->
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END WIDGET -->
-              </div>
-              <div class="col-lg-3 col-sm-6 d-flex flex-column">
-                <!-- START ITEM -->
-                <div class="card social-card share  full-width m-b-10 no-border" data-social="item">
-                  <div class="card-header clearfix">
-                    <h5 class="text-success pull-left fs-12">Stock Market <i
-									class="fa fa-circle text-success fs-11"></i></h5>
-                    <div class="pull-right small hint-text">
-                      5,345 <i class="fa fa-comment-o"></i>
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="card-description">
-                    <h5 class='hint-text no-margin'>Apple Inc.</h5>
-                    <h5 class="small hint-text no-margin">NASDAQ: AAPL - Nov 13 8:37 AM ET</h5>
-                    <h3 class="m-b-0">111.25 <span class="text-success"><i class="fa fa-sort-up small text-success"></i> 0.15</span>
-							</h3>
-                  </div>
-                  <div class="card-footer clearfix">
-                    <div class="pull-left">by <span class="text-success">John Smith</span>
-                    </div>
-                    <div class="pull-right hint-text">
-                      Apr 23
-                    </div>
-                    <div class="clearfix"></div>
-                  </div>
-                </div>
-                <!-- END ITEM -->
-                <!-- START ITEM -->
-                <div class="card social-card share share-other full-width m-b-10 d-flex flex-1 full-height no-border sm-vh-75" data-social="item">
-                  <div class="circle" data-toggle="tooltip" title="Label" data-container="body">
-                  </div>
-                  <div class="card-content flex-1" data-pages-bg-image="{{ asset('') }}assets/img/social_new.jpg">
-                    <ul class="buttons ">
-                      <li>
-                        <a href="#"><i class="fa fa-expand"></i>
-									</a>
-                      </li>
-                      <li>
-                        <a href="#"><i class="fa fa-heart-o"></i>
-									</a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-description">
-                    <p><a href="#">#TBT</a> :D</p>
-                  </div>
-                  <div class="card-footer clearfix">
-                    <div class="time">few seconds ago</div>
-                    <ul class="reactions">
-                      <li><a href="#">5,345 <i class="fa fa-comment-o"></i></a>
-                      </li>
-                      <li><a href="#">23K <i class="fa fa-heart-o"></i></a>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="card-header clearfix">
-                    <div class="user-pic">
-                      <img alt="Avatar" width="33" height="33" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg" data-src="{{ asset('') }}assets/img/profiles/avatar.jpg" src="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg">
-                    </div>
-                    <h5>David Nester</h5>
-                    <h6>Shared a link on your wall</h6>
-                  </div>
-                </div>
-                <!-- END ITEM -->
-              </div>
-              <div class="col-lg-6 m-b-10 d-flex flex-column">
-                <!-- START WIDGET widget_tableRankings-->
-                <div class="widget-12 card no-border widget-loader-circle no-margin col ar-1-1 sm-vh-75">
-                  <div class="row">
-                    <div class="col-xlg-8 ">
-                      <div class="card-header pull-up top-right ">
-                        <div class="card-controls">
-                          <ul>
-                            <li class="hidden-xlg">
-                              <div class="dropdown">
-                                <a data-target="#" href="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">
-                                  <i class="portlet-icon portlet-icon-settings"></i>
-                                </a>
-                                <ul class="dropdown-menu pull-right" role="menu">
-                                  <li><a href="#">AAPL</a>
-                                  </li>
-                                  <li><a href="#">YHOO</a>
-                                  </li>
-                                  <li><a href="#">GOOG</a>
-                                  </li>
-                                </ul>
-                              </div>
-                            </li>
-                            <li>
-                              <a data-toggle="refresh" class="portlet-refresh text-black" href="#"><i class="portlet-icon portlet-icon-refresh"></i></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="card-block">
-                    <div class="d-flex flex-column full-height p-l-10">
-                      <div class="d-flex flex-row">
-                        <h2 class="">Apple Inc.</h2>
-                        <h2 class="m-l-50 text-danger">
-										<span class="bold">448.97</span>
-										<span class="text-danger fs-12">-318.24</span>
-									</h2>
-                      </div>
-                      <div class="full-width">
-                        <ul class="list-inline m-b-0">
-                          <li><a href="#" class="font-montserrat text-master">1D</a>
-                          </li>
-                          <li class="active"><a href="#" class="font-montserrat  bg-master-light text-master">5D</a>
-                          </li>
-                          <li><a href="#" class="font-montserrat text-master">1M</a>
-                          </li>
-                          <li><a href="#" class="font-montserrat text-master">1Y</a>
-                          </li>
-                        </ul>
-                      </div>
-                      <div class="nvd3-line line-chart text-center flex-1" data-x-grid="false">
-                        <svg class="full-height"></svg>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END WIDGET -->
-              </div>
-            </div>
-            <!-- END ROW -->
-            <!-- START ROW -->
-            <div class="row m-b-30">
-              <div class="col-lg-7">
-                <!-- START ROW -->
-                <div class="row">
-                  <div class="col-sm-6 md-p-b-10">
-                    <!-- START WIDGET widget_pendingComments.tpl-->
-                    <div class=" card no-border  no-margin widget-loader-circle todolist-widget pending-projects-widget">
-                      <div class="card-header ">
-                        <div class="card-title">
-                          <span class="font-montserrat fs-11 all-caps">
-                  Recent projects <i class="fa fa-chevron-right"></i>
-              </span>
-                        </div>
-                        <div class="card-controls">
-                          <ul>
-                            <li><a href="#" class="card-refresh text-black" data-toggle="refresh"><i
-        class="card-icon card-icon-refresh"></i></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <div class="card-block">
-                        <h5 class="">Ongoing projects at <span class="semi-bold">pages</span></h5>
-                        <ul class="nav nav-tabs nav-tabs-simple m-b-20" role="tablist" data-init-reponsive-tabs="collapse">
-                          <li class="nav-item"><a href="#pending" class="active" data-toggle="tab" role="tab" aria-expanded="true">Pending</a>
-                          </li>
-                          <li class="nav-item"><a href="#completed" data-toggle="tab" role="tab" aria-expanded="false">Completed</a>
-                          </li>
-                        </ul>
-                        <div class="tab-content no-padding">
-                          <div class="tab-pane active" id="pending">
-                            <div class="p-t-15">
-                              <div class="d-flex">
-                                <span class="icon-thumbnail bg-master-light pull-left text-master">ws</span>
-                                <div class="flex-1 full-width overflow-ellipsis">
-                                  <p class="hint-text all-caps font-montserrat  small no-margin overflow-ellipsis ">Revox Ltd
-                                  </p>
-                                  <h5 class="no-margin overflow-ellipsis ">Marketing Campaign for revox</h5>
-                                </div>
-                              </div>
-                              <div class="m-t-15">
-                                <p class="hint-text fade small pull-left">71% compleated from total</p>
-                                <a href="#" class="pull-right text-master"><i class="pg-more"></i></a>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="progress progress-small m-b-15 m-t-10">
-                                <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                                <div class="progress-bar progress-bar-info" style="width:71%"></div>
-                                <!-- END BOOTSTRAP PROGRESS -->
-                              </div>
-                            </div>
-                            <div class="p-t-15">
-                              <div class="d-flex">
-                                <span class="icon-thumbnail bg-warning-light pull-left text-master">cr</span>
-                                <div class="flex-1 full-width overflow-ellipsis">
-                                  <p class="hint-text all-caps font-montserrat  small no-margin overflow-ellipsis ">Nike Ltd
-                                  </p>
-                                  <h5 class="no-margin overflow-ellipsis ">Corporate rebranding</h5>
-                                </div>
-                              </div>
-                              <div class="m-t-15">
-                                <p class="hint-text fade small pull-left">20% compleated from total</p>
-                                <a href="#" class="pull-right text-master"><i class="pg-more"></i></a>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="progress progress-small m-b-15 m-t-10">
-                                <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                                <div class="progress-bar progress-bar-warning" style="width:20%"></div>
-                                <!-- END BOOTSTRAP PROGRESS -->
-                              </div>
-                            </div>
-                            <a href="#" class="btn btn-block m-t-30">See all projects</a>
-                          </div>
-                          <div class="tab-pane" id="completed">
-                            <div class="p-t-15">
-                              <div class="d-flex">
-                                <span class="icon-thumbnail bg-master-light pull-left text-master">ws</span>
-                                <div class="flex-1 full-width overflow-ellipsis">
-                                  <p class="hint-text all-caps font-montserrat  small no-margin overflow-ellipsis ">Apple Corp
-                                  </p>
-                                  <h5 class="no-margin overflow-ellipsis ">Marketing Campaign for revox</h5>
-                                </div>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="m-t-15">
-                                <p class="hint-text fade small pull-left">45% compleated from total</p>
-                                <a href="#" class="pull-right text-master"><i class="pg-more"></i></a>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="progress progress-small m-b-15 m-t-10">
-                                <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                                <div class="progress-bar progress-bar-info" style="width:45%"></div>
-                                <!-- END BOOTSTRAP PROGRESS -->
-                              </div>
-                            </div>
-                            <div class="p-t-15">
-                              <div class="d-flex">
-                                <span class="icon-thumbnail bg-warning-light pull-left text-master">cr</span>
-                                <div class="flex-1 full-width overflow-ellipsis">
-                                  <p class="hint-text all-caps font-montserrat  small no-margin overflow-ellipsis ">Yahoo Inc
-                                  </p>
-                                  <h5 class="no-margin overflow-ellipsis ">Corporate rebranding</h5>
-                                </div>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="m-t-25">
-                                <p class="hint-text fade small pull-left">20% compleated from total</p>
-                                <a href="#" class="pull-right text-master"><i class="pg-more"></i></a>
-                                <div class="clearfix"></div>
-                              </div>
-                              <div class="progress progress-small m-b-15 m-t-10">
-                                <!-- START BOOTSTRAP PROGRESS (http://getbootstrap.com/components/#progress) -->
-                                <div class="progress-bar progress-bar-warning" style="width:20%"></div>
-                                <!-- END BOOTSTRAP PROGRESS -->
-                              </div>
-                            </div>
-                            <a href="#" class="btn btn-block m-t-30">See all projects</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- END WIDGET -->
-                  </div>
-                  <div class="col-sm-6 sm-m-t-10 md-p-b-10 d-flex">
-                    <!-- START WIDGET widget_pendingComments.tpl-->
-                    <div class=" card no-border  no-margin widget-loader-circle todolist-widget align-self-stretch">
-                      <div class="card-header">
-                        <div class="card-title">TODOLIST
-                        </div>
-                        <div class="card-controls">
-                          <ul>
-                            <li><a href="#" class="portlet-refresh text-black" data-toggle="refresh"><i
-						                        class="portlet-icon portlet-icon-refresh"></i></a>
-                            </li>
-                          </ul>
-                        </div>
-                      </div>
-                      <ul class="list-unstyled p-l-20 p-r-20 p-t-10 m-b-20">
-                        <li>
-                          <h5 class="pull-left normal no-margin">28th September</h5>
-                          <a href="#" class="text-black pull-right m-l-5" data-toggle="refresh"><i class="fa fa-angle-right"></i></a>
-                          <a href="#" class="text-black pull-right m-r-5" data-toggle="refresh"><i class="fa fa-angle-left"></i></a>
-                        </li>
-                        <div class="clearfix"></div>
-                      </ul>
-                      <div class="task-list p-t-0 p-r-20 p-b-20 p-l-20 clearfix flex-1">
-                        <!-- START TAKS !-->
-                        <div class="task clearfix row completed">
-                          <div class="task-list-title col-10 justify-content-between">
-                            <a href="#" class="text-master strikethrough" data-task="name">Purchase Pages before 10am
-						                    </a>
-                            <i class="fs-14 pg-close hidden"></i>
-                          </div>
-                          <div class="checkbox checkbox-circle no-margin text-center col-2 d-flex justify-content-center">
-                            <input type="checkbox" checked="checked" value="1" id="todocheckbox" data-toggler="task" class="hidden">
-                            <label for="todocheckbox" class=" no-margin no-padding absolute"></label>
-                          </div>
-                        </div>
-                        <!-- END TAKS !-->
-                        <!-- START TAKS !-->
-                        <div class="task clearfix row">
-                          <div class="task-list-title col-10 justify-content-between">
-                            <a href="#" class="text-master" data-task="name">Meeting with CFO
-						                    </a>
-                            <i class="fs-14 pg-close hidden"></i>
-                          </div>
-                          <div class="checkbox checkbox-circle no-margin text-center col-2 d-flex justify-content-center">
-                            <input type="checkbox" value="1" id="todocheck2" data-toggler="task" class="hidden">
-                            <label for="todocheck2" class=" no-margin no-padding absolute"></label>
-                          </div>
-                        </div>
-                        <!-- END TAKS !-->
-                        <!-- START TAKS !-->
-                        <div class="task clearfix row">
-                          <div class="task-list-title col-10 justify-content-between">
-                            <a href="#" class="text-master" data-task="name">AGM Conference at 1pm
-						                    </a>
-                            <i class="fs-14 pg-close hidden"></i>
-                          </div>
-                          <div class="checkbox checkbox-circle no-margin text-center col-2 d-flex justify-content-center">
-                            <input type="checkbox" value="1" id="todocheck3" data-toggler="task" class="hidden">
-                            <label for="todocheck3" class=" no-margin no-padding absolute"></label>
-                          </div>
-                        </div>
-                        <!-- END TAKS !-->
-                        <!-- START TAKS !-->
-                        <div class="task clearfix row">
-                          <div class="task-list-title col-10 justify-content-between">
-                            <a href="#" class="text-master" data-task="name">Revise Annual Reports
-						                    </a>
-                            <i class="fs-14 pg-close hidden"></i>
-                          </div>
-                          <div class="checkbox checkbox-circle no-margin text-center col-2 d-flex justify-content-center">
-                            <input type="checkbox" value="1" id="todocheck4" data-toggler="task" class="hidden">
-                            <label for="todocheck4" class=" no-margin no-padding absolute"></label>
-                          </div>
-                        </div>
-                        <!-- END TAKS !-->
-                      </div>
-                      <div class="clearfix"></div>
-                      <div class="bg-master-light padding-20 full-width ">
-                        <div class="row">
-                          <div class="col-10">
-                            <p class="no-margin normal text-black">Type Event Here</p>
-                            <div class="input-group transparent no-border full-width">
-                              <input class="form-control transparent p-l-0" type="text" placeholder="What do you need to remeber?">
-                            </div>
-                          </div>
-                          <div class="col-2 text-center">
-                            <a href="#" class="block m-t-15"><img src="{{ asset('') }}assets/img/plus.svg"></a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <!-- END WIDGET -->
-                  </div>
-                </div>
-                <!-- END ROW -->
-              </div>
-              <div class="col-lg-5 sm-m-t-10 d-flex">
-                <!-- START WIDGET widget_pendingComments.tpl-->
-                <div class="widget-11-2 card no-border card-condensed no-margin widget-loader-circle d-flex flex-column align-self-stretch">
-                  <div class="card-header top-right">
-                    <div class="card-controls">
-                      <ul>
-                        <li><a data-toggle="refresh" class="portlet-refresh text-black" href="#"><i
-										class="portlet-icon portlet-icon-refresh"></i></a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="padding-25">
-                    <div class="pull-left">
-                      <h2 class="text-success no-margin">webarch</h2>
-                      <p class="no-margin">Today's sales</p>
-                    </div>
-                    <h3 class="pull-right semi-bold"><sup>
-							<small class="semi-bold">$</small>
-						</sup> 102,967
-						</h3>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="auto-overflow widget-11-2-table">
-                    <table class="table table-condensed table-hover">
-                      <tbody>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td class="font-montserrat all-caps fs-12 w-50">Purchase CODE #2345</td>
-                          <td class="text-right hidden-lg">
-                            <span class="hint-text small">dewdrops</span>
-                          </td>
-                          <td class="text-right b-r b-dashed b-grey w-25">
-                            <span class="hint-text small">Qty 1</span>
-                          </td>
-                          <td class="w-25">
-                            <span class="font-montserrat fs-18">$27</span>
-                          </td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                  <div class="padding-25 mt-auto">
-                    <p class="small no-margin">
-                      <a href="#"><i class="fa fs-16 fa-arrow-circle-o-down text-success m-r-10"></i></a>
-                      <span class="hint-text ">Show more details of APPLE . INC</span>
-                    </p>
-                  </div>
-                </div>
-                <!-- END WIDGET -->
-              </div>
-            </div>
-            <!-- END ROW -->
-          </div>
+          @yield('content')
           <!-- END CONTAINER FLUID -->
         </div>
         <!-- END PAGE CONTENT -->
@@ -1008,13 +158,13 @@
         <div class=" container   container-fixed-lg footer">
           <div class="copyright sm-text-center">
             <p class="small no-margin pull-left sm-pull-reset">
-              <span class="hint-text">Copyright &copy; 2017 </span>
-              <span class="font-montserrat">REVOX</span>.
+              <span class="hint-text">Copyright &copy; 2019 </span>
+              <span class="font-montserrat">LST</span>.
               <span class="hint-text">All rights reserved. </span>
-              <span class="sm-block"><a href="#" class="m-l-10 m-r-10">Terms of use</a> <span class="muted">|</span> <a href="#" class="m-l-10">Privacy Policy</a></span>
+              {{-- <span class="sm-block"><a href="#" class="m-l-10 m-r-10">Terms of use</a> <span class="muted">|</span> <a href="#" class="m-l-10">Privacy Policy</a></span> --}}
             </p>
             <p class="small no-margin pull-right sm-pull-reset">
-              Hand-crafted <span class="hint-text">&amp; made with Love</span>
+              Hand-crafted <span class="hint-text">&amp; made with Love by AdiPepe</span>
             </p>
             <div class="clearfix"></div>
           </div>
@@ -1378,7 +528,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/1x.jpg') }}" data-src="{{ asset('assets/img/profiles/1.jpg') }}" src="{{ asset('assets/img/profiles/1x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">ava flores</span>
@@ -1396,7 +546,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/2x.jpg') }}" data-src="{{ asset('assets/img/profiles/2.jpg') }}" src="{{ asset('assets/img/profiles/2x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">bella mccoy</span>
@@ -1409,7 +559,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/3x.jpg') }}" data-src="{{ asset('assets/img/profiles/3.jpg') }}" src="{{ asset('assets/img/profiles/3x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">bob stephens</span>
@@ -1427,7 +577,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/4x.jpg') }}" data-src="{{ asset('assets/img/profiles/4.jpg') }}" src="{{ asset('assets/img/profiles/4x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">carole roberts</span>
@@ -1440,7 +590,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/5x.jpg') }}" data-src="{{ asset('assets/img/profiles/5.jpg') }}" src="{{ asset('assets/img/profiles/5x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">christopher perez</span>
@@ -1458,7 +608,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/6x.jpg') }}" data-src="{{ asset('assets/img/profiles/6.jpg') }}" src="{{ asset('assets/img/profiles/6x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">danielle fletcher</span>
@@ -1471,7 +621,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/7x.jpg') }}" data-src="{{ asset('assets/img/profiles/7.jpg') }}" src="{{ asset('assets/img/profiles/7x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">david sutton</span>
@@ -1489,7 +639,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/8x.jpg') }}" data-src="{{ asset('assets/img/profiles/8.jpg') }}" src="{{ asset('assets/img/profiles/8x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">earl hamilton</span>
@@ -1502,7 +652,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/9x.jpg') }}" data-src="{{ asset('assets/img/profiles/9.jpg') }}" src="{{ asset('assets/img/profiles/9x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">elaine lawrence</span>
@@ -1515,7 +665,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/1x.jpg') }}" data-src="{{ asset('assets/img/profiles/1.jpg') }}" src="{{ asset('assets/img/profiles/1x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">ellen grant</span>
@@ -1528,7 +678,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/2x.jpg') }}" data-src="{{ asset('assets/img/profiles/2.jpg') }}" src="{{ asset('assets/img/profiles/2x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">erik taylor</span>
@@ -1541,7 +691,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/3x.jpg') }}" data-src="{{ asset('assets/img/profiles/3.jpg') }}" src="{{ asset('assets/img/profiles/3x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">everett wagner</span>
@@ -1559,7 +709,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/4x.jpg') }}" data-src="{{ asset('assets/img/profiles/4.jpg') }}" src="{{ asset('assets/img/profiles/4x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">freddie gomez</span>
@@ -1577,7 +727,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/5x.jpg') }}" data-src="{{ asset('assets/img/profiles/5.jpg') }}" src="{{ asset('assets/img/profiles/5x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">glen jensen</span>
@@ -1590,7 +740,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/6x.jpg') }}" data-src="{{ asset('assets/img/profiles/6.jpg') }}" src="{{ asset('assets/img/profiles/6x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">gwendolyn walker</span>
@@ -1608,7 +758,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/7x.jpg') }}" data-src="{{ asset('assets/img/profiles/7.jpg') }}" src="{{ asset('assets/img/profiles/7x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">janet romero</span>
@@ -1626,7 +776,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/8x.jpg') }}" data-src="{{ asset('assets/img/profiles/8.jpg') }}" src="{{ asset('assets/img/profiles/8x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">kim martinez</span>
@@ -1644,7 +794,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/9x.jpg') }}" data-src="{{ asset('assets/img/profiles/9.jpg') }}" src="{{ asset('assets/img/profiles/9x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">lawrence white</span>
@@ -1657,7 +807,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/1x.jpg') }}" data-src="{{ asset('assets/img/profiles/1.jpg') }}" src="{{ asset('assets/img/profiles/1x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">leroy bell</span>
@@ -1670,7 +820,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/2x.jpg') }}" data-src="{{ asset('assets/img/profiles/2.jpg') }}" src="{{ asset('assets/img/profiles/2x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">letitia carr</span>
@@ -1683,7 +833,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/3x.jpg') }}" data-src="{{ asset('assets/img/profiles/3.jpg') }}" src="{{ asset('assets/img/profiles/3x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">lucy castro</span>
@@ -1701,7 +851,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/4x.jpg') }}" data-src="{{ asset('assets/img/profiles/4.jpg') }}" src="{{ asset('assets/img/profiles/4x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">mae hayes</span>
@@ -1714,7 +864,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/5x.jpg') }}" data-src="{{ asset('assets/img/profiles/5.jpg') }}" src="{{ asset('assets/img/profiles/5x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marilyn owens</span>
@@ -1727,7 +877,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/6x.jpg') }}" data-src="{{ asset('assets/img/profiles/6.jpg') }}" src="{{ asset('assets/img/profiles/6x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marlene cole</span>
@@ -1740,7 +890,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/7x.jpg') }}" data-src="{{ asset('assets/img/profiles/7.jpg') }}" src="{{ asset('assets/img/profiles/7x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marsha warren</span>
@@ -1753,7 +903,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/8x.jpg') }}" data-src="{{ asset('assets/img/profiles/8.jpg') }}" src="{{ asset('assets/img/profiles/8x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">marsha dean</span>
@@ -1766,7 +916,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/9x.jpg') }}" data-src="{{ asset('assets/img/profiles/9.jpg') }}" src="{{ asset('assets/img/profiles/9x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">mia diaz</span>
@@ -1785,7 +935,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/1x.jpg') }}" data-src="{{ asset('assets/img/profiles/1.jpg') }}" src="{{ asset('assets/img/profiles/1x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">noah elliott</span>
@@ -1803,7 +953,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/2x.jpg') }}" data-src="{{ asset('assets/img/profiles/2.jpg') }}" src="{{ asset('assets/img/profiles/2x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">phyllis hamilton</span>
@@ -1821,7 +971,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/3x.jpg') }}" data-src="{{ asset('assets/img/profiles/3.jpg') }}" src="{{ asset('assets/img/profiles/3x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">raul rodriquez</span>
@@ -1834,7 +984,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/4x.jpg') }}" data-src="{{ asset('assets/img/profiles/4.jpg') }}" src="{{ asset('assets/img/profiles/4x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">rhonda barnett</span>
@@ -1847,7 +997,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/5x.jpg" data-src="{{ asset('') }}assets/img/profiles/5.jpg" src="{{ asset('') }}assets/img/profiles/5x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/5x.jpg') }}" data-src="{{ asset('assets/img/profiles/5.jpg') }}" src="{{ asset('assets/img/profiles/5x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">roberta king</span>
@@ -1865,7 +1015,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/6x.jpg" data-src="{{ asset('') }}assets/img/profiles/6.jpg" src="{{ asset('') }}assets/img/profiles/6x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/6x.jpg') }}" data-src="{{ asset('assets/img/profiles/6.jpg') }}" src="{{ asset('assets/img/profiles/6x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">scott armstrong</span>
@@ -1878,7 +1028,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/7x.jpg" data-src="{{ asset('') }}assets/img/profiles/7.jpg" src="{{ asset('') }}assets/img/profiles/7x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/7x.jpg') }}" data-src="{{ asset('assets/img/profiles/7.jpg') }}" src="{{ asset('assets/img/profiles/7x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">sebastian austin</span>
@@ -1891,7 +1041,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/8x.jpg" data-src="{{ asset('') }}assets/img/profiles/8.jpg" src="{{ asset('') }}assets/img/profiles/8x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/8x.jpg') }}" data-src="{{ asset('assets/img/profiles/8.jpg') }}" src="{{ asset('assets/img/profiles/8x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">sofia davis</span>
@@ -1909,7 +1059,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/9x.jpg" data-src="{{ asset('') }}assets/img/profiles/9.jpg" src="{{ asset('') }}assets/img/profiles/9x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/9x.jpg') }}" data-src="{{ asset('assets/img/profiles/9.jpg') }}" src="{{ asset('assets/img/profiles/9x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">terrance young</span>
@@ -1922,7 +1072,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/1x.jpg" data-src="{{ asset('') }}assets/img/profiles/1.jpg" src="{{ asset('') }}assets/img/profiles/1x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/1x.jpg') }}" data-src="{{ asset('assets/img/profiles/1.jpg') }}" src="{{ asset('assets/img/profiles/1x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">theodore woods</span>
@@ -1935,7 +1085,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/2x.jpg" data-src="{{ asset('') }}assets/img/profiles/2.jpg" src="{{ asset('') }}assets/img/profiles/2x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/2x.jpg') }}" data-src="{{ asset('assets/img/profiles/2.jpg') }}" src="{{ asset('assets/img/profiles/2x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">todd wood</span>
@@ -1948,7 +1098,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/3x.jpg" data-src="{{ asset('') }}assets/img/profiles/3.jpg" src="{{ asset('') }}assets/img/profiles/3x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/3x.jpg') }}" data-src="{{ asset('assets/img/profiles/3.jpg') }}" src="{{ asset('assets/img/profiles/3x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">tommy jenkins</span>
@@ -1966,7 +1116,7 @@
                     <li class="chat-user-list clearfix">
                       <a data-view-animation="push-parrallax" data-view-port="#chat" data-navigate="view" class="" href="#">
                         <span class="thumbnail-wrapper d32 circular bg-success">
-                            <img width="34" height="34" alt="" data-src-retina="{{ asset('') }}assets/img/profiles/4x.jpg" data-src="{{ asset('') }}assets/img/profiles/4.jpg" src="{{ asset('') }}assets/img/profiles/4x.jpg" class="col-top">
+                            <img width="34" height="34" alt="" data-src-retina="{{ asset('assets/img/profiles/4x.jpg') }}" data-src="{{ asset('assets/img/profiles/4.jpg') }}" src="{{ asset('assets/img/profiles/4x.jpg') }}" class="col-top">
                         </span>
                         <p class="p-l-10 ">
                           <span class="text-master">wilma hicks</span>
@@ -2009,7 +1159,7 @@
                 <!-- BEGIN From Them Message  !-->
                 <div class="message clearfix">
                   <div class="profile-img-wrapper m-t-5 inline">
-                    <img class="col-top" width="30" height="30" src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" alt="" data-src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg">
+                    <img class="col-top" width="30" height="30" src="{{ asset('assets/img/profiles/avatar_small.jpg') }}" alt="" data-src="{{ asset('assets/img/profiles/avatar_small.jpg') }}" data-src-retina="{{ asset('assets/img/profiles/avatar_small2x.jpg') }}">
                   </div>
                   <div class="chat-bubble from-them">
                     Hey
@@ -2033,7 +1183,7 @@
                 <!-- BEGIN From Them Message  !-->
                 <div class="message clearfix">
                   <div class="profile-img-wrapper m-t-5 inline">
-                    <img class="col-top" width="30" height="30" src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" alt="" data-src="{{ asset('') }}assets/img/profiles/avatar_small.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar_small2x.jpg">
+                    <img class="col-top" width="30" height="30" src="{{ asset('assets/img/profiles/avatar_small.jpg') }}" alt="" data-src="{{ asset('assets/img/profiles/avatar_small.jpg') }}" data-src-retina="{{ asset('assets/img/profiles/avatar_small2x.jpg') }}">
                   </div>
                   <div class="chat-bubble from-them">
                     Yea
@@ -2071,7 +1221,7 @@
         <!-- BEGIN Overlay Header !-->
         <div class="container-fluid">
           <!-- BEGIN Overlay Logo !-->
-          <img class="overlay-brand" src="{{ asset('') }}assets/img/logo.png" alt="logo" data-src="{{ asset('') }}assets/img/logo.png" data-src-retina="{{ asset('') }}assets/img/logo_2x.png" width="78" height="22">
+          <img class="overlay-brand" src="{{ asset('assets/img/logo.png') }}" alt="logo" data-src="{{ asset('assets/img/logo.png') }}" data-src-retina="{{ asset('assets/img/logo_2x.png') }}" width="78" height="22">
           <!-- END Overlay Logo !-->
           <!-- BEGIN Overlay Close !-->
           <a href="#" class="close-icon-light overlay-close text-black fs-16">
@@ -2111,7 +1261,7 @@
                   <!-- BEGIN Search Result Item Thumbnail !-->
                   <div class="thumbnail-wrapper d48 circular bg-success text-white inline m-t-10">
                     <div>
-                      <img width="50" height="50" src="{{ asset('') }}assets/img/profiles/avatar.jpg" data-src="{{ asset('') }}assets/img/profiles/avatar.jpg" data-src-retina="{{ asset('') }}assets/img/profiles/avatar2x.jpg" alt="">
+                      <img width="50" height="50" src="{{ asset('assets/img/profiles/avatar.jpg') }}" data-src="{{ asset('assets/img/profiles/avatar.jpg') }}" data-src-retina="{{ asset('assets/img/profiles/avatar2x.jpg') }}" alt="">
                     </div>
                   </div>
                   <!-- END Search Result Item Thumbnail !-->
@@ -2202,52 +1352,56 @@
     </div>
     <!-- END OVERLAY -->
     <!-- BEGIN VENDOR JS -->
-    <script src="{{ asset('') }}assets/plugins/pace/pace.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery/jquery-1.11.1.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/modernizr.custom.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-ui/jquery-ui.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/tether/js/tether.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery/jquery-easy.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-unveil/jquery.unveil.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-ios-list/jquery.ioslist.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-actual/jquery.actual.min.js"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js"></script>
-    <script type="text/javascript" src="{{ asset('') }}assets/plugins/select2/js/select2.full.min.js"></script>
-    <script type="text/javascript" src="{{ asset('') }}assets/plugins/classie/classie.js"></script>
-    <script src="{{ asset('') }}assets/plugins/switchery/js/switchery.min.js" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery/jquery-1.11.1.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/modernizr.custom.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-ui/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/tether/js/tether.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery/jquery-easy.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-unveil/jquery.unveil.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-ios-list/jquery.ioslist.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-actual/jquery.actual.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-scrollbar/jquery.scrollbar.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/select2/js/select2.full.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/classie/classie.js') }}"></script>
+    <script src="{{ asset('assets/plugins/switchery/js/switchery.min.js') }}" type="text/javascript"></script>
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/lib/d3.v3.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/nv.d3.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/src/utils.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/src/tooltip.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/src/interactiveLayer.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/src/models/axis.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/src/models/line.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/nvd3/src/models/lineWithFocusChart.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/mapplic/js/hammer.js"></script>
-    <script src="{{ asset('') }}assets/plugins/mapplic/js/jquery.mousewheel.js"></script>
-    <script src="{{ asset('') }}assets/plugins/mapplic/js/mapplic.js"></script>
-    <script src="{{ asset('') }}assets/plugins/rickshaw/rickshaw.min.js"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-metrojs/MetroJs.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-sparkline/jquery.sparkline.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/skycons/skycons.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/moment/moment.min.js"></script>
-    <script src="{{ asset('') }}assets/plugins/bootstrap-daterangepicker/daterangepicker.js"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js" type="text/javascript"></script>
-    <script type="text/javascript" src="{{ asset('') }}assets/plugins/datatables-responsive/js/datatables.responsive.js"></script>
-    <script type="text/javascript" src="{{ asset('') }}assets/plugins/datatables-responsive/js/lodash.min.js"></script>
+    <script src="{{ asset('assets/plugins/nvd3/lib/d3.v3.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/nvd3/nv.d3.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/nvd3/src/utils.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/nvd3/src/tooltip.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/nvd3/src/interactiveLayer.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/nvd3/src/models/axis.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/nvd3/src/models/line.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/nvd3/src/models/lineWithFocusChart.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/mapplic/js/hammer.js') }}"></script>
+    <script src="{{ asset('assets/plugins/mapplic/js/jquery.mousewheel.js') }}"></script>
+    <script src="{{ asset('assets/plugins/mapplic/js/mapplic.js') }}"></script>
+    <script src="{{ asset('assets/plugins/rickshaw/rickshaw.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-metrojs/MetroJs.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-sparkline/jquery.sparkline.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/skycons/skycons.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/moment/moment.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/bootstrap-daterangepicker/daterangepicker.js') }}"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js') }}" type="text/javascript"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/datatables-responsive/js/datatables.responsive.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('assets/plugins/datatables-responsive/js/lodash.min.js') }}"></script>
     <!-- END VENDOR JS -->
     <!-- BEGIN CORE TEMPLATE JS -->
-    <script src="{{ asset('') }}page/js/pages.min.js"></script>
+    <script src="{{ asset('pages/js/pages.min.js') }}"></script>
     <!-- END CORE TEMPLATE JS -->
     <!-- BEGIN PAGE LEVEL JS -->
-    <script src="{{ asset('') }}assets/js/dashboard.js" type="text/javascript"></script>
-    <script src="{{ asset('') }}assets/js/scripts.js" type="text/javascript"></script>
+    <!-- <script src="{{ asset('assets/js/charts.js') }}" type="text/javascript"></script> -->
     <!-- END PAGE LEVEL JS -->
+    <!-- BEGIN PAGE LEVEL JS -->
+    <script src="{{ asset('assets/js/dashboard.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/scripts.js') }}" type="text/javascript"></script>
+    <!-- END PAGE LEVEL JS -->
+    @yield('myjsfile')
   </body>
 </html>
