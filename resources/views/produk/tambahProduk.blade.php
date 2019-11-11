@@ -23,7 +23,7 @@
                                     <input type="submit" class="btn btn-primary btn-cons" value="Simpan">
                                 </div>
                                 <div class="clearfix"></div>
-                            </div>  
+                            </div>
                         </div>
                         <!-- END card -->
                         </div>
@@ -52,11 +52,12 @@
                                     <input type="text" class="form-control" name="kategori_produk">
                                 </div>
                                 <div class="padding-10 bg-master-lighter">
-                                    <p>Harga</p>  
+                                    <p>Harga</p>
                                     <div class="form-group">
                                         <label>Harga</label>
                                         <span class="help"></span>
-                                        <input type="number" class="form-control" name="harga">
+                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control">
+                                        {{-- <input type="number" class="form-control" name="harga"> --}}
                                     </div>
                                     <div class="form-group">
                                         <label>Grosir</label>
@@ -77,7 +78,7 @@
                                         <label>Anggota</label>
                                         <span class="help"></span>
                                         <input type="number" class="form-control" name="harga_anggota">
-                                    </div>                              
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto Produk</label>

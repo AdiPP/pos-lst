@@ -13,8 +13,8 @@ class ProdukController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    
-    
+
+
     public function __construct()
     {
         Config::set('global.active_nav', 'produk');
@@ -24,7 +24,9 @@ class ProdukController extends Controller
     {
         $title = 'Produk';
 
-        return view('produk.produk', ['title' => $title]);
+        $produks = Product::all();
+
+        return view('produk.produk', ['title' => $title, 'produks' => $produks]);
     }
 
     /**
