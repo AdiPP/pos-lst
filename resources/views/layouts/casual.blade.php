@@ -36,6 +36,8 @@
     <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
     <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+
     <link class="main-stylesheet" href="{{ asset('pages/css/themes/modern.css') }}" rel="stylesheet" type="text/css" />
   </head>
   <body class="fixed-header horizontal-menu horizontal-app-menu dashboard">
@@ -91,8 +93,11 @@
             <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-close" data-toggle="horizontal-menu">
             </a>
             <ul>
-              <li class="">
-                <a href="{{ url('/', []) }}">Dashboard</a>
+              <li class="
+              @if (config('global.active_nav') === 'dashboard')
+                  {{ 'active' }}
+              @endif">
+                <a href="{{ url('/dashboard', []) }}">Dashboard</a>
               </li>
               <li class="
                 @if (config('global.active_nav') === 'laporan')
@@ -142,7 +147,7 @@
           <div class="bg-white">
             <div class="container">
               <ol class="breadcrumb breadcrumb-alt">
-                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
               </ol>
             </div>
           </div>
@@ -1351,6 +1356,7 @@
       <!-- END Overlay Content !-->
     </div>
     <!-- END OVERLAY -->
+    @yield('inpagejs')
     <!-- BEGIN VENDOR JS -->
     <script src="{{ asset('assets/plugins/pace/pace.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('assets/plugins/jquery/jquery-1.11.1.min.js') }}" type="text/javascript"></script>

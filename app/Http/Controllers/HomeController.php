@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Config;
 
 class HomeController extends Controller
 {
@@ -14,6 +15,7 @@ class HomeController extends Controller
     public function __construct()
     {
         // $this->middleware('auth');
+        Config::set('global.active_nav', 'dashboard');
     }
 
     /**

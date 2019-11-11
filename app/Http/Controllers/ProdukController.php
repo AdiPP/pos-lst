@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Config;
+use App\Product;
 
 class ProdukController extends Controller
 {
@@ -22,6 +23,7 @@ class ProdukController extends Controller
     public function index()
     {
         $title = 'Produk';
+
         return view('produk.produk', ['title' => $title]);
     }
 
@@ -33,6 +35,7 @@ class ProdukController extends Controller
     public function create()
     {
         $title = 'Tambah Produk';
+
         return view('produk.tambahProduk', ['title' => $title]);
     }
 
@@ -44,7 +47,13 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $produk = new Product();
+        $produk->product_name = $request->nama_produk;
+        $produk->product_pict = '';
+        $produk->product_sku = '';
+        $produk->save();
+
+        return redirect('/produk');
     }
 
     /**
