@@ -63,35 +63,42 @@
                     <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                     <thead>
                       <tr>
-                        <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                        {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
-                        </th>
+                        </th> --}}
                         <th>Nama Produk</th>
                         <th>Kategori</th>
-                        <th>Harga</th>
-                        <th>Aksi</th>
+                        <th class="text-right w-25">Harga</th>
+                        <th class="invisible" style="width: 1%;">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
                         @foreach ($produks as $produk)
                             <tr>
-                              <td class="v-align-middle">
+                              {{-- <td class="v-align-middle">
                                   <div class="checkbox text-center">
                                       <input type="checkbox" value="3" id="checkbox4">
                                       <label for="checkbox4" class="no-padding no-margin"></label>
                                   </div>
-                              </td>
+                              </td> --}}
                               <td class="v-align-middle semi-bold">
-                                <p>{{ $produk->product_name }}</p>
+                                  {{ $produk->product_name }}
                               </td>
                               <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
                                 <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
                               </td>
-                              <td class="v-align-middle">
-                                <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
+                              <td class="v-align-middle text-right semi-bold">
+                                Rp200.000
                               </td>
                               <td class="v-align-middle">
-                                <p>Public</p>
+                                <div class="d-flex justify-content-center">
+                                    <a   href="/produk/{{ $produk->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
+                                    <form action="/produk/{{ $produk->id }}" method="POST">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-xs btn-danger mx-1"><i class="fa fa-trash-o"></i></button>
+                                    </form>
+                                </div>
                               </td>
                             </tr>
                         @endforeach

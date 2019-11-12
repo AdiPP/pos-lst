@@ -77,7 +77,11 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = 'Ubah Produk';
+
+        $model = Product::find($id);
+
+        return view('produk.ubahProduk', ['title' => $title, 'produk' => $model]);
     }
 
     /**
@@ -89,7 +93,12 @@ class ProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model = Product::find($id);
+        $model->product_name = $request->nama_produk;
+        $model->product_sku = $request->sku_produk;
+        $model->save();
+
+        return redirect('/produk');
     }
 
     /**
@@ -100,6 +109,9 @@ class ProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Product::find($id);
+        $model->delete();
+        
+        return redirect('/produk');
     }
 }

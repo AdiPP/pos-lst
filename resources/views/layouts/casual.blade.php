@@ -1372,6 +1372,14 @@
     <script type="text/javascript" src=" {{ asset('assets/plugins/select2/js/select2.full.min.js') }} "></script>
     <script type="text/javascript" src=" {{ asset('assets/plugins/classie/classie.js') }} "></script>
     <script src=" {{ asset('assets/plugins/switchery/js/switchery.min.js') }} " type="text/javascript"></script>
+    {{-- DATATABLES JS --}}
+    <script src=" {{ asset('assets/plugins/jquery-datatable/media/js/jquery.dataTables.min.js') }} " type="text/javascript"></script>
+    <script src=" {{ asset('assets/plugins/jquery-datatable/extensions/TableTools/js/dataTables.tableTools.min.js') }} " type="text/javascript"></script>
+    <script src=" {{ asset('assets/plugins/jquery-datatable/media/js/dataTables.bootstrap.js') }} " type="text/javascript"></script>
+    <script src=" {{ asset('assets/plugins/jquery-datatable/extensions/Bootstrap/jquery-datatable-bootstrap.js') }} " type="text/javascript"></script>
+    <script type="text/javascript" src=" {{ asset('assets/plugins/datatables-responsive/js/datatables.responsive.js') }} "></script>
+    <script type="text/javascript" src=" {{ asset('assets/plugins/datatables-responsive/js/lodash.min.js') }} "></script>
+    {{-- FORM JS --}}
     <script src=" {{ asset('assets/plugins/bootstrap3-wysihtml5/bootstrap3-wysihtml5.all.min.js') }} "></script>
     <script type="text/javascript" src=" {{ asset('assets/plugins/jquery-autonumeric/autoNumeric.js') }} "></script>
     <script type="text/javascript" src=" {{ asset('assets/plugins/dropzone/dropzone.min.js') }} "></script>
