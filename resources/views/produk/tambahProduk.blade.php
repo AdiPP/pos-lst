@@ -3,7 +3,7 @@
 @section('title', $title)
 
 @section('content')
-<form action="/produk" method="POST">
+<form action="/produk" method="POST" enctype="multipart/form-data">
     @csrf
     <!-- START JUMBOTRON -->
     <div class="jumbotron">
@@ -49,17 +49,23 @@
                                 <div class="form-group">
                                     <label>Kategori</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="kategori_produk">
+                                    <select class="full-width required" data-init-plugin="select2" name="kategori_produk">
+                                            <option selected disabled value="">Pilih Salah Satu</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
+                                    {{-- <input type="text" class="form-control" name="kategori_produk"> --}}
                                 </div>
                                 <div class="padding-10 bg-master-lighter">
                                     <p>Harga</p>
                                     <div class="form-group">
                                         <label>Harga</label>
                                         <span class="help"></span>
-                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control">
+                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control" name="harga_produk">
                                         {{-- <input type="number" class="form-control" name="harga"> --}}
                                     </div>
-                                    <div class="form-group">
+                                    {{-- <div class="form-group">
                                         <label>Grosir</label>
                                         <span class="help"></span>
                                         <div class="row">
@@ -78,7 +84,7 @@
                                         <label>Anggota</label>
                                         <span class="help"></span>
                                         <input type="number" class="form-control" name="harga_anggota">
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Foto Produk</label>
@@ -95,9 +101,14 @@
                                 <div class="form-group">
                                     <label>Satuan</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="satuan_produk">
+                                    <select class="full-width required" data-init-plugin="select2" name="satuan_produk">
+                                            <option selected disabled value="">Pilih Salah Satu</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="form-group">
+                                {{-- <div class="form-group">
                                     <label>Varian</label>
                                     <span class="help"></span>
                                     <p class="hint-text small">Apakah produk ini memiliki varian seperti warna dan ukuran?</p>
@@ -105,7 +116,7 @@
                                     <div class="m-t-10">
                                         <button class="btn btn-primary btn-cons">Kelola Varian Produk</button>
                                     </div>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>

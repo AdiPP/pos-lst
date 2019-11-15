@@ -4,8 +4,9 @@
 
 @section('content')
 <!-- START JUMBOTRON -->
-<form action="/produk/kategori/" method="POST">
+<form action="/produk/kategori/{{ $model->id }}" method="POST">
     @csrf
+    <input name="_method" type="hidden" value="PUT">
     <div class="jumbotron">
         <div class=" container p-l-0 p-r-0 container-fixed-lg sm-p-l-0 sm-p-r-0">
             <div class="inner">
@@ -44,14 +45,14 @@
                                 <div class="form-group">
                                     <label>Nama Kategori</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="nama_kategori">
+                                    <input type="text" class="form-control" name="nama_kategori" value="{{ $model->category_name }}">
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
                                 <div class="form-group">
                                     <label>Deskripsi</label>
                                     <span class="help"></span>
-                                    <textarea class="form-control" placeholder="" name="deskripsi_kategori"></textarea>
+                                    <textarea class="form-control" placeholder="" name="deskripsi_kategori">{{ $model->category_description }}</textarea>
                                 </div>
                             </div>
                         </div>

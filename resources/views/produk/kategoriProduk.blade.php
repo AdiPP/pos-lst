@@ -51,233 +51,41 @@
                     <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                     <thead>
                       <tr>
-                        <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                        {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
-                        </th>
-                        <th>Nama Kategori</th>
-                        <th>Jumlah Produk</th>
-                        <th>Aksi</th>
+                        </th> --}}
+                        <th class="w-50">Nama Kategori</th>
+                        <th class="text-right w-25">Jumlah Produk</th>
+                        <th class="invisible" style="width: 1%;">Aksi</th>
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>Among the children</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>you want English, Scottish, Welsh, Irish, British, European or UK even a British (name other original country you came form or have roots to E.G. A British Japanese or a 5th generation
-                          </p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>A day to remember</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>UK was on top of the art world 18-19 century had the best food, best cloths and best entertainment back then) it was a hyper nation</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>Life’s sadness shared</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>he world speaks English. Common law, Magna Carta and the Bill of Rights are its wonderful legacy
-                          </p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
-                      <tr>
-                        <td class="v-align-middle">
-                            <div class="checkbox text-center">
-                                <input type="checkbox" value="3" id="checkbox4">
-                                <label for="checkbox4" class="no-padding no-margin"></label>
-                            </div>
-                        </td>
-                        <td class="v-align-middle semi-bold">
-                          <p>First Tour</p>
-                        </td>
-                        <td class="v-align-middle"><a href="#" class="btn btn-tag">United States</a><a href="#" class="btn btn-tag">India</a>
-                          <a href="#" class="btn btn-tag">China</a><a href="#" class="btn btn-tag">Africa</a>
-                        </td>
-                        <td class="v-align-middle">
-                          <p>it is more then ONE nation/nationality as its fall name is The United Kingdom of Great Britain and North Ireland..</p>
-                        </td>
-                        
-                      </tr>
+                      @foreach ($models as $model)
+                          <tr>
+                            {{-- <td class="v-align-middle">
+                                <div class="checkbox text-center">
+                                    <input type="checkbox" value="3" id="checkbox4">
+                                    <label for="checkbox4" class="no-padding no-margin"></label>
+                                </div>
+                            </td> --}}
+                            <td class="v-align-middle semi-bold">
+                              {{ $model->category_name }}
+                            </td>
+                            <td class="v-align-middle text-right">
+                              24
+                            </td>
+                            <td class="v-align-middle">
+                                <div class="d-flex justify-content-center">
+                                    <a   href="/produk/kategori/{{ $model->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
+                                    <form action="/produk/kategori/{{ $model->id }}" method="POST">
+                                        @csrf
+                                        <input name="_method" type="hidden" value="DELETE">
+                                        <button type="submit" class="btn btn-xs btn-danger mx-1"><i class="fa fa-trash-o"></i></button>
+                                    </form>
+                                </div>
+                            </td>
+                          </tr>
+                      @endforeach
                     </tbody>
                   </table>
                 </div>

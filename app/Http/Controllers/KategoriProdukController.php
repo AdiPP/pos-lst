@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Config;
+use App\ProductCategory as Category;
 
 class KategoriProdukController extends Controller
 {
@@ -21,7 +22,10 @@ class KategoriProdukController extends Controller
     public function index()
     {
         $title = 'Kategori Produk';
-        return view('produk.kategoriProduk', ['title' => $title]);
+
+        $model = Category::all();
+
+        return view('produk.kategoriProduk', ['title' => $title, 'models' => $model]);
     }
 
     /**
@@ -43,7 +47,12 @@ class KategoriProdukController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $model = new Category();
+        $model->category_name = $request->nama_kategori;
+        $model->category_description = $request->deskripsi_kategori;
+        $model->save();
+
+        return redirect('/produk/kategori');
     }
 
     /**
@@ -65,7 +74,11 @@ class KategoriProdukController extends Controller
      */
     public function edit($id)
     {
-        //
+        $title = 'Ubah Kategori';
+
+        $model = Category::find($id);
+
+        return view('produk.ubahKategori', ['title' => $title, 'model' => $model]);
     }
 
     /**
@@ -77,7 +90,12 @@ class KategoriProdukController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $model = Category::find($id);
+        $model->category_name = $request->nama_kategori;
+        $model->category_description = $request->deskripsi_kategori;
+        $model->save();
+
+        return redirect('/produk/kategori');
     }
 
     /**
@@ -88,6 +106,9 @@ class KategoriProdukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = Category::find($id);
+        $model->delete();
+        
+        return redirect('/produk/kategori');
     }
 }

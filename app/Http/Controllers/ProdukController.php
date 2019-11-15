@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Config;
 use App\Product;
+use App\ProductCategory as Category;
 
 class ProdukController extends Controller
 {
@@ -38,7 +39,9 @@ class ProdukController extends Controller
     {
         $title = 'Tambah Produk';
 
-        return view('produk.tambahProduk', ['title' => $title]);
+        $categories = Category::all();
+
+        return view('produk.tambahProduk', ['title' => $title, 'categories' => $categories]);
     }
 
     /**
@@ -53,6 +56,8 @@ class ProdukController extends Controller
         $produk->product_name = $request->nama_produk;
         $produk->product_pict = '';
         $produk->product_sku = '';
+        $produk->category_id = $request->kategori_produk;
+        $produk->product_price = $this->pricetoint($request->harga_produk);
         $produk->save();
 
         return redirect('/produk');
@@ -113,5 +118,10 @@ class ProdukController extends Controller
         $model->delete();
         
         return redirect('/produk');
+    }
+
+    private function pricetoint($price) 
+    {
+        return (int)str_replace(",", "",substr($price, 3, strlen($price)-6));
     }
 }
