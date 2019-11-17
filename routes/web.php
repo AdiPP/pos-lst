@@ -17,6 +17,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
+// Route::get('/logout', function () {
+//     Auth::logout();
+// });
+
+Route::get('/login', function () {
+    return view('registrasi.login');
+});
+
+Route::get('/logout', function () {
+    session()->flush();
+    return redirect('/login');
+});
+
+Route::post('/login/action', 'RegistrasiController@login');
+
+Route::resource('/registrasi', 'RegistrasiController');
+
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 Route::resource('/produk/kategori', 'KategoriProdukController');

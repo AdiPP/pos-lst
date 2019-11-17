@@ -89,7 +89,7 @@
                                 <div class="form-group">
                                     <label>Foto Produk</label>
                                     <span class="help"></span>
-                                    <input type="file" class="form-control" name="foto_produk">
+                                    <input type="file" class="form-control-file" name="foto_produk">
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
@@ -103,9 +103,11 @@
                                     <span class="help"></span>
                                     <select class="full-width required" data-init-plugin="select2" name="satuan_produk">
                                             <option selected disabled value="">Pilih Salah Satu</option>
-                                        @foreach ($categories as $category)
+                                            <option value="1">pcs</option>
+                                            <option value="1">buah</option>
+                                        {{-- @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                        @endforeach
+                                        @endforeach --}}
                                     </select>
                                 </div>
                                 {{-- <div class="form-group">

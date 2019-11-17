@@ -52,12 +52,18 @@ class ProdukController extends Controller
      */
     public function store(Request $request)
     {
+        
+        // File Uploads
+        ($request->file('foto_produk')) ? $path = $request->file('foto_produk')->store('', 'product') : $path = null;
+
+        // Inserting Models
         $produk = new Product();
         $produk->product_name = $request->nama_produk;
-        $produk->product_pict = '';
-        $produk->product_sku = '';
+        $produk->product_pict = $path;
+        $produk->product_sku = $request->sku_produk;
         $produk->category_id = $request->kategori_produk;
         $produk->product_price = $this->pricetoint($request->harga_produk);
+        $produk->product_unit = $request->satuan_produk;
         $produk->save();
 
         return redirect('/produk');
