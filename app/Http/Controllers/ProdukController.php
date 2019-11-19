@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Config;
 use App\Product;
 use App\ProductCategory as Category;
+use Redirect;
 
 class ProdukController extends Controller
 {
@@ -18,6 +19,7 @@ class ProdukController extends Controller
 
     public function __construct()
     {
+        \App\Helpers\AppHelper::userCheck();   
         Config::set('global.active_nav', 'produk');
     }
 

@@ -8,19 +8,11 @@ use App\User;
 use App\UserInfo;
 use Session;
 use Redirect;
+use Illuminate\Support\Facades\Mail;  
+use App\Mail\Registrasi;
 
 class RegistrasiController extends Controller
 {
-    public function __construct()
-    {
-        // dd(session('user'));
-        if (session('user') === null)
-        {
-            // dd();
-            return Redirect::to('/login')->send();
-
-        }
-    }
     /**
      * Display a listing of the resource.
      *
@@ -53,15 +45,22 @@ class RegistrasiController extends Controller
         $model->name = $request->uname;
         $model->password = Hash::make($request->pass);
         $model->email = $request->email;
-        $model->save();
 
-        $model_ext = new UserInfo();
-        $model_ext->firstname = $request->fname;
-        $model_ext->lastname = $request->lname;
-        $model_ext->user_id = $model->id;
-        $model_ext->save();
+        //Check the $model completely saved
+        if ($model->save())
+        {
+            $model_ext = new UserInfo();
+            $model_ext->firstname = $request->fname;
+            $model_ext->lastname = $request->lname;
+            $model_ext->user_id = $model->id;
 
-        return redirect('login');
+            //Check the $model_ext completely saved
+            if ($model_ext->save()) {
+                Mail::to($request->email)->send(new Registrasi($model));
+                
+                return redirect('login')->with('status', 'registration sukses');
+            }
+        }
     }
 
     /**
@@ -87,7 +86,7 @@ class RegistrasiController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified resouse App\Mail\SendMailable;urce in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  int  $id
@@ -115,16 +114,33 @@ class RegistrasiController extends Controller
         {
             if (Hash::check($request->password, $model->password))
             {
-                session(['user' => '$model']);
-                // dd('User ditemukan');
+                session()->put('user', $model);
 
                 return redirect('/dashboard');
             } else {
-                dd('Password salah');
+                return redirect('/login')->with('status', false);
             }
         } else {
-            dd('User tidak ditemukan');
+            // dd('User tidak ditemukan');
+            return redirect('/login')->with('status', null);
         }
         // dd($model); 
+    }
+
+    public function verifyEmail($vkey)
+    {
+        // decrypt($vkey);
+        $email = decrypt($vkey);
+        $model = User::where('email', '=', $email)->first();
+        $model->email_verified_at = now();
+        $model->save();
+        
+        return redirect('/login')->with('status', 'verifikasi sukses');
+    }
+
+    public function checkMail()
+    {
+        $model = User::find(15);
+        dd($model->info);
     }
 }

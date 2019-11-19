@@ -26,8 +26,9 @@ Route::get('/login', function () {
 });
 
 Route::get('/logout', function () {
-    session()->flush();
+    Session::flush();
     return redirect('/login');
+    // return redirect('/dashboard');
 });
 
 Route::post('/login/action', 'RegistrasiController@login');
@@ -41,3 +42,9 @@ Route::resource('/produk/kategori', 'KategoriProdukController');
 Route::resource('/produk', 'ProdukController');
 
 Route::resource('/laporan', 'LaporanController');
+
+Route::get('/send/email', 'HomeController@mail');
+
+Route::get('/email/verify/{vkey}', 'RegistrasiController@verifyEmail');
+
+Route::get('/email/check', 'RegistrasiController@checkMail');

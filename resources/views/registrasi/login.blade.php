@@ -55,6 +55,39 @@
         <div class="p-l-50 m-l-20 p-r-50 m-r-20 p-t-50 m-t-30 sm-p-l-15 sm-p-r-15 sm-p-t-40">
           <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
           <p class="p-t-35">Masuk ke akun anda</p>
+          @if (session()->exists('status'))
+            @if (session('status') === 'email not verified')
+              <span class="text-danger hint-text"></span>
+              <div class="alert alert-danger m-b-0" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                Email belum terverifikasi! <a href="#">Kirim ulang?</a>
+              </div>
+            @elseif (session('status') === 'verifikasi sukses')
+              <span class="text-danger hint-text"></span>
+              <div class="alert alert-success m-b-0" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                Verifikasi berhassil. Silahkan masuk ke akun anda.
+              </div>
+            @elseif (session('status') === 'registration sukses')
+              <span class="text-danger hint-text"></span>
+              <div class="alert alert-success m-b-0" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                Pendaftaran berhasil! Silahkan verifikasi email anda untuk masuk.
+              </div>
+            @elseif (session('status') === false)
+              <span class="text-danger hint-text"></span>
+              <div class="alert alert-warning m-b-0" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                Kombinasi username dan password tidak sesuai.
+              </div>
+            @else
+              <span class="text-danger hint-text"></span>
+              <div class="alert alert-warning m-b-0" role="alert">
+                <button class="close" data-dismiss="alert"></button>
+                User tidak ditemukan.
+              </div>
+            @endif
+          @endif
           <!-- START Login Form -->
           <form id="form-login" class="p-t-15" role="form" action="/login/action" method="POST">
             @csrf

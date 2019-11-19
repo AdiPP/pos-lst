@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Config;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;  
+use App\Mail\Registrasi; 
 
 class HomeController extends Controller
 {
@@ -14,7 +17,7 @@ class HomeController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        \App\Helpers\AppHelper::userCheck();
         Config::set('global.active_nav', 'dashboard');
     }
 
@@ -26,5 +29,13 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    public function mail()
+    {
+        $name = 'Krunal';
+        Mail::to('adiputrapermana@gmail.com')->send(new SendMailable($name));
+        
+        return 'Email was sent';
     }
 }
