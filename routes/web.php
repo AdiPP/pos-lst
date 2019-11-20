@@ -31,20 +31,24 @@ Route::get('/logout', function () {
     // return redirect('/dashboard');
 });
 
-Route::post('/login/action', 'RegistrasiController@login');
-
-Route::resource('/registrasi', 'RegistrasiController');
-
+// dashboard
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
-Route::resource('/produk/kategori', 'KategoriProdukController');
+// modul registrasi
+Route::post('/login/action', 'RegistrasiController@login');
+Route::resource('/registrasi', 'RegistrasiController');
+Route::get('/email/verify/{vkey}', 'RegistrasiController@verifyEmail');
+Route::get('/email/resend', 'RegistrasiController@resend');
+Route::post('/email/resend/action', 'RegistrasiController@resendAction');
 
+// modul produk
+Route::resource('/produk/kategori', 'KategoriProdukController');
 Route::resource('/produk', 'ProdukController');
 
+
+// modul laporan
 Route::resource('/laporan', 'LaporanController');
 
-Route::get('/send/email', 'HomeController@mail');
-
-Route::get('/email/verify/{vkey}', 'RegistrasiController@verifyEmail');
-
+// dump route
 Route::get('/email/check', 'RegistrasiController@checkMail');
+Route::get('/send/email', 'HomeController@mail');

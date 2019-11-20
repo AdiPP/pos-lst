@@ -121,21 +121,31 @@ class RegistrasiController extends Controller
                 return redirect('/login')->with('status', false);
             }
         } else {
-            // dd('User tidak ditemukan');
             return redirect('/login')->with('status', null);
         }
-        // dd($model); 
     }
 
     public function verifyEmail($vkey)
     {
-        // decrypt($vkey);
         $email = decrypt($vkey);
         $model = User::where('email', '=', $email)->first();
         $model->email_verified_at = now();
         $model->save();
         
         return redirect('/login')->with('status', 'verifikasi sukses');
+    }
+
+    public function resend()
+    {
+        return view('registrasi.resend');
+    }
+
+    public function resendAction(Request $request)
+    {
+        $model = User::where('email', $request->email)->first();
+        Mail::to($request->email)->send(new Registrasi($model));
+        
+        return redirect('login')->with('status', 'email verifikasi terkirim');
     }
 
     public function checkMail()

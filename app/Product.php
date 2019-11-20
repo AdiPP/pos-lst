@@ -12,4 +12,8 @@ class Product extends Model
     {
         return $this->belongsTo('App\ProductCategory');
     }
+    public function unit()
+    {
+        return $this->belongsTo('App\Unit');
+    }
 }

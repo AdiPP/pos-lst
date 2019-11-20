@@ -125,6 +125,9 @@
                 <span class=" arrow"></span></a>
                 <ul class="">
                   <li class="">
+                    <a href="#">Outlet</a>
+                  </li>
+                  <li class="">
                     <a href="#">Anggota</a>
                   </li>
                 </ul>

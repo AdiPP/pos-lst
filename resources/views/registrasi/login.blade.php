@@ -56,32 +56,32 @@
           <img src="assets/img/logo.png" alt="logo" data-src="assets/img/logo.png" data-src-retina="assets/img/logo_2x.png" width="78" height="22">
           <p class="p-t-35">Masuk ke akun anda</p>
           @if (session()->exists('status'))
-            @if (session('status') === 'email not verified')
-              <span class="text-danger hint-text"></span>
+            @if (session('status') === 'email verifikasi terkirim')
+                <div class="alert alert-success m-b-0" role="alert">
+                  <button class="close" data-dismiss="alert"></button>
+                  Email verifikasi berhasil dikirim! Silahkan periksa email anda.
+                </div>
+            @elseif (session('status') === 'email not verified')
               <div class="alert alert-danger m-b-0" role="alert">
                 <button class="close" data-dismiss="alert"></button>
-                Email belum terverifikasi! <a href="#">Kirim ulang?</a>
+                Email belum terverifikasi! <a href="/email/resend">Kirim ulang email verifikasi?</a>
               </div>
             @elseif (session('status') === 'verifikasi sukses')
-              <span class="text-danger hint-text"></span>
               <div class="alert alert-success m-b-0" role="alert">
                 <button class="close" data-dismiss="alert"></button>
                 Verifikasi berhassil. Silahkan masuk ke akun anda.
               </div>
             @elseif (session('status') === 'registration sukses')
-              <span class="text-danger hint-text"></span>
               <div class="alert alert-success m-b-0" role="alert">
                 <button class="close" data-dismiss="alert"></button>
-                Pendaftaran berhasil! Silahkan verifikasi email anda untuk masuk.
+                Pendaftaran berhasil! Silahkan verifikasi email anda untuk masuk atau <a href="/email/resend">kirim ulang email verifikasi?</a>
               </div>
             @elseif (session('status') === false)
-              <span class="text-danger hint-text"></span>
               <div class="alert alert-warning m-b-0" role="alert">
                 <button class="close" data-dismiss="alert"></button>
                 Kombinasi username dan password tidak sesuai.
               </div>
             @else
-              <span class="text-danger hint-text"></span>
               <div class="alert alert-warning m-b-0" role="alert">
                 <button class="close" data-dismiss="alert"></button>
                 User tidak ditemukan.

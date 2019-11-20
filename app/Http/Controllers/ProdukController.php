@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Config;
 use App\Product;
 use App\ProductCategory as Category;
+use App\Unit;
 use Redirect;
 
 class ProdukController extends Controller
@@ -42,8 +43,9 @@ class ProdukController extends Controller
         $title = 'Tambah Produk';
 
         $categories = Category::all();
+        $units = Unit::all();
 
-        return view('produk.tambahProduk', ['title' => $title, 'categories' => $categories]);
+        return view('produk.tambahProduk', ['title' => $title, 'categories' => $categories, 'units' => $units]);
     }
 
     /**
@@ -65,7 +67,7 @@ class ProdukController extends Controller
         $produk->product_sku = $request->sku_produk;
         $produk->category_id = $request->kategori_produk;
         $produk->product_price = $this->pricetoint($request->harga_produk);
-        $produk->product_unit = $request->satuan_produk;
+        $produk->unit_id = $request->satuan_produk;
         $produk->save();
 
         return redirect('/produk');

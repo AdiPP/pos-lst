@@ -103,8 +103,9 @@
                                     <span class="help"></span>
                                     <select class="full-width required" data-init-plugin="select2" name="satuan_produk">
                                             <option selected disabled value="">Pilih Salah Satu</option>
-                                            <option value="1">pcs</option>
-                                            <option value="1">buah</option>
+                                            @foreach ($units as $unit)
+                                                <option value="{{ $unit->id }}">{{ $unit->unit_name }}</option>
+                                            @endforeach
                                         {{-- @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                         @endforeach --}}
