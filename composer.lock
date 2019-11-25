@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "dbbd01a9f1756df4df869b1abf8c3517",
+    "content-hash": "47946e1eaa91e35c946cdb29dc68e19a",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -1702,6 +1702,50 @@
                 "uuid"
             ],
             "time": "2018-07-19T23:38:55+00:00"
+        },
+        {
+            "name": "sirostuff/briva",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ahmadsm/briva.git",
+                "reference": "217fce4ff6596ad89971ac4606ff768625b80afd"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ahmadsm/briva/zipball/217fce4ff6596ad89971ac4606ff768625b80afd",
+                "reference": "217fce4ff6596ad89971ac4606ff768625b80afd",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Payments": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ahmad Sirojul Miftakh",
+                    "email": "sirojulmiftakh@gmail.com",
+                    "homepage": "https://linkedin.com/in/sirojulmiftakh",
+                    "role": "Provocateur"
+                }
+            ],
+            "description": "BRI Virtual Account Bridging",
+            "homepage": "https://teknisikode.web.id",
+            "keywords": [
+                "briva",
+                "payment",
+                "va"
+            ],
+            "time": "2019-11-18T02:31:58+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -5164,7 +5208,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": [],
+    "stability-flags": {
+        "sirostuff/briva": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {

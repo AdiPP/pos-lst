@@ -16,4 +16,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\Unit');
     }
+
+    public function user()
+    {
+        return $this->belongsTo('App\User');
+    }
 }

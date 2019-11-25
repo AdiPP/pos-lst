@@ -20,6 +20,7 @@
 
         var settings = {
             "sDom": "<t><'row'<p i>>",
+            "order": [],
             "destroy": true,
             "scrollCollapse": true,
             "oLanguage": {

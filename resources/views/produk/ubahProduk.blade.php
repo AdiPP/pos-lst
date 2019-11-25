@@ -3,7 +3,7 @@
 @section('title', $title)
 
 @section('content')
-<form action="/produk/{{ $produk->id }}" method="POST">
+<form action="/produk/{{ $produk->id }}" method="POST" enctype="multipart/form-data">
     @csrf
     <input name="_method" type="hidden" value="PUT">
     <!-- START JUMBOTRON -->
@@ -50,40 +50,31 @@
                                 <div class="form-group">
                                     <label>Kategori</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="kategori_produk">
+                                    <select class="full-width required" data-init-plugin="select2" name="kategori_produk">
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}"
+                                            <?php if ($produk->category->id === $category->id) {
+                                                echo 'selected';
+                                            } ?>
+                                            >{{ $category->category_name }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                                 <div class="padding-10 bg-master-lighter">
                                     <p>Harga</p>
                                     <div class="form-group">
                                         <label>Harga</label>
                                         <span class="help"></span>
-                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control">
-                                        {{-- <input type="number" class="form-control" name="harga"> --}}
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Grosir</label>
-                                        <span class="help"></span>
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <input type="number" class="form-control" name="grosir_min">
-                                            </div>
-                                            <div class="col-lg-1 d-flex align-items-center justify-content-center">
-                                                <h4 class="m-0">-</h4>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="number" class="form-control" name="grosir_harga">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Anggota</label>
-                                        <span class="help"></span>
-                                        <input type="number" class="form-control" name="harga_anggota">
+                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control" value="{{ $produk->product_price }}" name="harga_produk">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Foto Produk</label>
                                     <span class="help"></span>
+                                    <div class="m-b-10">
+                                        <img src="{{ asset('storage/img/product/'.$produk->product_pict) }}" alt="" width="50%">
+                                    </div>
+                                    <label>Ubah Foto Produk</label>
                                     <input type="file" class="form-control" name="foto_produk">
                                 </div>
                             </div>
@@ -94,18 +85,22 @@
                                     <input type="text" class="form-control" name="sku_produk" value="{{ $produk->product_sku }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Satuan</label>
+                                    <label>Barcode</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="satuan_produk">
+                                    <input type="text" class="form-control" name="barcode_produk" value="{{ $produk->product_barcode }}">
                                 </div>
                                 <div class="form-group">
-                                    <label>Varian</label>
+                                    <label>Satuan</label>
                                     <span class="help"></span>
-                                    <p class="hint-text small">Apakah produk ini memiliki varian seperti warna dan ukuran?</p>
-                                    <input type="checkbox" data-init-plugin="switchery" data-size="small" data-color="primary" />
-                                    <div class="m-t-10">
-                                        <button class="btn btn-primary btn-cons">Kelola Varian Produk</button>
-                                    </div>
+                                    <select class="full-width required" data-init-plugin="select2" name="satuan_produk">
+                                            @foreach ($units as $unit)
+                                                <option value="{{ $unit->id }}"
+                                                <?php if ($produk->unit->id === $unit->id) {
+                                                    echo 'selected';
+                                                } ?>
+                                                >{{ $unit->unit_name }}</option>
+                                            @endforeach
+                                    </select>
                                 </div>
                             </div>
                         </div>

@@ -55,7 +55,6 @@
                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                         @endforeach
                                     </select>
-                                    {{-- <input type="text" class="form-control" name="kategori_produk"> --}}
                                 </div>
                                 <div class="padding-10 bg-master-lighter">
                                     <p>Harga</p>
@@ -63,28 +62,7 @@
                                         <label>Harga</label>
                                         <span class="help"></span>
                                         <input type="text" data-a-sign="Rp " class="autonumeric form-control" name="harga_produk">
-                                        {{-- <input type="number" class="form-control" name="harga"> --}}
                                     </div>
-                                    {{-- <div class="form-group">
-                                        <label>Grosir</label>
-                                        <span class="help"></span>
-                                        <div class="row">
-                                            <div class="col-lg-2">
-                                                <input type="number" class="form-control" name="grosir_min">
-                                            </div>
-                                            <div class="col-lg-1 d-flex align-items-center justify-content-center">
-                                                <h4 class="m-0">-</h4>
-                                            </div>
-                                            <div class="col-lg-9">
-                                                <input type="number" class="form-control" name="grosir_harga">
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label>Anggota</label>
-                                        <span class="help"></span>
-                                        <input type="number" class="form-control" name="harga_anggota">
-                                    </div> --}}
                                 </div>
                                 <div class="form-group">
                                     <label>Foto Produk</label>
@@ -97,6 +75,11 @@
                                     <label>SKU</label>
                                     <span class="help"></span>
                                     <input type="text" class="form-control" name="sku_produk">
+                                </div>
+                                <div class="form-group">
+                                    <label>Barcode</label>
+                                    <span class="help"></span>
+                                    <input type="text" class="form-control" name="barcode_produk">
                                 </div>
                                 <div class="form-group">
                                     <label>Satuan</label>
@@ -125,6 +108,18 @@
                     </div>
                 </div>
                 <!-- END card -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 m-b-10 d-flex flex-column">
+                <div data-pages="card" class="card card-default" id="card-basic">
+                    <div class="card-header  ">
+                        <div class="card-title">Opsional
+                        </div>
+                    </div>
+                    <div class="card-block" style="display: block;">
+                    </div>
+                </div>
             </div>
         </div>
     </div>

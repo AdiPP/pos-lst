@@ -157,7 +157,7 @@
                         <th class="text-right w-25">Harga</th>
                         <th class="invisible" style="width: 1%;">Aksi</th>
                       </tr>
-                    </thead>Product
+                    </thead>
                     <tbody>
                         @foreach ($produks as $produk)
                             <tr>

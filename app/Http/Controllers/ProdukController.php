@@ -28,7 +28,7 @@ class ProdukController extends Controller
     {
         $title = 'Produk';
 
-        $produks = Product::all();
+        $produks = Product::where('user_id', '=', session('user')->id)->get();
 
         return view('produk.produk', ['title' => $title, 'produks' => $produks]);
     }
@@ -64,10 +64,12 @@ class ProdukController extends Controller
         $produk = new Product();
         $produk->product_name = $request->nama_produk;
         $produk->product_pict = $path;
+        $produk->product_barcode = $request->barcode_produk;
         $produk->product_sku = $request->sku_produk;
         $produk->category_id = $request->kategori_produk;
         $produk->product_price = $this->pricetoint($request->harga_produk);
         $produk->unit_id = $request->satuan_produk;
+        $produk->user_id = session('user')->id;
         $produk->save();
 
         return redirect('/produk');
@@ -95,8 +97,10 @@ class ProdukController extends Controller
         $title = 'Ubah Produk';
 
         $model = Product::find($id);
+        $categories = Category::all();
+        $units = Unit::all();
 
-        return view('produk.ubahProduk', ['title' => $title, 'produk' => $model]);
+        return view('produk.ubahProduk', ['title' => $title, 'produk' => $model, 'categories' => $categories, 'units' => $units]);
     }
 
     /**
@@ -109,8 +113,21 @@ class ProdukController extends Controller
     public function update(Request $request, $id)
     {
         $model = Product::find($id);
+
+        // File Uploads
+        if ($request->file('foto_produk') !== null)
+        {
+            $path = $request->file('foto_produk')->store('', 'product');
+            $model->product_pict = $path;
+        }
+
         $model->product_name = $request->nama_produk;
+        $model->product_barcode = $request->barcode_produk;
         $model->product_sku = $request->sku_produk;
+        $model->category_id = $request->kategori_produk;
+        $model->product_price = $this->pricetoint($request->harga_produk);
+        $model->unit_id = $request->satuan_produk;
+        
         $model->save();
 
         return redirect('/produk');

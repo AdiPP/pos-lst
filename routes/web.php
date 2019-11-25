@@ -45,9 +45,19 @@ Route::post('/email/resend/action', 'RegistrasiController@resendAction');
 Route::resource('/produk/kategori', 'KategoriProdukController');
 Route::resource('/produk', 'ProdukController');
 
+// modul inventori
+Route::resource('/inventori/kartustok', 'InventoriController');
+Route::resource('/inventori/stokmasuk', 'StokMasukController');
+
 
 // modul laporan
 Route::resource('/laporan', 'LaporanController');
+
+// modul outlet
+Route::resource('/outlet', 'OutletController');
+
+// modul pelanggan
+Route::resource('/pelanggan', 'PelangganController');
 
 // dump route
 Route::get('/email/check', 'RegistrasiController@checkMail');
