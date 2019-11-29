@@ -31,10 +31,11 @@
     <link href="{{ asset('assets/plugins/datatables-responsive/css/datatables.responsive.css') }}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{{ asset('assets/css/dashboard.widgets.css') }}" rel="stylesheet" type="text/css" media="screen" />
     <link href="{{ asset('pages/css/pages-icons.css') }}" rel="stylesheet" type="text/css">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- LARAVEL DEFAULT STYLE -->
-    <!-- <link href="{{ asset('css/app.css') }}" rel="stylesheet"> -->
-    <!-- <script src="{{ asset('js/app.js') }}" defer></script> -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
 
@@ -131,13 +132,13 @@
             <span class=" arrow"></span></a>
                 <ul class="">
                   <li class="">
-                    <a href="">Kartu Stok</a>
+                    <a href="/inventori/kartustok">Kartu Stok</a>
                   </li>
                   <li class="">
-                    <a href="">Stok Masuk</a>
+                    <a href="/inventori/stokmasuk">Stok Masuk</a>
                   </li>
                   <li class="">
-                    <a href="">Stok Keluar</a>
+                    <a href="/inventori/stokkeluar">Stok Keluar</a>
                   </li>
                   <li class="">
                     <a href="">Transfer Stok</a>
@@ -172,7 +173,7 @@
                 </ul>
               </li>
               <li>
-                <a href="#"><span class="title">POS</span></a>
+                <a href="/pos"><span class="title">POS</span></a>
               </li>
             </ul>
             <a href="#" class="search-link d-flex justify-content-between align-items-center hidden-lg-up" data-toggle="search">Tap here to search <i class="pg-search float-right"></i></a>

@@ -19,4 +19,14 @@ class AppHelper
             return Redirect::to('/login')->with('status', 'email not verified')->send();
         }
     }
+
+    public static function tanggalToMysql($tanggal)
+    {
+        return date("Y-m-d", strtotime(str_replace('/', '-', $tanggal)));
+    }
+
+    public static function mysqlToTanggal($tanggal)
+    {
+        return date('d-m-Y', strtotime($tanggal));
+    }
 }

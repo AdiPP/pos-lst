@@ -4,11 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StockEntry extends Model
+class StockOut extends Model
 {
     public function infos()
     {
-        return $this->hasMany('App\StockEntryInfo');
+        return $this->hasMany('App\StockOutInfo');
     }
 
     public function outlet()
@@ -18,6 +18,6 @@ class StockEntry extends Model
 
     public function produks()
     {
-        return $this->belongsToMany('App\Product', 'stock_entry_infos');
+        return $this->belongsToMany('App\Product', 'stock_out_infos');
     }
 }

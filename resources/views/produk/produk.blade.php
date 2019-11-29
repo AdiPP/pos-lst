@@ -178,7 +178,7 @@
                               </td>
                               <td class="v-align-middle">
                                 <div class="d-flex justify-content-center">
-                                    <a   href="/produk/{{ $produk->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
+                                    <a href="/produk/{{ $produk->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
                                     {{-- <form action="/produk/{{ $produk->id }}" method="POST">
                                         @csrf
                                         <input name="_method" type="hidden" value="DELETE">

@@ -27,12 +27,20 @@ Route::get('/login', function () {
 
 Route::get('/logout', function () {
     Session::flush();
+    
     return redirect('/login');
-    // return redirect('/dashboard');
 });
 
 // dashboard
 Route::get('/dashboard', 'HomeController@index')->name('home');
+
+// modul transaksi
+Route::get('/pos/keranjang/kurang', 'PosController@keranjangKurang');
+Route::get('/pos/keranjang/tampil', 'PosController@keranjangTampil');
+Route::post('/pos/keranjang', 'PosController@keranjang');
+Route::get('/pos/infoproduk/{id}', 'PosController@infoProduk');
+Route::resource('/pos', 'PosController');
+
 
 // modul registrasi
 Route::post('/login/action', 'RegistrasiController@login');
@@ -48,6 +56,7 @@ Route::resource('/produk', 'ProdukController');
 // modul inventori
 Route::resource('/inventori/kartustok', 'InventoriController');
 Route::resource('/inventori/stokmasuk', 'StokMasukController');
+Route::resource('/inventori/stokkeluar', 'StokKeluarController');
 
 
 // modul laporan

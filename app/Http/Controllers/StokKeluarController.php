@@ -5,10 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Outlet;
 use App\Product;
-use App\StockEntry;
-use App\StockEntryInfo;
+use App\StockOut;
+use App\StockOutInfo;
 
-class StokMasukController extends Controller
+class StokKeluarController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +17,14 @@ class StokMasukController extends Controller
      */
     public function index()
     {
-        $title = 'Stok Masuk';
+        $title = 'Stok Keluar';
 
-        $model = StockEntry::all();
+        $model = StockOut::all();
 
-        return view('inventori.stokmasuk.index', ['title' => $title, 'models' => $model]);
+        return view('inventori.stokkeluar.index', [
+            'title' => $title,
+            'models' => $model
+        ]);
     }
 
     /**
@@ -34,7 +37,7 @@ class StokMasukController extends Controller
         $outlet = Outlet::all();
         $produk = Product::all();
 
-        return view('inventori.stokmasuk.tambah', ['outlets' => $outlet, 'produks' => $produk]);
+        return view('inventori.stokkeluar.tambah', ['outlets' => $outlet, 'produks' => $produk]);
     }
 
     /**
@@ -44,24 +47,22 @@ class StokMasukController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
+    { 
         // dd($request);
-        $model = new StockEntry();
+        $model = new StockOut();
         $model->outlet_id = $request->outlet;
-        $model->description = $request->outlet;
+        $model->description = $request->catatan;
         $model->user_id = 25;
-        $model->stock_card_id = 1;
+        $model->tanggal = \App\Helpers\AppHelper::tanggalToMysql($request->tanggal);
         $model->save();
-        
-        $model_info = new StockEntryInfo();
-        $model_info->stock_entry_id = $model->id;
-        $model_info->jumlah = $request->jumlah;
-        $model_info->harga_beli_per_unit = $request->harga_beli;
-        $model_info->total_harga_beli = $request->total;
+
+        $model_info = new StockOutInfo();
+        $model_info->stock_out_id = $model->id;
         $model_info->product_id = $request->produk;
+        $model_info->jumlah = $request->jumlah;
         $model_info->save();
 
-        return redirect('/inventori/stokmasuk');
+        return redirect('/inventori/stokkeluar');
     }
 
     /**

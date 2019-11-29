@@ -10,4 +10,9 @@ class StockEntryInfo extends Model
     {
         return $this->belongsTo('App\StockEntry');
     }
+
+    public function produk()
+    {
+        return $this->belongsTo('App\Product');
+    }
 }
