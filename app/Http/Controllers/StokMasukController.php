@@ -46,11 +46,12 @@ class StokMasukController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request);
         $model = new StockEntry();
         $model->outlet_id = $request->outlet;
         $model->description = $request->outlet;
         $model->user_id = 25;
-        // $model->stock_card_id = 1;
+        $model->tanggal = \App\Helpers\AppHelper::tanggalToMysql($request->tanggal);
         $model->save();
         
         $model_info = new StockEntryInfo();

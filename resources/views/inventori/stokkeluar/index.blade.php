@@ -103,23 +103,13 @@
         <!-- START card -->
             <div class="card card-default">
                 <div class="card-header">
+                    <div class="card-title">
+                        Daftar Stok Keluar
+                    </div>
                     <div class="padding-10">
                         <div class="row">
-                        <div class="col-lg-3">
-                            <label for="">Lokasi</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Kategori</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Status Dijual</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Cari</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                        <div class="col-lg-12">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Stok Keluar">
                         </div>
                     </div>
                     </div>
@@ -132,7 +122,7 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th class="w-50">ID Stok Masuk</th>
+                        <th class="w-50">ID Stok Keluar</th>
                         <th class="w-25">Outlet</th>
                         <th class="w-25">Tanggal</th>
                         <th class="invisible" style="width: 1%;"></th>

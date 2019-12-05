@@ -27,7 +27,7 @@
                             <div class="col-md-6">
                             <div class="form-group form-group-default">
                                 <label>Tanggal</label>
-                                <input type="text" class="form-control" name="kota" value="{{ date("d-m-Y ", strtotime($model->created_at)) }}" readonly>
+                                <input type="text" class="form-control" name="kota" value="{{ Helper::mysqlToTanggal($model->tanggal) }}" readonly>
                             </div>
                             </div>
                         </div>
@@ -115,23 +115,13 @@
         <!-- START card -->
             <div class="card card-default">
                 <div class="card-header">
+                    <div class="card-title">
+                        Daftar Stok Masuk
+                    </div>
                     <div class="padding-10">
                         <div class="row">
-                        <div class="col-lg-3">
-                            <label for="">Lokasi</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Kategori</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Status Dijual</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Cari</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                        <div class="col-lg-12">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Stok Masuk">
                         </div>
                     </div>
                     </div>
@@ -160,7 +150,7 @@
                                     {{ $model->outlet->outlet_name }}
                                 </td>
                                 <td class="v-align-middle">
-                                    {{ date("d-m-Y ", strtotime($model->created_at)) }}
+                                    {{ Helper::mysqlToTanggal($model->tanggal) }}
                                 </td>
                                 <td class="v-align-middle">
                                     <div class="d-flex justify-content-center">

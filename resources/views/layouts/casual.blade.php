@@ -161,7 +161,7 @@
                         <a href="/inventori/stokkeluar">Stok Keluar</a>
                         </li>
                         <li class="">
-                        <a href="">Transfer Stok</a>
+                        <a href="/inventori/transferstok">Transfer Stok</a>
                         </li>
                         <li class="">
                         <a href="">Stok Opname</a>

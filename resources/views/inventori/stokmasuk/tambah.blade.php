@@ -55,7 +55,7 @@
                                 <div class="form-group">
                                     <label>Tanggal</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" id="datepicker-component">
+                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component">
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">

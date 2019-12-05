@@ -65,11 +65,16 @@ Route::resource('/produk/kategori', 'KategoriProdukController');
 Route::resource('/produk', 'ProdukController');
 
 // modul inventori
+//  kartu stok
 Route::resource('/inventori/kartustok', 'InventoriController');
+//  stok masuk
 // Route::get('/inventori/stokmasuk/tambahproduk', 'StokMasukController@tambahProduk');
 Route::get('/inventori/stokmasuk/infoproduk', 'StokMasukController@infoProduk');
 Route::resource('/inventori/stokmasuk', 'StokMasukController');
+//  stok keluar
 Route::resource('/inventori/stokkeluar', 'StokKeluarController');
+//  transfer stok
+Route::resource('/inventori/transferstok', 'TransferStokController');
 
 
 // modul laporan
