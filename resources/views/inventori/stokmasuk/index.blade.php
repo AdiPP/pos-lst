@@ -15,7 +15,6 @@
                     <p class="p-b-10">Berikut informasi mengenai Stok Masuk <strong>{{ $model->id }}</strong></p>
                     </div>
                     <div class="modal-body">
-                    {{-- <form role="form"> --}}
                         @csrf
                         <div class="form-group-attached">
                         <div class="row">
@@ -74,7 +73,6 @@
                             <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
                             </div>
                         </div>
-                    {{-- </form> --}}
                     </div>
                 </div>
             </div>
@@ -146,7 +144,7 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th class="w-50">ID Stok Keluar</th>
+                        <th class="w-50">ID Stok Masuk</th>
                         <th class="w-25">Outlet</th>
                         <th class="w-25">Tanggal</th>
                         <th class="invisible" style="width: 1%;"></th>
@@ -167,8 +165,6 @@
                                 <td class="v-align-middle">
                                     <div class="d-flex justify-content-center">
                                         <button class="btn btn-xs btn-complete mx-1" data-target="#modalView{{  $model->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
-                                        {{-- <button class="btn btn-xs btn-success mx-1" data-toggle="modal" id=""><i class="fa fa-pencil"></i></button>
-                                        <button class="btn btn-xs btn-danger mx-1" data-toggle="modal" id=""><i class="fa fa-trash-o"></i></button> --}}
                                     </div>
                                 </td>
                             </tr>
