@@ -98,7 +98,7 @@
                                                 <?php if ($produk->unit->id === $unit->id) {
                                                     echo 'selected';
                                                 } ?>
-                                                >{{ $unit->unit_name }}</option>
+                                                >{{ $unit->singkatan }} - {{ $unit->nama }}</option>
                                             @endforeach
                                     </select>
                                 </div>

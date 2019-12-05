@@ -34,11 +34,22 @@ Route::get('/logout', function () {
 // dashboard
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
+// modul super admin
+Route::get('/admin/master/modals', 'AdminController@modals');
+Route::get('/admin/master/unit/hapus', 'AdminController@unitHapus');
+Route::get('/admin/master/unit/tampil', 'AdminController@unitTampil');
+Route::post('/admin/master/unit/tambah', 'AdminController@unitTambah');
+Route::get('/admin/master', 'AdminController@masterIndex');
+Route::resource('/admin', 'AdminController');
+
 // modul transaksi
+Route::post('/pos/bayar', 'PosController@bayar');
+Route::get('/pos/infototal', 'PosController@infoTotal');
+Route::get('/pos/keranjang/tambah', 'PosController@keranjangTambah');
 Route::get('/pos/keranjang/kurang', 'PosController@keranjangKurang');
 Route::get('/pos/keranjang/tampil', 'PosController@keranjangTampil');
 Route::post('/pos/keranjang', 'PosController@keranjang');
-Route::get('/pos/infoproduk/{id}', 'PosController@infoProduk');
+Route::get('/pos/infoproduk', 'PosController@infoProduk');
 Route::resource('/pos', 'PosController');
 
 
@@ -55,6 +66,8 @@ Route::resource('/produk', 'ProdukController');
 
 // modul inventori
 Route::resource('/inventori/kartustok', 'InventoriController');
+// Route::get('/inventori/stokmasuk/tambahproduk', 'StokMasukController@tambahProduk');
+Route::get('/inventori/stokmasuk/infoproduk', 'StokMasukController@infoProduk');
 Route::resource('/inventori/stokmasuk', 'StokMasukController');
 Route::resource('/inventori/stokkeluar', 'StokKeluarController');
 

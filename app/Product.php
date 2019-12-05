@@ -21,4 +21,9 @@ class Product extends Model
     {
         return $this->belongsTo('App\User');
     }
+
+    public function keranjang()
+    {
+        return $this->hasOne('App\Cart');
+    }
 }

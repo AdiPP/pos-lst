@@ -87,7 +87,7 @@
                                     <select class="full-width required" data-init-plugin="select2" name="satuan_produk">
                                             <option selected disabled value="">Pilih Salah Satu</option>
                                             @foreach ($units as $unit)
-                                                <option value="{{ $unit->id }}">{{ $unit->unit_name }}</option>
+                                                <option value="{{ $unit->id }}">{{ $unit->singkatan }} - {{ $unit->nama }}</option>
                                             @endforeach
                                         {{-- @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
@@ -108,18 +108,6 @@
                     </div>
                 </div>
                 <!-- END card -->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-12 m-b-10 d-flex flex-column">
-                <div data-pages="card" class="card card-default" id="card-basic">
-                    <div class="card-header  ">
-                        <div class="card-title">Opsional
-                        </div>
-                    </div>
-                    <div class="card-block" style="display: block;">
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -58,6 +58,10 @@ class RegistrasiController extends Controller
             if ($model_ext->save()) {
                 Mail::to($request->email)->send(new Registrasi($model));
                 
+                session([
+                    'idTemp' => $model->id,
+                    'emailTemp' => $request->email
+                ]);
                 return redirect('login')->with('status', 'registration sukses');
             }
         }
@@ -115,8 +119,9 @@ class RegistrasiController extends Controller
             if (Hash::check($request->password, $model->password))
             {
                 session()->put('user', $model);
-
-                return redirect('/dashboard');
+                if (session()->has('urlTemp')) {
+                    return redirect(session('urlTemp'));
+                } else return redirect('/dashboard');
             } else {
                 return redirect('/login')->with('status', false);
             }
@@ -142,8 +147,13 @@ class RegistrasiController extends Controller
 
     public function resendAction(Request $request)
     {
-        $model = User::where('email', $request->email)->first();
-        Mail::to($request->email)->send(new Registrasi($model));
+
+        $model = User::where('id', $request->id)->first();
+        if ($model->email != $request->email) {
+            $model->email = $request->email;
+            $model->save();
+        }
+        Mail::to($model->email)->send(new Registrasi($model));
         
         return redirect('login')->with('status', 'email verifikasi terkirim');
     }

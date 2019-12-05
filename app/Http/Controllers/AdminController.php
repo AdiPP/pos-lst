@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Outlet;
-use App\Product;
-use App\StockEntry;
-use App\StockEntryInfo;
+use App\Unit;
+use App\Wilayah;
 
-class StokMasukController extends Controller
+class AdminController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +15,7 @@ class StokMasukController extends Controller
      */
     public function index()
     {
-        $title = 'Stok Masuk';
-
-        $model = StockEntry::all();
-
-        return view('inventori.stokmasuk.index', ['title' => $title, 'models' => $model]);
+        return view('admin.index');
     }
 
     /**
@@ -31,10 +25,7 @@ class StokMasukController extends Controller
      */
     public function create()
     {
-        $outlet = Outlet::all();
-        $produk = Product::all();
-
-        return view('inventori.stokmasuk.tambah', ['outlets' => $outlet, 'produks' => $produk]);
+        //
     }
 
     /**
@@ -45,23 +36,7 @@ class StokMasukController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
-        $model = new StockEntry();
-        $model->outlet_id = $request->outlet;
-        $model->description = $request->outlet;
-        $model->user_id = 25;
-        $model->stock_card_id = 1;
-        $model->save();
-        
-        $model_info = new StockEntryInfo();
-        $model_info->stock_entry_id = $model->id;
-        $model_info->jumlah = $request->jumlah;
-        $model_info->harga_beli_per_unit = $request->harga_beli;
-        $model_info->total_harga_beli = $request->total;
-        $model_info->product_id = $request->produk;
-        $model_info->save();
-
-        return redirect('/inventori/stokmasuk');
+        //
     }
 
     /**
@@ -109,18 +84,48 @@ class StokMasukController extends Controller
         //
     }
 
-    public function tambahProduk()
+    public function modals()
     {
-        $model = Product::all();
-        return view('inventori.stokmasuk.tambahProduk', ['produks' => $model]);
+        $unit = Unit::all();
+        return view('admin.mastering.modals', ['units' => $unit]);
     }
 
-    public function infoProduk()
+    public function masterIndex()
+    {
+        $title = 'Master Data';
+
+        $wilayah = Wilayah::where('LEVEL', '1')->select('KODE_WILAYAH', 'NAMA')->get();
+
+        $unit = Unit::all();
+
+        return view('admin.mastering.index', ['units' => $unit, 'wilayahs' => $wilayah, 'title' => $title]);
+    }
+
+    public function unitTambah(Request $request)
+    {
+        $model = new Unit();
+        $model->singkatan = $request->singkatan;
+        $model->nama = $request->nama;
+        $model->deskripsi = $request->deskripsi;
+        if ($model->save()) {
+            return 'Satuan berhasil ditambah 🙂 ';
+        } else return 'Satuan gagal ditambah 💩 ';
+    }
+
+    public function unitTampil()
+    {
+        $model = Unit::all();
+
+        return view('admin.mastering.tampilUnit', ['models' => $model]);
+    }
+
+    public function unitHapus()
     {
         $id = $_GET['id'];
 
-        return view('inventori.stokmasuk.infoproduk', [
-            'produk' => Product::where('id', '=', $id)->first()
-        ]);
+        $model = Unit::find($id);
+        if ($model->delete()) {
+            return 'Satuan berhasil dihapus';
+        } else return 'Satuan gagal dihapus';
     }
 }

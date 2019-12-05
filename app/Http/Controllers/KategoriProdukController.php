@@ -24,7 +24,10 @@ class KategoriProdukController extends Controller
     {
         $title = 'Kategori Produk';
 
-        $model = Category::where('user_id', '=', session('user')->id)->get();
+        $model = Category::where('user_id', '=', session('user')->id)->withCount('produk')->get();
+
+        // $model = Category::find(6);
+        // dd($model[2]->produk_count);
 
         return view('produk.kategoriProduk', ['title' => $title, 'models' => $model]);
     }

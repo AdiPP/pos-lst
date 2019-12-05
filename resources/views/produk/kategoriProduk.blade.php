@@ -175,8 +175,8 @@
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
                         <th class="w-25">Nama Kategori</th>
-                        <th class="w-50">Deskripsi Kategori</th>
-                        <th class="text-right w-25">Jumlah Produk</th>
+                        <th class="w-50">Deskripsi</th>
+                        <th class="text-right w-25">Jumlah</th>
                         <th class="invisible" style="width: 1%;">Aksi</th>
                       </tr>
                     </thead>
@@ -190,13 +190,13 @@
                                 </div>
                             </td> --}}
                             <td class="v-align-middle semi-bold">
-                              {{ $model->category_name }}
+                                {{ $model->category_name }}
                             </td>
                             <td class="v-align-middle semi-bold">
-                              {{ $model->category_description }}
+                                {{ $model->category_description }}
                             </td>
                             <td class="v-align-middle text-right">
-                              24
+                                {{ $model->produk_count }}
                             </td>
                             <td class="v-align-middle">
                                 <div class="d-flex justify-content-center">

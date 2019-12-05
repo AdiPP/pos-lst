@@ -5,9 +5,17 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Product;
 use App\Cart;
+use App\Customer;
+use App\Sale;
+use App\SaleInfo;
+Use DB;
 
 class PosController extends Controller
 {
+    public function __construct()
+    {
+        \App\Helpers\AppHelper::userCheck();
+    }
     /**
      * Display a listing of the resource.
      *
@@ -15,9 +23,11 @@ class PosController extends Controller
      */
     public function index()
     {
-        $produk = Product::all();
+        $produk = Product::where('user_id', session('user')->id)->get();
+        $pelanggan = Customer::where('user_id', session('user')->id)->get();
         return view('pos.index', [
             'produks' => $produk,
+            'pelanggans' => $pelanggan
         ]);
     }
 
@@ -99,15 +109,15 @@ class PosController extends Controller
     public function keranjang(Request $request)
     {
         if ($model = Cart::where('user_id', '=', 25)->where('product_id', '=', $request->input('id'))->first()) { // update jumlah produk
-            $model->jumlah = $model->jumlah + 1;
+            $model->jumlah = $model->jumlah + $request->input('jumlahproduk');
             if ($model->save()) {
-                return 'Data berhasil ditambah';
+                return 'Jumlah produk berhasil ditambah '.$request->input('jumlahproduk');
             } else 'Data gagal ditambah';
         } else { // tambah produk
             $model = new Cart();
             $model->product_id = $request->input('id');
             $model->user_id = 25;
-            $model->jumlah = 1;
+            $model->jumlah = $request->input('jumlahproduk');
             if ($model->save()) {
                 return 'Data berhasil disimpan';
             } else return 'Data gagal disimpan';
@@ -125,10 +135,75 @@ class PosController extends Controller
 
     public function keranjangKurang(Request $request)
     {
+        if ($model = Cart::where('user_id', '=', 25)->where('id', '=', $request->input('id'))->first()) {
+            if ($model->jumlah === 1) {
+                if ($model->forceDelete()) {
+                    return 'Data berhasil dihapus';
+                } else return 'Data gagal dihapus';
+            } else  {
+                $model->jumlah = $model->jumlah - 1;   
+                if ($model->save()) {
+                    return 'Data berhasil dikurangi';
+                } else 'Data gagal dikurangi';
+            }
+        } else return 'Data tidak ditemukan pada keranjangKurang()';
+    }
+
+    public function keranjangTambah(Request $request)
+    {
         $model = Cart::where('user_id', '=', 25)->where('id', '=', $request->input('id'))->first();
-        $model->jumlah = $model->jumlah - 1;
+        $model->jumlah = $model->jumlah + 1;
         if ($model->save()) {
-            return 'Data berhasil dikurangi';
-        } else 'Data gagal dikurangi';
+            return 'Data berhasil ditambah';
+        } else return 'Data gagal ditambah';
+    }
+
+    public function infoTotal()
+    {
+        // $model = Cart::where('user_id', '=', 25)->sum('jumlah');
+
+        // $model = Cart::where('carts.user_id', 25)->leftJoin('products', 'carts.product_id', '=', 'products.id')->select()->get();
+
+        // $model  = Cart::where('carts.user_id', 25)->sum('');
+
+        // $model = DB::table('carts')
+        //             ->join('products', 'carts.product_id', '=', 'products.id')
+        //             ->select(DB::raw('carts.jumlah * products.product_price AS total'))
+        //             ->get();
+        // return $model->sum('total');
+
+        $model = Cart::with('Produk')
+                    ->where('user_id', '=', 25)
+                    ->get()
+                    ->reduce(function($carry, $item) {
+                        return $carry + ($item->jumlah * $item->produk->product_price);
+                    });
+
+        return $model;
+    }
+
+    public function bayar(Request $request)
+    {
+        $model = new Sale();
+        $model->outlet_id = $request->input('outletid');
+        $model->customer_id = $request->input('pelangganid');
+        $model->admin_id = $request->input('adminid');
+        $model->total = $request->input('total');
+        $model->cash = $request->input('cash');
+        $model->save();
+
+        $carts = Cart::where('user_id', '=', 25)->get();
+
+        foreach ($carts as $cart) {
+            $model_info = new SaleInfo();
+            $model_info->sale_id = $model->id;
+            $model_info->product_id = $cart->product_id;
+            $model_info->jumlah = $cart->jumlah;
+            $model_info->save();
+            Cart::where('id', '=', $cart->id)->delete();
+        }
+
+        // return $model_info;
+        return $model->cash - $model->total;
     }
 }

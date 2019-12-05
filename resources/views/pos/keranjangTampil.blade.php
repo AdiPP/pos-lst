@@ -6,17 +6,20 @@
         <td class="v-align-middle">
             {{ $produk->produk->product_name }}
         </td>
-        <td class="v-align-middle">
+        <td class="v-align-middle text-right">
             {{ $produk->produk->product_price }}
         </td>
-        <td class="v-align-middle">
+        <td class="v-align-middle text-right">
             {{ $produk->jumlah }}
         </td>
-        <td class="v-align-middle">
+        <td class="v-align-middle text-right">
             {{ $produk->produk->product_price * $produk->jumlah }}
         </td>
         <td>
-            <button onclick="kurangiProduk(this.value)" value="{{ $produk->id }}" class="btn btn-xs btn-danger mx-1"><i class="fa fa-minus"></i></button>
+            <div class="d-flex justify-content-center">
+                <button onclick="kurangiProduk(this.value)" value="{{ $produk->id }}" class="btn btn-xs btn-danger btn-sm mx-1"><i class="fa fa-minus"></i></button>
+                <button onclick="tambahProduk(this.value)" value="{{ $produk->id }}" class="btn btn-xs btn-success mx-1"><i class="fa fa-plus"></i></button>
+            </div>
         </td>
     </tr>
 @endforeach

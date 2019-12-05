@@ -7,6 +7,9 @@ class AppHelper
 {
     public static function userCheck() 
     {
+        session([
+            'urlTemp' => request()->path(),
+        ]);
         //Check the user session available
         if (!session()->has('user'))
         {   

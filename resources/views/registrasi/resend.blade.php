@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
-    <title>Pages - Admin Dashboard UI Kit - Lock Screen</title>
+    <title>Pages - Kirim Ulang Email Verifikasi</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <link rel="apple-touch-icon" href="{{ asset('pages/ico/60.png') }}">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('pages/ico/76.png') }}">
@@ -35,14 +35,15 @@
   <body class="fixed-header ">
     <div class="register-container full-height sm-p-t-30">
       <div class="d-flex justify-content-center flex-column full-height">
-        <h3>Masukan Email Anda</h3>
+        <h3>Masukan atau Ubah Email Anda</h3>
         <p>Kami akan mengirimkan email verifikasi ke email anda.</p>
         <form id="form-register" class="p-t-15" role="form" action="/email/resend/action" method="POST">
         @csrf
           <div class="row">
             <div class="col-md-12">
               <div class="form-group">
-                <input type="email" name="email" placeholder="yourmail@mail.com" class="form-control input-lg" required>
+                <input type="hidden" name="id" value="{{ session()->pull('idTemp') }}">
+                <input type="email" name="email" placeholder="yourmail@mail.com" class="form-control input-lg" value="{{ session()->pull('emailTemp') }}" required>
               </div>
             </div>
           </div>

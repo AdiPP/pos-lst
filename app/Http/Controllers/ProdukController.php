@@ -42,7 +42,7 @@ class ProdukController extends Controller
     {
         $title = 'Tambah Produk';
 
-        $categories = Category::all();
+        $categories = Category::where('user_id', session('user')->id)->get();
         $units = Unit::all();
 
         return view('produk.tambahProduk', ['title' => $title, 'categories' => $categories, 'units' => $units]);
@@ -97,7 +97,7 @@ class ProdukController extends Controller
         $title = 'Ubah Produk';
 
         $model = Product::find($id);
-        $categories = Category::all();
+        $categories = Category::where('user_id', session('user')->id)->get();
         $units = Unit::all();
 
         return view('produk.ubahProduk', ['title' => $title, 'produk' => $model, 'categories' => $categories, 'units' => $units]);

@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
-    <title>POSLST - @yield('title')</title>
+    <title>Sade: @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <link rel="apple-touch-icon" href="{{ asset('pages/ico/60.png') }}">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('pages/ico/76.png') }}">
@@ -45,6 +45,15 @@
         background: none !important;
         color: #000 !important;
       }
+      #jumlahprodukparent input, #hargabeliparent input {
+        margin: 0;
+        /* -webkit-appearance: none; */
+        /* border: none; */
+        background-color: none;
+      }
+      /* #jumlahprodukparent input:focus {
+        outline: none;
+      } */
     </style>
   </head>
   <body class="fixed-header horizontal-menu horizontal-app-menu dashboard">
@@ -100,81 +109,93 @@
             <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-close" data-toggle="horizontal-menu">
             </a>
             <ul>
-              <li class="
-              @if (config('global.active_nav') === 'dashboard')
-                  {{ 'active' }}
-              @endif">
-                <a href="{{ url('/dashboard', []) }}">Dashboard</a>
-              </li>
-              <li class="
-                @if (config('global.active_nav') === 'laporan')
+              @if (config('global.level') == 1)
+                <li class="
+                @if (config('global.active_nav') === 'dashboard')
                     {{ 'active' }}
                 @endif">
-                <a href="/laporan"><span class="title">Laporan</span></a>
-              </li>
-              <li class="
-                @if (config('global.active_nav') === 'produk')
-                  {{ 'active' }}
-                @endif">
-                <a href="javascript:;"><span class="title">Produk</span>
-            <span class=" arrow"></span></a>
-                <ul class="">
-                  <li class="">
-                    <a href="{{ url('/produk', []) }}">Produk</a>
-                  </li>
-                  <li class="">
-                    <a href="{{ url('/produk/kategori', []) }}">Kategori</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="">
-                <a href="javascript:;"><span class="title">Inventori</span>
-            <span class=" arrow"></span></a>
-                <ul class="">
-                  <li class="">
-                    <a href="/inventori/kartustok">Kartu Stok</a>
-                  </li>
-                  <li class="">
-                    <a href="/inventori/stokmasuk">Stok Masuk</a>
-                  </li>
-                  <li class="">
-                    <a href="/inventori/stokkeluar">Stok Keluar</a>
-                  </li>
-                  <li class="">
-                    <a href="">Transfer Stok</a>
-                  </li>
-                  <li class="">
-                    <a href="">Stok Opname</a>
-                  </li>
-                  <li class="">
-                    <a href="">Supplier</a>
-                  </li>
-                  <li class="">
-                    <a href="">Purchase Order</a>
-                  </li>
-                </ul>
-              </li>
-              <li class="
-                @if (config('global.active_nav') === 'bisnis')
-                    {{ 'active' }}
-                @endif">
-                <a href="javascript:;"><span class="title">Bisnis</span>
-                <span class=" arrow"></span></a>
-                <ul class="">
-                  <li class="">
-                    <a href="/outlet">Outlet</a>
-                  </li>
-                  <li class="">
-                    <a href="/pelanggan">Pelanggan</a>
-                  </li>
-                  <li class="">
-                    <a href="#">Anggota</a>
-                  </li>
-                </ul>
-              </li>
-              <li>
-                <a href="/pos"><span class="title">POS</span></a>
-              </li>
+                  <a href="{{ url('#', []) }}">Dashboard</a>
+                </li>
+                <li class="">
+                  <a href="/admin/master"><span class="title">Master Data</span></a>
+                </li>
+              @else
+                <li class="
+                    @if (config('global.active_nav') === 'dashboard')
+                        {{ 'active' }}
+                    @endif">
+                    <a href="{{ url('/dashboard', []) }}">Dashboard</a>
+                    </li>
+                    <li class="
+                    @if (config('global.active_nav') === 'laporan')
+                        {{ 'active' }}
+                    @endif">
+                    <a href="/laporan"><span class="title">Laporan</span></a>
+                    </li>
+                    <li class="
+                    @if (config('global.active_nav') === 'produk')
+                        {{ 'active' }}
+                    @endif">
+                    <a href="javascript:;"><span class="title">Produk</span>
+                    <span class=" arrow"></span></a>
+                    <ul class="">
+                        <li class="">
+                        <a href="{{ url('/produk', []) }}">Produk</a>
+                        </li>
+                        <li class="">
+                        <a href="{{ url('/produk/kategori', []) }}">Kategori</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="">
+                    <a href="javascript:;"><span class="title">Inventori</span>
+                    <span class=" arrow"></span></a>
+                    <ul class="">
+                        <li class="">
+                        <a href="/inventori/kartustok">Kartu Stok</a>
+                        </li>
+                        <li class="">
+                        <a href="/inventori/stokmasuk">Stok Masuk</a>
+                        </li>
+                        <li class="">
+                        <a href="/inventori/stokkeluar">Stok Keluar</a>
+                        </li>
+                        <li class="">
+                        <a href="">Transfer Stok</a>
+                        </li>
+                        <li class="">
+                        <a href="">Stok Opname</a>
+                        </li>
+                        <li class="">
+                        <a href="">Supplier</a>
+                        </li>
+                        <li class="">
+                        <a href="">Purchase Order</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="
+                    @if (config('global.active_nav') === 'bisnis')
+                        {{ 'active' }}
+                    @endif">
+                    <a href="javascript:;"><span class="title">Bisnis</span>
+                    <span class=" arrow"></span></a>
+                    <ul class="">
+                        <li class="">
+                        <a href="/outlet">Outlet</a>
+                        </li>
+                        <li class="">
+                        <a href="/pelanggan">Pelanggan</a>
+                        </li>
+                        <li class="">
+                        <a href="#">Anggota</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li>
+                    <a href="/pos"><span class="title">POS</span></a>
+                    </li>
+              @endif
             </ul>
             <a href="#" class="search-link d-flex justify-content-between align-items-center hidden-lg-up" data-toggle="search">Tap here to search <i class="pg-search float-right"></i></a>
           </div>
@@ -1263,7 +1284,7 @@
     </div>
     <!-- END QUICKVIEW-->
     <!-- START OVERLAY -->
-    <div class="overlay hide" data-pages="search">
+    {{-- <div class="overlay hide" data-pages="search">
       <!-- BEGIN Overlay Content !-->
       <div class="overlay-content has-results m-t-20">
         <!-- BEGIN Overlay Header !-->
@@ -1397,7 +1418,7 @@
         <!-- END Overlay Search Results !-->
       </div>
       <!-- END Overlay Content !-->
-    </div>
+    </div> --}}
     <!-- END OVERLAY -->
     @yield('inpagejs')
     <!-- BEGIN VENDOR JS -->
