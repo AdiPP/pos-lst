@@ -26,4 +26,24 @@ class Product extends Model
     {
         return $this->hasOne('App\Cart');
     }
+
+    public function stokmasuks()
+    {
+        return $this->belongsToMany('App\StockEntry', 'stock_entry_infos')->withPivot('jumlah');;
+    }
+
+    public function stokkeluars()
+    {
+        return $this->belongsToMany('App\StockOut', 'stock_out_infos')->withPivot('jumlah');;
+    }
+
+    public function sales()
+    {
+        return $this->belongsToMany('App\Sale', 'sale_infos');
+    }
+
+    public function saleInfos()
+    {
+        return $this->hasMany('App\SaleInfo', 'product_id');
+    }
 }

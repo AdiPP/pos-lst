@@ -38,25 +38,24 @@
         <!-- START card -->
             <div class="card card-default">
                 <div class="card-header">
+                    <div class="card-title">
+                        Kartu Stok
+                    </div>
                     <div class="padding-10">
                         <div class="row">
-                        <div class="col-lg-3">
-                            <label for="">Lokasi</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                            <div class="col-lg-12">
+                                <label for="">Pilih Outlet</label>
+                                <div class="form-group ">
+                                    <select class="full-width" data-init-plugin="select2" onchange="pilihOutlet()" id="pilihOutlet">
+                                        <option value="0" selected>Semua Outlet</option>
+                                        @foreach ($outlets as $outlet)
+                                            <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
+                                        @endforeach
+                                        </optgroup>
+                                    </select>
+                                </div>
+                            </div>
                         </div>
-                        <div class="col-lg-3">
-                            <label for="">Kategori</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Status Dijual</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                        <div class="col-lg-3">
-                            <label for="">Cari</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
-                        </div>
-                    </div>
                     </div>
                     <div class="clearfix"></div>
                 </div>
@@ -67,7 +66,7 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th>Nama Produk</th>
+                        <th class="w-25">Nama Produk</th>
                         <th>Kategori</th>
                         <th>Stok Awal</th>
                         <th>Stok Masuk</th>
@@ -78,56 +77,7 @@
                         <th>Stok Akhir</th>
                       </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td class="v-align-middle">
-                                Produk 1
-                            </td>
-                            <td class="v-align-middle">
-                                Kategori 1
-                            </td>
-                            <td class="v-align-middle text-right">
-                                0
-                            </td>
-                            <td class="v-align-middle text-right">
-                                0
-                            </td>
-                            <td class="v-align-middle text-right">
-                                0
-                            </td>
-                            <td class="v-align-middle text-right">
-                                0
-                            </td>
-                            <td class="v-align-middle text-right">
-                                0
-                            </td>
-                            <td class="v-align-middle text-right">
-                                0
-                            </td>
-                            <td class="v-align-middle text-right">
-                                0
-                            </td>
-                        </tr>
-                        {{-- @foreach ($produks as $produk)
-                            <tr>
-                              <td class="v-align-middle semi-bold">
-                                  {{ $produk->product_name }}
-                              </td>
-                              <td class="v-align-middle">
-                                  {{ $produk->category->category_name }}
-                              </td>
-                              <td class="v-align-middle text-right semi-bold">
-                                  Rp{{ number_format($produk->product_price, 0,',','.') }}
-                              </td>
-                              <td class="v-align-middle">
-                                <div class="d-flex justify-content-center">
-                                    <a   href="/produk/{{ $produk->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
-                                    <button class="btn btn-xs btn-danger mx-1" data-target="#modalSlideUp{{ $produk->id }}" data-toggle="modal" id=""><i class="fa fa-trash-o"></i></button>
-                                </div>
-                              </td>
-                            </tr>
-                        @endforeach --}}
-                    </tbody>
+                    <tbody id="tampilKartuStok"></tbody>
                   </table>
                 </div>
             </div>
@@ -135,6 +85,55 @@
         </div>
     </div>
 </div>
+<script>
+    $(document).ready(function(){
+        semuaOutlet();
+    })
+
+    // function pilihOutlet()
+    // {
+
+    // }
+
+    function semuaOutlet(){
+        $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+
+        $.ajax({
+            url: '/inventori/kartustok/tampil',
+            type: 'GET',
+            data: {outlet: 0},
+            success: function(response)
+            {
+                $('#tampilKartuStok').html(response);
+            }
+        })
+    }
+
+    function pilihOutlet(){
+        $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+
+        var e = document.getElementById("pilihOutlet");
+        var strUser = e.options[e.selectedIndex].value;
+
+        $.ajax({
+            url: '/inventori/kartustok/tampil',
+            type: 'GET',
+            data: {outlet: strUser},
+            success: function(response)
+            {
+                $('#tampilKartuStok').html(response);
+            }
+        });
+    }
+</script>
 @endsection
 
 @section('myjsfile')

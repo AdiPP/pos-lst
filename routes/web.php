@@ -66,6 +66,7 @@ Route::resource('/produk', 'ProdukController');
 
 // modul inventori
 //  kartu stok
+Route::get('/inventori/kartustok/tampil', 'InventoriController@tampilKartuStok');
 Route::resource('/inventori/kartustok', 'InventoriController');
 //  stok masuk
 // Route::get('/inventori/stokmasuk/tambahproduk', 'StokMasukController@tambahProduk');

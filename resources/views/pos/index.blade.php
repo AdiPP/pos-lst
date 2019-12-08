@@ -20,7 +20,7 @@
                                 <div class="form-group form-group-default">
                                     <label>Outlet</label>
                                     ABCD
-                                    <input type="hidden" name="outletid" value=25>
+                                    <input type="hidden" name="outletid" value=3>
                                 </div>
                             </div>
                         </div>
@@ -83,7 +83,7 @@
                         <h4 class="no-margin">Transaksi Berhasil</h4>
                         <h5>Kembali: Rp <span id="kembali">0</span></h5>
                     </div>
-                    <button type="button" class="btn btn-primary btn-cons" data-dismiss="modal">Continue</button>
+                    <button type="button" class="btn btn-primary btn-cons" data-dismiss="modal">Selesai</button>
                 </div>
             </div>
         </div>
