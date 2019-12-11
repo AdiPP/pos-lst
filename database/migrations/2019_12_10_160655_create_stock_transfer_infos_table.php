@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateStockTransfersTable extends Migration
+class CreateStockTransferInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class CreateStockTransfersTable extends Migration
      */
     public function up()
     {
-        Schema::create('stock_transfers', function (Blueprint $table) {
+        Schema::create('stock_transfer_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('product_id');
+            $table->bigInteger('jumlah');
             $table->timestamps();
         });
     }
@@ -26,6 +28,6 @@ class CreateStockTransfersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('stock_transfers');
+        Schema::dropIfExists('stock_transfer_infos');
     }
 }

@@ -1420,6 +1420,21 @@
       <!-- END Overlay Content !-->
     </div> --}}
     <!-- END OVERLAY -->
+    {{-- <script>
+      $(document).ready(function(){
+        refreshData();
+      });
+
+      function refreshData()
+      {
+          x = 1;  // 5 Seconds
+
+          alert('halo');
+
+          setTimeout(refreshData, x*1000);
+      }
+    </script> --}}
+
     @yield('inpagejs')
     <!-- BEGIN VENDOR JS -->
     <script src=" {{ asset('assets/plugins/pace/pace.min.js') }} " type="text/javascript"></script>

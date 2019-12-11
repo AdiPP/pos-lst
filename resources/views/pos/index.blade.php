@@ -170,7 +170,7 @@
             <!-- END card -->
         </div>
         <div class="col-lg-7 m-b-10 d-flex flex-column">
-        <!-- START card -->
+            <!-- START card -->
             <div class="card card-default">
                 <div class="card-header">
                     <div class="card-title">
@@ -201,13 +201,13 @@
                                             <th class="invisible" style="width: 1%"><button class="btn btn-sm"><i class="fa fa-plus"></i></button></th>
                                         </tr>
                                     </thead>
-                                        <tbody id="infoproduk">
-                                            <tr>
-                                                <td colspan="4" class="text-center v-align-middle">
-                                                    <button class="btn disabled">Silahkan Pilih Produk</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                    <tbody id="infoproduk">
+                                        <tr>
+                                            <td colspan="4" class="text-center v-align-middle">
+                                                <button class="btn disabled">Silahkan Pilih Produk</button>
+                                            </td>
+                                        </tr>
+                                    </tbody>
                                 </table>
                             </form>
                         </div>
