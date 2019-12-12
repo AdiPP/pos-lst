@@ -164,10 +164,10 @@
                         <a href="/inventori/transferstok">Transfer Stok</a>
                         </li>
                         <li class="">
-                        <a href="">Stok Opname</a>
+                        <a href="/inventori/stokopname">Stok Opname</a>
                         </li>
                         <li class="">
-                        <a href="">Supplier</a>
+                        <a href="/supplier">Supplier</a>
                         </li>
                         <li class="">
                         <a href="">Purchase Order</a>

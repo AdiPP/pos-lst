@@ -80,6 +80,11 @@ Route::get('/inventori/transferstok/tampiltemp', 'TransferStokController@tampilT
 Route::post('/inventori/transferstok/tambahproduk', 'TransferStokController@tambahProduk');
 Route::get('/inventori/transferstok/infoproduk', 'TransferStokController@infoProduk');
 Route::resource('/inventori/transferstok', 'TransferStokController');
+// stok opname
+Route::resource('/inventori/stokopname', 'StokOpnameController');
+
+// modul supplier
+Route::resource('/supplier', 'SupplierController');
 
 
 // modul laporan

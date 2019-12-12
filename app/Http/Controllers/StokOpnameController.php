@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Supplier;
 
-class SupplierController extends Controller
+class StokOpnameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +13,7 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier = Supplier::where('user_id', session('user')->id)->get();
-
-        return view('inventori.supplier.index', ['title' => 'Supplier', 'suppliers' => $supplier]);
+        return view('inventori.stokopname.index', ['title' => 'Stok Opname']);
     }
 
     /**
@@ -37,15 +34,7 @@ class SupplierController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new Supplier();
-        $model->nama = $request->nama;
-        $model->alamat = $request->alamat;
-        $model->telepon = $request->telepon;
-        $model->email = $request->email;
-        $model->user_id = session('user')->id;
-        if ($model->save()) {
-            return redirect('/supplier');
-        }
+        //
     }
 
     /**
@@ -79,16 +68,7 @@ class SupplierController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request, $id);
-
-        $model = Supplier::find($id);
-        $model->nama = $request->nama;
-        $model->telepon = $request->telepon;
-        $model->email = $request->email;
-        $model->alamat = $request->alamat;
-        if ($model->save()) {
-            return redirect('/supplier');
-        }
+        //
     }
 
     /**
@@ -99,10 +79,6 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        $model = Supplier::find($id);
-        if ($model->delete())
-        {
-            return redirect('/supplier');
-        }
+        //
     }
 }
