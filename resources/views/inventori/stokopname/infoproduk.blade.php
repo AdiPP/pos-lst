@@ -4,7 +4,8 @@
         {{ $produk->product_name }}
     </td>
     <td class="v-align-middle text-center">
-        {{ $stokakhir }}
+        {{ Helper::stokAkhir($produk, session('idOutlet')) }}
+        <input type="hidden" name="stokAkhir" value="{{ Helper::stokAkhir($produk, session('idOutlet')) }}">
     </td>
     <td class="v-align-middle">
         <input type="text" min="1" value="1" class="form-group input-sm text-center no-margin w-75" name="jumlahProduk">

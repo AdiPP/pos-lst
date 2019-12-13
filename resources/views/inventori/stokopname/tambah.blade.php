@@ -36,19 +36,24 @@
         <div class="col-lg-5 m-b-10 d-flex flex-column">
         <!-- START card -->
             <div class="card card-default">
+                <div class="card-header">
+                    <div class="card-title">
+                        Informasi Utama
+                    </div>
+                </div>
                 <div class="card-block">
-                    <form action="/inventori/transferstok" method="post" id="formUtama">
+                    <form action="/inventori/stokopname" method="post" id="formUtama">
                     @csrf
                     <div class="row">
                         <div class="col-lg-12 padding-10">
                             <div class="form-group">
                                 <label>Outlet</label>
                                 <span class="help"></span>
-                                <select class="full-width" data-init-plugin="select2" name="outletAsal">
+                                <select onchange="setOutlet()" class="full-width" data-init-plugin="select2" name="outlet" id="outlet">
                                     <option disabled selected>Pilih Outlet</option>
-                                    {{-- @foreach ($outlets as $outlet)
+                                    @foreach ($outlets as $outlet)
                                         <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
-                                    @endforeach --}}
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
@@ -127,7 +132,9 @@
                             <thead>
                             <tr>
                                 <th>Nama Produk</th>
-                                <th>Jumlah</th>
+                                <th>Jumlah Barang (Sistem)</th>
+                                <th>Jumlah Barang (Aktual)</th>
+                                <th>Selisih</th>
                                 <th class="invisible" style="width: 1%;"></th>
                             </tr>
                             </thead>
@@ -159,6 +166,28 @@
                 $("#formUtama").submit();
             });
         })
+
+        function reloadable(){
+            cariProduk();
+            tampilTemps();
+        }
+
+        function setOutlet(){
+
+            var e = document.getElementById("outlet");
+            var selected = e.options[e.selectedIndex].value;
+
+            $.ajax({
+                url: '/inventori/stokopname/setoutlet',
+                type: 'GET',
+                data: {idOutlet: selected},
+                success: function(response){
+                    // console.log(response);
+                    reloadable();
+                }
+            })
+
+        }
 
         function cariProduk(){
 
@@ -193,7 +222,7 @@
                 data: input,
                 success: function(response){
                     console.log(response);
-                    // tampilTemps();
+                    tampilTemps();
                 },
 
             })
@@ -201,9 +230,10 @@
 
         function tampilTemps(){
             $.ajax({
-                url: '/inventori/transferstok/tampiltemp',
+                url: '/inventori/stokopname/tampiltemp',
                 type: 'GET',
                 success: function(response){
+                    // console.log('hai');
                     $('#tampilTemp').html(response);
                 }
             })
@@ -212,7 +242,7 @@
         function hapusTemp(idTemp)
         {
             $.ajax({
-                url: '/inventori/transferstok/hapustemp',
+                url: '/inventori/stokopname/hapustemp',
                 type: 'GET',
                 data: {id: idTemp},
                 success: function(response)

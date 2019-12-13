@@ -81,13 +81,15 @@ Route::post('/inventori/transferstok/tambahproduk', 'TransferStokController@tamb
 Route::get('/inventori/transferstok/infoproduk', 'TransferStokController@infoProduk');
 Route::resource('/inventori/transferstok', 'TransferStokController');
 // stok opname
+Route::get('/inventori/stokopname/setoutlet', 'StokOpnameController@setOutlet');
+Route::get('/inventori/stokopname/hapustemp', 'StokOpnameController@hapusTemp');
+Route::get('/inventori/stokopname/tampiltemp', 'StokOpnameController@tampilTemp');
 Route::post('/inventori/stokopname/tambahproduk', 'StokOpnameController@tambahProduk');
 Route::get('/inventori/stokopname/infoproduk', 'StokOpnameController@infoProduk');
 Route::resource('/inventori/stokopname', 'StokOpnameController');
 
 // modul supplier
 Route::resource('/supplier', 'SupplierController');
-
 
 // modul laporan
 Route::resource('/laporan', 'LaporanController');
