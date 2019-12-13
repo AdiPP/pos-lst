@@ -48,25 +48,25 @@
                         </div>
 
                         <table class="table table-hover demo-table-search table-responsive-block">
-                                <thead>
-                                  <tr>
-                                    <th class="">Nama Produk</th>
-                                    <th class="text-right">Jumlah</th>
-                                  </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach ($transfer->infos as $produk)
-                                        <tr>
-                                            <td class="v-align-middle">
-                                                {{ $produk->produk->product_name }}
-                                            </td>
-                                            <td class="v-align-middle text-right">
-                                                {{ $produk->jumlah }}
-                                            </td>
-                                        </tr>
-                                    @endforeach
-                                </tbody>
-                              </table>
+                            <thead>
+                                <tr>
+                                <th class="">Nama Produk</th>
+                                <th class="text-right">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($transfer->infos as $produk)
+                                    <tr>
+                                        <td class="v-align-middle">
+                                            {{ $produk->produk->product_name }}
+                                        </td>
+                                        <td class="v-align-middle text-right">
+                                            {{ $produk->jumlah }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
                         <div class="row">
                             <div class="col-md-4 m-t-10 sm-m-t-10">

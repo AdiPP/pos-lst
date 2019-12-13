@@ -18,7 +18,9 @@ class StokOpnameController extends Controller
      */
     public function index()
     {
-        return view('inventori.stokopname.index', ['title' => 'Stok Opname']);
+        $stokopname = StockOpname::where('user_id', session('user')->id)->get();
+
+        return view('inventori.stokopname.index', ['title' => 'Stok Opname', 'stokopnames' => $stokopname]);
     }
 
     /**

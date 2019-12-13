@@ -4,50 +4,77 @@
 
 @section('content')
 
-{{-- @foreach ($suppliers as $supplier)
-    <div class="modal fade slide-up disable-scroll" id="modalLihat{{ $supplier->id }}" tabindex="-1" role="dialog" aria-hidden="false">
-        <div class="modal-dialog">
+@foreach ($stokopnames as $stokopname)
+    <div class="modal fade slide-up disable-scroll" id="modalLihat{{ $stokopname->id }}" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content-wrapper">
                 <div class="modal-content">
                     <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
-                        <h5>Tambah <span class="semi-bold">Supplier</span></h5>
+                        <h5>Informasi <span class="semi-bold">Stok Opname</span></h5>
                         <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah supplier</p>
                     </div>
                     <div class="modal-body">
                         <div class="form-group-attached">
                             <div class="row">
-                                <div class="col-md-12">
+                                <div class="col-md-6">
                                 <div class="form-group form-group-default">
-                                    <label>Nama Supplier</label>
-                                    <p>{{ $supplier->nama }}</p>
+                                    <label>ID Stok Opname</label>
+                                    <p>{{ $stokopname->id }}</p>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label>Outlet</label>
+                                    <p>{{ $stokopname->outlet->outlet_name }}</p>
                                 </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
-                                    <label>Email</label>
-                                    <p>{{ $supplier->email }}</p>
+                                    <label>Tanggal</label>
+                                    <p>{{ Helper::mysqlToTanggal($stokopname->tanggal) }}</p>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
-                                    <label>Telepon</label>
-                                    <p>{{ $supplier->telepon }}</p>
+                                    <label>Status</label>
+                                    <p>OK</p>
                                 </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
-                                    <label>Alamat</label>
-                                    <p>{{ $supplier->alamat }}</p>
+                                    <label>Catatan</label>
+                                    <p>{{ $stokopname->catatan }}</p>
                                 </div>
                                 </div>
                             </div>
                         </div>
+
+                        <table class="table table-hover demo-table-search table-responsive-block">
+                            <thead>
+                                <tr>
+                                <th class="">Nama Produk</th>
+                                <th class="text-right">Selisih</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($stokopname->infos as $produk)
+                                    <tr>
+                                        <td class="v-align-middle">
+                                            {{ $produk->produk->product_name }}
+                                        </td>
+                                        <td class="v-align-middle text-right">
+                                            {{ $produk->selisih }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
 
                         <div class="row">
                             <div class="col-md-4 m-t-10 sm-m-t-10">
@@ -62,7 +89,7 @@
         <!-- /.modal-dialog -->
     </div>
 
-    <div class="modal fade slide-up disable-scroll" id="modalUbah{{ $supplier->id }}" tabindex="-1" role="dialog" aria-hidden="false">
+    {{-- <div class="modal fade slide-up disable-scroll" id="modalUbah{{ $supplier->id }}" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content-wrapper">
                 <div class="modal-content">
@@ -148,8 +175,8 @@
             <!-- /.modal-content -->
         </div>
         <!-- /.modal-dialog -->
-    </div>
-@endforeach --}}
+    </div> --}}
+@endforeach
 
 <div class="modal fade slide-up disable-scroll" id="modalTambah" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog">
@@ -269,27 +296,29 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="v-align-middle">
-                                1
-                            </td>
-                            <td class="v-align-middle">
-                                Outlet 1
-                            </td>
-                            <td class="v-align-middle">
-                                22-12-2019
-                            </td>
-                            <td class="v-align-middle">
-                                OK
-                            </td>
-                            <td class="v-align-middle">
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-xs btn-complete mx-1" data-target="#modalLihat" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
-                                    <button class="btn btn-xs btn-primary mx-1" data-target="#modalUbah" data-toggle="modal" id=""><i class="fa fa-pencil"></i></button>
-                                    <button class="btn btn-xs btn-danger mx-1" data-target="#modalHapus" data-toggle="modal" id=""><i class="fa fa-trash"></i></button>
-                                </div>
-                            </td>
-                        </tr>
+                        @foreach ($stokopnames as $stokopname)
+                            <tr>
+                                <td class="v-align-middle">
+                                    {{ $stokopname->id }}
+                                </td>
+                                <td class="v-align-middle">
+                                    {{ $stokopname->outlet->outlet_name }}
+                                </td>
+                                <td class="v-align-middle">
+                                    {{ Helper::mysqlToTanggal($stokopname->tanggal) }}
+                                </td>
+                                <td class="v-align-middle">
+                                    OK
+                                </td>
+                                <td class="v-align-middle">
+                                    <div class="d-flex justify-content-center">
+                                        <button class="btn btn-xs btn-complete mx-1" data-target="#modalLihat{{ $stokopname->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
+                                        {{-- <button class="btn btn-xs btn-primary mx-1" data-target="#modalUbah" data-toggle="modal" id=""><i class="fa fa-pencil"></i></button>
+                                        <button class="btn btn-xs btn-danger mx-1" data-target="#modalHapus" data-toggle="modal" id=""><i class="fa fa-trash"></i></button> --}}
+                                    </div>
+                                </td>
+                            </tr>
+                        @endforeach
                         {{-- @foreach ($suppliers as $supplier)
                             <tr>
                                 <td class="v-align-middle">
