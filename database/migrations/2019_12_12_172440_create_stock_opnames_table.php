@@ -15,6 +15,10 @@ class CreateStockOpnamesTable extends Migration
     {
         Schema::create('stock_opnames', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('outlet_id');
+            $table->unsignedBigInteger('user_id');
+            $table->date('tanggal');
+            $table->text('catatan');
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ class CreateStockOpnameTempsTable extends Migration
     {
         Schema::create('stock_opname_temps', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('product_id');
+            $table->unsignedBigInteger('user_id');
+            $table->bigInteger('jumlah_aktual');
             $table->timestamps();
         });
     }

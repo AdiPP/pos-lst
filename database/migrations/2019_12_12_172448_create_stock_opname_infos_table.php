@@ -15,6 +15,9 @@ class CreateStockOpnameInfosTable extends Migration
     {
         Schema::create('stock_opname_infos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->unsignedBigInteger('stok_opname_id');
+            $table->unsignedBigInteger('product_id');
+            $table->bigInteger('jumlah_aktual');
             $table->timestamps();
         });
     }

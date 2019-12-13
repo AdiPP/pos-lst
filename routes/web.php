@@ -81,6 +81,8 @@ Route::post('/inventori/transferstok/tambahproduk', 'TransferStokController@tamb
 Route::get('/inventori/transferstok/infoproduk', 'TransferStokController@infoProduk');
 Route::resource('/inventori/transferstok', 'TransferStokController');
 // stok opname
+Route::post('/inventori/stokopname/tambahproduk', 'StokOpnameController@tambahProduk');
+Route::get('/inventori/stokopname/infoproduk', 'StokOpnameController@infoProduk');
 Route::resource('/inventori/stokopname', 'StokOpnameController');
 
 // modul supplier

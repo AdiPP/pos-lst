@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Product;
 
 class StokOpnameController extends Controller
 {
@@ -23,7 +24,9 @@ class StokOpnameController extends Controller
      */
     public function create()
     {
-        //
+        $produk = Product::where('user_id', session('user')->id)->get();
+
+        return view('inventori.stokopname.tambah', ['title' => 'Tambah Stok Opname', 'produks' => $produk]);
     }
 
     /**
@@ -80,5 +83,61 @@ class StokOpnameController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function infoProduk()
+    {
+        $idProduk = $_GET['idProduk'];
+
+        $produk = Product::find($idProduk);
+
+        $stokmasuk = $produk
+                    ->stokmasuks
+                    ->where('outlet_id', 2)
+                    ->reduce(function($carry, $item){
+                        return $carry + $item->infos[0]->jumlah;
+                    });
+
+        if (is_null($stokmasuk)) {
+            $stokmasuk = 0;
+        }
+
+        $stokkeluar = $produk
+                    ->stokkeluars
+                    ->where('outlet_id', 2)
+                    ->reduce(function($carry, $item){
+                        return $carry + $item->infos[0]->jumlah;
+                    });
+
+        if (is_null($stokkeluar)) {
+            $stokkeluar = 0;
+        }
+
+        $i = 0;
+
+        foreach ($produk->sales as $sale) {
+            if ($sale->outlet_id == 2) {
+                foreach ($sale->infos as $info) {
+                    if ($info->product_id == $produk->id) {
+                        $i = $i + $info->jumlah;
+                    }
+                }
+            }
+        }
+
+        $penjualan = $i;
+
+        if (is_null($penjualan)) {
+            $penjualan = 0;
+        }
+
+        $stokakhir = $stokmasuk - $stokkeluar - $penjualan;
+
+        return view('inventori.stokopname.infoproduk', ['produk' => $produk, 'stokakhir' => $stokakhir]);
+    }
+
+    public function tambahProduk(Request $request)
+    {
+        return $request;
     }
 }
