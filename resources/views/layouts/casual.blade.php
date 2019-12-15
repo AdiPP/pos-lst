@@ -109,7 +109,7 @@
             <a href="#" class="btn-link toggle-sidebar hidden-lg-up pg pg-close" data-toggle="horizontal-menu">
             </a>
             <ul>
-              @if (config('global.level') == 1)
+              @if (session('user')->level == 1)
                 <li class="
                 @if (config('global.active_nav') === 'dashboard')
                     {{ 'active' }}

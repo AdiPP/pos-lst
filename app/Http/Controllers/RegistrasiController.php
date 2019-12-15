@@ -10,6 +10,7 @@ use Session;
 use Redirect;
 use Illuminate\Support\Facades\Mail;  
 use App\Mail\Registrasi;
+use App\Mail\lupaPassword;
 
 class RegistrasiController extends Controller
 {
@@ -162,5 +163,43 @@ class RegistrasiController extends Controller
     {
         $model = User::find(15);
         dd($model->info);
+    }
+
+    public function lupaPassword()
+    {
+        return view('registrasi.lupapassword');
+    }
+
+    public function lupaPasswordAction(Request $request)
+    {
+        $email = $request->email;
+
+        $model = User::where('email', $email)->first();
+
+        Mail::to($email)->send(new lupaPassword($model));
+
+        if (Mail::failures()) {
+            return 'Gagal';
+        } else return view('registrasi.emailterkirim');
+    }
+
+    public function pemulihanKataSandi($encryptedId)
+    {
+        $decryptedId = decrypt($encryptedId);
+
+        $user = User::find($decryptedId);
+
+        return view('registrasi.pemulihankatasandi', [
+            'user' => $user
+        ]);
+    }
+
+    public function pemulihanKataSandiAction(Request $request)
+    {
+        $user = User::find($request->id);
+        $user->password = Hash::make($request->password);
+        if ($user->save()) {
+            return view('registrasi.katasandiberhasildiubah');
+        } else return 'Password gagal diubah';
     }
 }

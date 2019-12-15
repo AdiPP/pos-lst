@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use App\Unit;
 use App\Wilayah;
+use App\User;
+
 
 class AdminController extends Controller
 {
@@ -12,10 +15,11 @@ class AdminController extends Controller
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
-     */
+    */
     public function index()
     {
-        return view('admin.index');
+        // return view('admin.index');
+        return redirect('/admin/master');
     }
 
     /**
@@ -82,6 +86,29 @@ class AdminController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function login()
+    {
+        return view('admin.login');
+    }
+
+    public function loginProses(Request $request) 
+    {
+        if ($model = User::where('name', '=', $request->username)->first())
+        {
+            if (Hash::check($request->password, $model->password))
+            {
+                session()->put('user', $model);
+                if (session()->has('urlTemp')) {
+                    return redirect(session('urlTemp'));
+                } else return redirect('/admin');
+            } else {
+                return redirect('/admin/login')->with('status', false);
+            }
+        } else {
+            return redirect('/admin/login')->with('status', null);
+        }
     }
 
     public function modals()

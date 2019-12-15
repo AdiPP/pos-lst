@@ -7,11 +7,12 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class Registrasi extends Mailable
+class lupaPassword extends Mailable
 {
     use Queueable, SerializesModels;
     public $model;
-    public $vkey;
+    public $email;
+    public $encryptedId;
 
     /**
      * Create a new message instance.
@@ -21,7 +22,9 @@ class Registrasi extends Mailable
     public function __construct($model)
     {
         $this->model = $model;
-        $this->vkey = encrypt($model->email);
+        $this->email = $model->email;
+
+        $this->encryptedId = encrypt($model->id);
     }
 
     /**
@@ -32,7 +35,7 @@ class Registrasi extends Mailable
     public function build()
     {
         return $this->from('pos.lawangsewu@gmail.com', 'Sade POS')
-                    ->subject('Pendaftaran Berhasil')
-                    ->view('email.registrasi');
+                    ->subject('Pemulihan Kata Sandi')
+                    ->view('email.lupapassword');
     }
 }

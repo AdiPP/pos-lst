@@ -206,4 +206,23 @@ class PosController extends Controller
         // return $model_info;
         return $model->cash - $model->total;
     }
+
+    public function reloadPelanggan()
+    {
+        $pelanggan = Customer::where('user_id', session('user')->id)->get();
+
+        return view('pos.pelanggan', ['pelanggans' => $pelanggan]);
+    }
+
+    public function tambahPelanggan(Request $request)
+    {
+        $customer = new Customer();
+        $customer->nama = $request->nama;
+        $customer->telepon = $request->telepon;
+        $customer->email = $request->email;
+        $customer->user_id = session('user')->id;
+        if ($customer->save()) {
+            return 'Pelanggan berhasil ditambah';
+        }
+    }
 }

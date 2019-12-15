@@ -65,6 +65,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
     <div class="modal fade slide-up disable-scroll" id="modalEdit{{ $outlet->id }}" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content-wrapper">
@@ -126,6 +127,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+
     <div class="modal fade slide-up disable-scroll" id="modalDelete{{ $outlet->id }}" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog modal-sm">
             <div class="modal-content-wrapper">
@@ -153,6 +155,7 @@
         <!-- /.modal-dialog -->
     </div>
 @endforeach
+
 <div class="modal fade slide-up disable-scroll" id="modalTambah" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog ">
         <div class="modal-content-wrapper">

@@ -3,6 +3,7 @@
 {{-- @section('title', $title) --}}
 
 @section('content')
+{{-- Modal Bayar --}}
 <div class="modal fade slide-up disable-scroll" id="modalBayar" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content-wrapper">
@@ -73,7 +74,7 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
+{{-- Modal Sukses Transaksi --}}
 <div class="modal fade slide-up disable-scroll" id="modalSukses" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog modal-sm">
         <div class="modal-content-wrapper">
@@ -84,6 +85,57 @@
                         <h5>Kembali: Rp <span id="kembali">0</span></h5>
                     </div>
                     <button type="button" class="btn btn-primary btn-cons" data-dismiss="modal">Selesai</button>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+{{-- Modal Tambah Pelanggan --}}
+<div class="modal fade slide-up disable-scroll" id="modalTambahPelanggan" tabindex="-1" role="dialog" aria-hidden="false">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
+                    <h5>Tambah <span class="semi-bold">Pelanggan</span></h5>
+                    <p>Silahkan mengisi formulir berikut, untuk menambah pelanggan</p>
+                </div>
+                <div class="modal-body">
+                <form action="#" id="formTambahPelanggan">
+                    <div class="form-group-attached">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="form-group form-group-default">
+                                    <label>Nama</label>
+                                    <input type="text" class="form-control" name="nama">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label>Telepon</label>
+                                    <input type="text" class="form-control" name="telepon">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label>Email</label>
+                                    <input type="email" class="form-control" name="email">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-8">
+                        </div>
+                        <div class="col-md-4 m-t-10 sm-m-t-10">
+                            <button type="submit" class="btn btn-primary btn-block m-t-5">Simpan</button>
+                        </div>
+                    </div>
+                </form>
                 </div>
             </div>
         </div>
@@ -145,12 +197,15 @@
                                             <p class="text-black">Pelanggan</p>
                                         </td>
                                         <td class="w-75">
-                                            <select onchange="pelanggan()" class="full-width" data-init-plugin="select2" id="pelanggan">
-                                                <option selected value="0">Default</option>
-                                                @foreach ($pelanggans as $pelanggan)
-                                                    <option value="{{ $pelanggan->id }}">{{ $pelanggan->id }} - {{ $pelanggan->nama }}</option>
-                                                @endforeach
-                                            </select>
+                                            <div class="row">
+                                                <div class="col-lg-10">
+                                                    <div id="pilihpelanggan">
+                                                    </div>
+                                                </div>
+                                                <div class="col-lg-2">
+                                                    <button data-target="#modalTambahPelanggan" data-toggle="modal" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                     <tr>
@@ -258,6 +313,7 @@
         $(document).ready(function () {
 
             keranjangTampil();
+            reloadPelanggan();
 
             $('#formCoba').submit(function (e) {
                 e.preventDefault();  // prevent the form from 'submitting'
@@ -307,6 +363,38 @@
                         $("[data-dismiss=modal]").trigger({ type: "click" });
                         $('#kembali').html(response);
                         $('#modalSukses').modal('show');
+                    },
+                    error: function()
+                    {
+                        console.log('error');
+                    }
+                });
+
+            });
+
+            $('#formTambahPelanggan').submit(function (e) {
+                e.preventDefault();  // prevent the form from 'submitting'
+
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                var input = $('#formTambahPelanggan').serialize();
+
+                $('#modalTambahPelanggan').modal('hide');
+
+                $.ajax({
+                    url: 'pos/pelanggan/tambah',
+                    type: 'POST',
+                    data: input,
+                    success: function(response)
+                    {
+                        console.log(response);
+                        reloadPelanggan();
+                        $("[data-dismiss=modal]").trigger({ type: "click" });
+                        document.getElementById("formTambahPelanggan").reset();
                     },
                     error: function()
                     {
@@ -405,6 +493,17 @@
                     reloadable();
                 }
             });
+        }
+
+        function reloadPelanggan() {
+            $.ajax({
+                url: '/pos/pelanggan/reload',
+                type: 'GET',
+                success: function(response)
+                {
+                    $('#pilihpelanggan').html(response);
+                }
+            })
         }
     </script>
 @endsection

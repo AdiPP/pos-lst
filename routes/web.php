@@ -40,9 +40,13 @@ Route::get('/admin/master/unit/hapus', 'AdminController@unitHapus');
 Route::get('/admin/master/unit/tampil', 'AdminController@unitTampil');
 Route::post('/admin/master/unit/tambah', 'AdminController@unitTambah');
 Route::get('/admin/master', 'AdminController@masterIndex');
+Route::post('/admin/login/proses', 'AdminController@loginProses');
+Route::get('/admin/login', 'AdminController@login');
 Route::resource('/admin', 'AdminController');
 
 // modul transaksi
+Route::post('/pos/pelanggan/tambah', 'PosController@tambahPelanggan');
+Route::get('/pos/pelanggan/reload', 'PosController@reloadPelanggan');
 Route::post('/pos/bayar', 'PosController@bayar');
 Route::get('/pos/infototal', 'PosController@infoTotal');
 Route::get('/pos/keranjang/tambah', 'PosController@keranjangTambah');
@@ -55,6 +59,10 @@ Route::resource('/pos', 'PosController');
 
 // modul registrasi
 Route::post('/login/action', 'RegistrasiController@login');
+Route::post('/pemulihan/katasandi/action', 'RegistrasiController@pemulihanKataSandiAction');
+Route::get('/pemulihan/katasandi/{encryptedId}', 'RegistrasiController@pemulihanKataSandi');
+Route::post('/lupapassword/kirimemail', 'RegistrasiController@lupaPasswordAction');
+Route::get('/lupapassword', 'RegistrasiController@lupaPassword');
 Route::resource('/registrasi', 'RegistrasiController');
 Route::get('/email/verify/{vkey}', 'RegistrasiController@verifyEmail');
 Route::get('/email/resend', 'RegistrasiController@resend');
