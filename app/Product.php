@@ -46,4 +46,9 @@ class Product extends Model
     {
         return $this->hasMany('App\SaleInfo', 'product_id');
     }
+
+    public function opname()
+    {
+        return $this->belongsToMany('App\StockOpname', 'stock_opname_infos', 'product_id', 'stok_opname_id');
+    }
 }

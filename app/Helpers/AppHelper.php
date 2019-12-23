@@ -3,6 +3,7 @@ namespace App\Helpers;
 
 use Redirect;
 use Helper;
+use App\Wilayah;
 
 class AppHelper
 {
@@ -32,6 +33,11 @@ class AppHelper
     public static function mysqlToTanggal($tanggal)
     {
         return date('d-m-Y', strtotime($tanggal));
+    }
+
+    public static function timestampToTanggal($timestamp)
+    {
+        return date('d M Y', strtotime($timestamp));
     }
 
     public static function stokMasuk($produk, $outlet = 0)
@@ -134,5 +140,15 @@ class AppHelper
         $stokakhir = $stokmasuk - $stokkeluar - $penjualan;
 
         return $stokakhir;
+    }
+
+    public static function getProvinsi($kode)
+    {
+        return Wilayah::where('KODE_WILAYAH', $kode)->first()->NAMA;
+    }
+
+    public static function getKota($user)
+    {
+        return Wilayah::where('KODE_WILAYAH', $kode)->first()->NAMA;
     }
 }

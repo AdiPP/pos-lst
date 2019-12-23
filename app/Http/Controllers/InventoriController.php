@@ -28,7 +28,9 @@ class InventoriController extends Controller
 
         $produk = Produk::where('user_id', '=', session('user')->id)->get();
 
-        $outlet = Outlet::all();
+        $outlet = Outlet::where('user_id', '=', session('user')->id)->get();
+
+        // dd($produk[0]->opname->where('user_id', session('user')->id)[0]->infos);
 
         // $produk = Produk::with(['sales' => function($q){
         //     $q->where('sales.outlet_id', '=', 3);

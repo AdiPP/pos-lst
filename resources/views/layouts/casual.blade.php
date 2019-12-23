@@ -51,6 +51,10 @@
         /* border: none; */
         background-color: none;
       }
+      .fixModal {
+        padding-right: 0 !important;
+        margin-right: 0 !important;
+      }
       /* #jumlahprodukparent input:focus {
         outline: none;
       } */
@@ -65,7 +69,7 @@
           <div class="brand inline no-border hidden-xs-down">
             <a href="{{ url('/') }}">
               <div style="width: 78px; height: ;">
-                <span class="bold" style="color: white; font-size: 15px;">POSLST</span>
+                <span class="bold" style="color: white; font-size: 15px;">SADE POS</span>
               </div>
                 {{-- <img src="{{ asset('assets/img/logo_white.png') }}" alt="logo" data-src="{{ asset('assets/img/logo_white.png') }}" data-src-retina="{{ asset('assets/img/logo_white_2x.png') }}" width="78" height="22"> --}}
             </a>
@@ -80,7 +84,7 @@
         <div class="d-flex align-items-center">
           <!-- START User Info-->
           <div class="pull-left p-r-10 fs-14 font-heading hidden-md-down text-white">
-            <span class="semi-bold">Adi</span> <span class="">Permana Putra</span>
+            <span class="semi-bold">#</span> <span class="">Permana Putra</span>
           </div>
           <div class="dropdown pull-right">
             <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -189,6 +193,18 @@
                         </li>
                         <li class="">
                         <a href="#">Anggota</a>
+                        </li>
+                    </ul>
+                    </li>
+                    <li class="">
+                    <a href="javascript:;"><span class="title">Pengaturan</span>
+                    <span class=" arrow"></span></a>
+                    <ul class="">
+                        <li class="">
+                        <a href="/pengaturan">Akun</a>
+                        </li>
+                        <li class="">
+                        <a href="#">Harga</a>
                         </li>
                     </ul>
                     </li>
@@ -1434,6 +1450,10 @@
           setTimeout(refreshData, x*1000);
       }
     </script> --}}
+    <script>
+      $('body').on('show.bs.modal', function () { $('body').addClass("fixModal"); }); 
+      $('body').on('hidden.bs.modal', function () { $('body').addClass("fixModal"); });
+    </script>
 
     @yield('inpagejs')
     <!-- BEGIN VENDOR JS -->

@@ -69,57 +69,57 @@
     <div class="modal fade slide-up disable-scroll" id="modalEdit{{ $outlet->id }}" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog">
             <div class="modal-content-wrapper">
-                    <div class="modal-content">
-                    <div class="modal-header clearfix text-left">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                    </button>
-                    <h5>Informasi <span class="semi-bold">Outlet</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Outlet <strong>{{ $outlet->outlet_name }}</strong></p>
-                    </div>
-                    <div class="modal-body">
-                    <form role="form" action="/outlet/{{ $outlet->id }}" method="POST">
-                        @csrf
-                        <input name="_method" type="hidden" value="PUT">
-                        <div class="form-group-attached">
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Nama Outlet</label>
-                                <input type="text" class="form-control" name="nama" value="{{ $outlet->outlet_name }}">
-                            </div>
-                            </div>
+                <div class="modal-content">
+                        <div class="modal-header clearfix text-left">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                        </button>
+                        <h5>Informasi <span class="semi-bold">Outlet</span></h5>
+                        <p class="p-b-10">Berikut informasi mengenai Outlet <strong>{{ $outlet->outlet_name }}</strong></p>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                            <div class="form-group form-group-default">
-                                <label>Nomor Telepon</label>
-                                <input type="text" class="form-control" id="phoneEdit" name="telepon" value="{{ $outlet->outlet_phone }}">
+                        <div class="modal-body">
+                        <form role="form" action="/outlet/{{ $outlet->id }}" method="POST">
+                            @csrf
+                            <input name="_method" type="hidden" value="PUT">
+                            <div class="form-group-attached">
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="form-group form-group-default">
+                                    <label>Nama Outlet</label>
+                                    <input type="text" class="form-control" name="nama" value="{{ $outlet->outlet_name }}">
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-8">
+                                <div class="form-group form-group-default">
+                                    <label>Nomor Telepon</label>
+                                    <input type="text" class="form-control" id="phoneEdit" name="telepon" value="{{ $outlet->outlet_phone }}">
+                                </div>
+                                </div>
+                                <div class="col-md-4">
+                                <div class="form-group form-group-default">
+                                    <label>Kota</label>
+                                    <input type="text" class="form-control" name="kota" value="{{ $outlet->outlet_city }}">
+                                </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="form-group form-group-default">
+                                    <label>Alamat</label>
+                                    <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat">{{ $outlet->outlet_address }}</textarea>
+                                </div>
+                                </div>
                             </div>
                             </div>
-                            <div class="col-md-4">
-                            <div class="form-group form-group-default">
-                                <label>Kota</label>
-                                <input type="text" class="form-control" name="kota" value="{{ $outlet->outlet_city }}">
+                            <div class="row">
+                                <div class="col-md-8">
+                                </div>
+                                <div class="col-md-4 m-t-10 sm-m-t-10">
+                                <button type="submit" class="btn btn-primary btn-block m-t-5">Perbarui</button>
+                                </div>
                             </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Alamat</label>
-                                <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat">{{ $outlet->outlet_address }}</textarea>
-                            </div>
-                            </div>
-                        </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="submit" class="btn btn-primary btn-block m-t-5">Perbarui</button>
-                            </div>
-                        </div>
-                    </form>
+                        </form>
                     </div>
                 </div>
             </div>

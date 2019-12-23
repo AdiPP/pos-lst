@@ -108,6 +108,14 @@ Route::resource('/outlet', 'OutletController');
 // modul pelanggan
 Route::resource('/pelanggan', 'PelangganController');
 
+// modul pengaturan
+Route::post('/pengaturan/perbaruipassword', 'PengaturanController@perbaruiPassword');
+Route::post('/pengaturan/perbaruiinfobisnis/aksi', 'PengaturanController@perbaruiInfoBisnisAksi');
+Route::get('/pengaturan/perbaruiinfobisnis/pilihprovinsi', 'PengaturanController@pilihProvinsi');
+Route::get('/pengaturan/perbaruiinfobisnis', 'PengaturanController@perbaruiInfoBisnis');
+Route::post('/pengaturan/perbaruiinfoakun', 'PengaturanController@perbaruiInfoAkun');
+Route::resource('/pengaturan', 'PengaturanController');
+
 // dump route
 Route::get('/email/check', 'RegistrasiController@checkMail');
 Route::get('/send/email', 'HomeController@mail');
