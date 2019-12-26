@@ -4,6 +4,7 @@ namespace App\Helpers;
 use Redirect;
 use Helper;
 use App\Wilayah;
+use App\User;
 
 class AppHelper
 {
@@ -33,6 +34,11 @@ class AppHelper
     public static function mysqlToTanggal($tanggal)
     {
         return date('d-m-Y', strtotime($tanggal));
+    }
+
+    public static function mysqlToTanggalVer2($tanggal)
+    {
+        return date('d/m/Y', strtotime($tanggal));
     }
 
     public static function timestampToTanggal($timestamp)
@@ -147,8 +153,13 @@ class AppHelper
         return Wilayah::where('KODE_WILAYAH', $kode)->first()->NAMA;
     }
 
-    public static function getKota($user)
+    public static function getKota($kode)
     {
         return Wilayah::where('KODE_WILAYAH', $kode)->first()->NAMA;
+    }
+
+    public static function getUser($id)
+    {
+        return User::find($id);
     }
 }

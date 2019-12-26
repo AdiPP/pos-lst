@@ -80,6 +80,32 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
+    <div class="modal fade slide-up disable-scroll" id="modalHapus{{ $model->id }}" tabindex="-1" role="dialog" aria-hidden="false">
+        <div class="modal-dialog modal-sm">
+            <div class="modal-content-wrapper">
+                <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                    </button>
+                    <h5>Perhatian</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="no-margin">Apakah anda yakin ingin menghapus Stok Masuk <span class="bold">#SM{{ $model->id }}</span> dari sistem?</p>
+                </div>
+                <div class="modal-footer">
+                    <form action="/inventori/stokmasuk/{{ $model->id }}" method="POST">
+                        @csrf
+                        <input name="_method" type="hidden" value="DELETE">
+                        <button type="submit" class="btn btn-primary btn-cons  pull-left inline">Iya</button>
+                    </form>
+                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Tidak</button>
+                </div>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
 @endforeach
 
 <!-- START JUMBOTRON -->
@@ -134,9 +160,9 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th class="w-50">ID Stok Masuk</th>
-                        <th class="w-25">Outlet</th>
-                        <th class="w-25">Tanggal</th>
+                        <th class="">ID Stok Masuk</th>
+                        <th class="">Outlet</th>
+                        <th class="">Tanggal</th>
                         <th class="invisible" style="width: 1%;"></th>
                       </tr>
                     </thead>
@@ -144,7 +170,7 @@
                         @foreach ($models as $model)
                             <tr>
                                 <td class="v-align-middle">
-                                    {{ $model->id }}
+                                    #SM{{ $model->id }}
                                 </td>
                                 <td class="v-align-middle">
                                     {{ $model->outlet->outlet_name }}
@@ -154,7 +180,9 @@
                                 </td>
                                 <td class="v-align-middle">
                                     <div class="d-flex justify-content-center">
+                                        <a class="btn btn-xs btn-primary mx-1" href="/inventori/stokmasuk/{{ $model->id }}"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-xs btn-complete mx-1" data-target="#modalView{{  $model->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
+                                        <button class="btn btn-xs btn-danger mx-1" data-target="#modalHapus{{  $model->id }}" data-toggle="modal"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>

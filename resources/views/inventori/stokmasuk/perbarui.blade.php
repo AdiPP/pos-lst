@@ -45,8 +45,11 @@
                                     <label>Outlet</label>
                                     <span class="help"></span>
                                     <select class="full-width" data-init-plugin="select2" name="outlet">
+                                        <option selected disabled>Pilih Outlet</option>
                                         @foreach ($outlets as $outlet)
-                                            <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
+                                            <option value="{{ $outlet->id }}" @if ($outlet->id == $stokmasuk->outlet_id)
+                                                selected
+                                            @endif>{{ $outlet->outlet_name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -55,14 +58,14 @@
                                 <div class="form-group">
                                     <label>Tanggal</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component">
+                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" value="{{ Helper::mysqlToTanggalVer2($stokmasuk->tanggal) }}">
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
                                 <div class="form-group">
                                     <label>Catatan</label>
                                     <span class="help"></span>
-                                    <textarea class="form-control" name="catatan"></textarea>
+                                    <textarea class="form-control" name="catatan">{{ $stokmasuk->description }}</textarea>
                                 </div>
                             </div>
                         </div>
@@ -92,17 +95,13 @@
                             <tbody>
                                 <tr>
                                     <td class="v-align-middle">
-                                        <select class="full-width" data-init-plugin="select2" name="produk">
-                                            @foreach ($produks as $produk)
-                                                <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
-                                            @endforeach
-                                        </select>
+                                        <input type="text" class="form-control" value="{{ $stokmasuk->infos[0]->produk->product_name }}" readonly>
                                     </td>
                                     <td class="v-align-middle">
-                                        <input type="text" class="form-control input-sm text-right"  id="jumlah" name="jumlah" placeholder="0">
+                                        <input type="text" class="form-control input-sm text-right" value="{{ $stokmasuk->infos[0]->jumlah }}"  id="jumlah" name="jumlah" placeholder="0">
                                     </td>
                                     <td class="v-align-middle text-right">
-                                        <input type="text" class="form-control input-sm text-right"  id="harga" name="harga_beli" placeholder="0">
+                                        <input type="text" class="form-control input-sm text-right" value="{{ $stokmasuk->infos[0]->harga_beli_per_unit }}" id="harga" name="harga_beli" placeholder="0">
                                     </td>
                                     <td class="v-align-middle text-right">
                                         <input id="result" type="text" class="form-control input-sm text-right" placeholder="0" readonly>
@@ -124,9 +123,18 @@
 
 @section('inpagejs')
     <script type="text/javascript">
+        $(document).ready(function(){
+            var harga = document.getElementById('harga').value;
+            var jumlah = document.getElementById('jumlah').value;   
+            
+            document.getElementById('result').value = harga * jumlah;
+            document.getElementById('resultpost').value = harga * jumlah;
+        })
+
         $('tbody').on('click', '.remove', function(){
             $(this).parent().parent().remove();
         });
+
         // total harga beli
         $(document).on('input', '#harga', function() {
             var harga = document.getElementById('harga').value;

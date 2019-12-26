@@ -121,7 +121,7 @@ class AdminController extends Controller
     {
         $title = 'Master Data';
 
-        $wilayah = Wilayah::where('LEVEL', '1')->select('KODE_WILAYAH', 'NAMA')->get();
+        $wilayah = Wilayah::where('LEVEL', '3')->select('KODE_WILAYAH', 'MST_KODE_WILAYAH', 'NAMA')->get();
 
         $unit = Unit::all();
 

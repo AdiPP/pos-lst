@@ -13,6 +13,6 @@ class StockEntryInfo extends Model
 
     public function produk()
     {
-        return $this->belongsTo('App\Product');
+        return $this->belongsTo('App\Product', 'product_id');
     }
 }

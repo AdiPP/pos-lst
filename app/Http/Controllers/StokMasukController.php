@@ -7,6 +7,7 @@ use App\Outlet;
 use App\Product;
 use App\StockEntry;
 use App\StockEntryInfo;
+use App\User;
 
 class StokMasukController extends Controller
 {
@@ -17,10 +18,9 @@ class StokMasukController extends Controller
      */
     public function index()
     {
-        // dd('halo');
         $title = 'Stok Masuk';
 
-        $model = StockEntry::all();
+        $model = StockEntry::where('user_id', session('user')->id)->get();
 
         return view('inventori.stokmasuk.index', ['title' => $title, 'models' => $model]);
     }
@@ -32,8 +32,8 @@ class StokMasukController extends Controller
      */
     public function create()
     {
-        $outlet = Outlet::all();
-        $produk = Product::all();
+        $outlet = Outlet::where('user_id', session('user')->id)->get();
+        $produk = Product::where('user_id', session('user')->id)->get();
 
         return view('inventori.stokmasuk.tambah', ['outlets' => $outlet, 'produks' => $produk]);
     }
@@ -49,8 +49,8 @@ class StokMasukController extends Controller
         // dd($request);
         $model = new StockEntry();
         $model->outlet_id = $request->outlet;
-        $model->description = $request->outlet;
-        $model->user_id = 25;
+        $model->description = $request->catatan;
+        $model->user_id = session('user')->id;
         $model->tanggal = \App\Helpers\AppHelper::tanggalToMysql($request->tanggal);
         $model->save();
         
@@ -73,7 +73,11 @@ class StokMasukController extends Controller
      */
     public function show($id)
     {
-        //
+        $outlet = Outlet::where('user_id', session('user')->id)->get();
+        $produk = Product::where('user_id', session('user')->id)->get();
+        $stokmasuk = StockEntry::find($id);
+
+        return view('inventori.stokmasuk.perbarui', ['outlets' => $outlet, 'produks' => $produk, 'stokmasuk' => $stokmasuk]);
     }
 
     /**
@@ -84,7 +88,7 @@ class StokMasukController extends Controller
      */
     public function edit($id)
     {
-        //
+
     }
 
     /**
@@ -107,12 +111,15 @@ class StokMasukController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $model = StockEntry::find($id);
+        $model->delete();
+
+        return redirect('/inventori/stokmasuk');
     }
 
     public function tambahProduk()
     {
-        $model = Product::all();
+        $model = Product::where('user_id', session('user')->id)->get();
         return view('inventori.stokmasuk.tambahProduk', ['produks' => $model]);
     }
 

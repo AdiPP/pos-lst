@@ -254,7 +254,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="fname" class="col-md-5 control-label">Kota</label>
+                                <label for="fname" class="col-md-5 control-label">Kota / Kabupaten</label>
                                 <div class="col-md-7">
                                     @php
                                         if (is_null($user->bisnis)) {

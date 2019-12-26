@@ -145,7 +145,7 @@
                         <thead>
                         <tr>
                             <th class="w-25">Kode</th>
-                            <th class="w-75">Nama Provinsi</th>
+                            <th class="w-75">Nama Kecamatan</th>
                         </tr>
                         </thead>
                         <tbody>
