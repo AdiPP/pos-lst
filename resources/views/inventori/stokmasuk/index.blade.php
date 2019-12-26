@@ -17,55 +17,57 @@
                     <div class="modal-body">
                         @csrf
                         <div class="form-group-attached">
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group form-group-default">
-                                <label>Outlet</label>
-                                <input type="text" class="form-control" value="{{ $model->outlet->outlet_name }}" readonly>
+                            <div class="row">
+                                <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label>Outlet</label>
+                                    <input type="text" class="form-control" value="{{ $model->outlet->outlet_name }}" readonly>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label>Tanggal</label>
+                                    <input type="text" class="form-control" name="kota" value="{{ Helper::mysqlToTanggal($model->tanggal) }}" readonly>
+                                </div>
+                                </div>
                             </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group form-group-default">
-                                <label>Tanggal</label>
-                                <input type="text" class="form-control" name="kota" value="{{ Helper::mysqlToTanggal($model->tanggal) }}" readonly>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Catatan</label>
-                                <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" readonly>{{ $model->description }}</textarea>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-3">
-                            <div class="form-group form-group-default">
-                                <label>Nama Produk</label>
-                                <input type="text" class="form-control" name="kota" value="{{ $model->produks[0]->product_name }}" readonly>
-                            </div>
-                            </div>
-                            <div class="col-md-3">
-                            <div class="form-group form-group-default">
-                                <label>Jumlah</label>
-                                <input type="text" class="form-control" name="kota" value="{{ $model->infos[0]->jumlah }}" readonly>
-                            </div>
-                            </div>
-                            <div class="col-md-3">
-                            <div class="form-group form-group-default">
-                                <label>Harga Beli / Unit</label>
-                                <input type="text" class="form-control" name="kota" value="{{ $model->infos[0]->harga_beli_per_unit }}" readonly>
-                            </div>
-                            </div>
-                            <div class="col-md-3">
-                            <div class="form-group form-group-default">
-                                <label>Total</label>
-                                <input type="text" class="form-control" name="kota" value="{{ $model->infos[0]->total_harga_beli }}" readonly>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="form-group form-group-default">
+                                    <label>Catatan</label>
+                                    <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" readonly>{{ $model->description }}</textarea>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
+                        <table class="table table-hover demo-table-search table-responsive-block">
+                            <thead>
+                                <tr>
+                                    <th class="">Nama Produk</th>
+                                    <th class="text-right">Jumlah</th>
+                                    <th class="text-right">Harga Beli / Unit</th>
+                                    <th class="text-right">Total</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($model->infos as $produk)
+                                    <tr>
+                                        <td class="v-align-middle">
+                                            {{ $produk->produk->product_name }}
+                                        </td>
+                                        <td class="v-align-middle text-right">
+                                            Rp {{ $produk->jumlah }}
+                                        </td>
+                                        <td class="v-align-middle text-right">
+                                            Rp {{ $produk->harga_beli_per_unit }}
+                                        </td>
+                                        <td class="v-align-middle text-right">
+                                            Rp {{ $produk->total_harga_beli }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         <div class="row">
                             <div class="col-md-8">
                             </div>
@@ -160,9 +162,9 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th class="">ID Stok Masuk</th>
-                        <th class="">Outlet</th>
-                        <th class="">Tanggal</th>
+                        <th class="" style="width: 33%;">ID Stok Masuk</th>
+                        <th class="" style="width: 33%;">Outlet</th>
+                        <th class="" style="width: 33%;">Tanggal</th>
                         <th class="invisible" style="width: 1%;"></th>
                       </tr>
                     </thead>
@@ -180,9 +182,7 @@
                                 </td>
                                 <td class="v-align-middle">
                                     <div class="d-flex justify-content-center">
-                                        <a class="btn btn-xs btn-primary mx-1" href="/inventori/stokmasuk/{{ $model->id }}"><i class="fa fa-pencil"></i></a>
                                         <button class="btn btn-xs btn-complete mx-1" data-target="#modalView{{  $model->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
-                                        <button class="btn btn-xs btn-danger mx-1" data-target="#modalHapus{{  $model->id }}" data-toggle="modal"><i class="fa fa-trash"></i></button>
                                     </div>
                                 </td>
                             </tr>

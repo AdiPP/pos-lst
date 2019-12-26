@@ -46,21 +46,27 @@ class StokMasukController extends Controller
      */
     public function store(Request $request)
     {
-        // dd($request);
+        // Simpan stok masuk.
         $model = new StockEntry();
         $model->outlet_id = $request->outlet;
         $model->description = $request->catatan;
         $model->user_id = session('user')->id;
         $model->tanggal = \App\Helpers\AppHelper::tanggalToMysql($request->tanggal);
         $model->save();
-        
-        $model_info = new StockEntryInfo();
-        $model_info->stock_entry_id = $model->id;
-        $model_info->jumlah = $request->jumlah;
-        $model_info->harga_beli_per_unit = $request->harga_beli;
-        $model_info->total_harga_beli = $request->total;
-        $model_info->product_id = $request->produk;
-        $model_info->save();
+
+        // Deklarasi panjang produk.
+        $produkLength = count($request->produk);
+
+        // Simpan informasi stok masuk.
+        for ($i=0; $i < $produkLength; $i++) { 
+            $model_info = new StockEntryInfo();
+            $model_info->stock_entry_id = $model->id;
+            $model_info->jumlah = $request->jumlah[$i];
+            $model_info->harga_beli_per_unit = $request->hargaBeli[$i];
+            $model_info->total_harga_beli = $request->total[$i];
+            $model_info->product_id = $request->produk[$i];
+            $model_info->save();
+        }
 
         return redirect('/inventori/stokmasuk');
     }
@@ -120,7 +126,9 @@ class StokMasukController extends Controller
     public function tambahProduk()
     {
         $model = Product::where('user_id', session('user')->id)->get();
-        return view('inventori.stokmasuk.tambahProduk', ['produks' => $model]);
+        return view('inventori.stokmasuk.tambah_produk', [
+            'produks' => $model,
+        ]);
     }
 
     public function infoProduk()

@@ -38,13 +38,19 @@
             <div class="col-lg-12 m-b-10 d-flex flex-column">
             <!-- START card -->
                 <div class="card card-default">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Informasi Stok Masuk
+                        </div>
+                    </div>
                     <div class="card-block">
                         <div class="row">
                             <div class="col-lg-3 padding-10">
                                 <div class="form-group">
                                     <label>Outlet</label>
                                     <span class="help"></span>
-                                    <select class="full-width" data-init-plugin="select2" name="outlet">
+                                    <select class="full-width required" data-init-plugin="select2" name="outlet" required>
+                                        <option selected value="" disabled>Pilih Outlet</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                                         @endforeach
@@ -55,7 +61,7 @@
                                 <div class="form-group">
                                     <label>Tanggal</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component">
+                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off">
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
@@ -82,37 +88,45 @@
                     <div class="card-block">
                         <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                             <thead>
-                            <tr>
-                                <th>Nama Produk</th>
-                                <th>Jumlah</th>
-                                <th>Harga Beli Per Unit</th>
-                                <th>Total Harga Beli</th>
-                            </tr>
+                                <tr>
+                                    <th>Nama Produk</th>
+                                    <th>Jumlah</th>
+                                    <th>Harga Beli Per Unit</th>
+                                    <th>Total Harga Beli</th>
+                                    <th class="text-center  " style="width: 1%"><i class="fa fa-trash"></i> </th>
+                                </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="produk">
                                 <tr>
                                     <td class="v-align-middle">
-                                        <select class="full-width" data-init-plugin="select2" name="produk">
+                                        <select class="full-width" onchange="undisabled(this)" data-init-plugin="select2" name="produk[]">
+                                            <option selected disabled>Pilih Produk</option>
                                             @foreach ($produks as $produk)
                                                 <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td class="v-align-middle">
-                                        <input type="text" class="form-control input-sm text-right"  id="jumlah" name="jumlah" placeholder="0">
+                                        <input type="number" class="form-control input-sm text-right" onkeyup="totalByJumlah(this)" name="jumlah[]" placeholder="0" disabled>
                                     </td>
                                     <td class="v-align-middle text-right">
-                                        <input type="text" class="form-control input-sm text-right"  id="harga" name="harga_beli" placeholder="0">
+                                        <input type="number" class="form-control input-sm text-right" onkeyup="totalByHargaBeli(this)" name="hargaBeli[]" placeholder="0" disabled>
                                     </td>
                                     <td class="v-align-middle text-right">
-                                        <input id="result" type="text" class="form-control input-sm text-right" placeholder="0" readonly>
-                                        <input id="resultpost" type="hidden" class="form-control input-sm text-right" placeholder="0" name="total">
+                                        <input type="text" class="form-control input-sm text-right" placeholder="0" name="tampilTotal[]" readonly>
+                                        <input type="hidden" class="form-control input-sm text-right" placeholder="0" name="total[]">
+                                    </td>
+                                    <td class="v-align-middle text-right">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button" onclick="hapusProduk(this)" class="btn btn-xs btn-danger mx-1" disabled><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <div>
                             <br>
+                            <button type="button" onclick="tambahProduk()" class="btn btn-default brn-cons" id="tambahButton" disabled>Tambah Produk</button>
                         </div>
                     </div>
                 </div>
@@ -123,26 +137,95 @@
 @endsection
 
 @section('inpagejs')
-    <script type="text/javascript">
-        $('tbody').on('click', '.remove', function(){
-            $(this).parent().parent().remove();
+<script type="text/javascript">
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
-        // total harga beli
-        $(document).on('input', '#harga', function() {
-            var harga = document.getElementById('harga').value;
-            var jumlah = document.getElementById('jumlah').value;   
+    })
+
+    function undisabled(input){
+        var inputs = document.getElementsByName('produk[]');
+        var indeks;
+
+        indeks = findIndex(input, inputs);
+
+        document.getElementsByName('jumlah[]')[indeks].disabled = false;
+        document.getElementsByName('hargaBeli[]')[indeks].disabled = false;
+        document.getElementById('tambahButton').disabled = false;
+    }
+
+    function disabledTambahButton(element) {
+        element.disabled = true;
+    }
+
+    function tambahProduk(){            
+        
+        disabledTambahButton(document.getElementById('tambahButton'));
+
+        var produk = document.getElementsByName('produk[]');
+
+        $.ajax({
+            url: '/inventori/stokmasuk/tambahproduk',
+            type: 'GET',
+            success: function(response){
+                $('#produk').append(response);
+            },
+        })
+
+    }
+
+    function hapusProduk(button){
+        $(button).parent().parent().parent().remove();
+    }
+
+    function totalByJumlah(input){
             
-            document.getElementById('result').value = harga * jumlah;
-            document.getElementById('resultpost').value = harga * jumlah;
-        });
-        $(document).on('input', '#jumlah', function() {
-            var harga = document.getElementById('harga').value;
-            var jumlah = document.getElementById('jumlah').value;
-            document.getElementById('result').value = harga * jumlah;
-            document.getElementById('resultpost').value = harga * jumlah;
-        });
-    
-    </script>
+        var inputs = document.getElementsByName('jumlah[]');
+        var indeks,
+            jumlah,
+            hargaBeli;
+
+        // Cari indeks dari input.
+        indeks = findIndex(input, inputs);
+
+        jumlah = inputs[indeks].value;
+        hargaBeli = document.getElementsByName('hargaBeli[]')[indeks].value;
+
+        document.getElementsByName('total[]')[indeks].value = jumlah * hargaBeli;
+        document.getElementsByName('tampilTotal[]')[indeks].value = jumlah * hargaBeli;
+    }
+
+    function totalByHargaBeli(input){
+        var inputs = document.getElementsByName('hargaBeli[]');
+        var indeks,
+            jumlah,
+            hargaBeli;
+
+        // Cari indeks dari input.
+        indeks = findIndex(input, inputs);
+
+        jumlah = document.getElementsByName('jumlah[]')[indeks].value;
+        hargaBeli = inputs[indeks].value;
+
+        document.getElementsByName('total[]')[indeks].value = jumlah * hargaBeli;
+        document.getElementsByName('tampilTotal[]')[indeks].value = jumlah * hargaBeli;
+    }
+
+    function findIndex(input, inputs){
+        var index;
+
+        for (var i = 0 ; i<inputs.length; i++){
+            if(input == inputs[i]){
+                index = i;
+            }   
+        }
+
+        return index;
+    }
+</script>
 @endsection
 
 @section('myjsfile')

@@ -12,7 +12,7 @@
                     <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
-                    <h5>Informasi <span class="semi-bold">Outlet</span></h5>
+                    <h5>Informasi <span class="semi-bold">Stok Masuk</span></h5>
                     <p class="p-b-10">Berikut informasi mengenai Transfer Stok <strong>#{{ $transfer->id }}</strong></p>
                     </div>
                     <div class="modal-body">
@@ -134,10 +134,10 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th class="">ID</th>
-                        <th class="">Outlet Asal</th>
-                        <th class="">Outlet Tujuan</th>
-                        <th class="">Tanggal</th>
+                        <th class="w-25">ID</th>
+                        <th class="w-25">Outlet Asal</th>
+                        <th class="w-25">Outlet Tujuan</th>
+                        <th class="w-25">Tanggal</th>
                         <th class="invisible" style="width: 1%;"></th>
                       </tr>
                     </thead>

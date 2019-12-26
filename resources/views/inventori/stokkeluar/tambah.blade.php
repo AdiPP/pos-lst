@@ -83,33 +83,35 @@
                         <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                             <thead>
                             <tr>
-                                {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
-                                    <button class="btn btn-link"><i class="pg-trash"></i></button>
-                                </th> --}}
                                 <th>Nama Produk</th>
                                 <th>Jumlah</th>
-                                {{-- <th style="width: 1%;" class="text-center"> --}}
-                                    {{-- <a href="#" id="addRow"><i class="fa fa-plus"></i></button></a> --}}
-                                {{-- </th> --}}
+                                <th class="text-center  " style="width: 1%"><i class="fa fa-trash"></i> </th>
                             </tr>
                             </thead>
                             <tbody>
                                 <tr>
                                     <td class="v-align-middle">
-                                        <select class="full-width" data-init-plugin="select2" name="produk">
+                                        <select class="full-width" onchange="undisabled(this)" data-init-plugin="select2" name="produk[]">
+                                            <option selected disabled>Pilih Produk</option>
                                             @foreach ($produks as $produk)
                                                 <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
                                             @endforeach
                                         </select>
                                     </td>
                                     <td class="v-align-middle">
-                                        <input type="text" class="form-control input-sm text-right" name="jumlah" placeholder="0">
+                                        <input type="text" class="form-control input-sm text-right" name="jumlah[]" placeholder="0">
+                                    </td>
+                                    <td class="v-align-middle text-right">
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button" onclick="hapusProduk(this)" class="btn btn-xs btn-danger mx-1" disabled><i class="fa fa-trash"></i></button>
+                                        </div>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <div>
                             <br>
+                            <button type="button" onclick="tambahProduk()" class="btn btn-default brn-cons" id="tambahButton" disabled>Tambah Produk</button>
                         </div>
                     </div>
                 </div>
@@ -120,6 +122,57 @@
 @endsection
 
 @section('inpagejs')
+<script>
+    $(document).ready(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+    })
+
+    function undisabled(input){
+        var inputs = document.getElementsByName('produk[]');
+        var indeks;
+
+        indeks = findIndex(input, inputs);
+
+        document.getElementsByName('jumlah[]')[indeks].disabled = false;
+        document.getElementById('tambahButton').disabled = false;
+    }
+
+    function disabledTambahButton(element) {
+        element.disabled = true;
+    }
+
+    function tambahProduk(){            
+        
+        disabledTambahButton(document.getElementById('tambahButton'));
+
+        var produk = document.getElementsByName('produk[]');
+
+        $.ajax({
+            url: '/inventori/stokmasuk/tambahproduk',
+            type: 'GET',
+            success: function(response){
+                $('#produk').append(response);
+            },
+        })
+
+    }
+
+    function findIndex(input, inputs){
+        var index;
+
+        for (var i = 0 ; i<inputs.length; i++){
+            if(input == inputs[i]){
+                index = i;
+            }   
+        }
+
+        return index;
+    }
+</script>
 @endsection
 
 @section('myjsfile')

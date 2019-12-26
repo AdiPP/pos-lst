@@ -77,7 +77,7 @@ Route::resource('/produk', 'ProdukController');
 Route::get('/inventori/kartustok/tampil', 'InventoriController@tampilKartuStok');
 Route::resource('/inventori/kartustok', 'InventoriController');
 //  stok masuk
-// Route::get('/inventori/stokmasuk/tambahproduk', 'StokMasukController@tambahProduk');
+Route::get('/inventori/stokmasuk/tambahproduk', 'StokMasukController@tambahProduk');
 Route::get('/inventori/stokmasuk/infoproduk', 'StokMasukController@infoProduk');
 Route::resource('/inventori/stokmasuk', 'StokMasukController');
 //  stok keluar
