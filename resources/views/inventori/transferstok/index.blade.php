@@ -12,8 +12,8 @@
                     <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
-                    <h5>Informasi <span class="semi-bold">Stok Masuk</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Transfer Stok <strong>#{{ $transfer->id }}</strong></p>
+                    <h5>Informasi <span class="semi-bold">Transfer Stok</span></h5>
+                    <p class="p-b-10">Berikut informasi mengenai Transfer Stok <strong>#TFS{{ $transfer->id }}</strong></p>
                     </div>
                     <div class="modal-body">
                         <div class="form-group-attached">
@@ -134,7 +134,7 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th class="w-25">ID</th>
+                        <th class="w-25">ID Transfer Stok</th>
                         <th class="w-25">Outlet Asal</th>
                         <th class="w-25">Outlet Tujuan</th>
                         <th class="w-25">Tanggal</th>
@@ -145,7 +145,7 @@
                         @foreach ($transfers as $transfer)
                             <tr>
                                 <td class="v-align-middle">
-                                    {{ $transfer->id }}
+                                    #TFS{{ $transfer->id }}
                                 </td>
                                 <td class="v-align-middle">
                                     {{ $transfer->outletAsal->outlet_name }}

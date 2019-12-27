@@ -84,10 +84,7 @@ Route::resource('/inventori/stokmasuk', 'StokMasukController');
 Route::get('/inventori/stokkeluar/tambahproduk', 'StokKeluarController@tambahProduk');
 Route::resource('/inventori/stokkeluar', 'StokKeluarController');
 //  transfer stok
-Route::get('/inventori/transferstok/hapustemp', 'TransferStokController@hapusTemp');
-Route::get('/inventori/transferstok/tampiltemp', 'TransferStokController@tampilTemp');
-Route::post('/inventori/transferstok/tambahproduk', 'TransferStokController@tambahProduk');
-Route::get('/inventori/transferstok/infoproduk', 'TransferStokController@infoProduk');
+Route::get('/inventori/transferstok/tambahproduk', 'TransferStokController@tambahProduk');
 Route::resource('/inventori/transferstok', 'TransferStokController');
 // stok opname
 Route::get('/inventori/stokopname/setoutlet', 'StokOpnameController@setOutlet');

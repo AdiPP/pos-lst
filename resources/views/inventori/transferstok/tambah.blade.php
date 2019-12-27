@@ -3,245 +3,201 @@
 @section('title', $title)
 
 @section('content')
-<!-- START JUMBOTRON -->
-<div class="jumbotron">
-    <div class=" container p-l-0 p-r-0 container-fixed-lg sm-p-l-0 sm-p-r-0">
-        <div class="inner">
-            <div class="container-md-height">
-                <div class="row">
-                    <div class="col-xl-12 col-lg-12 col-top">
-                    <!-- START card -->
-                    <div class="card card-transparent">
-                        <div style="display:flex; align-items:center;">
-                            <div class="pull-left">
-                                <h5>{{ $title }}</h5>
+<form action="/inventori/transferstok" method="POST" enctype="multipart/form-data">
+    @csrf
+    <!-- START JUMBOTRON -->
+    <div class="jumbotron">
+        <div class=" container p-l-0 p-r-0 container-fixed-lg sm-p-l-0 sm-p-r-0">
+            <div class="inner">
+                <div class="container-md-height">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-top">
+                        <!-- START card -->
+                        <div class="card card-transparent">
+                            <div style="display:flex; align-items:center;">
+                                <div class="pull-left">
+                                    <h5>{{ $title }}</h5>
+                                </div>
+                                <div class="ml-auto">
+                                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Batal</a>
+                                    <input type="submit" id="buttonFormUtama" class="btn btn-primary btn-cons" value="Simpan">
+                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="ml-auto">
-                                <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Batal</a>
-                                <input type="submit" id="buttonFormUtama" class="btn btn-primary btn-cons" value="Simpan">
-                            </div>
-                            <div class="clearfix"></div>
                         </div>
-                    </div>
-                    <!-- END card -->
+                        <!-- END card -->
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<!-- END JUMBOTRON -->
-<div class="container sm-padding-10 p-l-0 p-r-0">
-    <div class="row">
-        <div class="col-lg-5 m-b-10 d-flex flex-column">
-        <!-- START card -->
-            <div class="card card-default">
-                <div class="card-block">
-                    <form action="/inventori/transferstok" method="post" id="formUtama">
-                    @csrf
-                    <div class="row">
-                        <div class="col-lg-12 padding-10">
-                            <div class="form-group">
-                                <label>Outlet Asal</label>
-                                <span class="help"></span>
-                                <select class="full-width" data-init-plugin="select2" name="outletAsal">
-                                    <option disabled selected>Pilih Outlet</option>
-                                    @foreach ($outlets as $outlet)
-                                        <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 padding-10">
-                            <div class="form-group">
-                                <label>Outlet Tujuan</label>
-                                <span class="help"></span>
-                                <select class="full-width" data-init-plugin="select2" name="outletTujuan">
-                                    <option disabled selected>Pilih Outlet</option>
-                                    @foreach ($outlets as $outlet)
-                                        <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                        <div class="col-lg-12 padding-10">
-                            <div class="form-group">
-                                <label>Tanggal</label>
-                                <span class="help"></span>
-                                <input type="text" class="form-control" name="tanggal" id="datepicker-component">
-                            </div>
-                        </div>
-                        <div class="col-lg-12 padding-10">
-                            <div class="form-group">
-                                <label>Catatan</label>
-                                <span class="help"></span>
-                                <textarea class="form-control" name="catatan"></textarea>
-                            </div>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
-            <!-- END card -->
-        </div>
-        <div class="col-lg-7 m-b-10 d-flex flex-column">
+    <!-- END JUMBOTRON -->
+    <div class="container sm-padding-10 p-l-0 p-r-0">
+        <div class="row">
+            <div class="col-lg-12 m-b-10 d-flex flex-column">
             <!-- START card -->
-            <div class="card card-default">
-                <div class="card-header">
-                    <div class="card-title">
-                        Produk
-                    </div>
-                </div>
-                <div class="card-block">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="form-group">
-                                <label>Cari Produk</label>
-                                <span class="help"></span>
-                                <select onchange="cariProduk()" class="full-width" data-init-plugin="select2" id="cariproduk">
-                                    <option selected disabled>Pilih Produk</option>
-                                    @foreach ($produks as $produk)
-                                        <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <form action="" id="formTambahProduk">
-                            <table class="table table-hover demo-table-search table-responsive-block">
-                                <thead>
-                                    <tr>
-                                        <th class="w-50">Nama Produk</th>
-                                        <th class="text-center w-25" >Jumlah</th>
-                                        <th class="invisible" style="width: 1%"><button class="btn btn-sm"><i class="fa fa-plus"></i></button></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="infoproduk">
-                                    <tr>
-                                        <td colspan="3" class="text-center v-align-middle">
-                                            <button class="btn disabled">Silahkan Pilih Produk</button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </form>
+                <div class="card card-default">
+                    <div class="card-header ">
+                        <div class="card-title">
+                            Informasi Transfer Stok
                         </div>
                     </div>
-                </div>
-            </div>
-            <!-- END card -->
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-lg-12 m-b-10 d-flex flex-column">
-            <div data-pages="card" class="card card-default" id="card-basic">
-                <div class="card-header ">
-                    <div class="card-title">
-                        Produk
+                    <div class="card-block">
+                        <form action="/inventori/transferstok" method="post" id="formUtama">
+                        @csrf
+                        <div class="row">
+                            <div class="col-lg-2 padding-10">
+                                <div class="form-group">
+                                    <label>Outlet Asal</label>
+                                    <span class="help"></span>
+                                    <select class="full-width" data-init-plugin="select2" name="outletAsal" required>
+                                        <option disabled selected value="">Pilih Outlet</option>
+                                        @foreach ($outlets as $outlet)
+                                            <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 padding-10">
+                                <div class="form-group">
+                                    <label>Outlet Tujuan</label>
+                                    <span class="help"></span>
+                                    <select class="full-width" data-init-plugin="select2" name="outletTujuan" required>
+                                        <option disabled selected value="">Pilih Outlet</option>
+                                        @foreach ($outlets as $outlet)
+                                            <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 padding-10">
+                                <div class="form-group">
+                                    <label>Tanggal</label>
+                                    <span class="help"></span>
+                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off">
+                                </div>
+                            </div>
+                            <div class="col-lg-5 padding-10">
+                                <div class="form-group">
+                                    <label>Catatan</label>
+                                    <span class="help"></span>
+                                    <textarea class="form-control" name="catatan"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        </form>
                     </div>
                 </div>
-                <div class="card-block">
-                    <form action="/inventori/transferstok" method="post">
-                        @csrf
+                <!-- END card -->
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 m-b-10 d-flex flex-column">
+                <div data-pages="card" class="card card-default" id="card-basic">
+                    <div class="card-header ">
+                        <div class="card-title">
+                            Produk
+                        </div>
+                    </div>
+                    <div class="card-block">
                         <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                             <thead>
                             <tr>
                                 <th>Nama Produk</th>
                                 <th>Jumlah</th>
-                                <th class="invisible" style="width: 1%;"></th>
+                                <th class="text-center" style="width: 1%"><i class="fa fa-trash"></i> </th>
                             </tr>
                             </thead>
-                            <tbody id="tampilTemp">
+                            <tbody id="produk">
+                                <tr>
+                                    <td class="v-align-middle">
+                                        <select class="full-width" data-init-plugin="select2" name="produk[]" onchange="undisabled(this)" required>
+                                            <option selected disabled value="">Pilih Produk</option>
+                                            @foreach ($produks as $produk)
+                                                <option value="{{ $produk->id }}">{{ $produk->product_name }} </option>
+                                            @endforeach
+                                        </select>
+                                    </td>
+                                    <td class="v-align-middle">
+                                        <input type="number" class="form-control input-sm text-right" name="jumlah[]" placeholder="0" disabled>
+                                    </td>
+                                    <td>
+                                        <div class="d-flex justify-content-center">
+                                            <button type="button" class="btn btn-xs btn-danger mx-1" disabled><i class="fa fa-trash"></i></button>
+                                        </div>
+                                    </td>
+                                </tr>
                             </tbody>
                         </table>
-                    </form>
-                    <div>
-                        <br>
-                        {{-- <a href="#" id="addRow" class="btn">+ Tambah Produk</a> --}}
+                        <div>
+                            <br>
+                            <button type="button" onclick="tambahProduk()" class="btn btn-default brn-cons" id="tambahButton" disabled>Tambah Produk</button>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
+</form>
 @endsection
 
 @section('inpagejs')
-    <script type="text/javascript">
+<script>
+    $(document).ready(function() {
         $.ajaxSetup({
             headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
+    })
 
-        $(document).ready(function(){
-            tampilTemps();
-            $("#buttonFormUtama").click(function() {
-                $("#formUtama").submit();
-            });
+    function tambahProduk(){            
+        
+        disabledTambahButton(document.getElementById('tambahButton'));
+
+        var produk = document.getElementsByName('produk[]');
+
+        $.ajax({
+            url: '/inventori/transferstok/tambahproduk',
+            type: 'GET',
+            success: function(response){
+                $('#produk').append(response);
+            },
         })
 
-        function cariProduk(){
+    }
 
-            var e = document.getElementById("cariproduk");
-            var selected = e.options[e.selectedIndex].value;
+    function undisabled(input){
+        var inputs = document.getElementsByName('produk[]');
+        var indeks;
 
-            $.ajax({
-                url: '/inventori/transferstok/infoproduk',
-                type: 'GET',
-                data: {idProduk: selected},
-                success: function(response){
-                    // console.log(response);
-                    $('#infoproduk').html(response);
-                }
-            })
+        indeks = findIndex(input, inputs);
+
+        document.getElementsByName('jumlah[]')[indeks].disabled = false;
+        document.getElementById('tambahButton').disabled = false;
+    }
+
+    function findIndex(input, inputs){
+        var index;
+
+        for (var i = 0 ; i<inputs.length; i++){
+            if(input == inputs[i]){
+                index = i;
+            }   
         }
 
-        $('#formTambahProduk').submit(function(e){
-            e.preventDefault();
-            
-            $.ajaxSetup({
-                headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-            });
+        return index;
+    }
 
-            var input = $('#formTambahProduk').serialize();
+    function disabledTambahButton(element) {
+        element.disabled = true;
+    }
 
-            $.ajax({
-                url: '/inventori/transferstok/tambahproduk',
-                method: 'POST',
-                data: input,
-                success: function(response){
-                    console.log(response);
-                    tampilTemps();
-                },
-
-            })
-        })
-
-        function tampilTemps(){
-            $.ajax({
-                url: '/inventori/transferstok/tampiltemp',
-                type: 'GET',
-                success: function(response){
-                    $('#tampilTemp').html(response);
-                }
-            })
-        }
-
-        function hapusTemp(idTemp)
-        {
-            $.ajax({
-                url: '/inventori/transferstok/hapustemp',
-                type: 'GET',
-                data: {id: idTemp},
-                success: function(response)
-                {
-                    console.log(response);
-                    tampilTemps();
-                }
-            })
-        }
-    </script>
+    function hapusProduk(button){
+        $(button).parent().parent().parent().remove();
+    }
+</script>
 @endsection
 
 @section('myjsfile')

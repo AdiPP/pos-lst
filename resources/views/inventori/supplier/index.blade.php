@@ -12,8 +12,8 @@
                     <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
-                        <h5>Tambah <span class="semi-bold">Supplier</span></h5>
-                        <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah supplier</p>
+                        <h5>Informasi <span class="semi-bold">Supplier</span></h5>
+                        <p class="p-b-10">Berikut informasi mengenai Supplier <strong>{{ $supplier->nama }}</strong></p>
                     </div>
                     <div class="modal-body">
                         <div class="form-group-attached">
