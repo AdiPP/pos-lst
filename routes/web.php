@@ -81,6 +81,7 @@ Route::get('/inventori/stokmasuk/tambahproduk', 'StokMasukController@tambahProdu
 Route::get('/inventori/stokmasuk/infoproduk', 'StokMasukController@infoProduk');
 Route::resource('/inventori/stokmasuk', 'StokMasukController');
 //  stok keluar
+Route::get('/inventori/stokkeluar/tambahproduk', 'StokKeluarController@tambahProduk');
 Route::resource('/inventori/stokkeluar', 'StokKeluarController');
 //  transfer stok
 Route::get('/inventori/transferstok/hapustemp', 'TransferStokController@hapusTemp');

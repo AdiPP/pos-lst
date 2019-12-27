@@ -44,7 +44,8 @@
                                 <div class="form-group">
                                     <label>Outlet</label>
                                     <span class="help"></span>
-                                    <select class="full-width" data-init-plugin="select2" name="outlet">
+                                    <select class="full-width" data-init-plugin="select2" name="outlet" required>
+                                        <option value="" disabled selected>Pilih Outlet</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                                         @endforeach
@@ -88,7 +89,7 @@
                                 <th class="text-center  " style="width: 1%"><i class="fa fa-trash"></i> </th>
                             </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="produk">
                                 <tr>
                                     <td class="v-align-middle">
                                         <select class="full-width" onchange="undisabled(this)" data-init-plugin="select2" name="produk[]">
@@ -99,7 +100,7 @@
                                         </select>
                                     </td>
                                     <td class="v-align-middle">
-                                        <input type="text" class="form-control input-sm text-right" name="jumlah[]" placeholder="0">
+                                        <input type="number" class="form-control input-sm text-right" name="jumlah[]" placeholder="0" disabled>
                                     </td>
                                     <td class="v-align-middle text-right">
                                         <div class="d-flex justify-content-center">
@@ -152,13 +153,17 @@
         var produk = document.getElementsByName('produk[]');
 
         $.ajax({
-            url: '/inventori/stokmasuk/tambahproduk',
+            url: '/inventori/stokkeluar/tambahproduk',
             type: 'GET',
             success: function(response){
                 $('#produk').append(response);
             },
         })
 
+    }
+
+    function hapusProduk(button){
+        $(button).parent().parent().parent().remove();
     }
 
     function findIndex(input, inputs){

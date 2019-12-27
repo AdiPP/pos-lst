@@ -12,48 +12,54 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
                     <h5>Informasi <span class="semi-bold">Stok Keluar</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Stok Keluar <strong>{{ $model->id }}</strong></p>
+                    <p class="p-b-10">Berikut informasi mengenai Stok Keluar <strong>#SK{{ $model->id }}</strong></p>
                     </div>
                     <div class="modal-body">
                         @csrf
                         <div class="form-group-attached">
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group form-group-default">
-                                <label>Outlet</label>
-                                <p>{{ $model->outlet->outlet_name }}</p>
+                            <div class="row">
+                                <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label>Outlet</label>
+                                    <p>{{ $model->outlet->outlet_name }}</p>
+                                </div>
+                                </div>
+                                <div class="col-md-6">
+                                <div class="form-group form-group-default">
+                                    <label>Tanggal</label>
+                                    <p>{{ Helper::mysqlToTanggal($model->tanggal) }}</p>
+                                </div>
+                                </div>
                             </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group form-group-default">
-                                <label>Tanggal</label>
-                                <p>{{ Helper::mysqlToTanggal($model->tanggal) }}</p>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-12">
-                            <div class="form-group form-group-default">
-                                <label>Catatan</label>
-                                <p>{{ $model->description }}</p>
-                            </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                            <div class="form-group form-group-default">
-                                <label>Nama Produk</label>
-                                <p>{{ $model->produks[0]->product_name }}</p>
-                            </div>
-                            </div>
-                            <div class="col-md-6">
-                            <div class="form-group form-group-default">
-                                <label>Jumlah</label>
-                                <p>{{ $model->infos[0]->jumlah }}</p>
-                            </div>
+                            <div class="row">
+                                <div class="col-md-12">
+                                <div class="form-group form-group-default">
+                                    <label>Catatan</label>
+                                    <p>{{ $model->description }}</p>
+                                </div>
+                                </div>
                             </div>
                         </div>
-                        </div>
+                        <table class="table table-hover demo-table-search table-responsive-block">
+                            <thead>
+                                <tr>
+                                    <th class="">Nama Produk</th>
+                                    <th class="text-right">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($model->infos as $produk)
+                                    <tr>
+                                        <td class="v-align-middle">
+                                            {{ $produk->produk->product_name }}
+                                        </td>
+                                        <td class="v-align-middle text-right">
+                                            {{ $produk->jumlah }}
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
                         <div class="row">
                             <div class="col-md-8">
                             </div>
@@ -122,9 +128,9 @@
                         {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
-                        <th class="w-50">ID Stok Keluar</th>
-                        <th class="w-25">Outlet</th>
-                        <th class="w-25">Tanggal</th>
+                        <th class="" style="width: 33%;">ID Stok Keluar</th>
+                        <th class="" style="width: 33%;">Outlet</th>
+                        <th class="" style="width: 33%;">Tanggal</th>
                         <th class="invisible" style="width: 1%;"></th>
                       </tr>
                     </thead>
@@ -132,7 +138,7 @@
                         @foreach ($models as $model)
                             <tr>
                                 <td class="v-align-middle">
-                                    {{ $model->id }}
+                                    #SK{{ $model->id }}
                                 </td>
                                 <td class="v-align-middle">
                                     {{ $model->outlet->outlet_name }}

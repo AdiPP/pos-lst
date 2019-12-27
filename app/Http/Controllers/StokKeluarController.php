@@ -34,8 +34,8 @@ class StokKeluarController extends Controller
      */
     public function create()
     {
-        $outlet = Outlet::all();
-        $produk = Product::all();
+        $outlet = Outlet::where('user_id', session('user')->id)->get();
+        $produk = Product::where('user_id', session('user')->id)->get();
 
         return view('inventori.stokkeluar.tambah', ['outlets' => $outlet, 'produks' => $produk]);
     }
@@ -48,19 +48,22 @@ class StokKeluarController extends Controller
      */
     public function store(Request $request)
     { 
-        // dd($request);
         $model = new StockOut();
         $model->outlet_id = $request->outlet;
         $model->description = $request->catatan;
-        $model->user_id = 25;
+        $model->user_id = session('user')->id;
         $model->tanggal = \App\Helpers\AppHelper::tanggalToMysql($request->tanggal);
         $model->save();
 
-        $model_info = new StockOutInfo();
-        $model_info->stock_out_id = $model->id;
-        $model_info->product_id = $request->produk;
-        $model_info->jumlah = $request->jumlah;
-        $model_info->save();
+        $produkLength = count($request->produk);
+
+        for ($i=0; $i < $produkLength; $i++) { 
+            $model_info = new StockOutInfo();
+            $model_info->stock_out_id = $model->id;
+            $model_info->product_id = $request->produk[$i];
+            $model_info->jumlah = $request->jumlah[$i];
+            $model_info->save();
+        }
 
         return redirect('/inventori/stokkeluar');
     }
@@ -108,5 +111,13 @@ class StokKeluarController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function tambahProduk()
+    {
+        $model = Product::where('user_id', session('user')->id)->get();
+        return view('inventori.stokkeluar.tambah_produk', [
+            'produks' => $model,
+        ]);
     }
 }
