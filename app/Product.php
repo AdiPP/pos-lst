@@ -29,17 +29,19 @@ class Product extends Model
 
     public function stokmasuks()
     {
-        return $this->belongsToMany('App\StockEntry', 'stock_entry_infos')->withPivot('jumlah');;
+        return $this->belongsToMany('App\StockEntry', 'stock_entry_infos')->withPivot('jumlah');
     }
 
     public function stokkeluars()
     {
-        return $this->belongsToMany('App\StockOut', 'stock_out_infos')->withPivot('jumlah');;
+        return $this->belongsToMany('App\StockOut', 'stock_out_infos')->withPivot('jumlah');
     }
 
     public function sales()
     {
-        return $this->belongsToMany('App\Sale', 'sale_infos');
+        return $this->belongsToMany('App\Sale', 'sale_infos')->withPivot([
+            'jumlah',
+        ]);;
     }
 
     public function saleInfos()
@@ -50,5 +52,11 @@ class Product extends Model
     public function opname()
     {
         return $this->belongsToMany('App\StockOpname', 'stock_opname_infos', 'product_id', 'stok_opname_id');
+    }
+
+    public function transfers(){
+        return $this->belongsToMany('App\StockTransfer', 'stock_transfer_infos')->withPivot([
+            'jumlah',
+        ]);
     }
 }

@@ -24,115 +24,9 @@ class InventoriController extends Controller
     {
         $title = 'Kartu Stok';
 
-        // $produk = Produk::withCount('stokmasuks')->get();
-
         $produk = Produk::where('user_id', '=', session('user')->id)->get();
 
         $outlet = Outlet::where('user_id', '=', session('user')->id)->get();
-
-        // dd($produk[0]->opname->where('user_id', session('user')->id)[0]->infos);
-
-        // $produk = Produk::with(['sales' => function($q){
-        //     $q->where('sales.outlet_id', '=', 3);
-        // }])->where('user_id', '=', session('user')->id)->get();
-
-        // $model = Sale::where('outlet_id', 2)->get();
-
-        // $model = Produk::with(['sales' => function($q){
-        //     $q->with(['infos' => function($q){
-        //         $q->where('product_id', 12);
-        //     }])->where('outlet_id', 2);
-        // }])->where('user_id', session('user')->id)->get();
-        
-        // $sale = Sale::with(['infos' => function($q) use ($produk){
-        //     $q->where('product_id', $produk[0]->id);
-        // }])->where('outlet_id', 2)->get()
-        // ->reduce(function($carry, $item){
-        //     return $carry + ($item->infos->reduce(function($carry, $item){
-        //         return $carry + ($item->jumlah);
-        //     }));
-        // });
-
-        // dd($sale);
-
-        // dd($produk[0]->sales->reduce(function($carry, $item){
-        //     return $carry + 1;
-        // }));
-
-        // dd($i);
-
-        // dd($produk[0]->sales[1]->infos);
-
-        // $model = Produk::with(['sales' => function($q){
-        //     $q->where('outlet_id', 2);
-        // }])->where('user_id', session('user')->id)->get();
-
-        // dd($model[0]);
-
-        // dd($model[0]->sales->reduce(function($carry, $item){
-        //     return $carry + $item->infos->reduce(function($carry, $item){
-        //         return $carry + $item->jumlah;
-        //     });
-        // }));
-
-        // dd($produk[0]
-        //     ->sales
-        //     ->where('outlet_id', 2)
-        //     ->reduce(function ($carry, $item){
-        //         return $carry + ($item->infos->reduce(function ($carry, $item){
-        //             return $carry + $item->jumlah;
-        //         }));
-        //     })
-        // );
-
-        // dd($produk[0]
-        //     ->sales
-        //     ->where('outlet_id', 2)
-        //     ->reduce(function($carry, $item) {
-        //         return $carry + $item->infos->reduce(function($carry2, $item2){
-        //             return $carry2 + $item2->jumlah;
-        //         });
-        //     }));
-
-        // $models = $produk[0]->sales->where('outlet_id', 2);
-        
-        // foreach ($models as $model) {
-            
-        // }
-        // dd($produk[0]
-        // ->sales
-        // ->where('outlet_id', 2)
-        // );
-
-        // $produk = Produk::with(['sales' => function($query){
-        //     $query->where('sales.outlet_id', 3);
-        // }])->where('user_id', '=', session('user')->id)->get();
-
-        // $produk = Produk::whereHas('sales', function ($query) {
-        //     $query->where('outlet_id', 2);
-        // })->where('user_id', '=', session('user')->id)->get();
-
-        // dd($produk[0]->saleInfos->reduce(function($carry, $item) {
-        //     return $carry + $item->jumlah;
-        // }));
-
-        // dd($produk[0]->stokkeluars->reduce(function($carry, $item){
-        //     return $carry + $item->infos[0]->jumlah;
-        // }));
-
-        // dd($produk[0]->stokmasuks[0]->infos);
-
-        // dd($produk[0]->stokmasuks->reduce(function($carry, $item){
-        //     return $carry + $item->infos[0]->jumlah;
-        // }));
-
-        // dd($produk[0]->stokmasuks_count);
-
-        // dd($produk[0]->stokmasuks[0]->pivot->jumlah);
-
-        // dd($produk->reduce(function($carry, $item){
-        //     return $carry + $item->stokmasuks[]->pivot->jumlah;
-        // }));
 
         return view('inventori.index', ['title' => $title, 'produks' => $produk, 'outlets' => $outlet]);
     }
@@ -205,14 +99,12 @@ class InventoriController extends Controller
 
     public function tampilKartuStok()
     {
-        if ($_GET['outlet'] != 0) {
-            $outlet = $_GET['outlet'];
-        } else {
-            $outlet = 0;
-        }
-
+        $outlet = $_GET['outlet'];
         $produk = Produk::where('user_id', '=', session('user')->id)->get();
 
-        return view('inventori.tampilKartuStok', ['produks' => $produk, 'outlet' => $outlet]);
+        return view('inventori.tampilKartuStok', [
+            'produks' => $produk,
+            'outlet' => $outlet
+        ]);
     }
 }

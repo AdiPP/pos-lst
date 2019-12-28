@@ -47,7 +47,7 @@
                                 <label for="">Pilih Outlet</label>
                                 <div class="form-group ">
                                     <select class="full-width" data-init-plugin="select2" onchange="pilihOutlet()" id="pilihOutlet">
-                                        <option value="0" selected>Semua Outlet</option>
+                                        <option value="" selected>Semua Outlet</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                                         @endforeach
@@ -67,14 +67,14 @@
                             <button class="btn btn-link"><i class="pg-trash"></i></button>
                         </th> --}}
                         <th class="w-25">Nama Produk</th>
-                        <th>Kategori</th>
-                        <th>Stok Awal</th>
-                        <th>Stok Masuk</th>
-                        <th>Stok Keluar</th>
-                        <th>Penjualan</th>
-                        <th>Transfer</th>
-                        <th>Penyesuaian</th>
-                        <th>Stok Akhir</th>
+                        <th class="v-align-middle">Kategori</th>
+                        <th class="v-align-middle">Stok Awal</th>
+                        <th class="v-align-middle">Stok Masuk</th>
+                        <th class="v-align-middle">Stok Keluar</th>
+                        <th class="v-align-middle">Penjualan</th>
+                        <th class="v-align-middle">Transfer</th>
+                        <th class="v-align-middle">Penyesuaian</th>
+                        <th class="v-align-middle">Stok Akhir</th>
                       </tr>
                     </thead>
                     <tbody id="tampilKartuStok"></tbody>
@@ -87,46 +87,24 @@
 </div>
 <script>
     $(document).ready(function(){
-        semuaOutlet();
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        pilihOutlet();
     })
 
-    // function pilihOutlet()
-    // {
-
-    // }
-
-    function semuaOutlet(){
-        $.ajaxSetup({
-            headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-        });
-
-        $.ajax({
-            url: '/inventori/kartustok/tampil',
-            type: 'GET',
-            data: {outlet: 0},
-            success: function(response)
-            {
-                $('#tampilKartuStok').html(response);
-            }
-        })
-    }
-
     function pilihOutlet(){
-        $.ajaxSetup({
-            headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-        });
 
         var e = document.getElementById("pilihOutlet");
-        var strUser = e.options[e.selectedIndex].value;
+        var selected = e.options[e.selectedIndex].value;
 
         $.ajax({
             url: '/inventori/kartustok/tampil',
             type: 'GET',
-            data: {outlet: strUser},
+            data: {outlet: selected},
             success: function(response)
             {
                 $('#tampilKartuStok').html(response);

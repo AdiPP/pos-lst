@@ -8,6 +8,6 @@ class Sale extends Model
 {
     public function infos()
     {
-        return $this->hasMany('App\SaleInfo', 'sale_id');
+        return $this->hasMany('App\SaleInfo');
     }
 }

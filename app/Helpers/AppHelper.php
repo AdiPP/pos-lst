@@ -162,4 +162,112 @@ class AppHelper
     {
         return User::find($id);
     }
-}
+
+    # Inventori Helper
+    public static function getStokMasuk($produk, $outlet = "")
+    {
+        if ($outlet == "") {
+            if (($result = $produk->stokmasuks->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        } else {
+            if (($result = $produk->stokmasuks->where('outlet_id', $outlet)->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public static function getStokKeluar($produk, $outlet = "")
+    {
+        if ($outlet == "") {
+            if (($result = $produk->stokkeluars->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        } else {
+            if (($result = $produk->stokkeluars->where('outlet_id', $outlet)->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public static function getPenjualan($produk, $outlet = "")
+    {
+        if ($outlet == "") {
+            if (($result = $produk->sales->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        } else {
+            if (($result = $produk->sales->where('outlet_id', $outlet)->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        }
+    }
+
+    public static function getTransfer($produk, $outlet = "")
+    {
+        if ($outlet == "") {
+            return 0;
+        } else {
+            // Transfer Keluar
+            if (($model = $produk->transfers->where('outlet_asal_id', $outlet)->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                $transferKeluar = $model;
+            } else {
+                $transferKeluar = 0;
+            }
+
+            // Transfer Masuk
+            if (($model = $produk->transfers->where('outlet_tujuan_id', $outlet)->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                $transferMasuk = $model;
+            } else {
+                $transferMasuk = 0;
+            }
+
+            return $transferMasuk - $transferKeluar;
+        }
+    }
+
+    public static function getStokAkhir($produk, $outlet = "")
+    {
+        if ($outlet == "") {
+            $stokmasuk = Helper::getStokMasuk($produk);
+            $stokkeluar = Helper::getStokKeluar($produk);
+            $penjualan = Helper::getPenjualan($produk);
+            $transfer = Helper::getTransfer($produk);
+        } else {
+            $stokmasuk = Helper::getStokMasuk($produk, $outlet);
+            $stokkeluar = Helper::getStokKeluar($produk,$outlet);
+            $penjualan = Helper::getPenjualan($produk, $outlet);
+            $transfer = Helper::getTransfer($produk, $outlet);
+        }
+
+        return $stokmasuk - $stokkeluar - $penjualan - $transfer;
+    }
+}   

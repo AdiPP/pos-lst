@@ -11,7 +11,7 @@
                     <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
-                    <h5>Informasi <span class="semi-bold">Outlet</span></h5>
+                    <h5>Informasi <span class="semi-bold">Stok Masuk</span></h5>
                     <p class="p-b-10">Berikut informasi mengenai Stok Masuk <strong>#SM{{ $model->id }}</strong></p>
                     </div>
                     <div class="modal-body">
