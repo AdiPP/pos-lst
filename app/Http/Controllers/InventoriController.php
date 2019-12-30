@@ -7,6 +7,7 @@ use App\StockEntry as StokMasuk;
 use App\Product as Produk;
 use App\Sale;
 use App\Outlet;
+Use Carbon\Carbon;
 
 class InventoriController extends Controller
 {
@@ -27,6 +28,8 @@ class InventoriController extends Controller
         $produk = Produk::where('user_id', '=', session('user')->id)->get();
 
         $outlet = Outlet::where('user_id', '=', session('user')->id)->get();
+
+        // dd($produk[0]->stokopnames->);
 
         return view('inventori.index', ['title' => $title, 'produks' => $produk, 'outlets' => $outlet]);
     }
@@ -100,11 +103,22 @@ class InventoriController extends Controller
     public function tampilKartuStok()
     {
         $outlet = $_GET['outlet'];
+        $tanggal = $_GET['tanggal'];
+
+        if ($tanggal == "") {
+            $tanggal = date('Y-m-d');
+        } else {
+            $tanggal = date("Y-m-d", strtotime(str_replace('/', '-', $_GET['tanggal'])));
+        }
+
+        // return $tanggal;
+
         $produk = Produk::where('user_id', '=', session('user')->id)->get();
 
         return view('inventori.tampilKartuStok', [
             'produks' => $produk,
-            'outlet' => $outlet
+            'outlet' => $outlet,
+            'tanggal' => $tanggal
         ]);
     }
 }

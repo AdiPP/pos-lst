@@ -8,6 +8,7 @@ use App\StockOpnameTemp;
 use App\Outlet;
 use App\StockOpname;
 use App\StockOpnameInfo;
+use Helper;
 
 class StokOpnameController extends Controller
 {
@@ -44,29 +45,27 @@ class StokOpnameController extends Controller
      */
     public function store(Request $request)
     {
-
         date_default_timezone_set("Asia/Bangkok");
 
         $model = new StockOpname();
-        $model->outlet_id = session('idOutlet');
+        $model->outlet_id = $request->outlet;
         $model->user_id = session('user')->id;
         $model->tanggal = date('Y-m-d');
         $model->catatan = $request->catatan;
-        if ($model->save()) {
-            
-            session()->forget('idOutlet');
+        $model->save();
 
-            $temps = StockOpnameTemp::where('user_id', session('user')->id)->get();
+        // Deklarasi panjang produk.
+        $produkLength = count($request->produk);
 
-            foreach ($temps as $temp) {
-                $modelInfo = new StockOpnameInfo();
-                $modelInfo->product_id = $temp->product_id;
-                $modelInfo->selisih = $temp->selisih;
-                $modelInfo->stok_opname_id = $model->id;
-                $modelInfo->save();
-                StockOpnameTemp::find($temp->id)->delete();
-            }
-
+        // Simpan informasi stok masuk.
+        for ($i=0; $i < $produkLength; $i++) { 
+            $model_info = new StockOpnameInfo();
+            $model_info->stok_opname_id = $model->id;
+            $model_info->product_id = $request->produk[$i];
+            $model_info->selisih = $request->selisih[$i];
+            $model_info->jumlah_sistem = $request->jumlahSistem[$i];
+            $model_info->jumlah = $request->jumlah[$i];
+            $model_info->save();
         }
 
         return redirect('/inventori/stokopname');
@@ -117,97 +116,22 @@ class StokOpnameController extends Controller
         //
     }
 
-    public function infoProduk()
+    public function tambahProduk()
     {
-        $idProduk = $_GET['idProduk'];
+        $produk = Product::where('user_id', session('user')->id)->get();
 
-        $produk = Product::find($idProduk);
-
-        $stokmasuk = $produk
-                    ->stokmasuks
-                    ->where('outlet_id', 2)
-                    ->reduce(function($carry, $item){
-                        return $carry + $item->infos[0]->jumlah;
-                    });
-
-        if (is_null($stokmasuk)) {
-            $stokmasuk = 0;
-        }
-
-        $stokkeluar = $produk
-                    ->stokkeluars
-                    ->where('outlet_id', 2)
-                    ->reduce(function($carry, $item){
-                        return $carry + $item->infos[0]->jumlah;
-                    });
-
-        if (is_null($stokkeluar)) {
-            $stokkeluar = 0;
-        }
-
-        $i = 0;
-
-        foreach ($produk->sales as $sale) {
-            if ($sale->outlet_id == 2) {
-                foreach ($sale->infos as $info) {
-                    if ($info->product_id == $produk->id) {
-                        $i = $i + $info->jumlah;
-                    }
-                }
-            }
-        }
-
-        $penjualan = $i;
-
-        if (is_null($penjualan)) {
-            $penjualan = 0;
-        }
-
-        $stokakhir = $stokmasuk - $stokkeluar - $penjualan;
-
-        return view('inventori.stokopname.infoproduk', ['produk' => $produk, 'stokakhir' => $stokakhir]);
+        return view('inventori.stokopname.tambah_produk', [
+            'produks' => $produk,
+        ]);
     }
 
-    public function tambahProduk(Request $request)
+    public function pilihProduk()
     {
-        $idProduk = $request->idProduk;
+        $produkTemp = $_GET['produk'];
+        $outlet = $_GET['outlet'];
 
-        if ($model = StockOpnameTemp::where('product_id', $idProduk)->where('user_id', 25)->first()) {
-            return 'Data sudah pernah dimasukan';
-        } else {
-            $model = new StockOpnameTemp();
-            $model->product_id = $request->idProduk;
-            $model->user_id = session('user')->id;
-            $model->selisih = $request->stokAkhir - $request->jumlahProduk;
-            if ($model->save()) {
-                return 'Data berhasil disimpan';   
-            }
-        }
-    }
+        $produk = Product::find($produkTemp);
 
-    public function tampilTemp()
-    {
-        $temp = StockOpnameTemp::where('user_id', session('user')->id)->get();
-
-        return view('inventori.stokopname.tampiltemp', ['temps' => $temp]);
-    }
-
-    public function hapusTemp()
-    {
-        $id = $_GET['id'];
-
-        $temp = StockOpnameTemp::find($id);
-        if ($temp->delete()) {
-            return 'Berhasil dihapus';
-        } else return 'Tidak berhasil';
-    }
-
-    public function setOutlet()
-    {
-        $idOutlet = $_GET['idOutlet'];
-
-        session(['idOutlet' => $idOutlet]);
-
-        return session('idOutlet');
+        return Helper::getStokAkhir($produk, $outlet);
     }
 }

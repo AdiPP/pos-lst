@@ -59,4 +59,11 @@ class Product extends Model
             'jumlah',
         ]);
     }
+
+    public function stokopnames(){
+        return $this->belongsToMany('App\StockOpname', 'stock_opname_infos', 'product_id', 'stok_opname_id')->withPivot([
+            'selisih',
+            'created_at'
+        ]);;
+    }
 }

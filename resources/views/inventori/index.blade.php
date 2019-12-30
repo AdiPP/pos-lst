@@ -43,7 +43,7 @@
                     </div>
                     <div class="padding-10">
                         <div class="row">
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <label for="">Pilih Outlet</label>
                                 <div class="form-group ">
                                     <select class="full-width" data-init-plugin="select2" onchange="pilihOutlet()" id="pilihOutlet">
@@ -55,6 +55,12 @@
                                     </select>
                                 </div>
                             </div>
+                            <div class="col-lg-6">
+                                <label for="">Pilih Tanggal</label>
+                                <div class="form-group ">
+                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off" onchange="pilihTanggal()" placeholder="Hari Ini">
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="clearfix"></div>
@@ -63,9 +69,6 @@
                     <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                     <thead>
                       <tr>
-                        {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
-                            <button class="btn btn-link"><i class="pg-trash"></i></button>
-                        </th> --}}
                         <th class="w-25">Nama Produk</th>
                         <th class="v-align-middle">Kategori</th>
                         <th class="v-align-middle">Stok Awal</th>
@@ -86,6 +89,8 @@
     </div>
 </div>
 <script>
+    var tanggal = document.getElementById("datepicker-component").value;
+
     $(document).ready(function(){
         $.ajaxSetup({
             headers: {
@@ -104,12 +109,17 @@
         $.ajax({
             url: '/inventori/kartustok/tampil',
             type: 'GET',
-            data: {outlet: selected},
+            data: {outlet: selected, tanggal: tanggal},
             success: function(response)
             {
                 $('#tampilKartuStok').html(response);
             }
         });
+    }
+
+    function pilihTanggal(){
+        tanggal = document.getElementById("datepicker-component").value;
+        pilihOutlet();
     }
 </script>
 @endsection
@@ -118,6 +128,7 @@
 <!-- BEGIN PAGE LEVEL JS -->
 <script src="{{ asset('assets/js/demo.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/datatables.js') }}" type="text/javascript"></script>
+<script src="{{ asset('assets/js/form_elements.js') }}" type="text/javascript"></script>
 <script src="{{ asset('assets/js/scripts.js') }}" type="text/javascript"></script>
 <!-- END PAGE LEVEL JS -->
 @endsection
