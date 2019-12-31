@@ -20,8 +20,7 @@
                                     {{-- <h5>{{ $title }}</h5> --}}
                                 </div>
                                 <div class="ml-auto">
-                                    <a href="{{ url('/produk', []) }}" class="btn btn-primary btn-cons">Batal</a>
-                                    <input type="submit" class="btn btn-primary btn-cons" value="Simpan">
+                                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Kembali</a>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -63,12 +62,12 @@
                                     <div class="form-group col-lg-6">
                                         <label>Jenis Kelamin</label>
                                         <span class="help"></span>
-                                        <p><cite>Belum diisi.</cite></p>
+                                        <p>{{ $model->jenis_kelamin }}</p>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Tanggal Lahir</label>
                                         <span class="help"></span>
-                                        <p><cite>Belum diisi.</cite></p>
+                                        <p>{{ $model->tanggal_lahir }}</p>
                                     </div>
                                 </div>
                             </div>
@@ -76,24 +75,24 @@
                                 <div class="form-group">
                                     <label>Alamat</label>
                                     <span class="help"></span>
-                                    <p><cite>Belum diisi.</cite></p>
+                                    <p>{{ $model->alamat }}</p>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label>Kota</label>
                                         <span class="help"></span>
-                                        <p><cite>Belum diisi.</cite></p>
+                                        <p>{{ Helper::getKota($model->kota) }}</p>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Kode Pos</label>
                                         <span class="help"></span>
-                                        <p><cite>Belum diisi.</cite></p>
+                                        <p>{{ $model->kode_pos }}</p>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Catatan</label>
                                     <span class="help"></span>
-                                    <p><cite>Belum diisi.</cite></p>
+                                    <p>{{ $model->catatan }}</p>
                                 </div>
                             </div>
                         </div>

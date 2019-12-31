@@ -55,6 +55,9 @@
         padding-right: 0 !important;
         margin-right: 0 !important;
       }
+      .select2-container{
+        z-index:999999;
+      }
       /* #jumlahprodukparent input:focus {
         outline: none;
       } */
@@ -192,7 +195,7 @@
                         <a href="/pelanggan">Pelanggan</a>
                         </li>
                         <li class="">
-                        <a href="#">Anggota</a>
+                        <a href="/pegawai">Pegawai</a>
                         </li>
                     </ul>
                     </li>

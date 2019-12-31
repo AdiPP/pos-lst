@@ -20,8 +20,8 @@
                             <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label>Outlet</label>
-                                    ABCD
-                                    <input type="hidden" name="outletid" value=3>
+                                    <span id="outletnama">Default</span>
+                                    <input type="hidden" name="outletid" id="outletid" value='0'>
                                 </div>
                             </div>
                         </div>
@@ -190,7 +190,14 @@
                                         <td class="">
                                             <p class="text-black">Outlet</p>
                                         </td>
-                                        <td class="">Outlet 1</td>
+                                        <td class="">
+                                            <select class="full-width" data-init-plugin="select2" name="outlet" onchange="pilihOutlet()" id="outlet">
+                                                <option value="" selected disabled>Pilih Outlet</option>
+                                                @foreach ($outlets as $outlet)
+                                                    <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td class="">
@@ -504,6 +511,16 @@
                     $('#pilihpelanggan').html(response);
                 }
             })
+        }
+
+        function pilihOutlet(){
+            var e = document.getElementById("outlet");
+            var outlet = e.options[e.selectedIndex].text;
+            var outletid = e.options[e.selectedIndex].value;
+
+            document.getElementById('outletnama').innerHTML  = outlet;
+            document.getElementById('outletid').value  = outletid;
+            console.log(outlet, outletid);
         }
     </script>
 @endsection

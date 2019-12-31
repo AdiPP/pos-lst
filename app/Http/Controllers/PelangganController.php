@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Customer;
+use App\Wilayah;
+use Helper;
 
 class PelangganController extends Controller
 {
@@ -23,7 +25,10 @@ class PelangganController extends Controller
 
         $models = Customer::where('user_id', '=', session('user')->id)->get();
 
-        return view('pelanggan.index', ['title' => $title, 'models' => $models]);
+        return view('pelanggan.index', [
+            'title' => $title,
+            'models' => $models
+        ]);
     }
 
     /**
@@ -33,7 +38,11 @@ class PelangganController extends Controller
      */
     public function create()
     {
-        return view('pelanggan.tambah');
+        $wilayah = Wilayah::where('LEVEL', '2')->select('KODE_WILAYAH', 'MST_KODE_WILAYAH', 'NAMA')->get();
+
+        return view('pelanggan.tambah', [
+            'kotas' => $wilayah
+        ]);
     }
 
     /**
@@ -44,11 +53,16 @@ class PelangganController extends Controller
      */
     public function store(Request $request)
     {
-
         $model = new Customer();
         $model->nama = $request->nama;
         $model->telepon = $request->telepon;
         $model->email = $request->email;
+        $model->jenis_kelamin = $request->jenisKelamin;
+        $model->tanggal_lahir = Helper::tanggalToMysql($request->tanggalLahir);
+        $model->alamat = $request->alamat;
+        $model->kota = $request->kota;
+        $model->kode_pos = $request->kodePos;
+        $model->catatan = $request->catatan;
         $model->user_id = session('user')->id;
         if ($model->save()) {
             return redirect('/pelanggan');
@@ -78,8 +92,13 @@ class PelangganController extends Controller
     public function edit($id)
     {
         $model = Customer::find($id);
+        $wilayah = Wilayah::where('LEVEL', '2')->select('KODE_WILAYAH', 'MST_KODE_WILAYAH', 'NAMA')->get();
 
-        return view('pelanggan.ubah', ['model' => $model]);
+        return view('pelanggan.ubah', [
+            'model' => $model,
+            'kotas' => $wilayah
+        
+            ]);
     }
 
     /**
@@ -95,6 +114,12 @@ class PelangganController extends Controller
         $model->nama = $request->nama;
         $model->telepon = $request->telepon;
         $model->email = $request->email;
+        $model->jenis_kelamin = $request->jenisKelamin;
+        $model->tanggal_lahir = Helper::tanggalToMysql($request->tanggalLahir);
+        $model->alamat = $request->alamat;
+        $model->kota = $request->kota;
+        $model->kode_pos = $request->kodePos;
+        $model->catatan = $request->catatan;
         if ($model->save()) {
             return redirect('/pelanggan');
         }

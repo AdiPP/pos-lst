@@ -8,6 +8,7 @@ use App\Cart;
 use App\Customer;
 use App\Sale;
 use App\SaleInfo;
+use App\Outlet;
 Use DB;
 
 class PosController extends Controller
@@ -25,9 +26,11 @@ class PosController extends Controller
     {
         $produk = Product::where('user_id', session('user')->id)->get();
         $pelanggan = Customer::where('user_id', session('user')->id)->get();
+        $outlet = Outlet::where('user_id', session('user')->id)->get();
         return view('pos.index', [
             'produks' => $produk,
-            'pelanggans' => $pelanggan
+            'pelanggans' => $pelanggan,
+            'outlets' => $outlet
         ]);
     }
 

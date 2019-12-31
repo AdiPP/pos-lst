@@ -161,7 +161,11 @@ class AppHelper
 
     public static function getKota($kode)
     {
-        return Wilayah::where('KODE_WILAYAH', $kode)->first()->NAMA;
+        if (($result = Wilayah::where('KODE_WILAYAH', $kode)->first()) != null) {
+            return $result->NAMA;
+        } else {
+            return 'Tidak Diisi';
+        }
     }
 
     public static function getUser($id)
@@ -395,7 +399,30 @@ class AppHelper
         $penjualan = Helper::getPenjualan($produk, $outlet, $tanggal);
         $transfer = Helper::getTransfer($produk, $outlet, $tanggal);
         $stokopname = Helper::getStokOpname($produk, $outlet, $tanggal);
+        $stokawal = Helper::getStokAwal($produk, $outlet, $tanggal);
 
-        return $stokmasuk - $stokkeluar - $penjualan - $transfer + $stokopname;
+        return $stokawal + $stokmasuk - $stokkeluar - $penjualan - $transfer + $stokopname;
+    }
+
+    # laporan Helper
+    public static function getPenjualanAll($produk, $outlet = "", $tanggal)
+    {
+        if ($outlet == "") {
+            if (($result = $produk->sales->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        } else {
+            if (($result = $produk->sales->where('outlet_id', $outlet)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+                return $carry + $item->pivot->jumlah;
+            })) != null) {
+                return $result;
+            } else {
+                return 0;
+            }
+        }
     }
 }   

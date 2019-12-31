@@ -33,25 +33,9 @@
 <!-- END JUMBOTRON -->
 <div class="container sm-padding-10 p-l-0 p-r-0">
     <div class="row">
-        <div class="col-lg-4 m-b-10">
-            <!-- START card -->
-            <a href="#">
-                <div class="card-block no-padding">
-                    <div id="card-advance" class="card card-default btn btn-primary">
-                        <div class="card-block m-t-10 m-b-10 text-center">
-                            <div class="col-lg-12 m-b-10">
-                                <i class="fa fa-bookmark" style="font-size: 50px;"></i>
-                            </div>
-                            <span class="bold font-montserrat text-uppercase">Ringkasan</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END card -->
-        </div>
         <div class="col-lg-4">
             <!-- START card -->
-            <a href="#">
+            <a href="/laporan/penjualanperproduk">
                 <div class="card-block no-padding">
                     <div id="card-advance" class="card card-default btn btn-primary">
                         <div class="card-block m-t-10 m-b-10 text-center">
@@ -67,55 +51,7 @@
         </div>
         <div class="col-lg-4">
             <!-- START card -->
-            <a href="#">
-                <div class="card-block no-padding">
-                    <div id="card-advance" class="card card-default btn btn-primary">
-                        <div class="card-block m-t-10 m-b-10 text-center">
-                            <div class="col-lg-12 m-b-10">
-                                <i class="fa fa-bars" style="font-size: 50px;"></i>
-                            </div>
-                            <span class="bold font-montserrat text-uppercase">Penjualan Opsi Tambahan</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END card -->
-        </div>
-        <div class="col-lg-4">
-            <!-- START card -->
-            <a href="#">
-                <div class="card-block no-padding">
-                    <div id="card-advance" class="card card-default btn btn-primary">
-                        <div class="card-block m-t-10 m-b-10 text-center">
-                            <div class="col-lg-12 m-b-10">
-                                <i class="fa fa-inbox" style="font-size: 50px;"></i>
-                            </div>
-                            <span class="bold font-montserrat text-uppercase">Stok</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END card -->
-        </div>
-        <div class="col-lg-4">
-            <!-- START card -->
-            <a href="#">
-                <div class="card-block no-padding">
-                    <div id="card-advance" class="card card-default btn btn-primary">
-                        <div class="card-block m-t-10 m-b-10 text-center">
-                            <div class="col-lg-12 m-b-10">
-                                <i class="fa fa-home" style="font-size: 50px;"></i>
-                            </div>
-                            <span class="bold font-montserrat text-uppercase">Penjualan Per Outlet</span>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            <!-- END card -->
-        </div>
-        <div class="col-lg-4">
-            <!-- START card -->
-            <a href="#">
+            <a href="/laporan/penjualanharian">
                 <div class="card-block no-padding">
                     <div id="card-advance" class="card card-default btn btn-primary">
                         <div class="card-block m-t-10 m-b-10 text-center">
@@ -123,6 +59,22 @@
                                 <i class="fa fa-bar-chart" style="font-size: 50px;"></i>
                             </div>
                             <span class="bold font-montserrat text-uppercase">Penjualan Harian</span>
+                        </div>
+                    </div>
+                </div>
+            </a>
+            <!-- END card -->
+        </div>
+        <div class="col-lg-4">
+            <!-- START card -->
+            <a href="/laporan/stok">
+                <div class="card-block no-padding">
+                    <div id="card-advance" class="card card-default btn btn-primary">
+                        <div class="card-block m-t-10 m-b-10 text-center">
+                            <div class="col-lg-12 m-b-10">
+                                <i class="fa fa-inbox" style="font-size: 50px;"></i>
+                            </div>
+                            <span class="bold font-montserrat text-uppercase">Stok</span>
                         </div>
                     </div>
                 </div>

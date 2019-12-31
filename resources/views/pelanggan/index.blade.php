@@ -197,9 +197,8 @@
                               <td class="v-align-middle">
                                 <div class="d-flex justify-content-center">
                                     <a href="/pelanggan/{{ $model->id }}" class="btn btn-xs btn-complete mx-1"><i class="fa fa-eye"></i></a>
-                                    {{-- <button class="btn btn-xs btn-complete mx-1" data-target="#modalView{{ $model->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button> --}}
                                     <a href="/pelanggan/{{ $model->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
-                                    <button class="btn btn-xs btn-danger mx-1" data-target="#modalDelete{{ $model->id }}" data-toggle="modal" id=""><i class="fa fa-trash-o"></i></button>
+                                    {{-- <button class="btn btn-xs btn-danger mx-1" data-target="#modalDelete{{ $model->id }}" data-toggle="modal" id=""><i class="fa fa-trash-o"></i></button> --}}
                                 </div>
                               </td>
                             </tr>

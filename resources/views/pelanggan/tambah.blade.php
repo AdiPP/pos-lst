@@ -44,30 +44,34 @@
                                 <div class="form-group">
                                     <label>Nama</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="nama">
+                                    <input type="text" class="form-control" name="nama" required>
                                 </div>
                                 <div class="row p-l-5 p-r-5">
-                                    <div class="form-group col-lg-6">
+                                    <div class="form-group col-lg-6 required">
                                         <label>Telepon</label>
                                         <span class="help"></span>
-                                        <input type="text" class="form-control" name="telepon">
+                                        <input type="text" class="form-control" name="telepon" required>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Email</label>
                                         <span class="help"></span>
-                                        <input type="text" class="form-control" name="email">
+                                        <input type="email" class="form-control" name="email">
                                     </div>
                                 </div>
                                 <div class="row p-l-5 p-r-5">
                                     <div class="form-group col-lg-6">
                                         <label>Jenis Kelamin</label>
                                         <span class="help"></span>
-                                        <input type="text" class="form-control" name="jnsKelamin">
+                                        <select class="full-width" data-init-plugin="select2" name="jenisKelamin">
+                                            <option value="" selected disabled>Pilih Jenis Kelamin</option>
+                                            <option value="Pria">Pria</option>
+                                            <option value="Wanita">Wanita</option>
+                                          </select>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Tanggal Lahir</label>
                                         <span class="help"></span>
-                                        <input type="text" class="form-control" name="tglLahir">
+                                        <input type="text" class="form-control" id="datepicker-component" name="tanggalLahir" autocomplete="off">
                                     </div>
                                 </div>
                             </div>
@@ -81,12 +85,17 @@
                                     <div class="form-group col-lg-6">
                                         <label>Kota</label>
                                         <span class="help"></span>
-                                        <input type="text" class="form-control" name="kota">
+                                        <select class="full-width" data-init-plugin="select2" name="kota">
+                                            <option value="" selected disabled>Pilih Kota</option>
+                                            @foreach ($kotas as $kota)
+                                                <option value="{{  $kota->KODE_WILAYAH }}">{{  $kota->NAMA   }}</option>
+                                            @endforeach
+                                        </select>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Kode Pos</label>
                                         <span class="help"></span>
-                                        <input type="text" class="form-control" name="kdPos">
+                                        <input type="text" class="form-control" name="kodePos">
                                     </div>
                                 </div>
                                 <div class="form-group">

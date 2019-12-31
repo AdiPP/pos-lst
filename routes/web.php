@@ -44,6 +44,9 @@ Route::post('/admin/login/proses', 'AdminController@loginProses');
 Route::get('/admin/login', 'AdminController@login');
 Route::resource('/admin', 'AdminController');
 
+// modul pegawai
+Route::resource('/pegawai', 'PegawaiController');
+
 // modul transaksi
 Route::post('/pos/pelanggan/tambah', 'PosController@tambahPelanggan');
 Route::get('/pos/pelanggan/reload', 'PosController@reloadPelanggan');
@@ -95,6 +98,15 @@ Route::resource('/inventori/stokopname', 'StokOpnameController');
 Route::resource('/supplier', 'SupplierController');
 
 // modul laporan
+//  stok
+Route::get('/laporan/stok/tampil', 'LaporanController@stokTampil');
+Route::get('/laporan/stok', 'LaporanController@stok');
+//  penjualan harian
+Route::get('/laporan/penjualanharian/tampil', 'LaporanController@penjualanHarianTampil');
+Route::get('/laporan/penjualanharian', 'LaporanController@penjualanHarian');
+//  penjualan per produk
+Route::get('/laporan/penjualanperproduk/tampil', 'LaporanController@penjualanPerProdukTampil');
+Route::get('/laporan/penjualanperproduk', 'LaporanController@penjualanPerProduk');
 Route::resource('/laporan', 'LaporanController');
 
 // modul outlet
