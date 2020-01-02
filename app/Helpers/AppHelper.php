@@ -6,6 +6,7 @@ use Helper;
 use App\Wilayah;
 use App\User;
 use Carbon\Carbon;
+use App\UserPegawai;
 
 class AppHelper
 {
@@ -26,9 +27,11 @@ class AppHelper
         }
 
         //Check the user email verified status
-        if(session('user')->email_verified_at === null)
-        {
-            return Redirect::to('/login')->with('status', 'email not verified')->send();
+        if (session('user')->getTable() != 'user_pegawais') {
+            if(session('user')->email_verified_at === null)
+            {
+                return Redirect::to('/login')->with('status', 'email not verified')->send();
+            }
         }
     }
 
@@ -170,7 +173,20 @@ class AppHelper
 
     public static function getUser($id)
     {
-        return User::find($id);
+        if (session('user')->getTable() == 'user_pegawais') {
+            return UserPegawai::find($id);
+        } else {
+            return User::find($id);
+        }
+    }
+
+    public static function getName($id)
+    {
+        if (session('user')->getTable() == 'user_pegawais') {
+            return Helper::getUser($id)->nama_depan;;
+        } else {
+            return Helper::getUser($id)->info->firstname;;
+        }
     }
 
     # Inventori Helper
@@ -423,6 +439,24 @@ class AppHelper
             } else {
                 return 0;
             }
+        }
+    }
+
+    public static function getAdmin($user)
+    {
+        if ($user->getTable() == 'user_pegawais') {
+            return $user->username;
+        } else {
+            return $user->info->firstname;
+        }
+    }
+
+    public static function getAdminID($user)
+    {
+        if ($user->getTable() == 'user_pegawais') {
+            return $user->id;
+        } else {
+            return $user->id;
         }
     }
 }   

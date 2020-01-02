@@ -92,7 +92,9 @@ class PegawaiController extends Controller
         $pegawai->nama_depan = $request->namaDepan;
         $pegawai->nama_belakang = $request->namaBelakang;
         $pegawai->username = $request->username;
-        $pegawai->password = Hash::make($request->password);
+        if (!Hash::check($request->password, $pegawai->password)) {
+            $pegawai->password = Hash::make($request->password);
+        }
         $pegawai->outlet_id = $request->outlet;
         $pegawai->save();
 
@@ -111,5 +113,29 @@ class PegawaiController extends Controller
         $pegawai->delete();
 
         return redirect('/pegawai');
+    }
+
+    # Login
+    public function login()
+    {
+        return view('pegawai.center.login');
+    }
+
+    public function loginProses(Request $request)
+    {
+        // dd($request);
+        $pegawai = UserPegawai::where('username', $request->username)->first();
+
+        if (($pegawai = UserPegawai::where('username', $request->username)->first())) {
+            if (Hash::check($request->password, $pegawai->password)) {
+                session()->put('user', $pegawai);
+
+                return redirect('/pos');
+            } else {
+                return back()->withErrors(['Username atau Password tidak sesuai.']);
+            }
+        } else {
+            return back()->withErrors(['Username atau Password tidak sesuai.']);
+        }
     }
 }

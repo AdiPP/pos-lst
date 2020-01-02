@@ -45,6 +45,9 @@ Route::get('/admin/login', 'AdminController@login');
 Route::resource('/admin', 'AdminController');
 
 // modul pegawai
+//  login pegawai
+Route::post('/pegawai/login/proses', 'PegawaiController@loginProses');
+Route::get('/pegawai/login', 'PegawaiController@login');
 Route::resource('/pegawai', 'PegawaiController');
 
 // modul transaksi

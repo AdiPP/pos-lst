@@ -17,7 +17,7 @@
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
         </button>
         <h5>Tambah <span class="semi-bold">Jenis Satuan</span></h5>
-        <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah outlet</p>
+        <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah satuan</p>
         </div>
         <div class="modal-body">
         <form role="form" id="formSatuan">

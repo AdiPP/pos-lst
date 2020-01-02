@@ -6,7 +6,7 @@ use Illuminate\Console\Command;
 use DB;
 use Session;
 
-class FlushSessions extends Command
+class flushSessions extends Command
 {
     /**
      * The name and signature of the console command.
@@ -39,6 +39,6 @@ class FlushSessions extends Command
      */
     public function handle()
     {
-        // 
+        DB::table('sessions')->truncate();
     }
 }

@@ -37,7 +37,7 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script src="{{ asset('js/app.js') }}"></script>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
 
     <link class="main-stylesheet" href="{{ asset('pages/css/themes/modern.css') }}" rel="stylesheet" type="text/css" />
     <style>
@@ -55,9 +55,9 @@
         padding-right: 0 !important;
         margin-right: 0 !important;
       }
-      .select2-container{
+      /* .select2-container{
         z-index:999999;
-      }
+      } */
       /* #jumlahprodukparent input:focus {
         outline: none;
       } */
@@ -87,7 +87,8 @@
         <div class="d-flex align-items-center">
           <!-- START User Info-->
           <div class="pull-left p-r-10 fs-14 font-heading hidden-md-down text-white">
-            <span class="semi-bold">{{ Helper::getUser(session('user')->id)->info->firstname }}</span> <span class="">{{ Helper::getUser(session('user')->id)->info->lastname }}</span>
+            <span class="semi-bold">{{ Helper::getName(session('user')->id) }}</span> 
+            {{-- <span class="">{{ Helper::getUser(session('user')->id)->info->lastname }}</span> --}}
           </div>
           <div class="dropdown pull-right">
             <button class="profile-dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,6 +127,10 @@
                 <li class="">
                   <a href="/admin/master"><span class="title">Master Data</span></a>
                 </li>
+              @elseif (session('user')->getTable() == 'user_pegawais')
+              <li>
+                <a href="/pos"><span class="title">POS</span></a>
+              </li>
               @else
                 <li class="
                     @if (config('global.active_nav') === 'dashboard')
@@ -230,7 +235,7 @@
           <div class="bg-white">
             <div class="container">
               <ol class="breadcrumb breadcrumb-alt">
-                <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+                {{-- <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li> --}}
               </ol>
             </div>
           </div>

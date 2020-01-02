@@ -36,8 +36,8 @@
                             <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Admin</label>
-                                    Adi Pepe
-                                    <input type="hidden" name="adminid" value=25>
+                                    {{ Helper::getAdmin(session('user')) }}
+                                    <input type="hidden" name="adminid" value={{ Helper::getAdminID(session('user')) }}>
                                 </div>
                             </div>
                         </div>
@@ -191,8 +191,7 @@
                                             <p class="text-black">Outlet</p>
                                         </td>
                                         <td class="">
-                                            <select class="full-width" data-init-plugin="select2" name="outlet" onchange="pilihOutlet()" id="outlet">
-                                                <option value="" selected disabled>Pilih Outlet</option>
+                                            <select class="full-width" data-init-plugin="select2" name="outlet" onchange="pilihOutlet()" id="outlet" required>
                                                 @foreach ($outlets as $outlet)
                                                     <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                                                 @endforeach
@@ -321,6 +320,7 @@
 
             keranjangTampil();
             reloadPelanggan();
+            reloadable();
 
             $('#formCoba').submit(function (e) {
                 e.preventDefault();  // prevent the form from 'submitting'
