@@ -7,6 +7,7 @@ use App\Wilayah;
 use App\User;
 use Carbon\Carbon;
 use App\UserPegawai;
+use App\Sale;
 
 class AppHelper
 {
@@ -15,6 +16,7 @@ class AppHelper
         date_default_timezone_set('Asia/Bangkok');
     }
 
+    # User Validation
     public static function userCheck() 
     {
         session([
@@ -35,6 +37,7 @@ class AppHelper
         }
     }
 
+    # Date Helper
     public static function tanggalToMysql($tanggal)
     {
         return date("Y-m-d", strtotime(str_replace('/', '-', $tanggal)));
@@ -55,108 +58,109 @@ class AppHelper
         return date('d M Y', strtotime($timestamp));
     }
 
-    public static function stokMasuk($produk, $outlet = 0)
-    {
-        if ($outlet == 0) {
-            $stokmasuk = $produk
-                        ->stokmasuks
-                        ->reduce(function($carry, $item){
-                        return $carry + $item->infos[0]->jumlah;
-                        });
-        } else {
-            $stokmasuk = $produk
-                        ->stokmasuks
-                        ->where('outlet_id', $outlet)
-                        ->reduce(function($carry, $item){
-                        return $carry + $item->infos[0]->jumlah;
-                        });
-        }
+    // public static function stokMasuk($produk, $outlet = 0)
+    // {
+    //     if ($outlet == 0) {
+    //         $stokmasuk = $produk
+    //                     ->stokmasuks
+    //                     ->reduce(function($carry, $item){
+    //                     return $carry + $item->infos[0]->jumlah;
+    //                     });
+    //     } else {
+    //         $stokmasuk = $produk
+    //                     ->stokmasuks
+    //                     ->where('outlet_id', $outlet)
+    //                     ->reduce(function($carry, $item){
+    //                     return $carry + $item->infos[0]->jumlah;
+    //                     });
+    //     }
 
-        if (is_null($stokmasuk)) {
-            $stokmasuk = 0;
-        }
+    //     if (is_null($stokmasuk)) {
+    //         $stokmasuk = 0;
+    //     }
 
-        return $stokmasuk;
-    }
+    //     return $stokmasuk;
+    // }
 
-    public static function stokKeluar($produk, $outlet = 0)
-    {
-        if ($outlet == 0) {
-            $stokkeluar = $produk
-                        ->stokkeluars
-                        ->reduce(function($carry, $item){
-                            return $carry + $item->infos[0]->jumlah;
-                        });   
-        } else {
-            $stokkeluar = $produk
-                        ->stokkeluars
-                        ->where('outlet_id', $outlet)
-                        ->reduce(function($carry, $item){
-                            return $carry + $item->infos[0]->jumlah;
-                        });
-        }
+    // public static function stokKeluar($produk, $outlet = 0)
+    // {
+    //     if ($outlet == 0) {
+    //         $stokkeluar = $produk
+    //                     ->stokkeluars
+    //                     ->reduce(function($carry, $item){
+    //                         return $carry + $item->infos[0]->jumlah;
+    //                     });   
+    //     } else {
+    //         $stokkeluar = $produk
+    //                     ->stokkeluars
+    //                     ->where('outlet_id', $outlet)
+    //                     ->reduce(function($carry, $item){
+    //                         return $carry + $item->infos[0]->jumlah;
+    //                     });
+    //     }
 
-        if (is_null($stokkeluar)) {
-            $stokkeluar = 0;
-        }
+    //     if (is_null($stokkeluar)) {
+    //         $stokkeluar = 0;
+    //     }
 
-        return $stokkeluar;
-    }
+    //     return $stokkeluar;
+    // }
 
-    public static function penjualan($produk, $outlet = 0)
-    {
-        $total = 0;
+    // public static function penjualan($produk, $outlet = 0)
+    // {
+    //     $total = 0;
 
-        if ($outlet == 0) {
-            foreach ($produk->sales as $sale) {
-                foreach ($sale->infos as $info) {
-                    if ($info->product_id == $produk->id) {
-                        $total = $total + $info->jumlah;
-                    }
-                }
-            }
-        } else {
-            foreach ($produk->sales as $sale) {
-                if ($sale->outlet_id == $outlet) {
-                    foreach ($sale->infos as $info) {
-                        if ($info->product_id == $produk->id) {
-                            $total = $total + $info->jumlah;
-                        }
-                    }
-                }
-            }
-        }
+    //     if ($outlet == 0) {
+    //         foreach ($produk->sales as $sale) {
+    //             foreach ($sale->infos as $info) {
+    //                 if ($info->product_id == $produk->id) {
+    //                     $total = $total + $info->jumlah;
+    //                 }
+    //             }
+    //         }
+    //     } else {
+    //         foreach ($produk->sales as $sale) {
+    //             if ($sale->outlet_id == $outlet) {
+    //                 foreach ($sale->infos as $info) {
+    //                     if ($info->product_id == $produk->id) {
+    //                         $total = $total + $info->jumlah;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
 
-        $penjualan = $total;
+    //     $penjualan = $total;
 
-        if (is_null($penjualan)) {
-            $penjualan = 0;
-        }
+    //     if (is_null($penjualan)) {
+    //         $penjualan = 0;
+    //     }
 
-        return $penjualan;
-    }
+    //     return $penjualan;
+    // }
 
-    public static function stokAkhir($produk, $outlet = 0)
-    {
-        if ($outlet == 0) {
-            $stokmasuk = Helper::stokMasuk($produk);
+    // public static function stokAkhir($produk, $outlet = 0)
+    // {
+    //     if ($outlet == 0) {
+    //         $stokmasuk = Helper::stokMasuk($produk);
 
-            $stokkeluar = Helper::stokKeluar($produk);
+    //         $stokkeluar = Helper::stokKeluar($produk);
 
-            $penjualan = Helper::penjualan($produk);
-        } else {
-            $stokmasuk = Helper::stokMasuk($produk, $outlet);
+    //         $penjualan = Helper::penjualan($produk);
+    //     } else {
+    //         $stokmasuk = Helper::stokMasuk($produk, $outlet);
 
-            $stokkeluar = Helper::stokKeluar($produk, $outlet);
+    //         $stokkeluar = Helper::stokKeluar($produk, $outlet);
 
-            $penjualan = Helper::penjualan($produk, $outlet);
-        }
+    //         $penjualan = Helper::penjualan($produk, $outlet);
+    //     }
 
-        $stokakhir = $stokmasuk - $stokkeluar - $penjualan;
+    //     $stokakhir = $stokmasuk - $stokkeluar - $penjualan;
 
-        return $stokakhir;
-    }
+    //     return $stokakhir;
+    // }
 
+    # Location Helper
     public static function getProvinsi($kode)
     {
         return Wilayah::where('KODE_WILAYAH', $kode)->first()->NAMA;
@@ -442,6 +446,14 @@ class AppHelper
         }
     }
 
+    # Grafik Helper
+    public static function getLaporanPenjualan()
+    {
+        $tanggal = date('Y-m-d');
+        return Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->groupBy('day')->get();
+    }
+
+    # User Helper
     public static function getAdmin($user)
     {
         if ($user->getTable() == 'user_pegawais') {

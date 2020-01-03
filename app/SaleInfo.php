@@ -10,4 +10,9 @@ class SaleInfo extends Model
     {
         return $this->belongsTo('App\Sale');
     }
+
+    public function produk()
+    {
+        return $this->belongsTo('App\Product', 'product_id');
+    }
 }

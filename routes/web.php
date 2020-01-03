@@ -32,6 +32,8 @@ Route::get('/logout', function () {
 });
 
 // dashboard
+Route::get('/dashboard/getgrafiktransaksi', 'HomeController@getGrafikTransaksi');
+Route::get('/dashboard/getgrafikpenjualan', 'HomeController@getGrafikPenjualan');
 Route::get('/dashboard', 'HomeController@index')->name('home');
 
 // modul super admin

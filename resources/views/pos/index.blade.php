@@ -1,6 +1,6 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
 {{-- Modal Bayar --}}
@@ -11,7 +11,7 @@
                 <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
                     <h5>Informasi <span class="semi-bold">Pembayaran</span></h5>
-                    <p>Berikut informasi mengenai Pembayaran Order #ABCD</p>
+                    <p>Berikut informasi mengenai Pembayaran</p>
                 </div>
                 <div class="modal-body">
                 <form action="#" id="formBayar">
@@ -155,7 +155,7 @@
                     <div class="card card-transparent">
                         <div style="display:flex; align-items:center;">
                             <div class="pull-left">
-                                {{-- <h5>{{ $title }}</h5> --}}
+                                <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
                                 <button data-target="#modalBayar" data-toggle="modal" class="btn btn-primary btn-cons">Bayar</button>
@@ -192,6 +192,7 @@
                                         </td>
                                         <td class="">
                                             <select class="full-width" data-init-plugin="select2" name="outlet" onchange="pilihOutlet()" id="outlet" required>
+                                                <option value="" selected disabled>Pilih Outlet</option>
                                                 @foreach ($outlets as $outlet)
                                                     <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                                                 @endforeach

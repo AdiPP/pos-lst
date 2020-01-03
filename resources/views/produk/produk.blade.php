@@ -180,46 +180,46 @@
                 </div>
                 <div class="card-block">
                     <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
-                    <thead>
-                      <tr>
-                        {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
-                            <button class="btn btn-link"><i class="pg-trash"></i></button>
-                        </th> --}}
-                        <th class="w-50">Nama Produk</th>
-                        <th>Kategori</th>
-                        <th class="text-right w-25">Harga</th>
-                        <th class="invisible" style="width: 1%;">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($produks as $produk)
-                            <tr>
-                              {{-- <td class="v-align-middle">
-                                  <div class="checkbox text-center">
-                                      <input type="checkbox" value="3" id="checkbox4">
-                                      <label for="checkbox4" class="no-padding no-margin"></label>
-                                  </div>
-                              </td> --}}
-                              <td class="v-align-middle semi-bold">
-                                  {{ $produk->product_name }}
-                              </td>
-                              <td class="v-align-middle">
-                                  {{ $produk->category->category_name }}
-                              </td>
-                              <td class="v-align-middle text-right semi-bold">
-                                  Rp. {{ number_format($produk->product_price, 0,',','.') }}
-                              </td>
-                              <td class="v-align-middle">
-                                <div class="d-flex justify-content-center">
-                                    <a href="/produk/{{ $produk->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
-                                    <button class="btn btn-xs btn-complete mx-1" data-target="#modalLihat{{ $produk->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
-                                    <button class="btn btn-xs btn-danger mx-1" data-target="#modalSlideUp{{ $produk->id }}" data-toggle="modal" id=""><i class="fa fa-trash-o"></i></button>
-                                </div>
-                              </td>
-                            </tr>
-                        @endforeach
-                    </tbody>
-                  </table>
+                        <thead>
+                        <tr>
+                            {{-- <th style="width:1%" class="text-center sorting_disabled" rowspan="1" colspan="1" aria-label="">
+                                <button class="btn btn-link"><i class="pg-trash"></i></button>
+                            </th> --}}
+                            <th class="w-50">Nama Produk</th>
+                            <th>Kategori</th>
+                            <th class="text-right w-25">Harga</th>
+                            <th class="invisible" style="width: 1%;">Aksi</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($produks as $produk)
+                                <tr>
+                                {{-- <td class="v-align-middle">
+                                    <div class="checkbox text-center">
+                                        <input type="checkbox" value="3" id="checkbox4">
+                                        <label for="checkbox4" class="no-padding no-margin"></label>
+                                    </div>
+                                </td> --}}
+                                <td class="v-align-middle semi-bold">
+                                    {{ $produk->product_name }}
+                                </td>
+                                <td class="v-align-middle">
+                                    {{ $produk->category->category_name }}
+                                </td>
+                                <td class="v-align-middle text-right semi-bold">
+                                    Rp. {{ number_format($produk->product_price, 0,',','.') }}
+                                </td>
+                                <td class="v-align-middle">
+                                    <div class="d-flex justify-content-center">
+                                        <a href="/produk/{{ $produk->id }}/edit" class="btn btn-xs btn-success mx-1"><i class="fa fa-pencil"></i></a>
+                                        <button class="btn btn-xs btn-complete mx-1" data-target="#modalLihat{{ $produk->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
+                                        <button class="btn btn-xs btn-danger mx-1" data-target="#modalSlideUp{{ $produk->id }}" data-toggle="modal" id=""><i class="fa fa-trash-o"></i></button>
+                                    </div>
+                                </td>
+                                </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
             <!-- END card -->

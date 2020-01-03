@@ -35,6 +35,7 @@ class PosController extends Controller
         }
 
         return view('pos.index', [
+            'title' => 'POS',
             'produks' => $produk,
             'pelanggans' => $pelanggan,
             'outlets' => $outlet
