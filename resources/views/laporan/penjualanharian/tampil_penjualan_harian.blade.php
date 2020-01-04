@@ -7,10 +7,10 @@
         {{ $sale->jumlahTransaksi }}
     </td>
     <td class="v-align-middle text-right">
-        Rp {{ $sale->penjualan }}
+        {{ Helper::numberToRupiah($sale->penjualan) }}
     </td>
     <td class="v-align-middle text-right">
-        Rp {{ $sale->penjualan / $sale->jumlahTransaksi }}
+        {{ Helper::numberToRupiah($sale->penjualan / $sale->jumlahTransaksi) }}
     </td>
 </tr>    
 @endforeach

@@ -68,10 +68,10 @@
                     <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                     <thead>
                       <tr>
-                        <th class="v-align-middle w-25">Produk</th>
-                        <th class="v-align-middle">Kategori</th>
-                        <th class="v-align-middle text-right">Stok</th>
-                        <th class="v-align-middle">Laporan</th>                                                                                                                                                                                                                                                                                     </th>
+                        <th class="v-align-middle w-50">Produk</th>
+                        <th class="v-align-middle w-25">Kategori</th>
+                        <th class="v-align-middle text-right w-25">Stok</th>
+                        <th class="v-align-middle" style="width: 1%">Unt.</th>                                                                                                                                                                                                                                                                                     </th>
                       </tr>
                     </thead>
                     <tbody id="tampilLaporan"></tbody>

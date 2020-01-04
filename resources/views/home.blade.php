@@ -1,5 +1,7 @@
 @extends('layouts.casual')
 
+@section('title', $title)
+
 @section('content')
 <div class="container sm-padding-10 p-t-20 p-l-0 p-r-0">
     <!-- START ROW -->
@@ -28,9 +30,9 @@
             <div class="row-xs-height">
                 <div class="col-xs-height col-top">
                 <div class="p-l-20 p-t-50 p-b-40 p-r-20">
-                    <h3 class="no-margin p-b-5">Rp {{ $penjualan }}</h3>
+                    <h3 class="no-margin p-b-5">{{ Helper::numberToRupiah($penjualan) }}</h3>
                     <span class="small hint-text pull-left">Penjualan Kemarin</span>
-                    <span class="pull-right small text-primary">Rp {{ $penjualanKemarin }}</span>
+                    <span class="pull-right small text-primary">{{ Helper::numberToRupiah($penjualanKemarin) }}</span>
                 </div>
                 </div>
             </div>
@@ -237,18 +239,14 @@ $(document).ready(function(){
 
                 // Configuration options go here
                 options: {
-                    // bezierCurve: false,
                     scales: {
                         yAxes: [{
                             ticks: {
                                 beginAtZero: true,
-                                userCallback: function(label, index, labels) {
-                                    // when the floored value is the same as the value we have a whole number
-                                    if (Math.floor(label) === label) {
-                                        return label;
-                                    }
-
-                                },
+                                // Include a dollar sign in the ticks
+                                callback: function(value, index, values) {
+                                    return 'Rp. ' + value.toLocaleString(['ban', 'id']);
+                                }
                             }
                         }],
                     },

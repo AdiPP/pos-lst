@@ -91,7 +91,7 @@
                                 @if (is_null($produk->product_price))
                                     <p><cite>Belum diisi.</cite></p>
                                 @else
-                                    <p>Rp. <span>{{ number_format($produk->product_price, 0,',','.') }}</span></p>
+                                    <p>{{ Helper::numberToRupiah($produk->product_price) }}</p>
                                 @endif
                             </div>
                             </div>
@@ -207,7 +207,7 @@
                                     {{ $produk->category->category_name }}
                                 </td>
                                 <td class="v-align-middle text-right semi-bold">
-                                    Rp. {{ number_format($produk->product_price, 0,',','.') }}
+                                    Rp. {{ number_format($produk->product_price, 2,',','.') }}
                                 </td>
                                 <td class="v-align-middle">
                                     <div class="d-flex justify-content-center">

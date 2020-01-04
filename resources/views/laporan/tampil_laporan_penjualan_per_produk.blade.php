@@ -6,6 +6,9 @@
         <td class="v-align-middle">
             {{ $produk->category->category_name }}
         </td>
+        <td class="v-align-middle">
+            {{ Helper::numberToRupiah($produk->product_price) }}
+        </td>
         <td class="v-align-middle text-right">
             {{ $penjualan = Helper::getPenjualanAll($produk, $outlet, $tanggal) }}
         </td>
@@ -13,7 +16,7 @@
             {{ $produk->unit->singkatan }}
         </td>
         <td class="v-align-middle text-right">
-            Rp {{ $penjualan * $produk->product_price }}
+            {{ Helper::numberToRupiah($penjualan * $produk->product_price)  }}
         </td>
     </tr>
 @endforeach

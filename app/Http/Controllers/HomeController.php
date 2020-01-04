@@ -41,9 +41,7 @@ class HomeController extends Controller
 
         $saleAll = Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->groupBy('day')->get();
 
-        $penjualanHariIni = $sale->reduce(function ($carry, $item) {
-            return $carry + $item->total;
-        });
+        $penjualanHariIni = Helper::getPenjualanHariIni();
 
         if (($penjualanKemarin = $saleKemarin->reduce(function ($carry, $item) {
             return $carry + $item->total;
@@ -56,11 +54,6 @@ class HomeController extends Controller
         if (($transaksiKemarin = $saleKemarin->count()) == null) {
             $transaksiKemarin = 0;
         }
-
-        // $produk = SaleInfo::select('product_id', \DB::Raw('SUM(jumlah) as penjualan'))
-        //     ->join('sales', 'sale_infos.sale_id', '=', 'sales.id')
-        //     // ->select('sales.id')
-        //     ->groupBy('product_id')->orderBy('penjualan', 'DESC')->get();
 
         $produk = SaleInfo::whereHas('sale', function ($query) {
                 $query->where('user_id', session('user')->id);
@@ -79,20 +72,10 @@ class HomeController extends Controller
             ->select('product_categories.category_name', DB::raw('SUM(sale_infos.jumlah) as penjualan'))
             ->groupBy('product_categories.category_name')
             ->orderBy('penjualan')
-            ->get();
-
-        // dd($kategori);
-
-        // $kategori = DB::table('product_categories')
-        //     ->join()
-
-        // dd($kategori);
-
-        // $kategori = SaleInfo::all();
-
-        // dd($kategori);   
+            ->get();  
         
         return view('home', [
+            'title' => 'Dashborad',
             'penjualan' => $penjualanHariIni,
             'transaksi' => $transaksiHariIni,
             'penjualanKemarin' => $penjualanKemarin,
@@ -121,7 +104,7 @@ class HomeController extends Controller
         $saleAllArr['totalPenjualan'] = [];
 
         foreach ($saleAll as $sale) {
-            array_push($saleAllArr["tanggal"], $sale->day);
+            array_push($saleAllArr["tanggal"], Helper::mysqlToTanggal($sale->day));
             array_push($saleAllArr["totalPenjualan"], $sale->penjualan);
         }
 
@@ -138,7 +121,7 @@ class HomeController extends Controller
         $saleAllArr['totalTransaksi'] = [];
 
         foreach ($saleAll as $sale) {
-            array_push($saleAllArr["tanggal"], $sale->day);
+            array_push($saleAllArr["tanggal"], Helper::mysqlToTanggal($sale->day));
             array_push($saleAllArr["totalTransaksi"], $sale->jumlahTransaksi);
         }
 

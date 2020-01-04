@@ -70,9 +70,10 @@
                       <tr>
                         <th class="v-align-middle w-25">Nama Produk</th>
                         <th class="v-align-middle">Kategori</th>
+                        <th class="v-align-middle">Harga</th>
                         <th class="v-align-middle text-right">Terjual</th>
                         <th class="v-align-middle" style="width: 1%">Unt.</th>
-                        <th class="v-align-middle text-right">Total</th>
+                        <th class="v-align-middle text-right w-25">Total</th>
                       </tr>
                     </thead>
                     <tbody id="tampilLaporan"></tbody>

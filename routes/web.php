@@ -102,6 +102,9 @@ Route::resource('/inventori/stokopname', 'StokOpnameController');
 // modul supplier
 Route::resource('/supplier', 'SupplierController');
 
+// modul purchase order
+Route::resource('/purchaseorder', 'PurchaseOrderController');
+
 // modul laporan
 //  stok
 Route::get('/laporan/stok/tampil', 'LaporanController@stokTampil');

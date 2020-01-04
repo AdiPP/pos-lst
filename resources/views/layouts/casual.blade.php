@@ -182,7 +182,7 @@
                         <a href="/supplier">Supplier</a>
                         </li>
                         <li class="">
-                        <a href="">Purchase Order</a>
+                        <a href="/purchaseorder">Purchase Order</a>
                         </li>
                     </ul>
                     </li>
