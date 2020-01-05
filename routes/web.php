@@ -103,6 +103,10 @@ Route::resource('/inventori/stokopname', 'StokOpnameController');
 Route::resource('/supplier', 'SupplierController');
 
 // modul purchase order
+Route::get('/purchaseorder/pembatalan/{id}', 'PurchaseOrderController@pembatalanPo');
+Route::post('/purchaseorder/penerimaan/proses', 'PurchaseOrderController@penerimaanPoProses');
+Route::get('/purchaseorder/penerimaan/{id}', 'PurchaseOrderController@penerimaanPo');
+Route::get('/purchaseorder/tambahproduk', 'PurchaseOrderController@tambahProduk');
 Route::resource('/purchaseorder', 'PurchaseOrderController');
 
 // modul laporan

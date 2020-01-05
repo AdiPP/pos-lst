@@ -3,68 +3,88 @@
 @section('title', $title)
 
 @section('content')
-{{-- @foreach ($models as $model)
-    <div class="modal fade slide-up disable-scroll" id="modalView{{ $model->id }}" tabindex="-1" role="dialog" aria-hidden="false">
+@foreach ($purchaseOrders as $po)
+    <div class="modal fade slide-up disable-scroll" id="modalView{{ $po->id }}" tabindex="-1" role="dialog" aria-hidden="false">
         <div class="modal-dialog modal-lg">
             <div class="modal-content-wrapper">
-                    <div class="modal-content">
+                <div class="modal-content">
                     <div class="modal-header clearfix text-left">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                    </button>
-                    <h5>Informasi <span class="semi-bold">Stok Masuk</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Stok Masuk <strong>#SM{{ $model->id }}</strong></p>
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                        </button>
+                        <h5>Informasi <span class="semi-bold">Purchase Order</span></h5>
+                        <p class="p-b-10">Berikut informasi mengenai Purchase Order <strong>#PO{{ $po->id }}</strong></p>
                     </div>
                     <div class="modal-body">
                         @csrf
                         <div class="form-group-attached">
                             <div class="row">
                                 <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Outlet</label>
-                                    <input type="text" class="form-control" value="{{ $model->outlet->outlet_name }}" readonly>
-                                </div>
+                                    <div class="form-group form-group-default">
+                                        <label>No. PO</label>
+                                        <input type="text" class="form-control" value="{{ $po->nomor }}" readonly>
+                                    </div>
                                 </div>
                                 <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Tanggal</label>
-                                    <input type="text" class="form-control" name="kota" value="{{ Helper::mysqlToTanggal($model->tanggal) }}" readonly>
+                                    <div class="form-group form-group-default">
+                                        <label>Outlet</label>
+                                        <input type="text" class="form-control" value="{{ $po->outlet->outlet_name }}" readonly>
+                                    </div>
                                 </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Supplier</label>
+                                        <input type="text" class="form-control" value="{{ $po->supplier->nama }}" readonly>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group form-group-default">
+                                        <label>Tanggal</label>
+                                        <input type="text" class="form-control" name="kota" value="{{ Helper::mysqlToTanggal($po->tanggal) }}" readonly>
+                                    </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                <div class="form-group form-group-default">
-                                    <label>Catatan</label>
-                                    <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" readonly>{{ $model->description }}</textarea>
-                                </div>
+                                    <div class="form-group form-group-default">
+                                        <label>Catatan</label>
+                                        <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" readonly>{{ $po->catatan }}</textarea>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <table class="table table-hover demo-table-search table-responsive-block">
                             <thead>
                                 <tr>
-                                    <th class="">Nama Produk</th>
-                                    <th class="text-right">Jumlah</th>
-                                    <th class="text-right">Harga Beli / Unit</th>
-                                    <th class="text-right">Total</th>
+                                    <th class="w-25">Nama Produk</th>
+                                    <th class="text-right" style="width: 1%">Jumlah Pesanan</th>
+                                    @if ($po->status == "Diterima")
+                                    <th class="text-right" style="width: 1%">Jumlah Diterima</th>
+                                    @endif
+                                    <th class="text-right w-25">Harga Beli / Unit</th>
+                                    <th class="text-right w-25">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($model->infos as $produk)
-                                    <tr>
-                                        <td class="v-align-middle">
-                                            {{ $produk->produk->product_name }}
-                                        </td>
-                                        <td class="v-align-middle text-right">
-                                            Rp {{ $produk->jumlah }}
-                                        </td>
-                                        <td class="v-align-middle text-right">
-                                            Rp {{ $produk->harga_beli_per_unit }}
-                                        </td>
-                                        <td class="v-align-middle text-right">
-                                            Rp {{ $produk->total_harga_beli }}
-                                        </td>
-                                    </tr>
+                                @foreach ($po->infos as $info)
+                                <tr>
+                                    <td class="v-align-middle">
+                                        {{ $info->produk->product_name }}
+                                    </td>
+                                    <td class="v-align-middle text-right">
+                                        {{ $info->jumlah }}
+                                    </td>
+                                    @if ($po->status == "Diterima")
+                                    <td class="v-align-middle text-right">
+                                        {{ $info->jumlah_diterima }}
+                                    </td>
+                                    @endif
+                                    <td class="v-align-middle text-right">
+                                        {{ Helper::numberToRupiah($info->harga_beli_per_unit) }}
+                                    </td>
+                                    <td class="v-align-middle text-right">
+                                        {{ Helper::numberToRupiah($info->total_harga_beli) }}
+                                    </td>
+                                </tr>
                                 @endforeach
                             </tbody>
                         </table>
@@ -72,7 +92,7 @@
                             <div class="col-md-8">
                             </div>
                             <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
+                                <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
                             </div>
                         </div>
                     </div>
@@ -82,33 +102,7 @@
         </div>
         <!-- /.modal-dialog -->
     </div>
-    <div class="modal fade slide-up disable-scroll" id="modalHapus{{ $model->id }}" tabindex="-1" role="dialog" aria-hidden="false">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content-wrapper">
-                <div class="modal-content">
-                <div class="modal-header clearfix text-left">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                    </button>
-                    <h5>Perhatian</h5>
-                </div>
-                <div class="modal-body">
-                    <p class="no-margin">Apakah anda yakin ingin menghapus Stok Masuk <span class="bold">#SM{{ $model->id }}</span> dari sistem?</p>
-                </div>
-                <div class="modal-footer">
-                    <form action="/inventori/stokmasuk/{{ $model->id }}" method="POST">
-                        @csrf
-                        <input name="_method" type="hidden" value="DELETE">
-                        <button type="submit" class="btn btn-primary btn-cons  pull-left inline">Iya</button>
-                    </form>
-                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Tidak</button>
-                </div>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-@endforeach --}}
+@endforeach
 
 <!-- START JUMBOTRON -->
 <div class="jumbotron">
@@ -124,7 +118,7 @@
                                 <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
-                                <a href="/inventori/stokmasuk/create" class="btn btn-primary btn-cons">Tambah Stok Masuk</a>
+                                <a href="/purchaseorder/create" class="btn btn-primary btn-cons">Tambah Purchase Order</a>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -171,46 +165,34 @@
                       </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td class="v-align-middle">
-                                #PO1
-                            </td>
-                            <td class="v-align-middle">
-                                LST
-                            </td>
-                            <td class="v-align-middle">
-                                123456
-                            </td>
-                            <td class="v-align-middle">
-                                22-03-1998
-                            </td>
-                            <td class="v-align-middle">
-                                Dipesan
-                            </td>
-                            <td class="v-align-middle">
-                                <div class="d-flex justify-content-center">
-                                    <button class="btn btn-xs btn-complete mx-1" data-target="#modalView" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
-                                </div>
-                            </td>
-                        </tr>
-                        {{-- @foreach ($models as $model)
+                        @foreach ($purchaseOrders as $po)
                             <tr>
                                 <td class="v-align-middle">
-                                    #SM{{ $model->id }}
+                                    #PO{{ $po->id }}
                                 </td>
                                 <td class="v-align-middle">
-                                    {{ $model->outlet->outlet_name }}
+                                    {{ $po->supplier->nama }}
                                 </td>
                                 <td class="v-align-middle">
-                                    {{ Helper::mysqlToTanggal($model->tanggal) }}
+                                    {{ $po->nomor }}
+                                </td>
+                                <td class="v-align-middle">
+                                    {{ Helper::mysqlToTanggal($po->tanggal) }}
+                                </td>
+                                <td class="v-align-middle">
+                                    {{ $po->status }}
                                 </td>
                                 <td class="v-align-middle">
                                     <div class="d-flex justify-content-center">
-                                        <button class="btn btn-xs btn-complete mx-1" data-target="#modalView{{  $model->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
+                                        <button class="btn btn-xs btn-complete mx-1" data-target="#modalView{{ $po->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
+                                        @if ($po->status == "Dipesan")
+                                            <a title="Penerimaan" href="/purchaseorder/penerimaan/{{ $po->id }}" class="btn btn-xs btn-primary mx-1" alt="ttest"><i class="fa fa-check"></i></a>
+                                            <a title="Pembatalan" href="/purchaseorder/pembatalan/{{ $po->id }}" class="btn btn-xs btn-danger mx-1" alt="ttest"><i class="fa fa-close"></i></a>
+                                        @endif
                                     </div>
                                 </td>
                             </tr>
-                        @endforeach --}}
+                        @endforeach
                     </tbody>
                   </table>
                 </div>

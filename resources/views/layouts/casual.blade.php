@@ -55,6 +55,14 @@
         padding-right: 0 !important;
         margin-right: 0 !important;
       }
+      .required-symbol::after {
+        color: #f94816;
+        content: "*";
+        font-family: arial;
+        font-size: 20px;
+        position: absolute;
+        margin-left: 5px;
+      }
       /* .select2-container{
         z-index:999999;
       } */
