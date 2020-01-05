@@ -22,6 +22,9 @@ class PurchaseOrderController extends Controller
 
     public function __construct()
     {
+        \App\Helpers\AppHelper::userCheck();   
+        \Config::set('global.active_nav', 'inventori');
+
         $this->outlet = Outlet::where('user_id', session('user')->id)->get();
         $this->supplier = Supplier::where('user_id', session('user')->id)->get();
         $this->produk = Product::where('user_id', session('user')->id)->get();

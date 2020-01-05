@@ -8,13 +8,14 @@ use App\Product as Produk;
 use App\Sale;
 use App\Outlet;
 Use Carbon\Carbon;
+Use Config;
 
 class InventoriController extends Controller
 {
     public function __construct()
     {
         \App\Helpers\AppHelper::userCheck();   
-        // Config::set('global.active_nav', 'produk');
+        Config::set('global.active_nav', 'inventori');
     }
     /**
      * Display a listing of the resource.

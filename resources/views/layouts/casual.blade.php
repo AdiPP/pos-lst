@@ -167,7 +167,9 @@
                         </li>
                     </ul>
                     </li>
-                    <li class="">
+                    <li class="@if (config('global.active_nav') === 'inventori')
+                        {{ 'active' }}
+                    @endif">
                     <a href="javascript:;"><span class="title">Inventori</span>
                     <span class=" arrow"></span></a>
                     <ul class="">
@@ -212,7 +214,9 @@
                         </li>
                     </ul>
                     </li>
-                    <li class="">
+                    <li class="@if (config('global.active_nav') === 'pengaturan')
+                        {{ 'active' }}
+                    @endif">
                     <a href="javascript:;"><span class="title">Pengaturan</span>
                     <span class=" arrow"></span></a>
                     <ul class="">
@@ -224,7 +228,9 @@
                         </li>
                     </ul>
                     </li>
-                    <li>
+                    <li class="@if (config('global.active_nav') === 'pos')
+                        {{ 'active' }}
+                    @endif">
                     <a href="/pos"><span class="title">POS</span></a>
                     </li>
               @endif

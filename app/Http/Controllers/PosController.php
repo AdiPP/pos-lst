@@ -16,6 +16,7 @@ class PosController extends Controller
     public function __construct()
     {
         \App\Helpers\AppHelper::userCheck();
+        \Config::set('global.active_nav', 'pos');
     }
     /**
      * Display a listing of the resource.

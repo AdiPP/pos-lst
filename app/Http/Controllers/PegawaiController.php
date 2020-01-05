@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class PegawaiController extends Controller
 {
+    public function __construct()
+    {
+        \App\Helpers\AppHelper::userCheck();   
+        \Config::set('global.active_nav', 'bisnis');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -21,8 +26,9 @@ class PegawaiController extends Controller
         $outlet = User::find(session('user')->id)->outlets;
 
         return view('pegawai.index', [
+            'title' => 'Pegawai',
             'pegawais' => $pegawai,
-            'outlets' => $outlet
+            'outlets' => $outlet,
         ]);
     }
 

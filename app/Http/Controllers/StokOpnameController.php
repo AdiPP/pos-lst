@@ -12,6 +12,11 @@ use Helper;
 
 class StokOpnameController extends Controller
 {
+    public function __construct()
+    {
+        \App\Helpers\AppHelper::userCheck();   
+        \Config::set('global.active_nav', 'inventori');
+    }
     /**
      * Display a listing of the resource.
      *

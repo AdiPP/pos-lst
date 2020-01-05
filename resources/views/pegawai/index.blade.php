@@ -1,6 +1,6 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
 <!-- Modal -->
@@ -263,7 +263,7 @@
                     <div class="card card-transparent">
                         <div style="display:flex; align-items:center;">
                             <div class="pull-left">
-                                {{-- <h5>{{ $title }}</h5> --}}
+                                <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
                                 <button data-target="#modalTambah" data-toggle="modal" class="btn btn-primary btn-cons">Tambah Pegawai</button>

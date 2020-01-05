@@ -87,7 +87,7 @@
                     <div class="card card-transparent">
                         <div style="display:flex; align-items:center;">
                             <div class="pull-left">
-                                {{-- <h5>{{ $title }}</h5> --}}
+                                <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
                                 <a href="/inventori/stokkeluar/create" class="btn btn-primary btn-cons">Tambah Stok Keluar</a>

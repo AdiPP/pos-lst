@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Hash;
 
 class PengaturanController extends Controller
 {
+    public function __construct()
+    {
+        \App\Helpers\AppHelper::userCheck();   
+        \Config::set('global.active_nav', 'pengaturan');
+    }
     /**
      * Display a listing of the resource.
      *

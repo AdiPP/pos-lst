@@ -9,10 +9,10 @@ use Helper;
 
 class PelangganController extends Controller
 {
-    public function __cosntruct()
+    public function __construct()
     {
-        \App\Helpers\AppHelper::userCheck();
-        Config::set('global.active_nav', 'bisnis');
+        \App\Helpers\AppHelper::userCheck();   
+        \Config::set('global.active_nav', 'bisnis');
     }
     /**
      * Display a listing of the resource.

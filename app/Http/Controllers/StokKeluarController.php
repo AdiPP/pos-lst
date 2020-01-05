@@ -10,6 +10,11 @@ use App\StockOutInfo;
 
 class StokKeluarController extends Controller
 {
+    public function __construct()
+    {
+        \App\Helpers\AppHelper::userCheck();   
+        \Config::set('global.active_nav', 'inventori');
+    }
     /**
      * Display a listing of the resource.
      *
