@@ -10,10 +10,14 @@ use Illuminate\Support\Facades\Hash;
 
 class PengaturanController extends Controller
 {
+    private $user;
+
     public function __construct()
     {
         \App\Helpers\AppHelper::userCheck();   
         \Config::set('global.active_nav', 'pengaturan');
+
+        $this->user = User::find(session('user')->id);
     }
     /**
      * Display a listing of the resource.
@@ -24,7 +28,10 @@ class PengaturanController extends Controller
     {
         $user = User::find(session('user')->id);
 
-        return view('pengaturan.index', ['title' => 'Akun', 'user' => $user]);
+        return view('pengaturan.index', [
+            'title' => 'Akun',
+            'user' => $user
+        ]);
     }
 
     /**
@@ -163,5 +170,22 @@ class PengaturanController extends Controller
                 return redirect('/pengaturan')->with('success', 'Password berhasil diubah.');
             }
         } else return redirect('/pengaturan')->with('status', 'Password lama tidak sesuai.');
+    }
+
+    public function pengaturanHarga()
+    {
+        return view('pengaturan.harga', [
+            'title' => 'Harga',
+            'user' => $this->user,
+        ]);
+    }
+
+    public function perbaruiHarga(Request $request)
+    {
+        $user = $this->user;
+        $user->info->harga_pelanggan = $request->hargaPelanggan;
+        $user->info->save();
+
+        return redirect('/pengaturan/harga');
     }
 }

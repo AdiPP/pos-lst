@@ -4,7 +4,7 @@
 
 @section('content')
 {{-- Modal Bayar --}}
-<div class="modal fade slide-up disable-scroll" id="modalBayar" tabindex="-1" role="dialog" aria-hidden="false">
+{{-- <div class="modal fade slide-up disable-scroll" id="modalBayar" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content-wrapper">
             <div class="modal-content">
@@ -45,7 +45,7 @@
                             <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Total</label>
-                                    Rp <span id="totalpembayaran">0</span>
+                                    <span id="totalpembayaran">0</span>
                                     <input type="hidden" value="0" name="total" id="totalpembayaraninput">
                                 </div>
                             </div>
@@ -59,7 +59,6 @@
                     </div>
                     <div class="row">
                         <div class="col-md-6 m-t-10 sm-m-t-10">
-                            {{-- <button type="submit" class="btn btn-primary btn-block m-t-5" data-target="#modalBayar2" data-toggle="modal" data-dismiss="modal">Bayar</button> --}}
                             <button type="submit" class="btn btn-primary btn-block m-t-5">Bayar</button>
                         </div>
                         <div class="col-md-6 m-t-10 sm-m-t-10">
@@ -73,9 +72,9 @@
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-</div>
+</div> --}}
 {{-- Modal Sukses Transaksi --}}
-<div class="modal fade slide-up disable-scroll" id="modalSukses" tabindex="-1" role="dialog" aria-hidden="false">
+{{-- <div class="modal fade slide-up disable-scroll" id="modalSukses" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog modal-sm">
         <div class="modal-content-wrapper">
             <div class="modal-content">
@@ -91,7 +90,7 @@
         <!-- /.modal-content -->
     </div>
     <!-- /.modal-dialog -->
-</div>
+</div> --}}
 {{-- Modal Tambah Pelanggan --}}
 <div class="modal fade slide-up disable-scroll" id="modalTambahPelanggan" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog modal-lg">
@@ -132,7 +131,7 @@
                         <div class="col-md-8">
                         </div>
                         <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="submit" class="btn btn-primary btn-block m-t-5">Simpan</button>
+                            <button type="button" onclick="tambahPelanggan()" class="btn btn-primary btn-block m-t-5">Simpan</button>
                         </div>
                     </div>
                 </form>
@@ -158,7 +157,7 @@
                                 <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
-                                <button data-target="#modalBayar" data-toggle="modal" class="btn btn-primary btn-cons">Bayar</button>
+                                <button type="button" onclick="bayar()" class="btn btn-primary btn-cons">Bayar</button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -176,58 +175,53 @@
         <div class="col-lg-5 m-b-10 d-flex flex-column">
             <!-- START card -->
             <div class="card card-default">
-                {{-- <div class="card-header">
+                <div class="card-header">
                     <div class="card-title">
-                        Total
-                    </div>
-                </div> --}}
-                <div class="card-block">
-                    <div class="row">
-                        <div class="table-responsive table-invoice">
-                            <table class="table">
-                                <tbody>
-                                    <tr>
-                                        <td class="">
-                                            <p class="text-black">Outlet</p>
-                                        </td>
-                                        <td class="">
-                                            <select class="full-width" data-init-plugin="select2" name="outlet" onchange="pilihOutlet()" id="outlet" required>
-                                                <option value="" selected disabled>Pilih Outlet</option>
-                                                @foreach ($outlets as $outlet)
-                                                    <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
-                                                @endforeach
-                                            </select>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="">
-                                            <p class="text-black">Pelanggan</p>
-                                        </td>
-                                        <td class="w-75">
-                                            <div class="row">
-                                                <div class="col-lg-10">
-                                                    <div id="pilihpelanggan">
-                                                    </div>
-                                                </div>
-                                                <div class="col-lg-2">
-                                                    <button data-target="#modalTambahPelanggan" data-toggle="modal" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td class="">
-                                            <p class="text-black">Total</p>
-                                        </td>
-                                        <td class="">
-                                            Rp <span id="totalbelanja">0</span>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
+                        Informasi Transaksi
                     </div>
                 </div>
+                <form action="/pos/bayar" method="POST" id="formBayar">
+                    @csrf
+                    <div class="card-block">
+                        <div class="row">
+                            <div class="table-responsive table-invoice">
+                                <table class="table">
+                                    <tbody>
+                                        <tr>
+                                            <td class="">
+                                                <p class="text-black">Outlet</p>
+                                            </td>
+                                            <td class="">
+                                                <select class="full-width" data-init-plugin="select2" name="outlet" id="outlet" onchange="pilihOutlet()" required>
+                                                    <option value="" selected disabled>Pilih Outlet</option>
+                                                    @foreach ($outlets as $outlet)
+                                                        <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
+                                                    @endforeach
+                                                </select>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="">
+                                                <p class="text-black">Pelanggan</p>
+                                            </td>
+                                            <td class="w-75">
+                                                <div class="row">
+                                                    <div class="col-lg-10">
+                                                        <div id="pilihpelanggan">
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-2">
+                                                        <button data-target="#modalTambahPelanggan" data-toggle="modal" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </form>
             </div>
             <!-- END card -->
         </div>
@@ -245,14 +239,14 @@
                             <div class="form-group">
                                 <label>Cari Produk</label>
                                 <span class="help"></span>
-                                <select onchange="cariproduk()" class="full-width" data-init-plugin="select2" id="cariproduktampil">
+                                <select onchange="cariproduk()" class="full-width" data-init-plugin="select2" id="cariproduktampil" disabled>
                                     <option selected disabled>Pilih Produk</option>
                                     @foreach ($produks as $produk)
                                         <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
                                     @endforeach
                                 </select>
                             </div>
-                            <form action="#" id="formCoba">
+                            <form action="#" id="formProduk">
                                 @csrf
                                 <table class="table table-hover demo-table-search table-responsive-block">
                                     <thead>
@@ -285,22 +279,26 @@
             <div class="card card-default">
                 <div class="card-header">
                     <div class="card-title">
-                        Penjualan
+                        Daftar Barang
                     </div>
                 </div>
                 <div class="card-block">
                     <table class="table table-hover demo-table-search table-responsive-block">
                         <thead>
                             <tr>
-                                <th class="w-50">Nama Produk</th>
-                                <th class="text-right">Harga</th>
+                                <th class="w-25">Nama Produk</th>
+                                <th class="text-right w-25">Harga</th>
                                 <th class="text-right">Jumlah</th>
-                                <th class="text-right">Total</th>
+                                <th class="text-right w-50">Total</th>
                                 <th class="invisible" style="width: 1%;"></th>
                             </tr>
                         </thead>
-                        <tbody id="keranjangTampil"></tbody>
+                        <tbody id="keranjangTampil">
+                        </tbody>
+                        <tfoot id="keranjangFooter">
+                        </tfoot>
                   </table>
+                  <br>
                 </div>
             </div>
             <!-- END card -->
@@ -310,7 +308,154 @@
 @endsection
 
 @section('inpagejs')
-    <script type="text/javascript">
+<script>
+    $(document).ready(function(){
+        ajax();
+        getPelanggan();
+        getKeranjang();
+    })
+
+    // Outlet
+    function pilihOutlet(){
+        document.getElementById('cariproduktampil').disabled = false;
+    }
+
+    function getPelanggan(){
+        $.ajax({
+            url: '/pos/pelanggan/reload',
+            type: 'GET',
+            success: function(response)
+            {
+                $('#pilihpelanggan').html(response);
+            }
+        })
+    }
+
+    // Pelanggan
+    function tambahPelanggan(){
+        ajax();
+
+        var input = $('#formTambahPelanggan').serialize();
+        
+        $('#modalTambahPelanggan').modal('hide');
+        dismissModal();
+
+        $.ajax({
+            url: 'pos/pelanggan/tambah',
+            type: 'POST',
+            data: input,
+            success: function(response)
+            {
+                resetForm('formTambahPelanggan');
+                getPelanggan();
+            }
+        });
+
+    }
+
+    // Produk
+    function cariproduk() {
+        var e = document.getElementById("cariproduktampil");
+        var idProduk = e.options[e.selectedIndex].value;
+        
+        $.ajax({
+            url: '/pos/infoproduk',
+            type: 'GET',
+            data: { id: idProduk },
+            success: function(response)
+            {
+                $('#infoproduk').html(response);
+            }
+        });
+    }
+
+    function tambahProdukForm(){
+        ajax();
+
+        var input = $('#formProduk').serialize();
+
+        $.ajax({
+            url: 'pos/keranjang',
+            type: 'POST',
+            data: input,
+            success: function(response)
+            {
+                getKeranjang();
+            }
+        });
+    }
+
+    function kurangiProduk(cart) {
+            $.ajax({
+                url: '/pos/keranjang/kurang',
+                type: 'GET',
+                data: { id: cart },
+                success: function(response)
+                {
+                    getKeranjang();
+                },
+                error: function()
+                {
+                    console.log('💩');
+                }
+            });
+        }
+
+    function tambahProduk(cart) {
+        $.ajax({
+            url: '/pos/keranjang/tambah',
+            type: 'GET',
+            data: { id: cart },
+            success: function(response)
+            {
+                getKeranjang();
+            }
+        });
+    }
+
+    // Keranjang
+    function getKeranjang(){
+        $.ajax({
+            url: '/pos/keranjang/tampil',
+            type: 'GET',
+            success: function(response)
+            {
+                $('#keranjangTampil').html(response);
+            },
+            error: function()
+            {
+                console.log('💩');
+            }
+        });
+    }
+
+    // Form
+    function bayar(){
+        if( !$('#outlet').val()){ 
+            alert('Outlet Tidak Boleh Kosong');
+        } else {
+            $('#formBayar').submit();
+        }
+    }
+
+    // Additional
+    function ajax(){
+        $.ajaxSetup({
+            headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+        });
+    }
+
+    function dismissModal(){
+        $("[data-dismiss=modal]").trigger({ type: "click" });
+    }
+
+    function resetForm(id){
+        document.getElementById(id).reset();
+    }
+</script>
+    {{-- <script type="text/javascript">
         $.ajaxSetup({
             headers: {
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -323,7 +468,7 @@
             reloadPelanggan();
             reloadable();
 
-            $('#formCoba').submit(function (e) {
+            $('#formProduk').submit(function (e) {
                 e.preventDefault();  // prevent the form from 'submitting'
 
                 $.ajaxSetup({
@@ -416,7 +561,8 @@
         function reloadable() {
             totalBelanja();
             keranjangTampil();
-            console.log('reloadable function reloaded');
+            // console.log('reloadable function reloaded');
+            getDiskon();
         }
 
         function totalBelanja() {
@@ -425,10 +571,16 @@
                 type: 'GET',
                 success: function(response)
                 {
-                    // console.log(response);
-                    $('#totalbelanja').html(response);
-                    $('#totalpembayaran').html(response);
-                    document.getElementById("totalpembayaraninput").value = response;
+                    var e = document.getElementById("pelanggan");
+                    var pelanggan = e.options[e.selectedIndex].text;
+                    var pelangganid = e.options[e.selectedIndex].value;
+
+                    if (pelangganid != 0)
+                    {
+                        $('#totalbelanja').html(response);
+                        $('#totalpembayaran').html(response);
+                        document.getElementById("totalpembayaraninput").value = response;
+                    }
                 }
             })
         }
@@ -455,6 +607,8 @@
 
             document.getElementById("pelangganid").value = pelangganid;
             $('#pelangganbayar').html(pelanggan);
+
+            totalBelanja();
         }
 
         function keranjangTampil() {
@@ -521,9 +675,18 @@
 
             document.getElementById('outletnama').innerHTML  = outlet;
             document.getElementById('outletid').value  = outletid;
-            console.log(outlet, outletid);
         }
-    </script>
+
+        function getDiskon(){
+            $.ajax({
+                url: '/pos/pelanggan/getdiskon',
+                type: 'GET',
+                success: function(response){
+                    $('#keranjangFooter').html(response);
+                }
+            })
+        }
+    </script> --}}
 @endsection
 
 @section('myjsfile')

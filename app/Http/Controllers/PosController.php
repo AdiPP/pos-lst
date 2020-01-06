@@ -9,6 +9,7 @@ use App\Customer;
 use App\Sale;
 use App\SaleInfo;
 use App\Outlet;
+use App\User;
 Use DB;
 
 class PosController extends Controller
@@ -33,13 +34,23 @@ class PosController extends Controller
             $produk = Product::where('user_id', session('user')->id)->get();
             $pelanggan = Customer::where('user_id', session('user')->id)->get();
             $outlet = Outlet::where('user_id', session('user')->id)->get();
+            $user = User::find(session('user')->id);
         }
+
+        $keranjang = Cart::where('user_id', session('user')->id)
+            ->where('admin_id', 0)
+            ->get()
+            ->reduce(function($carry, $item) {
+                return $carry = $item->jumlah;
+            });
 
         return view('pos.index', [
             'title' => 'POS',
             'produks' => $produk,
             'pelanggans' => $pelanggan,
-            'outlets' => $outlet
+            'outlets' => $outlet,
+            'user' => $user,
+            'keranjang' => $keranjang
         ]);
     }
 
@@ -205,14 +216,14 @@ class PosController extends Controller
             $model = Cart::where('admin_id', session('user')->id)->where('id', '=', $request->input('id'))->first();
             $model->jumlah = $model->jumlah + 1;
             if ($model->save()) {
-                return 'Data berhasil ditambah';
-            } else return 'Data gagal ditambah';
+                return 'Produk berhasil ditambah';
+            } else return 'Produk gagal ditambah';
         } else {
             $model = Cart::where('user_id', session('user')->id)->where('admin_id', 0)->where('id', '=', $request->input('id'))->first();
             $model->jumlah = $model->jumlah + 1;
             if ($model->save()) {
-                return 'Data berhasil ditambah';
-            } else return 'Data gagal ditambah';
+                return 'Produk berhasil ditambah';
+            } else return 'Produk gagal ditambah';
         }
     }
 
@@ -234,58 +245,109 @@ class PosController extends Controller
                     });
         }
 
-        return $model;
+        return view('pos.infototal', [
+            'total' => $model,
+        ]);
     }
 
     public function bayar(Request $request)
     {
         if (session('user')->getTable() == 'user_pegawais') {
-            $model = new Sale();
-            $model->outlet_id = $request->input('outletid');
-            $model->customer_id = $request->input('pelangganid');
-            $model->admin_id = $request->input('adminid');
-            $model->user_id = session('user')->user_master;
-            $model->total = $request->input('total');
-            $model->cash = $request->input('cash');
-            $model->save();
-
-            $carts = Cart::where('admin_id', session('user')->id)->get();
-
-            foreach ($carts as $cart) {
-                $model_info = new SaleInfo();
-                $model_info->sale_id = $model->id;
-                $model_info->product_id = $cart->product_id;
-                $model_info->jumlah = $cart->jumlah;
-                $model_info->save();
-                Cart::where('id', '=', $cart->id)->delete();
-            }
-
-            // return $model_info;
-            return $model->cash - $model->total;
+            $cart = Cart::where('admin_id', session('user')->id)->get();
+            $user = User::find(session('user')->user_master);
+            $total = Cart::with('Produk')
+                ->where('admin_id', session('user')->id)
+                ->get()
+                ->reduce(function($carry, $item) {
+                    return $carry + ($item->jumlah * $item->produk->product_price);
+                });
+            $jumlahBarang = Cart::where('admin_id', session('user')->id)
+                ->get()
+                ->reduce(function($carry, $item) {
+                    return $carry + $item->jumlah;
+                });
         } else {
-            $model = new Sale();
-            $model->outlet_id = $request->input('outletid');
-            $model->customer_id = $request->input('pelangganid');
-            $model->admin_id = 0;
-            $model->user_id = $request->input('adminid');
-            $model->total = $request->input('total');
-            $model->cash = $request->input('cash');
-            $model->save();
-
-            $carts = Cart::where('user_id', session('user')->id)->where('admin_id', 0)->get();
-
-            foreach ($carts as $cart) {
-                $model_info = new SaleInfo();
-                $model_info->sale_id = $model->id;
-                $model_info->product_id = $cart->product_id;
-                $model_info->jumlah = $cart->jumlah;
-                $model_info->save();
-                Cart::where('id', '=', $cart->id)->delete();
-            }
-
-            // return $model_info;
-            return $model->cash - $model->total;
+            $cart = Cart::where('user_id', session('user')->id)->where('admin_id', 0)->get();
+            $user = User::find(session('user')->id);
+            $total = Cart::with('Produk')
+                ->where('user_id', session('user')->id)->where('admin_id', 0)
+                ->get()
+                ->reduce(function($carry, $item) {
+                    return $carry + ($item->jumlah * $item->produk->product_price);
+                });
+            $jumlahBarang = Cart::where('user_id', $user->id)
+                ->where('admin_id', 0)
+                ->get()
+                ->reduce(function($carry, $item) {
+                    return $carry + $item->jumlah;
+                });
         }
+        
+        $pelanggan = Customer::find($request->pelanggan);
+        $outlet = Outlet::find($request->outlet);
+        $hargaPelanggan = $user->info->harga_pelanggan;
+        if ($pelanggan == null) {
+            $diskon = 0;
+        } else {
+            $diskon = $jumlahBarang * $hargaPelanggan;
+        }
+        $totalAkhir = $total - $diskon;
+        
+        return view('pos.bayar', [
+            'keranjang' => $cart,
+            'user' => $user,
+            'diskon' => $diskon,
+            'totalAkhir' => $totalAkhir,
+            'pelanggan' => $pelanggan,
+            'outlet' => $outlet
+        ]);
+        // if (session('user')->getTable() == 'user_pegawais') {
+        //     $model = new Sale();
+        //     $model->outlet_id = $request->input('outletid');
+        //     $model->customer_id = $request->input('pelangganid');
+        //     $model->admin_id = $request->input('adminid');
+        //     $model->user_id = session('user')->user_master;
+        //     $model->total = $request->input('total');
+        //     $model->cash = $request->input('cash');
+        //     $model->save();
+
+        //     $carts = Cart::where('admin_id', session('user')->id)->get();
+
+        //     foreach ($carts as $cart) {
+        //         $model_info = new SaleInfo();
+        //         $model_info->sale_id = $model->id;
+        //         $model_info->product_id = $cart->product_id;
+        //         $model_info->jumlah = $cart->jumlah;
+        //         $model_info->save();
+        //         Cart::where('id', '=', $cart->id)->delete();
+        //     }
+
+        //     // return $model_info;
+        //     return $model->cash - $model->total;
+        // } else {
+        //     $model = new Sale();
+        //     $model->outlet_id = $request->input('outletid');
+        //     $model->customer_id = $request->input('pelangganid');
+        //     $model->admin_id = 0;
+        //     $model->user_id = $request->input('adminid');
+        //     $model->total = $request->input('total');
+        //     $model->cash = $request->input('cash');
+        //     $model->save();
+
+        //     $carts = Cart::where('user_id', session('user')->id)->where('admin_id', 0)->get();
+
+        //     foreach ($carts as $cart) {
+        //         $model_info = new SaleInfo();
+        //         $model_info->sale_id = $model->id;
+        //         $model_info->product_id = $cart->product_id;
+        //         $model_info->jumlah = $cart->jumlah;
+        //         $model_info->save();
+        //         Cart::where('id', '=', $cart->id)->delete();
+        //     }
+
+        //     // return $model_info;
+        //     return $model->cash - $model->total;
+        // }
     }
 
     public function reloadPelanggan()
@@ -320,5 +382,30 @@ class PosController extends Controller
                 return 'Pelanggan berhasil ditambah';
             }
         }
+    }
+
+    public function getDiskon()
+    {
+        $user = User::find(session('user')->id);
+        $jumlahBarang = Cart::where('user_id', session('user')->id)
+            ->where('admin_id', 0)
+            ->get()
+            ->reduce(function($carry, $item) {
+                return $carry = $item->jumlah;
+            });
+
+        $hargaPelanggan = $user->info->harga_pelanggan;
+
+        $diskon = $jumlahBarang * $hargaPelanggan;
+        
+        return view('pos.diskon_tampil', [
+            'diskon' => $diskon,
+            'user' => $user
+        ]);
+    }
+
+    public function bayarSelesai(Request $request)
+    {
+        return view('pos.bayar_selesai');
     }
 }

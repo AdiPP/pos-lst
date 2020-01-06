@@ -10,6 +10,6 @@
         <input type="number" min="1" value="1" class="form-group input-sm text-center" name="jumlahproduk">
     </td>
     <td>
-        <button class="btn btn-sm"><i class="fa fa-plus"></i></button>
+        <button type="button" onclick="tambahProdukForm()" class="btn btn-sm"><i class="fa fa-plus"></i></button>
     </td>
 </tr>

@@ -1,4 +1,4 @@
-<select onchange="pelanggan()" class="full-width" data-init-plugin="select2" id="pelanggan">
+<select class="full-width" data-init-plugin="select2" name="pelanggan" id="pelanggan">
     <option selected value="0">Default</option>
     @foreach ($pelanggans as $pelanggan)
         <option value="{{ $pelanggan->id }}">{{ $pelanggan->id }} - {{ $pelanggan->nama }}</option>

@@ -7,13 +7,13 @@
             {{ $produk->produk->product_name }}
         </td>
         <td class="v-align-middle text-right">
-            {{ $produk->produk->product_price }}
+            {{ Helper::numberToRupiah($produk->produk->product_price) }}
         </td>
         <td class="v-align-middle text-right">
             {{ $produk->jumlah }}
         </td>
         <td class="v-align-middle text-right">
-            {{ $produk->produk->product_price * $produk->jumlah }}
+            {{ Helper::numberToRupiah($produk->produk->product_price * $produk->jumlah) }}
         </td>
         <td>
             <div class="d-flex justify-content-center">

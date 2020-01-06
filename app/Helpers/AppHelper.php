@@ -64,6 +64,10 @@ class AppHelper
     # Rupiah Helper
     public static function numberToRupiah($number)
     {
+        if ($number == null) {
+            $number = 0;
+        }
+        
         $result = number_format($number, 2, ",", ".");
         return 'Rp. '.$result;
     }
@@ -95,9 +99,9 @@ class AppHelper
     public static function getName($id)
     {
         if (session('user')->getTable() == 'user_pegawais') {
-            return Helper::getUser($id)->nama_depan;;
+            return Helper::getUser($id)->nama_depan." ".Helper::getUser($id)->nama_belakang;
         } else {
-            return Helper::getUser($id)->info->firstname;;
+            return Helper::getUser($id)->info->firstname." ".Helper::getUser($id)->info->lastname;
         }
     }
 
@@ -107,7 +111,7 @@ class AppHelper
         // $tanggal = '2019-12-31';
         // Stok Masuk
         if ($outlet == "") {
-            if (($result = $produk->stokmasuks->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->stokmasuks->where('user_id', session('user')->id)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $stokmasuk = $result;
@@ -115,7 +119,7 @@ class AppHelper
                 $stokmasuk = 0;
             }
         } else {
-            if (($result = $produk->stokmasuks->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->stokmasuks->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $stokmasuk = $result;
@@ -126,7 +130,7 @@ class AppHelper
 
         // Stok Keluar
         if ($outlet == "") {
-            if (($result = $produk->stokkeluars->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->stokkeluars->where('user_id', session('user')->id)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $stokkeluar = $result;
@@ -134,7 +138,7 @@ class AppHelper
                 $stokkeluar = 0;
             }
         } else {
-            if (($result = $produk->stokkeluars->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->stokkeluars->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $stokkeluar = $result;
@@ -145,7 +149,7 @@ class AppHelper
 
         // Penjualan
         if ($outlet == "") {
-            if (($result = $produk->sales->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $penjualan = $result;
@@ -153,7 +157,7 @@ class AppHelper
                 $penjualan = 0;
             }
         } else {
-            if (($result = $produk->sales->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $penjualan = $result;
@@ -167,7 +171,7 @@ class AppHelper
             $transfer = 0;
         } else {
             // Transfer Keluar
-            if (($model = $produk->transfers->where('outlet_asal_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($model = $produk->transfers->where('user_id', session('user')->id)->where('outlet_asal_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $transferKeluar = $model;
@@ -176,7 +180,7 @@ class AppHelper
             }
 
             // Transfer Masuk
-            if (($model = $produk->transfers->where('outlet_tujuan_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($model = $produk->transfers->where('user_id', session('user')->id)->where('outlet_tujuan_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $transferMasuk = $model;
@@ -189,7 +193,7 @@ class AppHelper
 
         // Stok Opname
         if ($outlet == "") {
-            if (($result = $produk->stokopnames->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->stokopnames->where('user_id', session('user')->id)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->selisih;
             })) != null) {
                 $stokopname = $result;
@@ -197,7 +201,7 @@ class AppHelper
                 $stokopname = 0;
             }
         } else {
-            if (($result = $produk->stokopnames->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
+            if (($result = $produk->stokopnames->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '<', $tanggal)->reduce(function($carry, $item){
                 return $carry + $item->pivot->selisih;
             })) != null) {
                 $stokopname = $result;
@@ -212,7 +216,7 @@ class AppHelper
     public static function getStokMasuk($produk, $outlet = "", $tanggal)
     {
         if ($outlet == "") {
-            if (($result = $produk->stokmasuks->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->stokmasuks->where('user_id', session('user')->id)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -220,7 +224,7 @@ class AppHelper
                 return 0;
             }
         } else {
-            if (($result = $produk->stokmasuks->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->stokmasuks->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -233,7 +237,7 @@ class AppHelper
     public static function getStokKeluar($produk, $outlet = "", $tanggal)
     {
         if ($outlet == "") {
-            if (($result = $produk->stokkeluars->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->stokkeluars->where('user_id', session('user')->id)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -241,7 +245,7 @@ class AppHelper
                 return 0;
             }
         } else {
-            if (($result = $produk->stokkeluars->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->stokkeluars->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -254,7 +258,7 @@ class AppHelper
     public static function getPenjualan($produk, $outlet = "", $tanggal)
     {
         if ($outlet == "") {
-            if (($result = $produk->sales->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -262,7 +266,7 @@ class AppHelper
                 return 0;
             }
         } else {
-            if (($result = $produk->sales->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -278,7 +282,7 @@ class AppHelper
             return 0;
         } else {
             // Transfer Keluar
-            if (($model = $produk->transfers->where('outlet_asal_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($model = $produk->transfers->where('user_id', session('user')->id)->where('outlet_asal_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $transferKeluar = $model;
@@ -287,7 +291,7 @@ class AppHelper
             }
 
             // Transfer Masuk
-            if (($model = $produk->transfers->where('outlet_tujuan_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($model = $produk->transfers->where('user_id', session('user')->id)->where('outlet_tujuan_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 $transferMasuk = $model;
@@ -302,7 +306,7 @@ class AppHelper
     public static function getStokOpname($produk, $outlet = "", $tanggal)
     {
         if ($outlet == "") {
-            if (($result = $produk->stokopnames->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->stokopnames->where('user_id', session('user')->id)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->selisih;
             })) != null) {
                 return $result;
@@ -310,7 +314,7 @@ class AppHelper
                 return 0;
             }
         } else {
-            if (($result = $produk->stokopnames->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->stokopnames->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->selisih;
             })) != null) {
                 return $result;
@@ -336,7 +340,7 @@ class AppHelper
     public static function getPenjualanAll($produk, $outlet = "", $tanggal)
     {
         if ($outlet == "") {
-            if (($result = $produk->sales->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -344,7 +348,7 @@ class AppHelper
                 return 0;
             }
         } else {
-            if (($result = $produk->sales->where('outlet_id', $outlet)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -376,7 +380,7 @@ class AppHelper
     public static function getLaporanPenjualan()
     {
         $tanggal = date('Y-m-d');
-        return Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->groupBy('day')->get();
+        return Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('user_id', session('user')->id)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->groupBy('day')->get();
     }
 
     # User Helper

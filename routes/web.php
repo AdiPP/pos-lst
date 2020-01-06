@@ -53,8 +53,10 @@ Route::get('/pegawai/login', 'PegawaiController@login');
 Route::resource('/pegawai', 'PegawaiController');
 
 // modul transaksi
+Route::get('/pos/pelanggan/getdiskon', 'PosController@getDiskon');
 Route::post('/pos/pelanggan/tambah', 'PosController@tambahPelanggan');
 Route::get('/pos/pelanggan/reload', 'PosController@reloadPelanggan');
+Route::post('/pos/bayar/selesai', 'PosController@bayarSelesai');
 Route::post('/pos/bayar', 'PosController@bayar');
 Route::get('/pos/infototal', 'PosController@infoTotal');
 Route::get('/pos/keranjang/tambah', 'PosController@keranjangTambah');
@@ -128,6 +130,8 @@ Route::resource('/outlet', 'OutletController');
 Route::resource('/pelanggan', 'PelangganController');
 
 // modul pengaturan
+Route::post('/pengaturan/perbaruiharga', 'PengaturanController@perbaruiHarga');
+Route::get('/pengaturan/harga', 'PengaturanController@pengaturanHarga');
 Route::post('/pengaturan/perbaruipassword', 'PengaturanController@perbaruiPassword');
 Route::post('/pengaturan/perbaruiinfobisnis/aksi', 'PengaturanController@perbaruiInfoBisnisAksi');
 Route::get('/pengaturan/perbaruiinfobisnis/pilihprovinsi', 'PengaturanController@pilihProvinsi');
