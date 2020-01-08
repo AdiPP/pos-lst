@@ -36,7 +36,7 @@
             <!-- START card -->
             <div class="card card-default">
                 <div class="card-block text-center">
-                    <h1>Kembali: Rp. 10000</h1>
+                    <h1>Kembali: {{ Helper::numberToRupiah($kembali) }}</h1>
                 </div>
             </div>
             <!-- END card -->

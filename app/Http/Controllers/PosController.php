@@ -301,53 +301,6 @@ class PosController extends Controller
             'pelanggan' => $pelanggan,
             'outlet' => $outlet
         ]);
-        // if (session('user')->getTable() == 'user_pegawais') {
-        //     $model = new Sale();
-        //     $model->outlet_id = $request->input('outletid');
-        //     $model->customer_id = $request->input('pelangganid');
-        //     $model->admin_id = $request->input('adminid');
-        //     $model->user_id = session('user')->user_master;
-        //     $model->total = $request->input('total');
-        //     $model->cash = $request->input('cash');
-        //     $model->save();
-
-        //     $carts = Cart::where('admin_id', session('user')->id)->get();
-
-        //     foreach ($carts as $cart) {
-        //         $model_info = new SaleInfo();
-        //         $model_info->sale_id = $model->id;
-        //         $model_info->product_id = $cart->product_id;
-        //         $model_info->jumlah = $cart->jumlah;
-        //         $model_info->save();
-        //         Cart::where('id', '=', $cart->id)->delete();
-        //     }
-
-        //     // return $model_info;
-        //     return $model->cash - $model->total;
-        // } else {
-        //     $model = new Sale();
-        //     $model->outlet_id = $request->input('outletid');
-        //     $model->customer_id = $request->input('pelangganid');
-        //     $model->admin_id = 0;
-        //     $model->user_id = $request->input('adminid');
-        //     $model->total = $request->input('total');
-        //     $model->cash = $request->input('cash');
-        //     $model->save();
-
-        //     $carts = Cart::where('user_id', session('user')->id)->where('admin_id', 0)->get();
-
-        //     foreach ($carts as $cart) {
-        //         $model_info = new SaleInfo();
-        //         $model_info->sale_id = $model->id;
-        //         $model_info->product_id = $cart->product_id;
-        //         $model_info->jumlah = $cart->jumlah;
-        //         $model_info->save();
-        //         Cart::where('id', '=', $cart->id)->delete();
-        //     }
-
-        //     // return $model_info;
-        //     return $model->cash - $model->total;
-        // }
     }
 
     public function reloadPelanggan()
@@ -406,6 +359,53 @@ class PosController extends Controller
 
     public function bayarSelesai(Request $request)
     {
-        return view('pos.bayar_selesai');
+                if (session('user')->getTable() == 'user_pegawais') {
+            $model = new Sale();
+            $model->outlet_id = $request->input('outletid');
+            $model->customer_id = $request->input('pelangganid');
+            $model->admin_id = $request->input('adminid');
+            $model->user_id = session('user')->user_master;
+            $model->total = $request->input('total');
+            $model->cash = $request->input('cash');
+            $model->save();
+
+            $carts = Cart::where('admin_id', session('user')->id)->get();
+
+            foreach ($carts as $cart) {
+                $model_info = new SaleInfo();
+                $model_info->sale_id = $model->id;
+                $model_info->product_id = $cart->product_id;
+                $model_info->jumlah = $cart->jumlah;
+                $model_info->save();
+                Cart::where('id', '=', $cart->id)->delete();
+            }
+
+            // return $model_info;
+            return $model->cash - $model->total;
+        } else {
+            $model = new Sale();
+            $model->outlet_id = $request->outlet;
+            $model->customer_id = $request->pelanggan;
+            $model->admin_id = 0;
+            $model->user_id = session('user')->id;
+            $model->total = $request->total;
+            $model->cash = $request->uangTunai;
+            $model->save();
+
+            $carts = Cart::where('user_id', session('user')->id)->where('admin_id', 0)->get();
+
+            foreach ($carts as $cart) {
+                $model_info = new SaleInfo();
+                $model_info->sale_id = $model->id;
+                $model_info->product_id = $cart->product_id;
+                $model_info->jumlah = $cart->jumlah;
+                $model_info->save();
+                Cart::where('id', '=', $cart->id)->delete();
+            }
+        }
+
+        return view('pos.bayar_selesai', [
+            'kembali' => $model->cash - $model->total,
+        ]);
     }
 }
