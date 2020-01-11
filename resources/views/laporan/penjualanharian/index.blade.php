@@ -64,18 +64,7 @@
                     </div>
                     <div class="clearfix"></div>
                 </div>
-                <div class="card-block">
-                    <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
-                    <thead>
-                      <tr>
-                        <th class="v-align-middle w-25">Tanggal</th>
-                        <th class="v-align-middle text-right">Jumlah Transaksi</th>
-                        <th class="v-align-middle text-right">Penjualan</th>
-                        <th class="v-align-middle text-right">Rata-Rata</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tampilLaporan"></tbody>
-                  </table>
+                <div class="card-block" id="tampilLaporan">
                 </div>
             </div>
             <!-- END card -->
