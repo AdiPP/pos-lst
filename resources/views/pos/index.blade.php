@@ -3,95 +3,6 @@
 @section('title', $title)
 
 @section('content')
-{{-- Modal Bayar --}}
-{{-- <div class="modal fade slide-up disable-scroll" id="modalBayar" tabindex="-1" role="dialog" aria-hidden="false">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content-wrapper">
-            <div class="modal-content">
-                <div class="modal-header clearfix text-left">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i></button>
-                    <h5>Informasi <span class="semi-bold">Pembayaran</span></h5>
-                    <p>Berikut informasi mengenai Pembayaran</p>
-                </div>
-                <div class="modal-body">
-                <form action="#" id="formBayar">
-                    <div class="form-group-attached">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <div class="form-group form-group-default">
-                                    <label>Outlet</label>
-                                    <span id="outletnama">Default</span>
-                                    <input type="hidden" name="outletid" id="outletid" value='0'>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Pelanggan</label>
-                                    <span id="pelangganbayar">Default</span>
-                                    <input type="hidden" name="pelangganid" id="pelangganid" value=0>
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Admin</label>
-                                    {{ Helper::getAdmin(session('user')) }}
-                                    <input type="hidden" name="adminid" value={{ Helper::getAdminID(session('user')) }}>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Total</label>
-                                    <span id="totalpembayaran">0</span>
-                                    <input type="hidden" value="0" name="total" id="totalpembayaraninput">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group form-group-default">
-                                    <label>Cash</label>
-                                    <input type="text" name="cash" value="0" class="form-control">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-6 m-t-10 sm-m-t-10">
-                            <button type="submit" class="btn btn-primary btn-block m-t-5">Bayar</button>
-                        </div>
-                        <div class="col-md-6 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-block m-t-5" data-dismiss="modal">Kembali</button>
-                        </div>
-                    </div>
-                </form>
-                </div>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div> --}}
-{{-- Modal Sukses Transaksi --}}
-{{-- <div class="modal fade slide-up disable-scroll" id="modalSukses" tabindex="-1" role="dialog" aria-hidden="false">
-    <div class="modal-dialog modal-sm">
-        <div class="modal-content-wrapper">
-            <div class="modal-content">
-                <div class="modal-body text-center m-t-20">
-                    <div class="p-b-10">
-                        <h4 class="no-margin">Transaksi Berhasil</h4>
-                        <h5>Kembali: Rp <span id="kembali">0</span></h5>
-                    </div>
-                    <button type="button" class="btn btn-primary btn-cons" data-dismiss="modal">Selesai</button>
-                </div>
-            </div>
-        </div>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div> --}}
-{{-- Modal Tambah Pelanggan --}}
 <div class="modal fade slide-up disable-scroll" id="modalTambahPelanggan" tabindex="-1" role="dialog" aria-hidden="false">
     <div class="modal-dialog modal-lg">
         <div class="modal-content-wrapper">
@@ -320,6 +231,7 @@
         document.getElementById('cariproduktampil').disabled = false;
     }
 
+    // Pelanggan
     function getPelanggan(){
         $.ajax({
             url: '/pos/pelanggan/reload',
@@ -331,7 +243,6 @@
         })
     }
 
-    // Pelanggan
     function tambahPelanggan(){
         ajax();
 

@@ -11,6 +11,7 @@ use Redirect;
 use Illuminate\Support\Facades\Mail;  
 use App\Mail\Registrasi;
 use App\Mail\lupaPassword;
+Use Helper;
 
 class RegistrasiController extends Controller
 {
@@ -122,7 +123,13 @@ class RegistrasiController extends Controller
                 session()->put('user', $model);
                 if (session()->has('urlTemp')) {
                     return redirect(session('urlTemp'));
-                } else return redirect('/dashboard');
+                } else {
+                    if (Helper::getUser(session('user')->id)->info == null) {
+                        return redirect('/admin/master');
+                    } else {
+                        return redirect('/dashboard');
+                    }
+                }
             } else {
                 return redirect('/login')->with('status', false);
             }

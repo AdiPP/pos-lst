@@ -101,7 +101,11 @@ class AppHelper
         if (session('user')->getTable() == 'user_pegawais') {
             return Helper::getUser($id)->nama_depan." ".Helper::getUser($id)->nama_belakang;
         } else {
-            return Helper::getUser($id)->info->firstname." ".Helper::getUser($id)->info->lastname;
+            if (Helper::getUser($id)->info == null) {
+                return Helper::getUser($id)->name;
+            } else {
+                return Helper::getUser($id)->info->firstname." ".Helper::getUser($id)->info->lastname;
+            }  
         }
     }
 

@@ -10,6 +10,7 @@ use App\Sale;
 use App\SaleInfo;
 use App\Outlet;
 use App\User;
+use App\UserPegawai;
 Use DB;
 
 class PosController extends Controller
@@ -30,6 +31,7 @@ class PosController extends Controller
             $produk = Product::where('user_id', session('user')->user_master)->get();
             $pelanggan = Customer::where('user_id', session('user')->user_master)->get();
             $outlet = Outlet::where('id', session('user')->outlet_id)->get();
+            $user = UserPegawai::find(session('user')->id);
         } else {
             $produk = Product::where('user_id', session('user')->id)->get();
             $pelanggan = Customer::where('user_id', session('user')->id)->get();
@@ -359,14 +361,14 @@ class PosController extends Controller
 
     public function bayarSelesai(Request $request)
     {
-                if (session('user')->getTable() == 'user_pegawais') {
+        if (session('user')->getTable() == 'user_pegawais') {
             $model = new Sale();
-            $model->outlet_id = $request->input('outletid');
-            $model->customer_id = $request->input('pelangganid');
-            $model->admin_id = $request->input('adminid');
+            $model->outlet_id = $request->outlet;
+            $model->customer_id = $request->pelanggan;
+            $model->admin_id = session('user')->id;
             $model->user_id = session('user')->user_master;
-            $model->total = $request->input('total');
-            $model->cash = $request->input('cash');
+            $model->total = $request->total;
+            $model->cash = $request->uangTunai;
             $model->save();
 
             $carts = Cart::where('admin_id', session('user')->id)->get();
@@ -380,8 +382,6 @@ class PosController extends Controller
                 Cart::where('id', '=', $cart->id)->delete();
             }
 
-            // return $model_info;
-            return $model->cash - $model->total;
         } else {
             $model = new Sale();
             $model->outlet_id = $request->outlet;

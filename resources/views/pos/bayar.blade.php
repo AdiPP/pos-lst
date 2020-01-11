@@ -3,7 +3,7 @@
 {{-- @section('title', $title) --}}
 
 @section('content')
-<form action="/pos/bayar/selesai" method="POST" id="formBayarSelesai">
+<form action="/pos/bayar/selesai" method="POST" id="formBayarSelesai" onkeydown="return event.key != 'Enter';">
 @csrf
 <!-- START JUMBOTRON -->
 <div class="jumbotron">
@@ -20,7 +20,7 @@
                             </div>
                             <div class="ml-auto">
                                 <a href="{{ url()->previous() }}" type="button" class="btn btn-primary btn-cons">Kembali</a>
-                                <button type="submit" class="btn btn-primary btn-cons">Selesai</button>
+                                <button type="button" onclick="selesaiBayar()" class="btn btn-primary btn-cons">Selesai</button>
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -77,7 +77,7 @@
                                             </td>
                                             <td>
                                                 {{ Helper::numberToRupiah($totalAkhir) }}
-                                                <input type="hidden" name="total" value="{{ $totalAkhir }}">
+                                                <input type="hidden" name="total" id="totalAkhir" value="{{ $totalAkhir }}">
                                             </td>
                                         </tr>
                                     </tbody>
@@ -114,7 +114,7 @@
                                                 <p class="text-black">Uang Tunai</p>
                                             </td>
                                             <td class="w-75">
-                                                <input type="text" name="uangTunai" class="form-control" required>
+                                                <input type="text" name="uangTunai" class="form-control" id="uangTunai" required>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -191,7 +191,16 @@
 @section('inpagejs')
 <script>
 function selesaiBayar(){
-    $('#formBayarSelesai').submit();
+    var uangTunai = document.getElementById('uangTunai').value;
+    var totalAkhir = document.getElementById('totalAkhir').value;
+
+    console.log(uangTunai, totalAkhir);
+
+    if ((uangTunai - totalAkhir) < 0) {
+        alert('Uang tunai kurang dari total pembelian');
+    } else {
+        $('#formBayarSelesai').submit();
+    }
 }
 </script>
 @endsection

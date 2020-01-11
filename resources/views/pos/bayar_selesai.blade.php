@@ -17,7 +17,7 @@
                                 {{-- <h5>{{ $title }}</h5> --}}
                             </div>
                             <div class="ml-auto">
-                                <a href="/pos" class="btn btn-primary btn-cons">Selesai</a>
+                                {{-- <a href="/pos" class="btn btn-primary btn-cons">Selesai</a> --}}
                             </div>
                             <div class="clearfix"></div>
                         </div>
@@ -36,7 +36,11 @@
             <!-- START card -->
             <div class="card card-default">
                 <div class="card-block text-center">
-                    <h1>Kembali: {{ Helper::numberToRupiah($kembali) }}</h1>
+                    <button class="btn btn-lg btn-complete m-b-10"><i class="fa fa-check"></i></button>
+                    <p>Pembayaran dengan Tunai berhasil dilakukan</p>
+                    <h4>Uang Kembali</h4>
+                    <h1>{{ Helper::numberToRupiah($kembali) }}</h1>
+                    <a href="/pos" class="btn btn-primary btn-cons m-t-10">Selesai</a>
                 </div>
             </div>
             <!-- END card -->
@@ -46,11 +50,6 @@
 @endsection
 
 @section('inpagejs')
-<script>
-function selesaiBayar(){
-    $('#formBayarSelesai').submit();
-}
-</script>
 @endsection
 
 @section('myjsfile')
