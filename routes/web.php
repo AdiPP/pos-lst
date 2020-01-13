@@ -11,6 +11,9 @@
 |
 */
 
+use Illuminate\Support\Facades\Mail;
+use App\Mail\SendMailable;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -140,5 +143,13 @@ Route::post('/pengaturan/perbaruiinfoakun', 'PengaturanController@perbaruiInfoAk
 Route::resource('/pengaturan', 'PengaturanController');
 
 // dump route
-Route::get('/email/check', 'RegistrasiController@checkMail');
-Route::get('/send/email', 'HomeController@mail');
+Route::get('/email/test', function() {
+    
+    Mail::to('adiputrapermana@gmail.com')->send(new SendMailable('Test Mail'));
+
+    if (Mail::failures()) {
+        return 'Email failed to send';
+    } else {
+        return 'Email successfully sent';
+    }
+});

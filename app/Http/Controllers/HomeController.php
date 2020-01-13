@@ -85,14 +85,6 @@ class HomeController extends Controller
             'kategoris' => $kategori
         ]);
     }
-
-    public function mail()
-    {
-        $name = 'Krunal';
-        Mail::to('adiputrapermana@gmail.com')->send(new SendMailable($name));
-        
-        return 'Email was sent';
-    }
     
     public function getGrafikPenjualan()
     {

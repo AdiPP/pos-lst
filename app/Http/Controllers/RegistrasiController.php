@@ -166,12 +166,6 @@ class RegistrasiController extends Controller
         return redirect('login')->with('status', 'email verifikasi terkirim');
     }
 
-    public function checkMail()
-    {
-        $model = User::find(15);
-        dd($model->info);
-    }
-
     public function lupaPassword()
     {
         return view('registrasi.lupapassword');
