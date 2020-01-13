@@ -29,9 +29,8 @@ class SendMailable extends Mailable
      */
     public function build()
     {
-        // dd($name);
         return $this->from('pos.lawangsewu@gmail.com', 'POSLST')
-                    ->subject('Registrasi Berhasil')
-                    ->view('email.name');
+                    ->subject('Email Test')
+                    ->view('email.test');
     }
 }

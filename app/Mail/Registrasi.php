@@ -31,7 +31,7 @@ class Registrasi extends Mailable
      */
     public function build()
     {
-        return $this->from('pos.lawangsewu@gmail.com', 'Sade POS')
+        return $this->from('admin@sadepos.com', 'Sade POS')
                     ->subject('Pendaftaran Berhasil')
                     ->view('email.registrasi');
     }
