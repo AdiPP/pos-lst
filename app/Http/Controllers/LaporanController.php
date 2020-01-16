@@ -7,6 +7,7 @@ use Config;
 use App\Product as Produk;
 use App\Outlet;
 use App\Sale;
+use LaporanHelper;
 
 class LaporanController extends Controller
 {
@@ -148,28 +149,28 @@ class LaporanController extends Controller
     public function penjualanHarianTampil()
     {
         $outlet = $_GET['outlet'];
-        $tanggal = $_GET['tanggal'];
+        $tanggalAwal = date("Y-m-d", strtotime(str_replace('/', '-', $_GET['tanggalAwal'])));
+        $tanggalAkhir = date("Y-m-d", strtotime(str_replace('/', '-', $_GET['tanggalAkhir'])));
 
-        if ($tanggal == "") {
-            $tanggal = date('Y-m-d');
-        } else {
-            $tanggal = date("Y-m-d", strtotime(str_replace('/', '-', $_GET['tanggal'])));
-        }
+        // return $outlet.' '.$tanggalAwal.' '.$tanggalAkhir;
 
-        // return $outlet.' '.$tanggal;
+        // if ($tanggal == "") {
+        //     $tanggal = date('Y-m-d');
+        // } else {
+        //     $tanggal = date("Y-m-d", strtotime(str_replace('/', '-', $_GET['tanggal'])));
+        // }
 
-        if ($outlet == "") {
-            $sale = Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->groupBy('day')->get();
-        } else {
-            $sale = Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('outlet_id', $outlet)->where('created_at', '>', $tanggal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->groupBy('day')->get();
-        }
+        // if ($outlet == "") {
+        //     $sale = Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('created_at', '>', $tanggalAwal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggalAkhir))))->groupBy('day')->get();
+        // } else {
+        //     $sale = Sale::select(\DB::Raw('DATE(created_at) day'), \DB::raw('COUNT(id) as jumlahTransaksi'), \DB::raw('SUM(total) as penjualan'))->where('outlet_id', $outlet)->where('created_at', '>', $tanggalAwal)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggalAkhir))))->groupBy('day')->get();
+        // }
 
-        // $sales = Sale::groupBy('created_at')->get();
+        $sale = LaporanHelper::getPenjualanHarian($outlet, $tanggalAwal, $tanggalAkhir);
 
         return view('laporan.penjualanharian.tampil_penjualan_harian', [
             'sales' => $sale,
             'outlet' => $outlet,
-            'tanggal' => $tanggal,
         ]);
 
     }

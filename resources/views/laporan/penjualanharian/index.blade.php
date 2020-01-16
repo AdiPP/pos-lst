@@ -38,7 +38,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <div class="card-title">
-                        Kartu Stok
+                        Laporan
                     </div>
                     <div class="padding-10">
                         <div class="row">
@@ -56,8 +56,16 @@
                             </div>
                             <div class="col-lg-6">
                                 <label for="">Pilih Tanggal</label>
-                                <div class="form-group ">
-                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off" onchange="pilihTanggal()" placeholder="Hari Ini">
+                                <div class="form-group">
+                                    {{-- <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off" onchange="pilihTanggal()" placeholder="Hari Ini"> --}}
+                                    <div class="input-daterange input-group" id="datepicker-range">
+                                        <input type="text" class="form-control" name="start" id="tanggalAwal" placeholder="Tanggal Awal"/>
+                                        <div class="input-group-addon">to</div>
+                                        <input type="text" class="form-control" name="end" id="tanggalAkhir" placeholder="Tanggal Akhir"/>
+                                        <div class="m-l-10">
+                                            <button class="btn btn-primary btn-sm" onclick="pilihTanggal()">Set</button>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -72,7 +80,8 @@
     </div>
 </div>
 <script>
-    var tanggal = document.getElementById("datepicker-component").value;
+    var tanggalAwal;
+    var tanggalAkhir;
 
     $(document).ready(function(){
         $.ajaxSetup({
@@ -84,27 +93,53 @@
         pilihOutlet();
     })
 
+    function getTodayDate() {
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        var yyyy = today.getFullYear();
+
+        tanggalAwal = dd + '/' + mm + '/' + yyyy;
+        tanggalAkhir = tanggalAwal;
+    }
+
     function pilihOutlet(){
 
         var e = document.getElementById("pilihOutlet");
         var selected = e.options[e.selectedIndex].value;
+        
+        if (tanggalAwal == null && tanggalAkhir == null) {
+            getTodayDate();   
+        }
 
         $.ajax({
             url: '/laporan/penjualanharian/tampil',
             type: 'GET',
-            data: {outlet: selected, tanggal: tanggal},
+            data: {outlet: selected, tanggalAwal: tanggalAwal, tanggalAkhir: tanggalAkhir },
             success: function(response)
             {
-                $('#tampilLaporan').html(response);
                 // console.log(response);
+                $('#tampilLaporan').html(response);
             }
         });
     }
 
-    function pilihTanggal(){
-        tanggal = document.getElementById("datepicker-component").value;
-        pilihOutlet();
+    // function pilihTanggal(){
+    //     tanggal = document.getElementById("datepicker-component").value;
+    //     pilihOutlet();
+    // }
+
+    function pilihTanggal (){
+        tanggalAwal = document.getElementById('tanggalAwal').value;
+        tanggalAkhir = document.getElementById('tanggalAkhir').value;
+
+        if (tanggalAwal == "" || tanggalAkhir == "" || tanggalAwal > tanggalAkhir) {
+            alert('Tanggal belum di set dengan lengkap.');
+        } else {
+            pilihOutlet();
+        }
     }
+    
 </script>
 @endsection
 
