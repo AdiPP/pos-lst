@@ -3,6 +3,11 @@
 @section('title', $title)
 
 @section('content')
+<style>
+.select2-container{
+    z-index:100000;
+}
+</style>
 <!-- Modal -->
 @foreach ($pegawais as $pegawai)
     <div class="modal fade slide-up disable-scroll" id="modalView{{ $pegawai->id }}" tabindex="-1" role="dialog" aria-hidden="false">
@@ -226,7 +231,7 @@
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group form-group-default required">
-                                    <label>Project</label>
+                                    <label>Outlet</label>
                                     <select class="full-width" data-init-plugin="select2" name="outlet" required>
                                         <option value="" disabled selected>Pilih Outlet</option>
                                         @foreach ($outlets as $outlet)
