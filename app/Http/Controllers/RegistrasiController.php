@@ -61,7 +61,7 @@ class RegistrasiController extends Controller
                     //Check the $model_ext completely saved
                     if ($model_ext->save()) {
                         Mail::to($request->email)->send(new Registrasi($model));
-                        return redirect('login')->with('status', 'registration sukses');
+                        return redirect('login')->with('status', 'Pendaftaran berhasil. Silahkan lakukan verifikasi email, lalu login.');
                     }
                 }
             } else {

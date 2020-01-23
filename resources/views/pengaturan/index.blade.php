@@ -11,54 +11,51 @@
                 <div class="modal-header clearfix text-left">
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                 </button>
-                <h5>Informasi <span class="semi-bold">Akun</span></h5>
-                <p class="p-b-10">Berikut informasi mengenai Akun <strong>{{ $user->info->firstname }}</strong></p>
+                <h5>Ubah <span class="semi-bold">Informasi Akun</span></h5>
+                <p class="p-b-10">Silahkan mengisi form berikut untuk mengubah informasi akun.</p>
                 </div>
-                <div class="modal-body">
-                    <form role="form" action="/pengaturan/perbaruiinfoakun" method="POST">
-                        @csrf
+                <form role="form" action="/pengaturan/perbaruiinfoakun" method="POST">
+                    @csrf
+                    <div class="modal-body">
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         <div class="form-group-attached">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Nama Depan</label>
-                                        <input type="text" class="form-control" name="namaDepan" value="{{ $user->info->firstname }}">
+                                        <input type="text" class="form-control" name="namaDepan" value="{{ $user->info->firstname }}" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Nama Belakang</label>
-                                        <input type="text" class="form-control" name="namaBelakang" value="{{ $user->info->lastname }}">
+                                        <input type="text" class="form-control" name="namaBelakang" value="{{ $user->info->lastname }}" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Email</label>
-                                        <input type="email" class="form-control" name="email" value="{{ $user->email }}" readonly>
+                                        <input type="email" class="form-control" name="email" value="{{ $user->email }}" readonly required>
                                     </div>
                                 </div>
                                 <div class="col-md-4">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Tanggal Registrasi</label>
-                                        <input type="text" class="form-control" name="tanggalRegistrasi" value="{{ Helper::timestampToTanggal($user->created_at) }}" readonly>
+                                        <input type="text" class="form-control" name="tanggalRegistrasi" value="{{ Helper::timestampToTanggal($user->created_at) }}" readonly required>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="submit" class="btn btn-primary btn-block m-t-5">Perbarui</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-cons pull-left inline" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary btn-cons pull-left inline">Perbarui</button>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- /.modal-content -->
@@ -74,47 +71,44 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                 </button>
                 <h5>Ubah <span class="semi-bold">Password</span></h5>
-                <p class="p-b-10">Silahkan mengisi form berikut.</p>
+                <p class="p-b-10">Silahkan mengisi form berikut untuk mengubah password.</p>
                 </div>
-                <div class="modal-body">
-                    <form role="form" action="/pengaturan/perbaruipassword" method="POST">
-                        @csrf
+                <form role="form" action="/pengaturan/perbaruipassword" method="POST">
+                    @csrf
+                    <div class="modal-body">
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         <div class="form-group-attached">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Password Lama</label>
-                                        <input type="password" class="form-control" name="passwordLama" value="">
+                                        <input type="password" class="form-control" name="passwordLama" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Password Baru</label>
-                                        <input type="password" class="form-control" name="password" value="">
+                                        <input type="password" class="form-control" name="password" required>
                                     </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Ulangi Password Baru</label>
-                                        <input type="password" class="form-control" name="password_confirmation" value="">
+                                        <input type="password" class="form-control" name="password_confirmation" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="submit" class="btn btn-primary btn-block m-t-5">Perbarui</button>
-                            </div>
-                        </div>
-                    </form>
-                </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default btn-cons pull-left inline" data-dismiss="modal">Batal</button>
+                        <button type="submit" class="btn btn-primary btn-cons pull-left inline">Perbarui</button>
+                    </div>
+                </form>
             </div>
         </div>
         <!-- /.modal-content -->

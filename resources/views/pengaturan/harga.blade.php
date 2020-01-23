@@ -11,31 +11,28 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                 </button>
                 <h5>Informasi <span class="semi-bold">Harga</span></h5>
-                <p class="p-b-10">Berikut informasi Harga Akun <strong>{{ $user->info->firstname }}</strong></p>
+                <p class="p-b-10">Berikut informasi Harga Akun <strong>{{ $user->info->firstname }}</strong>.</p>
                 </div>
-                <div class="modal-body">
-                    <form role="form" action="/pengaturan/perbaruiharga" method="POST">
-                        @csrf
+                <form role="form" action="/pengaturan/perbaruiharga" method="POST">
+                @csrf
+                    <div class="modal-body">
                         <input type="hidden" name="id" value="{{ $user->id }}">
                         <div class="form-group-attached">
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Harga Pelanggan</label>
-                                        <input type="text" class="form-control" name="hargaPelanggan" value="{{ $user->info->harga_pelanggan }}">
+                                        <input type="text" class="form-control" name="hargaPelanggan" value="{{ $user->info->harga_pelanggan }}" required>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="submit" class="btn btn-primary btn-block m-t-5">Perbarui</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default btn-cons pull-left inline" data-dismiss="modal">Batal</button>
+                    <button type="submit" class="btn btn-primary btn-cons pull-left inline">Perbarui</button>
                 </div>
+            </form>
             </div>
         </div>
         <!-- /.modal-content -->

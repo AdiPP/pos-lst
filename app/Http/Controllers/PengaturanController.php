@@ -116,7 +116,11 @@ class PengaturanController extends Controller
 
         $provinsi = Wilayah::where('LEVEL', 1)->get();
 
-        return view('pengaturan.perbaruiinfobisnis', ['user' => $user, 'provinsis' => $provinsi]);
+        return view('pengaturan.perbaruiinfobisnis', [
+            'title' => 'Ubah Informasi Bisnis',
+            'user' => $user,
+            'provinsis' => $provinsi
+        ]);
     }
 
     public function pilihProvinsi()

@@ -1,6 +1,6 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
 <!-- START JUMBOTRON -->
@@ -14,7 +14,7 @@
                     <div class="card card-transparent">
                         <div style="display:flex; align-items:center;">
                             <div class="pull-left">
-                                {{-- <h5>{{ $title }}</h5> --}}
+                                <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
                                 
@@ -58,13 +58,13 @@
                                     }
                                 @endphp
                                 <div class="form-group row">
-                                    <label for="fname" class="col-md-3 control-label">Nama Bisnis</label>
+                                    <label for="fname" class="col-md-3 control-label required-symbol">Nama Bisnis</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="namaBisnis" value="{{ $namaBisnis }}" required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="fname" class="col-md-3 control-label">Provinsi</label>
+                                    <label for="fname" class="col-md-3 control-label required-symbol">Provinsi</label>
                                     <div class="col-md-9">
                                         <select class="full-width" data-placeholder="Select Country" data-init-plugin="select2" onchange="pilihProvinsi()" name="provinsi" id="provinsi">
                                             @if (is_null($user->bisnis))
@@ -84,21 +84,21 @@
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="fname" class="col-md-3 control-label">Kota</label>
+                                    <label for="fname" class="col-md-3 control-label required-symbol">Kota</label>
                                     <div class="col-md-9" id="pilihankota">
-                                        <select class="full-width" data-placeholder="Select Country" data-init-plugin="select2" name="kota" id="kota" disabled>
+                                        <select class="full-width" data-placeholder="Select Country" data-init-plugin="select2" name="kota" id="kota" disabled required>
                                             <option selected disabled>Pilih Provinsi Terlebih Dahulu</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="fname" class="col-md-3 control-label">Alamat</label>
+                                    <label for="fname" class="col-md-3 control-label required-symbol">Alamat</label>
                                     <div class="col-md-9">
                                         <textarea name="alamat" class="form-control">{{ $alamat }}</textarea>
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label for="fname" class="col-md-3 control-label">Nomor Telepon</label>
+                                    <label for="fname" class="col-md-3 control-label required-symbol">Nomor Telepon</label>
                                     <div class="col-md-9">
                                         <input type="text" class="form-control" name="telepon" value="{{ $telepon }}" required>
                                     </div>
@@ -107,6 +107,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <input type="submit" class="btn btn-primary pull-right btn-cons" value="Selesai"/>
+                                        <a href="{{ url()->previous() }}" class="btn btn-default pull-right btn-cons">Batal</a>
                                     </div>
                                 </div>
                             </div>
