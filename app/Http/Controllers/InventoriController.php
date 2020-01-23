@@ -30,8 +30,6 @@ class InventoriController extends Controller
 
         $outlet = Outlet::where('user_id', '=', session('user')->id)->get();
 
-        // dd($produk[0]->stokopnames->);
-
         return view('inventori.index', ['title' => $title, 'produks' => $produk, 'outlets' => $outlet]);
     }
 

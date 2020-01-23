@@ -97,7 +97,7 @@
                 data-toggle="horizontal-menu"></a>
             <div class="">
                 <div class="brand inline no-border hidden-xs-down">
-                    <a href="{{ url('/') }}">
+                    <a href="{{ Helper::homeUrl() }}">
                         <div style="width: 78px; height: ;">
                             <span class="bold" style="color: white; font-size: 15px;">SADE POS</span>
                         </div>
@@ -151,12 +151,6 @@
                     </a>
                     <ul>
                         @if (session('user')->level == 1)
-                        <li class="
-                @if (config('global.active_nav') === 'dashboard')
-                    {{ 'active' }}
-                @endif">
-                            <a href="{{ url('#', []) }}">Dashboard</a>
-                        </li>
                         <li class="">
                             <a href="/admin/master"><span class="title">Master Data</span></a>
                         </li>

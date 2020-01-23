@@ -25,7 +25,10 @@ class OutletController extends Controller
 
         $outlets = Outlet::where('user_id', '=', session('user')->id)->get();
 
-        return view('outlet.index', ['title' => $title, 'outlets' => $outlets]);
+        return view('outlet.index', [
+            'title' => $title,
+            'outlets' => $outlets->sortByDesc('id')
+        ]);
     }
 
     /**

@@ -24,7 +24,7 @@ class StokKeluarController extends Controller
     {
         $title = 'Stok Keluar';
 
-        $model = StockOut::all();
+        $model = StockOut::where('user_id', session('user')->id)->orderBy('id', 'DESC')->orderBy('id', 'DESC')->get();
 
         return view('inventori.stokkeluar.index', [
             'title' => $title,
@@ -39,10 +39,16 @@ class StokKeluarController extends Controller
      */
     public function create()
     {
+        $title = 'Tambah Stok Keluar';
+
         $outlet = Outlet::where('user_id', session('user')->id)->get();
         $produk = Product::where('user_id', session('user')->id)->get();
 
-        return view('inventori.stokkeluar.tambah', ['outlets' => $outlet, 'produks' => $produk]);
+        return view('inventori.stokkeluar.tambah', [
+            'outlets' => $outlet,
+            'produks' => $produk,
+            'title' => $title
+            ]);
     }
 
     /**

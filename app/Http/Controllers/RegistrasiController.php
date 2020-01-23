@@ -43,29 +43,32 @@ class RegistrasiController extends Controller
      */
     public function store(Request $request)
     {
-        $model = new User();
-        $model->name = $request->uname;
-        $model->password = Hash::make($request->pass);
-        $model->email = $request->email;
-
-        //Check the $model completely saved
-        if ($model->save())
-        {
-            $model_ext = new UserInfo();
-            $model_ext->firstname = $request->fname;
-            $model_ext->lastname = $request->lname;
-            $model_ext->user_id = $model->id;
-
-            //Check the $model_ext completely saved
-            if ($model_ext->save()) {
-                Mail::to($request->email)->send(new Registrasi($model));
-                
-                session([
-                    'idTemp' => $model->id,
-                    'emailTemp' => $request->email
-                ]);
-                return redirect('login')->with('status', 'registration sukses');
+        if (User::where('name', $request->uname)->first() == null) {
+            if (User::where('email', $request->email)->first() == null) {
+                $model = new User();
+                $model->name = $request->uname;
+                $model->password = Hash::make($request->pass);
+                $model->email = $request->email;
+    
+                //Check the $model completely saved
+                if ($model->save())
+                {
+                    $model_ext = new UserInfo();
+                    $model_ext->firstname = $request->fname;
+                    $model_ext->lastname = $request->lname;
+                    $model_ext->user_id = $model->id;
+    
+                    //Check the $model_ext completely saved
+                    if ($model_ext->save()) {
+                        Mail::to($request->email)->send(new Registrasi($model));
+                        return redirect('login')->with('status', 'registration sukses');
+                    }
+                }
+            } else {
+                return redirect('/registrasi')->with('status', 'Email sudah pernah didaftarkan. <a href="'. url('/lupapassword') . '">Lupa Password?</a>');
             }
+        } else {
+            return redirect('/registrasi')->with('status', 'Username tidak tersedia.');
         }
     }
 
@@ -121,20 +124,16 @@ class RegistrasiController extends Controller
             if (Hash::check($request->password, $model->password))
             {
                 session()->put('user', $model);
-                if (session()->has('urlTemp')) {
-                    return redirect(session('urlTemp'));
+                if (Helper::getUser(session('user')->id)->info == null) {
+                    return redirect('/admin/master');
                 } else {
-                    if (Helper::getUser(session('user')->id)->info == null) {
-                        return redirect('/admin/master');
-                    } else {
-                        return redirect('/dashboard');
-                    }
+                    return redirect('/dashboard');
                 }
             } else {
-                return redirect('/login')->with('status', false);
+                return redirect('/login')->with('status', 'Kombinasi username dan password tidak sesuai.');
             }
         } else {
-            return redirect('/login')->with('status', null);
+            return redirect('/login')->with('status', 'User tidak ditemukan. <a href="'. url('/registrasi') . '">Daftar?</a>');
         }
     }
 
@@ -145,7 +144,7 @@ class RegistrasiController extends Controller
         $model->email_verified_at = now();
         $model->save();
         
-        return redirect('/login')->with('status', 'verifikasi sukses');
+        return redirect('/login')->with('status', 'Verifikasi berhasil. Silahkan masuk ke akun anda.');
     }
 
     public function resend()
@@ -155,15 +154,17 @@ class RegistrasiController extends Controller
 
     public function resendAction(Request $request)
     {
-
-        $model = User::where('id', $request->id)->first();
-        if ($model->email != $request->email) {
-            $model->email = $request->email;
-            $model->save();
+        if (is_null($model = User::where('email', $request->email)->first())) {
+            return back()->with('status', 'Email tidak ditemukan. <a href="'. url('/registrasi') . '">Daftar?</a>');
+        } else {
+            if ($model->email != $request->email) {
+                $model->email = $request->email;
+                $model->save();
+            }
+            Mail::to($model->email)->send(new Registrasi($model));
+            
+            return redirect('login')->with('status', 'Email verifikasi berhasil dikirim! Silahkan periksa email anda.');
         }
-        Mail::to($model->email)->send(new Registrasi($model));
-        
-        return redirect('login')->with('status', 'email verifikasi terkirim');
     }
 
     public function lupaPassword()

@@ -27,7 +27,7 @@ class PelangganController extends Controller
 
         return view('pelanggan.index', [
             'title' => $title,
-            'models' => $models
+            'models' => $models->sortByDesc('id')
         ]);
     }
 
@@ -41,7 +41,8 @@ class PelangganController extends Controller
         $wilayah = Wilayah::where('LEVEL', '2')->select('KODE_WILAYAH', 'MST_KODE_WILAYAH', 'NAMA')->get();
 
         return view('pelanggan.tambah', [
-            'kotas' => $wilayah
+            'kotas' => $wilayah,
+            'title' => 'Tambah Pelanggan'
         ]);
     }
 
@@ -58,7 +59,9 @@ class PelangganController extends Controller
         $model->telepon = $request->telepon;
         $model->email = $request->email;
         $model->jenis_kelamin = $request->jenisKelamin;
-        $model->tanggal_lahir = Helper::tanggalToMysql($request->tanggalLahir);
+        if ($request->tanggalLahir != null) {
+            $model->tanggal_lahir = Helper::tanggalToMysql($request->tanggalLahir);
+        }
         $model->alamat = $request->alamat;
         $model->kota = $request->kota;
         $model->kode_pos = $request->kodePos;
@@ -80,7 +83,10 @@ class PelangganController extends Controller
     {
         $model = Customer::find($id);
 
-        return view('pelanggan.lihat', ['model' => $model]);
+        return view('pelanggan.lihat', [
+            'model' => $model,
+            'title' => 'Lihat Pelanggan'
+        ]);
     }
 
     /**
@@ -96,9 +102,9 @@ class PelangganController extends Controller
 
         return view('pelanggan.ubah', [
             'model' => $model,
-            'kotas' => $wilayah
-        
-            ]);
+            'kotas' => $wilayah,
+            'title' => 'Perbarui Pelanggan'
+        ]);
     }
 
     /**

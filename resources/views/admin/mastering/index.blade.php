@@ -75,8 +75,8 @@
                                 <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
-                                <a href="{{ url('/produk/kategori') }}" class="btn btn-primary btn-cons">Kategori</a>
-                                <a href="{{ url('/produk/create') }}" class="btn btn-primary btn-cons">Tambah Produk</a>
+                                {{-- <a href="{{ url('/produk/kategori') }}" class="btn btn-primary btn-cons">Kategori</a>
+                                <a href="{{ url('/produk/create') }}" class="btn btn-primary btn-cons">Tambah Produk</a> --}}
                             </div>
                             <div class="clearfix"></div>
                         </div>

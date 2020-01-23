@@ -17,8 +17,8 @@
                     <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
-                    <h5>Informasi <span class="semi-bold">Outlet</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Pegawai <strong>{{ $pegawai->nama_depan }}</strong></p>
+                    <h5>Informasi <span class="semi-bold">Pegawai</span></h5>
+                    <p class="p-b-10">Berikut informasi mengenai Pegawai <strong>{{ $pegawai->nama_depan }}</strong>.</p>
                     </div>
                     <div class="modal-body">
                     <form role="form">
@@ -26,13 +26,13 @@
                         <div class="form-group-attached">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Nama Depan</label>
                                         <input type="text" class="form-control" name="namaDepan" placeholder="Adi" value="{{ $pegawai->nama_depan }}" readonly>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Nama Belakang</label>
                                         <input type="text" class="form-control" name="namaBelakang" placeholder="Permana Putra" value="{{ $pegawai->nama_belakang }}" readonly>
                                     </div>
@@ -40,7 +40,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Username</label>
                                         <input type="text" class="form-control" name="username" placeholder="Username User" value="{{ $pegawai->username }}" readonly>
                                     </div>
@@ -48,7 +48,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
-                                    <div class="form-group form-group-default">
+                                    <div class="form-group form-group-default required">
                                         <label>Password</label>
                                         <input type="password" class="form-control" name="password" placeholder="Password User" value="{{ $pegawai->password }}" readonly>
                                     </div>
@@ -63,14 +63,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
-                            </div>
-                        </div>
                     </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -86,12 +82,12 @@
                     <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
-                    <h5>Informasi <span class="semi-bold">Outlet</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Pegawai <strong>{{ $pegawai->nama_depan }}</strong></p>
+                    <h5>Perbarui <span class="semi-bold">Pegawai</span></h5>
+                    <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah Pegawai <strong>{{ $pegawai->nama_depan }}</strong>.</p>
                     </div>
-                    <div class="modal-body">
-                        <form role="form" action="/pegawai/{{ $pegawai->id }}" method="POST">
-                            @csrf
+                    <form role="form" action="/pegawai/{{ $pegawai->id }}" method="POST">
+                        @csrf
+                        <div class="modal-body">
                             <input name="_method" type="hidden" value="PUT">
                             <div class="form-group-attached">
                                 <div class="row">
@@ -136,19 +132,15 @@
                                                     @endif>{{ $outlet->outlet_name }}</option>
                                                 @endforeach
                                             </select>
-                                          </div>
+                                            </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                </div>
-                                <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="submit" class="btn btn-primary btn-block m-t-5">Simpan</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-cons no-margin pull-left inline">Simpan</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -192,7 +184,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
             </button>
             <h5>Tambah <span class="semi-bold">Pegawai</span></h5>
-            <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah pegawai</p>
+            <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah pegawai.</p>
             </div>
             <div class="modal-body">
                 <form role="form" action="/pegawai" method="POST">
@@ -200,31 +192,31 @@
                     <div class="form-group-attached">
                         <div class="row">
                             <div class="col-md-6">
-                                <div class="form-group form-group-default">
+                                <div class="form-group form-group-default required">
                                     <label>Nama Depan</label>
-                                    <input type="text" class="form-control" name="namaDepan" placeholder="Adi">
+                                    <input type="text" class="form-control" name="namaDepan" required>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="form-group form-group-default">
+                                <div class="form-group form-group-default required">
                                     <label>Nama Belakang</label>
-                                    <input type="text" class="form-control" name="namaBelakang" placeholder="Permana Putra">
+                                    <input type="text" class="form-control" name="namaBelakang" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group form-group-default">
+                                <div class="form-group form-group-default required">
                                     <label>Username</label>
-                                    <input type="text" class="form-control" name="username" placeholder="Username User">
+                                    <input type="text" class="form-control" name="username" required>
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="form-group form-group-default">
+                                <div class="form-group form-group-default required">
                                     <label>Password</label>
-                                    <input type="password" class="form-control" name="password" placeholder="Password User">
+                                    <input type="password" class="form-control" name="password" required>
                                 </div>
                             </div>
                         </div>
@@ -290,11 +282,13 @@
         <!-- START card -->
             <div class="card card-default">
                 <div class="card-header">
+                    <div class="card-title">
+                        Daftar Pegawai
+                    </div>
                     <div class="padding-10">
                         <div class="row">
                         <div class="col-lg-12">
-                            <label for="">Cari</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Pegawai">
                         </div>
                     </div>
                     </div>

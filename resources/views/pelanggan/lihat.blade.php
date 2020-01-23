@@ -1,6 +1,6 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
 {{-- <form action="/pelanggan/{{ $model->id }}" method="POST"> --}}
@@ -17,7 +17,7 @@
                         <div class="card card-transparent">
                             <div style="display:flex; align-items:center;">
                                 <div class="pull-left">
-                                    {{-- <h5>{{ $title }}</h5> --}}
+                                    <h5>{{ $title }}</h5>
                                 </div>
                                 <div class="ml-auto">
                                     <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Kembali</a>
@@ -38,36 +38,41 @@
             <div class="col-lg-12 m-b-10 d-flex flex-column">
             <!-- START card -->
                 <div class="card card-default">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Informasi Pelanggan
+                        </div>
+                    </div>
                     <div class="card-block">
                         <div class="row">
                             <div class="col-lg-6 p-l-10 p-r-10 p-t-10">
                                 <div class="form-group">
                                     <label>Nama</label>
                                     <span class="help"></span>
-                                    <p>{{ $model->nama }}</p>
+                                    <input type="text" class="form-control" value="{{ $model->nama }}" readonly>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label>Telepon</label>
                                         <span class="help"></span>
-                                        <p>{{ $model->telepon }}</p>
+                                        <input type="text" class="form-control" value="{{ $model->telepon }}" readonly>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Email</label>
                                         <span class="help"></span>
-                                        <p>{{ $model->email }}</p>
+                                        <input type="text" class="form-control" value="{{ $model->email }}" readonly>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label>Jenis Kelamin</label>
                                         <span class="help"></span>
-                                        <p>{{ $model->jenis_kelamin }}</p>
+                                        <input type="text" class="form-control" value="{{ Helper::cekNull($model->jenis_kelamin) }}" readonly>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Tanggal Lahir</label>
                                         <span class="help"></span>
-                                        <p>{{ $model->tanggal_lahir }}</p>
+                                        <input type="text" class="form-control" value="{{ Helper::cekNull($model->tanggal_lahir) }}" readonly>
                                     </div>
                                 </div>
                             </div>
@@ -75,24 +80,24 @@
                                 <div class="form-group">
                                     <label>Alamat</label>
                                     <span class="help"></span>
-                                    <p>{{ $model->alamat }}</p>
+                                    <textarea class="form-control" name="alamat" readonly>{{ Helper::cekNull($model->alamat) }}</textarea>
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label>Kota</label>
                                         <span class="help"></span>
-                                        <p>{{ Helper::getKota($model->kota) }}</p>
+                                        <input type="text" class="form-control" value="{{ Helper::getKota($model->kota) }}" readonly>
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label>Kode Pos</label>
                                         <span class="help"></span>
-                                        <p>{{ $model->kode_pos }}</p>
+                                        <input type="text" class="form-control" value="{{ Helper::cekNull($model->kode_pos) }}" readonly>
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label>Catatan</label>
                                     <span class="help"></span>
-                                    <p>{{ $model->catatan }}</p>
+                                    <textarea class="form-control" name="alamat" readonly>{{ Helper::cekNull($model->catatan) }}</textarea>
                                 </div>
                             </div>
                         </div>

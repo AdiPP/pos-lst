@@ -12,7 +12,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
                     <h5>Informasi <span class="semi-bold">Stok Masuk</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Stok Masuk <strong>#SM{{ $model->id }}</strong></p>
+                    <p class="p-b-10">Berikut informasi mengenai Stok Masuk <strong>#SM{{ $model->id }}</strong>.</p>
                     </div>
                     <div class="modal-body">
                         @csrf
@@ -35,7 +35,7 @@
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label>Catatan</label>
-                                    <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" readonly>{{ $model->description }}</textarea>
+                                    <textarea class="form-control" readonly>{{ $model->description }}</textarea>
                                 </div>
                                 </div>
                             </div>
@@ -46,7 +46,7 @@
                                     <th class="">Nama Produk</th>
                                     <th class="text-right">Jumlah</th>
                                     <th class="text-right">Harga Beli / Unit</th>
-                                    <th class="text-right">Total</th>
+                                    <th class="text-right w-25">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -56,52 +56,22 @@
                                             {{ $produk->produk->product_name }}
                                         </td>
                                         <td class="v-align-middle text-right">
-                                            Rp {{ $produk->jumlah }}
+                                            {{ $produk->jumlah }}
                                         </td>
                                         <td class="v-align-middle text-right">
-                                            Rp {{ $produk->harga_beli_per_unit }}
+                                            {{ Helper::numberToRupiah($produk->harga_beli_per_unit) }}
                                         </td>
                                         <td class="v-align-middle text-right">
-                                            Rp {{ $produk->total_harga_beli }}
+                                            {{ Helper::numberToRupiah($produk->total_harga_beli) }}
                                         </td>
                                     </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
-                            </div>
-                        </div>
                     </div>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <div class="modal fade slide-up disable-scroll" id="modalHapus{{ $model->id }}" tabindex="-1" role="dialog" aria-hidden="false">
-        <div class="modal-dialog modal-sm">
-            <div class="modal-content-wrapper">
-                <div class="modal-content">
-                <div class="modal-header clearfix text-left">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                    </button>
-                    <h5>Perhatian</h5>
-                </div>
-                <div class="modal-body">
-                    <p class="no-margin">Apakah anda yakin ingin menghapus Stok Masuk <span class="bold">#SM{{ $model->id }}</span> dari sistem?</p>
-                </div>
-                <div class="modal-footer">
-                    <form action="/inventori/stokmasuk/{{ $model->id }}" method="POST">
-                        @csrf
-                        <input name="_method" type="hidden" value="DELETE">
-                        <button type="submit" class="btn btn-primary btn-cons  pull-left inline">Iya</button>
-                    </form>
-                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Tidak</button>
-                </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
+                    </div>
                 </div>
             </div>
             <!-- /.modal-content -->

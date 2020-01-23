@@ -11,10 +11,14 @@ use App\User;
 
 class StokMasukController extends Controller
 {
+    private $outlet;
+
     public function __construct()
     {
         \App\Helpers\AppHelper::userCheck();   
         \Config::set('global.active_nav', 'inventori');
+        
+        $this->outlet = Outlet::where('user_id', session('user')->id)->get();
     }
     /**
      * Display a listing of the resource.
@@ -25,7 +29,7 @@ class StokMasukController extends Controller
     {
         $title = 'Stok Masuk';
 
-        $model = StockEntry::where('user_id', session('user')->id)->get();
+        $model = StockEntry::where('user_id', session('user')->id)->orderBy('id', 'DESC')->get();
 
         return view('inventori.stokmasuk.index', ['title' => $title, 'models' => $model]);
     }
@@ -37,10 +41,16 @@ class StokMasukController extends Controller
      */
     public function create()
     {
+        $title = 'Tambah Stok Masuk';
+
         $outlet = Outlet::where('user_id', session('user')->id)->get();
         $produk = Product::where('user_id', session('user')->id)->get();
 
-        return view('inventori.stokmasuk.tambah', ['outlets' => $outlet, 'produks' => $produk]);
+        return view('inventori.stokmasuk.tambah', [
+            'outlets' => $outlet,
+            'produks' => $produk,
+            'title' => $title
+        ]);
     }
 
     /**
@@ -143,5 +153,14 @@ class StokMasukController extends Controller
         return view('inventori.stokmasuk.infoproduk', [
             'produk' => Product::where('id', '=', $id)->first()
         ]);
+    }
+
+    public function getOutlet()
+    {
+        if (count($this->outlet) == 0) {
+            return 0;
+        } else {
+            return 1;
+        }
     }
 }

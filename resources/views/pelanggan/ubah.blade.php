@@ -1,6 +1,6 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
 <form action="/pelanggan/{{ $model->id }}" method="POST">
@@ -17,10 +17,10 @@
                         <div class="card card-transparent">
                             <div style="display:flex; align-items:center;">
                                 <div class="pull-left">
-                                    {{-- <h5>{{ $title }}</h5> --}}
+                                    <h5>{{ $title }}</h5>
                                 </div>
                                 <div class="ml-auto">
-                                    <a href="{{ url('/produk', []) }}" class="btn btn-primary btn-cons">Batal</a>
+                                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Batal</a>
                                     <input type="submit" class="btn btn-primary btn-cons" value="Simpan">
                                 </div>
                                 <div class="clearfix"></div>
@@ -39,24 +39,29 @@
             <div class="col-lg-12 m-b-10 d-flex flex-column">
             <!-- START card -->
                 <div class="card card-default">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Informasi Pelanggan
+                        </div>
+                    </div>
                     <div class="card-block">
                         <div class="row">
                             <div class="col-lg-6 p-l-10 p-r-10 p-t-10">
                                 <div class="form-group">
-                                    <label>Nama</label>
+                                    <label class="required-symbol">Nama</label>
                                     <span class="help"></span>
                                     <input type="text" class="form-control" name="nama" value="{{ $model->nama }}" required>
                                 </div>
                                 <div class="row p-l-5 p-r-5">
                                     <div class="form-group col-lg-6 required">
-                                        <label>Telepon</label>
+                                        <label class="required-symbol">Telepon</label>
                                         <span class="help"></span>
                                         <input type="text" class="form-control" name="telepon" value="{{ $model->telepon }}" required>
                                     </div>
                                     <div class="form-group col-lg-6">
-                                        <label>Email</label>
+                                        <label class="required-symbol">Email</label>
                                         <span class="help"></span>
-                                        <input type="email" class="form-control" name="email" value="{{ $model->email }}">
+                                        <input type="email" class="form-control" name="email" value="{{ $model->email }}" required>
                                     </div>
                                 </div>
                                 <div class="row p-l-5 p-r-5">

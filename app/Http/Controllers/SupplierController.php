@@ -19,9 +19,12 @@ class SupplierController extends Controller
      */
     public function index()
     {
-        $supplier = Supplier::where('user_id', session('user')->id)->get();
+        $supplier = Supplier::where('user_id', session('user')->id)->orderBy('id', 'DESC')->get();
 
-        return view('inventori.supplier.index', ['title' => 'Supplier', 'suppliers' => $supplier]);
+        return view('inventori.supplier.index', [
+            'title' => 'Supplier',
+            'suppliers' => $supplier
+        ]);
     }
 
     /**

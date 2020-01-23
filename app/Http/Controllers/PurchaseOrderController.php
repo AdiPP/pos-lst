@@ -41,7 +41,7 @@ class PurchaseOrderController extends Controller
     {
         return view('inventori.purchaseorder.index', [
             'title' => 'Purchase Order',
-            'purchaseOrders' => $this->purchaseOrder,
+            'purchaseOrders' => $this->purchaseOrder->sortByDesc('id'),
         ]);
     }
 
@@ -53,7 +53,7 @@ class PurchaseOrderController extends Controller
     public function create()
     {
         return view('inventori.purchaseorder.tambah', [
-            'title' => 'Purchase Order',
+            'title' => 'Tambah Purchase Order',
             'outlets' => $this->outlet,
             'suppliers' => $this->supplier,
             'produks' => $this->produk

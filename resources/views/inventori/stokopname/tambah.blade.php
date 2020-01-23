@@ -40,7 +40,7 @@
                 <div class="card card-default">
                     <div class="card-header">
                         <div class="card-title">
-                            Informasi Utama
+                            Informasi Stok Opname
                         </div>
                     </div>
                     <div class="card-block">
@@ -49,10 +49,10 @@
                         <div class="row">
                             <div class="col-lg-12 padding-10">
                                 <div class="form-group">
-                                    <label>Outlet</label>
+                                    <label class="required-symbol">Outlet</label>
                                     <span class="help"></span>
                                     <select class="full-width" data-init-plugin="select2" name="outlet" onchange="pilihOutlet()" id="outlet" required>
-                                        <option disabled selected>Pilih Outlet</option>
+                                        <option disabled value="" selected>Pilih Outlet</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
                                         @endforeach
@@ -78,7 +78,7 @@
                 <div data-pages="card" class="card card-default" id="card-basic">
                     <div class="card-header ">
                         <div class="card-title">
-                            Produk
+                            <span class="required-symbol">Produk</span>
                         </div>
                     </div>
                     <div class="card-block">
@@ -95,8 +95,8 @@
                             <tbody id="produk">
                                 <tr>
                                     <td class="v-align-middle">
-                                        <select class="full-width" onchange="pilihProduk(this)" data-init-plugin="select2" name="produk[]" id="mainProduk" disabled>
-                                            <option selected disabled>Pilih Produk</option>
+                                        <select class="full-width" onchange="pilihProduk(this)" data-init-plugin="select2" name="produk[]" id="mainProduk" disabled required>
+                                            <option selected value="" disabled>Pilih Produk</option>
                                             @foreach ($produks as $produk)
                                                 <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
                                             @endforeach

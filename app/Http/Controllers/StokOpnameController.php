@@ -24,9 +24,12 @@ class StokOpnameController extends Controller
      */
     public function index()
     {
-        $stokopname = StockOpname::where('user_id', session('user')->id)->get();
+        $stokopname = StockOpname::where('user_id', session('user')->id)->orderBy('id', 'DESC')->get();
 
-        return view('inventori.stokopname.index', ['title' => 'Stok Opname', 'stokopnames' => $stokopname]);
+        return view('inventori.stokopname.index', [
+            'title' => 'Stok Opname',
+            'stokopnames' => $stokopname
+        ]);
     }
 
     /**
@@ -134,9 +137,10 @@ class StokOpnameController extends Controller
     {
         $produkTemp = $_GET['produk'];
         $outlet = $_GET['outlet'];
+        $tanggal = Helper::hariIni();
 
         $produk = Product::find($produkTemp);
 
-        return Helper::getStokAkhir($produk, $outlet);
+        return Helper::getStokAkhir($produk, $outlet, $tanggal);
     }
 }

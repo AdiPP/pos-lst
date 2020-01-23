@@ -12,7 +12,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
                     <h5>Informasi <span class="semi-bold">Stok Keluar</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Stok Keluar <strong>#SK{{ $model->id }}</strong></p>
+                    <p class="p-b-10">Berikut informasi mengenai Stok Keluar <strong>#SK{{ $model->id }}</strong>.</p>
                     </div>
                     <div class="modal-body">
                         @csrf
@@ -21,13 +21,13 @@
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Outlet</label>
-                                    <p>{{ $model->outlet->outlet_name }}</p>
+                                    <input type="text" class="form-control" value="{{ $model->outlet->outlet_name }}" readonly>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Tanggal</label>
-                                    <p>{{ Helper::mysqlToTanggal($model->tanggal) }}</p>
+                                    <input type="text" class="form-control" value="{{ Helper::mysqlToTanggal($model->tanggal) }}" readonly>
                                 </div>
                                 </div>
                             </div>
@@ -35,7 +35,7 @@
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label>Catatan</label>
-                                    <p>{{ $model->description }}</p>
+                                    <textarea class="form-control" readonly>{{ $model->description }}</textarea>
                                 </div>
                                 </div>
                             </div>
@@ -60,13 +60,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>

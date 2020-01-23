@@ -8,6 +8,7 @@ use App\Product;
 use App\ProductCategory as Category;
 use App\Unit;
 use Redirect;
+use Illuminate\Support\Facades\Storage;
 
 class ProdukController extends Controller
 {
@@ -94,7 +95,7 @@ class ProdukController extends Controller
      */
     public function edit($id)
     {
-        $title = 'Ubah Produk';
+        $title = 'Perbarui Produk';
 
         $model = Product::find($id);
         $categories = Category::where('user_id', session('user')->id)->get();
@@ -117,6 +118,9 @@ class ProdukController extends Controller
         // File Uploads
         if ($request->file('foto_produk') !== null)
         {
+            if (Storage::disk('product')->exists($model->product_pict)) {
+                Storage::disk('product')->delete($model->product_pict);
+            }
             $path = $request->file('foto_produk')->store('', 'product');
             $model->product_pict = $path;
         }

@@ -13,11 +13,9 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
                     <h5>Informasi <span class="semi-bold">Outlet</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Outlet <strong>{{ $outlet->outlet_name }}</strong></p>
+                    <p class="p-b-10">Berikut informasi mengenai Outlet <strong>{{ $outlet->outlet_name }}</strong>.</p>
                     </div>
                     <div class="modal-body">
-                    <form role="form">
-                        @csrf
                         <div class="form-group-attached">
                         <div class="row">
                             <div class="col-md-12">
@@ -45,19 +43,14 @@
                             <div class="col-md-12">
                             <div class="form-group form-group-default">
                                 <label>Alamat</label>
-                                <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" readonly>{{ $outlet->outlet_name }}</textarea>
+                                <textarea class="form-control" name="alamat" readonly>{{ $outlet->outlet_address }}</textarea>
                             </div>
                             </div>
                         </div>
                         </div>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -73,8 +66,8 @@
                         <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
-                        <h5>Informasi <span class="semi-bold">Outlet</span></h5>
-                        <p class="p-b-10">Berikut informasi mengenai Outlet <strong>{{ $outlet->outlet_name }}</strong></p>
+                        <h5>Perbarui <span class="semi-bold">Outlet</span></h5>
+                        <p class="p-b-10">Silahkan mengisi form berikut, untuk memperbarui Outlet <strong>{{ $outlet->outlet_name }}</strong>.</p>
                         </div>
                         <div class="modal-body">
                         <form role="form" action="/outlet/{{ $outlet->id }}" method="POST">
@@ -84,42 +77,38 @@
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
-                                    <label>Nama Outlet</label>
-                                    <input type="text" class="form-control" name="nama" value="{{ $outlet->outlet_name }}">
+                                    <label class="required-symbol">Nama Outlet</label>
+                                    <input type="text" class="form-control" name="nama" value="{{ $outlet->outlet_name }}" required>
                                 </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-8">
                                 <div class="form-group form-group-default">
-                                    <label>Nomor Telepon</label>
-                                    <input type="text" class="form-control" id="phoneEdit" name="telepon" value="{{ $outlet->outlet_phone }}">
+                                    <label class="required-symbol">Nomor Telepon</label>
+                                    <input type="text" class="form-control" id="phoneEdit" name="telepon" value="{{ $outlet->outlet_phone }}" required>
                                 </div>
                                 </div>
                                 <div class="col-md-4">
                                 <div class="form-group form-group-default">
-                                    <label>Kota</label>
-                                    <input type="text" class="form-control" name="kota" value="{{ $outlet->outlet_city }}">
+                                    <label class="required-symbol">Kota</label>
+                                    <input type="text" class="form-control" name="kota" value="{{ $outlet->outlet_city }}" required>
                                 </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
-                                    <label>Alamat</label>
-                                    <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat">{{ $outlet->outlet_address }}</textarea>
+                                    <label class="required-symbol">Alamat</label>
+                                    <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" required>{{ $outlet->outlet_address }}</textarea>
                                 </div>
                                 </div>
                             </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-md-8">
-                                </div>
-                                <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="submit" class="btn btn-primary btn-block m-t-5">Perbarui</button>
-                                </div>
                             </div>
                         </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -164,7 +153,7 @@
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
             </button>
             <h5>Tambah <span class="semi-bold">Outlet</span></h5>
-            <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah outlet</p>
+            <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah outlet.</p>
             </div>
             <div class="modal-body">
             <form role="form" action="/outlet" method="POST">
@@ -173,30 +162,30 @@
                 <div class="row">
                     <div class="col-md-12">
                     <div class="form-group form-group-default">
-                        <label>Nama Outlet</label>
-                        <input type="text" class="form-control" name="nama">
+                        <label class="required-symbol">Nama Outlet</label>
+                        <input type="text" class="form-control" name="nama" required>
                     </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-8">
                     <div class="form-group form-group-default">
-                        <label>Nomor Telepon</label>
-                        <input type="text" class="form-control" name="telepon" id="phoneTambah">
+                        <label class="required-symbol">Nomor Telepon</label>
+                        <input type="text" class="form-control" name="telepon" id="phoneTambah" required>
                     </div>
                     </div>
                     <div class="col-md-4">
                     <div class="form-group form-group-default">
-                        <label>Kota</label>
-                        <input type="text" class="form-control" name="kota">
+                        <label class="required-symbol">Kota</label>
+                        <input type="text" class="form-control" name="kota" required>
                     </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-md-12">
                     <div class="form-group form-group-default">
-                        <label>Alamat</label>
-                        <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat"></textarea>
+                        <label class="required-symbol">Alamat</label>
+                        <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" required></textarea>
                     </div>
                     </div>
                 </div>
@@ -249,11 +238,13 @@
         <!-- START card -->
             <div class="card card-default">
                 <div class="card-header">
+                    <div class="card-title">
+                        Daftar Outlet
+                    </div>
                     <div class="padding-10">
                         <div class="row">
                         <div class="col-lg-12">
-                            <label for="">Cari</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Outlet">
                         </div>
                     </div>
                     </div>

@@ -25,7 +25,11 @@
             "scrollCollapse": true,
             "oLanguage": {
                 "sLengthMenu": "_MENU_ ",
-                "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+                "sInfo": "Menunjukan <b>_START_ sampai _END_</b> dari _TOTAL_ entri",
+                "sEmptyTable": "<i>Data tidak tersedia<i>",
+                "sZeroRecords": "<i>Data tidak ditemukan<i>",
+                "sInfoEmpty":      "Menunjukan 0 sampai 0 dari 0 entri",
+                "sInfoFiltered":   "(difilter dari total _MAX_ entri)"
             },
             "iDisplayLength": 5
         };
@@ -48,7 +52,7 @@
             "scrollCollapse": true,
             "oLanguage": {
                 "sLengthMenu": "_MENU_ ",
-                "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+                "sInfo": "Menunjukan <b>_START_ sampai _END_</b> of _TOTAL_ entri"
             },
             "iDisplayLength": 5
         };
@@ -72,7 +76,7 @@
             "scrollCollapse": true,
             "oLanguage": {
                 "sLengthMenu": "_MENU_ ",
-                "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+                "sInfo": "Menunjukan <b>_START_ sampai _END_</b> of _TOTAL_ entri"
             },
             "iDisplayLength": 5
         };
@@ -107,7 +111,7 @@
             "scrollCollapse": true,
             "oLanguage": {
                 "sLengthMenu": "_MENU_ ",
-                "sInfo": "Showing <b>_START_ to _END_</b> of _TOTAL_ entries"
+                "sInfo": "Menunjukan <b>_START_ sampai _END_</b> of _TOTAL_ entri"
             },
             "iDisplayLength": 5,
             "oTableTools": {

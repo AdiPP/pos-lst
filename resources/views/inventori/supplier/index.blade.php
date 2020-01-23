@@ -13,7 +13,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
                         <h5>Informasi <span class="semi-bold">Supplier</span></h5>
-                        <p class="p-b-10">Berikut informasi mengenai Supplier <strong>{{ $supplier->nama }}</strong></p>
+                        <p class="p-b-10">Berikut informasi mengenai Supplier <strong>{{ $supplier->nama }}</strong>.</p>
                     </div>
                     <div class="modal-body">
                         <div class="form-group-attached">
@@ -21,7 +21,7 @@
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label>Nama Supplier</label>
-                                    <p>{{ $supplier->nama }}</p>
+                                    <input type="text" class="form-control" value="{{ $supplier->nama }}" readonly>
                                 </div>
                                 </div>
                             </div>
@@ -29,13 +29,13 @@
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Email</label>
-                                    <p>{{ $supplier->email }}</p>
+                                    <input type="email" class="form-control" value="{{ $supplier->email }}" readonly>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Telepon</label>
-                                    <p>{{ $supplier->telepon }}</p>
+                                    <input type="text" class="form-control" value="{{ $supplier->telepon }}" readonly>
                                 </div>
                                 </div>
                             </div>
@@ -43,17 +43,14 @@
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label>Alamat</label>
-                                    <p>{{ $supplier->alamat }}</p>
+                                    <textarea class="form-control" readonly>{{ $supplier->alamat }}</textarea>
                                 </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="button" data-dismiss="modal" class="btn btn-primary btn-block m-t-5">Selesai</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -69,53 +66,50 @@
                     <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
-                        <h5>Tambah <span class="semi-bold">Supplier</span></h5>
-                        <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah supplier</p>
+                        <h5>Perbarui <span class="semi-bold">Supplier</span></h5>
+                        <p class="p-b-10">Silahkan mengisi form berikut, untuk memperbarui Supplier <strong>{{ $supplier->nama }}</strong>.</p>
                     </div>
-                    <div class="modal-body">
-                        <form action="/supplier/{{ $supplier->id }}" method="post">
-                            @csrf
+                    <form action="/supplier/{{ $supplier->id }}" method="post">
+                    @csrf
+                        <div class="modal-body">
                             <input name="_method" type="hidden" value="PUT">
                             <div class="form-group-attached">
                                 <div class="row">
                                     <div class="col-md-12">
                                     <div class="form-group form-group-default">
-                                        <label>Nama Supplier</label>
-                                        <input type="text" class="form-control" name="nama" value="{{ $supplier->nama }}">
+                                        <label class="required-symbol">Nama Supplier</label>
+                                        <input type="text" class="form-control" name="nama" value="{{ $supplier->nama }}" required>
                                     </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
                                     <div class="form-group form-group-default">
-                                        <label>Email</label>
-                                        <input type="text" class="form-control" name="email" value="{{ $supplier->email }}">
+                                        <label class="required-symbol">Email</label>
+                                        <input type="email" class="form-control" name="email" value="{{ $supplier->email }}" required>
                                     </div>
                                     </div>
                                     <div class="col-md-6">
                                     <div class="form-group form-group-default">
-                                        <label>Telepon</label>
-                                        <input type="text" class="form-control" name="telepon" value="{{ $supplier->telepon }}">
+                                        <label class="required-symbol">Telepon</label>
+                                        <input type="text" class="form-control" name="telepon" value="{{ $supplier->telepon }}" required>
                                     </div>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
                                     <div class="form-group form-group-default">
-                                        <label>Alamat</label>
-                                        <textarea name="alamat" class="form-control">{{ $supplier->alamat }}</textarea>
+                                        <label class="required-symbol">Alamat</label>
+                                        <textarea name="alamat" class="form-control" required>{{ $supplier->alamat }}</textarea>
                                     </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="row">
-                                <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="submit" class="btn btn-primary btn-block m-t-5">Selesai</button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-primary btn-cons no-margin pull-left inline">Selesai</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -127,22 +121,22 @@
         <div class="modal-dialog modal-sm">
             <div class="modal-content-wrapper">
                 <div class="modal-content">
-                <div class="modal-header clearfix text-left">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-                    </button>
-                    <h5>Perhatian</h5>
-                </div>
-                <div class="modal-body">
-                    <p class="no-margin">Apakah anda yakin ingin menghapus Supplier <span class="bold">{{ $supplier->nama }}</span> dari sistem?</p>
-                </div>
-                <div class="modal-footer">
-                    <form action="/supplier/{{ $supplier->id }}" method="POST">
-                        @csrf
-                        <input name="_method" type="hidden" value="DELETE">
-                        <button type="submit" class="btn btn-primary btn-cons  pull-left inline">Iya</button>
-                    </form>
-                    <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Tidak</button>
-                </div>
+                    <div class="modal-header clearfix text-left">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+                        </button>
+                        <h5>Perhatian</h5>
+                    </div>
+                    <div class="modal-body">
+                        <p class="no-margin">Apakah anda yakin ingin menghapus Supplier <span class="bold">{{ $supplier->nama }}</span> dari sistem?</p>
+                    </div>
+                    <div class="modal-footer">
+                        <form action="/supplier/{{ $supplier->id }}" method="POST">
+                            @csrf
+                            <input name="_method" type="hidden" value="DELETE">
+                            <button type="submit" class="btn btn-primary btn-cons  pull-left inline">Iya</button>
+                        </form>
+                        <button type="button" class="btn btn-default btn-cons no-margin pull-left inline" data-dismiss="modal">Tidak</button>
+                    </div>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -159,7 +153,7 @@
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
                     <h5>Tambah <span class="semi-bold">Supplier</span></h5>
-                    <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah supplier</p>
+                    <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah supplier.</p>
                 </div>
                 <div class="modal-body">
                     <form action="/supplier" method="post">
@@ -168,30 +162,30 @@
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
-                                    <label>Nama Supplier</label>
-                                    <input type="text" class="form-control" name="nama">
+                                    <label class="required-symbol">Nama Supplier</label>
+                                    <input type="text" class="form-control" name="nama" required>
                                 </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
-                                    <label>Email</label>
-                                    <input type="text" class="form-control" name="email">
+                                    <label class="required-symbol">Email</label>
+                                    <input type="email" class="form-control" name="email" required>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
-                                    <label>Telepon</label>
-                                    <input type="text" class="form-control" name="telepon">
+                                    <label class="required-symbol">Telepon</label>
+                                    <input type="text" class="form-control" name="telepon" required>
                                 </div>
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
-                                    <label>Alamat</label>
-                                    <textarea name="alamat" class="form-control"></textarea>
+                                    <label class="required-symbol">Alamat</label>
+                                    <textarea name="alamat" class="form-control" required></textarea>
                                 </div>
                                 </div>
                             </div>
@@ -251,7 +245,7 @@
                     <div class="padding-10">
                         <div class="row">
                         <div class="col-lg-12">
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Stok Masuk">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Supplier">
                         </div>
                     </div>
                     </div>

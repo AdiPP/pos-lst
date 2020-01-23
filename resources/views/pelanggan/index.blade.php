@@ -162,11 +162,13 @@
         <!-- START card -->
             <div class="card card-default">
                 <div class="card-header">
+                    <div class="card-title">
+                        Daftar Pelanggan
+                    </div>
                     <div class="padding-10">
                         <div class="row">
                         <div class="col-lg-12">
-                            <label for="">Cari</label>
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Search">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Pelanggan">
                         </div>
                     </div>
                     </div>

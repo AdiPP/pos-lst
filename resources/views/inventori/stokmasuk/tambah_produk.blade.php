@@ -16,8 +16,13 @@
         <td class="v-align-middle">
             <input type="number" class="form-control input-sm text-right" onkeyup="totalByJumlah(this)" name="jumlah[]" placeholder="0" disabled>
         </td>
-        <td class="v-align-middle text-right">
-            <input type="number" class="form-control input-sm text-right" onkeyup="totalByHargaBeli(this)" name="hargaBeli[]" placeholder="0" disabled>
+        <td class="v-align-middle text-right row d-flex align-items-center">
+            <div class="col-2">
+                Rp.
+            </div>
+            <div class="col-10">
+                <input type="number" class="form-control input-sm text-right" onkeyup="totalByHargaBeli(this)" name="hargaBeli[]" placeholder="0" disabled>
+            </div>
         </td>
         <td class="v-align-middle text-right">
             <input type="text" class="form-control input-sm text-right" placeholder="0" name="tampilTotal[]" readonly>

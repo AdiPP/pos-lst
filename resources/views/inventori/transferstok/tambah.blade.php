@@ -3,7 +3,29 @@
 @section('title', $title)
 
 @section('content')
-<form action="/inventori/transferstok" method="POST" enctype="multipart/form-data">
+<div class="modal fade slide-up disable-scroll" id="outletKosong" tabindex="-1" role="dialog"
+    aria-hidden="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <h5>Perhatian</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="no-margin">Saat ini anda belum memiliki <span
+                            class="bold">Outlet</span>. Silahkan tambahkan outlet terlebih dahulu.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/inventori/transferstok" class="btn btn-default btn-cons inline pull-left">Kembali</a>
+                    <a href="/outlet" class="btn btn-primary btn-cons inline pull-left">Tambahkan</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<form action="/inventori/transferstok" method="POST" enctype="multipart/form-data" id="formTambahTransferStok">
     @csrf
     <!-- START JUMBOTRON -->
     <div class="jumbotron">
@@ -49,9 +71,9 @@
                         <div class="row">
                             <div class="col-lg-2 padding-10">
                                 <div class="form-group">
-                                    <label>Outlet Asal</label>
+                                    <label class="required-symbol">Outlet Asal</label>
                                     <span class="help"></span>
-                                    <select class="full-width" data-init-plugin="select2" name="outletAsal" required>
+                                    <select class="full-width" data-init-plugin="select2" name="outletAsal" id="outletAsal" required>
                                         <option disabled selected value="">Pilih Outlet</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
@@ -61,9 +83,9 @@
                             </div>
                             <div class="col-lg-2 padding-10">
                                 <div class="form-group">
-                                    <label>Outlet Tujuan</label>
+                                    <label class="required-symbol">Outlet Tujuan</label>
                                     <span class="help"></span>
-                                    <select class="full-width" data-init-plugin="select2" name="outletTujuan" required>
+                                    <select class="full-width" data-init-plugin="select2" name="outletTujuan" id="outletTujuan" required>
                                         <option disabled selected value="">Pilih Outlet</option>
                                         @foreach ($outlets as $outlet)
                                             <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
@@ -73,9 +95,9 @@
                             </div>
                             <div class="col-lg-3 padding-10">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
+                                    <label class="required-symbol">Tanggal</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off">
+                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-lg-5 padding-10">
@@ -97,15 +119,15 @@
                 <div data-pages="card" class="card card-default" id="card-basic">
                     <div class="card-header ">
                         <div class="card-title">
-                            Produk
+                            <span class="required-symbol">Produk</span>
                         </div>
                     </div>
                     <div class="card-block">
                         <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                             <thead>
                             <tr>
-                                <th>Nama Produk</th>
-                                <th>Jumlah</th>
+                                <th class="w-75">Nama Produk</th>
+                                <th class="w-25">Jumlah</th>
                                 <th class="text-center" style="width: 1%"><i class="fa fa-trash"></i> </th>
                             </tr>
                             </thead>
@@ -148,6 +170,23 @@
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        cekOutlet();
+
+        $('#formTambahTransferStok').submit(function() {
+            var outletAsal = document.getElementById("outletAsal");
+            var outletAsalValue = outletAsal.options[outletAsal.selectedIndex].value;
+
+            var outletTujuan = document.getElementById("outletTujuan");
+            var outletTujuanValue = outletTujuan.options[outletTujuan.selectedIndex].value;
+
+            if (outletAsalValue == outletTujuanValue) {
+                alert('Outlet Asal dan Outlet Tujuan harus berbeda.');   
+                return false;
+            } else {
+                return true;
             }
         });
     })
@@ -196,6 +235,19 @@
 
     function hapusProduk(button){
         $(button).parent().parent().parent().remove();
+    }
+
+    function cekOutlet(){
+        $.ajax({
+            url: '/inventori/stokmasuk/getoutlet',
+            type: 'GET',
+            success: function(response){
+                if (response == 0) {
+                    $('#outletKosong').modal({backdrop: 'static', keyboard: false});
+                    $('#outletKosong').modal('toggle');
+                }
+            },
+        })
     }
 </script>
 @endsection

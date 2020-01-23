@@ -1,8 +1,30 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
+<div class="modal fade slide-up disable-scroll" id="outletKosong" tabindex="-1" role="dialog"
+    aria-hidden="false">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content-wrapper">
+            <div class="modal-content">
+                <div class="modal-header clearfix text-left">
+                    <h5>Perhatian</h5>
+                </div>
+                <div class="modal-body">
+                    <p class="no-margin">Saat ini anda belum memiliki <span
+                            class="bold">Outlet</span>. Silahkan tambahkan outlet terlebih dahulu.</p>
+                </div>
+                <div class="modal-footer">
+                    <a href="/inventori/stokkeluar" class="btn btn-default btn-cons inline pull-left">Kembali</a>
+                    <a href="/outlet" class="btn btn-primary btn-cons inline pull-left">Tambahkan</a>
+                </div>
+            </div>
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
 <form action="/inventori/stokkeluar" method="POST" enctype="multipart/form-data">
     @csrf
     <!-- START JUMBOTRON -->
@@ -16,10 +38,10 @@
                         <div class="card card-transparent">
                             <div style="display:flex; align-items:center;">
                                 <div class="pull-left">
-                                    {{-- <h5>{{ $title }}</h5> --}}
+                                    <h5>{{ $title }}</h5>
                                 </div>
                                 <div class="ml-auto">
-                                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Batal</a>
+                                    <a href="/inventori/stokkeluar" class="btn btn-primary btn-cons">Batal</a>
                                     <input type="submit" class="btn btn-primary btn-cons" value="Simpan">
                                 </div>
                                 <div class="clearfix"></div>
@@ -38,11 +60,16 @@
             <div class="col-lg-12 m-b-10 d-flex flex-column">
             <!-- START card -->
                 <div class="card card-default">
+                    <div class="card-header">
+                        <div class="card-title">
+                            Informasi Stok Keluar
+                        </div>
+                    </div>
                     <div class="card-block">
                         <div class="row">
                             <div class="col-lg-3 padding-10">
                                 <div class="form-group">
-                                    <label>Outlet</label>
+                                    <label class="required-symbol">Outlet</label>
                                     <span class="help"></span>
                                     <select class="full-width" data-init-plugin="select2" name="outlet" required>
                                         <option value="" disabled selected>Pilih Outlet</option>
@@ -54,9 +81,9 @@
                             </div>
                             <div class="col-lg-3 padding-10">
                                 <div class="form-group">
-                                    <label>Tanggal</label>
+                                    <label class="required-symbol">Tanggal</label>
                                     <span class="help"></span>
-                                    <input autocomplete="off" type="text" class="form-control" name="tanggal" id="datepicker-component">
+                                    <input autocomplete="off" type="text" class="form-control" name="tanggal" id="datepicker-component" required>
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
@@ -77,23 +104,23 @@
                 <div data-pages="card" class="card card-default" id="card-basic">
                     <div class="card-header ">
                         <div class="card-title">
-                            Produk
+                            <span class="required-symbol">Produk</span>
                         </div>
                     </div>
                     <div class="card-block">
                         <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
                             <thead>
                             <tr>
-                                <th>Nama Produk</th>
-                                <th>Jumlah</th>
+                                <th class="w-75">Nama Produk</th>
+                                <th class="w-25">Jumlah</th>
                                 <th class="text-center  " style="width: 1%"><i class="fa fa-trash"></i> </th>
                             </tr>
                             </thead>
                             <tbody id="produk">
                                 <tr>
                                     <td class="v-align-middle">
-                                        <select class="full-width" onchange="undisabled(this)" data-init-plugin="select2" name="produk[]">
-                                            <option selected disabled>Pilih Produk</option>
+                                        <select class="full-width" onchange="undisabled(this)" data-init-plugin="select2" name="produk[]" required>
+                                            <option selected value="" disabled>Pilih Produk</option>
                                             @foreach ($produks as $produk)
                                                 <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
                                             @endforeach
@@ -130,6 +157,8 @@
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
+
+        cekOutlet();
     })
 
     function undisabled(input){
@@ -176,6 +205,19 @@
         }
 
         return index;
+    }
+
+    function cekOutlet(){
+        $.ajax({
+            url: '/inventori/stokmasuk/getoutlet',
+            type: 'GET',
+            success: function(response){
+                if (response == 0) {
+                    $('#outletKosong').modal({backdrop: 'static', keyboard: false});
+                    $('#outletKosong').modal('toggle');
+                }
+            },
+        })
     }
 </script>
 @endsection

@@ -128,7 +128,6 @@ class PegawaiController extends Controller
 
     public function loginProses(Request $request)
     {
-        // dd($request);
         $pegawai = UserPegawai::where('username', $request->username)->first();
 
         if (($pegawai = UserPegawai::where('username', $request->username)->first())) {

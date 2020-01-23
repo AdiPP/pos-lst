@@ -1,6 +1,6 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
 <form action="/purchaseorder" method="POST" enctype="multipart/form-data">
@@ -16,7 +16,7 @@
                         <div class="card card-transparent">
                             <div style="display:flex; align-items:center;">
                                 <div class="pull-left">
-                                    {{-- <h5>{{ $title }}</h5> --}}
+                                    <h5>{{ $title }}</h5>
                                 </div>
                                 <div class="ml-auto">
                                     <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Batal</a>
@@ -80,7 +80,7 @@
                                 <div class="form-group">
                                     <label class="required-symbol">Tanggal</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off">
+                                    <input type="text" class="form-control" name="tanggal" id="datepicker-component" autocomplete="off" required>
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
@@ -101,7 +101,7 @@
                 <div data-pages="card" class="card card-default" id="card-basic">
                     <div class="card-header ">
                         <div class="card-title">
-                            Produk
+                            <span class="required-symbol">Produk</span>
                         </div>
                     </div>
                     <div class="card-block">
@@ -118,8 +118,8 @@
                             <tbody id="produk">
                                 <tr>
                                     <td class="v-align-middle">
-                                        <select class="full-width" onchange="undisabled(this)" data-init-plugin="select2" name="produk[]">
-                                            <option selected disabled>Pilih Produk</option>
+                                        <select class="full-width" onchange="undisabled(this)" data-init-plugin="select2" name="produk[]" required>
+                                            <option selected value="" disabled>Pilih Produk</option>
                                             @foreach ($produks as $produk)
                                                 <option value="{{ $produk->id }}">{{ $produk->product_name }}</option>
                                             @endforeach
@@ -129,7 +129,14 @@
                                         <input type="number" class="form-control input-sm text-right" onchange="totalByJumlah(this)" onkeyup="totalByJumlah(this)" name="jumlah[]" placeholder="0" disabled>
                                     </td>
                                     <td class="v-align-middle text-right">
-                                        <input type="number" class="form-control input-sm text-right" onchange="totalByHargaBeli(this)" onkeyup="totalByHargaBeli(this)" name="hargaBeli[]" placeholder="0" disabled>
+                                        <div class="row d-flex align-items-center">
+                                            <div class="col-2">
+                                                Rp.
+                                            </div>
+                                            <div class="col-10">
+                                                <input type="number" class="form-control input-sm text-right" onchange="totalByHargaBeli(this)" onkeyup="totalByHargaBeli(this)" name="hargaBeli[]" placeholder="0" disabled>
+                                            </div>
+                                        </div>
                                     </td>
                                     <td class="v-align-middle text-right">
                                         <input type="text" class="form-control input-sm text-right" placeholder="0" name="tampilTotal[]" readonly>

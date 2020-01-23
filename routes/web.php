@@ -13,9 +13,10 @@
 
 use Illuminate\Support\Facades\Mail;
 use App\Mail\SendMailable;
+use App\Helpers\AppHelper as Helper;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/login');
 });
 
 Auth::routes();
@@ -25,7 +26,11 @@ Auth::routes();
 // });
 
 Route::get('/login', function () {
-    return view('registrasi.login');
+    if (session()->has('user')) {
+        return redirect(Helper::homeUrl());
+    } else {
+        return view('registrasi.login');
+    }
 });
 
 Route::get('/logout', function () {
@@ -90,6 +95,7 @@ Route::resource('/produk', 'ProdukController');
 Route::get('/inventori/kartustok/tampil', 'InventoriController@tampilKartuStok');
 Route::resource('/inventori/kartustok', 'InventoriController');
 //  stok masuk
+Route::get('/inventori/stokmasuk/getoutlet', 'StokMasukController@getOutlet');
 Route::get('/inventori/stokmasuk/tambahproduk', 'StokMasukController@tambahProduk');
 Route::get('/inventori/stokmasuk/infoproduk', 'StokMasukController@infoProduk');
 Route::resource('/inventori/stokmasuk', 'StokMasukController');

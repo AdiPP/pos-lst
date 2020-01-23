@@ -13,7 +13,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
                         <h5>Informasi <span class="semi-bold">Stok Opname</span></h5>
-                        <p class="p-b-10">Berikut informasi mengenai Stok Opname <strong>#SO{{ $stokopname->id }}</strong></p>
+                        <p class="p-b-10">Berikut informasi mengenai Stok Opname <strong>#SO{{ $stokopname->id }}</strong>.</p>
                     </div>
                     <div class="modal-body">
                         <div class="form-group-attached">
@@ -21,13 +21,13 @@
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>ID Stok Opname</label>
-                                    <p>{{ $stokopname->id }}</p>
+                                    <input type="text" class="form-control" value="{{ $stokopname->id }}" readonly>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Outlet</label>
-                                    <p>{{ $stokopname->outlet->outlet_name }}</p>
+                                    <input type="text" class="form-control" value="{{ $stokopname->outlet->outlet_name }}" readonly>
                                 </div>
                                 </div>
                             </div>
@@ -35,13 +35,13 @@
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Tanggal</label>
-                                    <p>{{ Helper::mysqlToTanggal($stokopname->tanggal) }}</p>
+                                    <input type="text" class="form-control" value="{{ Helper::mysqlToTanggal($stokopname->tanggal) }}" readonly>
                                 </div>
                                 </div>
                                 <div class="col-md-6">
                                 <div class="form-group form-group-default">
                                     <label>Status</label>
-                                    <p>OK</p>
+                                    <input type="text" class="form-control" value="OK" readonly>
                                 </div>
                                 </div>
                             </div>
@@ -49,7 +49,7 @@
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label>Catatan</label>
-                                    <p>{{ $stokopname->catatan }}</p>
+                                    <textarea class="form-control" readonly>{{ $stokopname->catatan }}</textarea>
                                 </div>
                                 </div>
                             </div>
@@ -75,12 +75,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-                        <div class="row">
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="button" data-dismiss="modal" class="btn btn-primary btn-block m-t-5">Selesai</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -184,7 +181,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <div class="card-title">
-                        Daftar Supplier
+                        Daftar Stok Opname
                     </div>
                     <div class="padding-10">
                         <div class="row">

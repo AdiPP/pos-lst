@@ -66,22 +66,7 @@
                     <div class="clearfix"></div>
                 </div>
                 <div class="card-block">
-                    <table class="table table-hover demo-table-search table-responsive-block" id="tableWithSearch">
-                    <thead>
-                      <tr>
-                        <th class="w-25">Nama Produk</th>
-                        <th class="v-align-middle">Kategori</th>
-                        <th class="v-align-middle">Stok Awal</th>
-                        <th class="v-align-middle">Stok Masuk</th>
-                        <th class="v-align-middle">Stok Keluar</th>
-                        <th class="v-align-middle">Penjualan</th>
-                        <th class="v-align-middle">Transfer</th>
-                        <th class="v-align-middle">Penyesuaian</th>
-                        <th class="v-align-middle">Stok Akhir</th>
-                      </tr>
-                    </thead>
-                    <tbody id="tampilKartuStok"></tbody>
-                  </table>
+                    <div id="tampilKartuStok"></div>
                 </div>
             </div>
             <!-- END card -->

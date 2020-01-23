@@ -145,21 +145,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $i = 1;
-                                @endphp
-                                @foreach ($produks as $produk)
+                                @if (isset($produks))
                                     <tr>
-                                        <td class="v-align-middle semi-bold">{{ $i++ }}</td>
-                                        <td class="v-align-middle semi-bold">
-                                            {{ $produk->produk->product_name }}
-                                        </td>
-                                        <td class="v-align-middle text-right semi-bold">
-                                            {{ $produk->penjualan }}
-                                            {{-- Rp. {{ number_format($produk->product_price, 0,',','.') }} --}}
-                                        </td>
+                                        <td colspan="3" class="v-align-center text-center"><cite>Data kosong.</cite></td>
                                     </tr>
-                                @endforeach
+                                @else
+                                    @php
+                                        $i = 1; 
+                                    @endphp
+                                    @foreach ($produks as $produk)
+                                        <tr>
+                                            <td class="v-align-middle semi-bold">{{ $i++ }}</td>
+                                            <td class="v-align-middle semi-bold">
+                                                {{ $produk->produk->product_name }}
+                                            </td>
+                                            <td class="v-align-middle text-right semi-bold">
+                                                {{ $produk->penjualan }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -185,20 +190,26 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @php
-                                    $i = 1;
-                                @endphp
-                                @foreach ($kategoris as $kategori)
+                                @if (isset($kategoris))
                                     <tr>
-                                        <td class="v-align-middle semi-bold">{{ $i++ }}</td>
-                                        <td class="v-align-middle semi-bold">
-                                            {{ $kategori->category_name }}
-                                        </td>
-                                        <td class="v-align-middle text-right semi-bold">
-                                            {{ $kategori->penjualan }}
-                                        </td>
+                                        <td colspan="3" class="v-align-center text-center"><cite>Data kosong.</cite></td>
                                     </tr>
-                                @endforeach
+                                @else
+                                    @php
+                                        $i = 1;
+                                    @endphp
+                                    @foreach ($kategoris as $kategori)
+                                        <tr>
+                                            <td class="v-align-middle semi-bold">{{ $i++ }}</td>
+                                            <td class="v-align-middle semi-bold">
+                                                {{ $kategori->category_name }}
+                                            </td>
+                                            <td class="v-align-middle text-right semi-bold">
+                                                {{ $kategori->penjualan }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -301,45 +312,6 @@ $(document).ready(function(){
         }
     })
 
-    // var ctx = document.getElementById('myChart').getContext('2d');
-    // var chart = new Chart(ctx, {
-    //     // The type of chart we want to create
-    //     type: 'line',
-
-    //     // The data for our dataset
-    //     data: {
-    //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    //         datasets: [{
-    //             label: 'My First dataset',
-    //             backgroundColor: 'rgb(255, 99, 132)',
-    //             borderColor: 'rgb(255, 99, 132)',
-    //             data: [0, 10, 5, 2, 20, 30, 45]
-    //         }]
-    //     },
-
-    //     // Configuration options go here
-    //     options: {}
-    // });
-
-    // var ctx = document.getElementById('myChart2').getContext('2d');
-    // var chart = new Chart(ctx, {
-    //     // The type of chart we want to create
-    //     type: 'line',
-
-    //     // The data for our dataset
-    //     data: {
-    //         labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-    //         datasets: [{
-    //             label: 'My First dataset',
-    //             backgroundColor: 'rgb(255, 99, 132)',
-    //             borderColor: 'rgb(255, 99, 132)',
-    //             data: [0, 10, 5, 2, 20, 30, 45]
-    //         }]
-    //     },
-
-    //     // Configuration options go here
-    //     options: {}
-    // });
 })
 </script>
 @endsection

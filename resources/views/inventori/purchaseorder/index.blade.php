@@ -12,7 +12,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
                         <h5>Informasi <span class="semi-bold">Purchase Order</span></h5>
-                        <p class="p-b-10">Berikut informasi mengenai Purchase Order <strong>#PO{{ $po->id }}</strong></p>
+                        <p class="p-b-10">Berikut informasi mengenai Purchase Order <strong>#PO{{ $po->id }}</strong>.</p>
                     </div>
                     <div class="modal-body">
                         @csrf
@@ -88,13 +88,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        <div class="row">
-                            <div class="col-md-8">
-                            </div>
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                                <button type="button" class="btn btn-primary btn-block m-t-5" data-dismiss="modal">Selesai</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -138,12 +134,12 @@
             <div class="card card-default">
                 <div class="card-header">
                     <div class="card-title">
-                        Daftar Stok Masuk
+                        Daftar Purchase Order
                     </div>
                     <div class="padding-10">
                         <div class="row">
                         <div class="col-lg-12">
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Stok Masuk">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Purchase Order">
                         </div>
                     </div>
                     </div>

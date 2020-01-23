@@ -19,7 +19,7 @@
                                     <h5>{{ $title }}</h5>
                                 </div>
                                 <div class="ml-auto">
-                                    <a href="{{ url('/produk', []) }}" class="btn btn-primary btn-cons">Batal</a>
+                                    <a href="{{ url()->previous() }}" class="btn btn-primary btn-cons">Batal</a>
                                     <input type="submit" class="btn btn-primary btn-cons" value="Simpan">
                                 </div>
                                 <div class="clearfix"></div>
@@ -42,15 +42,15 @@
                         <div class="row">
                             <div class="col-lg-6 padding-10">
                                 <div class="form-group">
-                                    <label>Nama Produk</label>
+                                    <label class="required-symbol">Nama Produk</label>
                                     <span class="help"></span>
-                                    <input type="text" class="form-control" name="nama_produk">
+                                    <input type="text" class="form-control" name="nama_produk" required>
                                 </div>
                                 <div class="form-group">
                                     <label>Kategori</label>
                                     <span class="help"></span>
                                     <select class="full-width required" data-init-plugin="select2" name="kategori_produk">
-                                            <option selected disabled value="">Pilih Salah Satu</option>
+                                        <option selected value="">Kosong</option>
                                         @foreach ($categories as $category)
                                             <option value="{{ $category->id }}">{{ $category->category_name }}</option>
                                         @endforeach
@@ -59,15 +59,15 @@
                                 <div class="padding-10 bg-master-lighter">
                                     <p>Harga</p>
                                     <div class="form-group">
-                                        <label>Harga</label>
+                                        <label class="required-symbol">Harga</label>
                                         <span class="help"></span>
-                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control" name="harga_produk">
+                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control" name="harga_produk" required>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label>Foto Produk</label>
+                                    <label class="required-symbol">Foto Produk</label>
                                     <span class="help"></span>
-                                    <input type="file" class="form-control-file" name="foto_produk">
+                                    <input type="file" class="form-control-file" name="foto_produk" required>
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
@@ -82,27 +82,15 @@
                                     <input type="text" class="form-control" name="barcode_produk">
                                 </div>
                                 <div class="form-group">
-                                    <label>Satuan</label>
+                                    <label class="required-symbol">Satuan</label>
                                     <span class="help"></span>
-                                    <select class="full-width required" data-init-plugin="select2" name="satuan_produk">
+                                    <select class="full-width required" data-init-plugin="select2" name="satuan_produk" required>
                                             <option selected disabled value="">Pilih Salah Satu</option>
                                             @foreach ($units as $unit)
                                                 <option value="{{ $unit->id }}">{{ $unit->singkatan }} - {{ $unit->nama }}</option>
                                             @endforeach
-                                        {{-- @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                        @endforeach --}}
                                     </select>
                                 </div>
-                                {{-- <div class="form-group">
-                                    <label>Varian</label>
-                                    <span class="help"></span>
-                                    <p class="hint-text small">Apakah produk ini memiliki varian seperti warna dan ukuran?</p>
-                                    <input type="checkbox" data-init-plugin="switchery" data-size="small" data-color="primary" />
-                                    <div class="m-t-10">
-                                        <button class="btn btn-primary btn-cons">Kelola Varian Produk</button>
-                                    </div>
-                                </div> --}}
                             </div>
                         </div>
                     </div>

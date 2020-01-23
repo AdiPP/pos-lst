@@ -38,7 +38,7 @@
             <div class="card card-default">
                 <div class="card-header">
                     <div class="card-title">
-                        Kartu Stok
+                        Laporan
                     </div>
                     <div class="padding-10">
                         <div class="row">

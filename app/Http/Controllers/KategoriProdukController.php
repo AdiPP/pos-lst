@@ -112,8 +112,8 @@ class KategoriProdukController extends Controller
     public function destroy($id)
     {
         $model = Category::find($id);
-        $model->delete();
-        
-        return redirect('/produk/kategori');
+        if ($model->delete()) {
+            return redirect('/produk/kategori')->with('status', 'Kategori berhasil dihapus.');
+        }
     }
 }

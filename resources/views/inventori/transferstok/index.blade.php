@@ -6,14 +6,14 @@
 
 @foreach ($transfers as $transfer)
     <div class="modal fade slide-up disable-scroll" id="modalLihat{{ $transfer->id }}" tabindex="-1" role="dialog" aria-hidden="false">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content-wrapper">
                     <div class="modal-content">
                     <div class="modal-header clearfix text-left">
                     <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                     </button>
                     <h5>Informasi <span class="semi-bold">Transfer Stok</span></h5>
-                    <p class="p-b-10">Berikut informasi mengenai Transfer Stok <strong>#TFS{{ $transfer->id }}</strong></p>
+                    <p class="p-b-10">Berikut informasi mengenai Transfer Stok <strong>#TFS{{ $transfer->id }}</strong>.</p>
                     </div>
                     <div class="modal-body">
                         <div class="form-group-attached">
@@ -21,19 +21,19 @@
                                 <div class="col-md-4">
                                 <div class="form-group form-group-default">
                                     <label>Outlet Asal</label>
-                                    <p>{{ $transfer->outletAsal->outlet_name }}</p>
+                                    <input type="text" class="form-control" value="{{ $transfer->outletAsal->outlet_name }}" readonly>
                                 </div>
                                 </div>
                                 <div class="col-md-4">
                                 <div class="form-group form-group-default">
                                     <label>Outlet Tujuan</label>
-                                    <p>{{ $transfer->outletTujuan->outlet_name }}</p>
+                                    <input type="text" class="form-control" value="{{ $transfer->outletTujuan->outlet_name }}" readonly>
                                 </div>
                                 </div>
                                 <div class="col-md-4">
                                 <div class="form-group form-group-default">
                                     <label>Tanggal</label>
-                                    <p>{{ Helper::mysqlToTanggal($transfer->tanggal) }}</p>
+                                    <input type="text" class="form-control" value="{{ Helper::mysqlToTanggal($transfer->tanggal) }}" readonly>
                                 </div>
                                 </div>
                             </div>
@@ -41,7 +41,7 @@
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label>Deskripsi</label>
-                                    <p>{{ $transfer->description }}</p>
+                                    <textarea class="form-control" readonly>{{ $transfer->description }}</textarea>
                                 </div>
                                 </div>
                             </div>
@@ -67,12 +67,9 @@
                                 @endforeach
                             </tbody>
                         </table>
-
-                        <div class="row">
-                            <div class="col-md-4 m-t-10 sm-m-t-10">
-                            <button type="button" class="btn btn-primary btn-block m-t-5">Selesai</button>
-                            </div>
-                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
                     </div>
                 </div>
             </div>
@@ -121,7 +118,7 @@
                     <div class="padding-10">
                         <div class="row">
                         <div class="col-lg-12">
-                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Stok Masuk">
+                            <input type="text" id="search-table" class="form-control pull-right" placeholder="Cari Transfer Stok">
                         </div>
                     </div>
                     </div>
