@@ -145,11 +145,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (isset($produks))
+                                {{-- @if (isset($produks))
                                     <tr>
                                         <td colspan="3" class="v-align-center text-center"><cite>Data kosong.</cite></td>
                                     </tr>
-                                @else
+                                @else --}}
                                     @php
                                         $i = 1; 
                                     @endphp
@@ -164,7 +164,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                @endif
+                                {{-- @endif --}}
                             </tbody>
                         </table>
                     </div>
@@ -190,11 +190,11 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @if (isset($kategoris))
+                                {{-- @if (isset($kategoris))
                                     <tr>
                                         <td colspan="3" class="v-align-center text-center"><cite>Data kosong.</cite></td>
                                     </tr>
-                                @else
+                                @else --}}
                                     @php
                                         $i = 1;
                                     @endphp
@@ -209,7 +209,7 @@
                                             </td>
                                         </tr>
                                     @endforeach
-                                @endif
+                                {{-- @endif --}}
                             </tbody>
                         </table>
                     </div>
@@ -224,6 +224,11 @@
 @section('inpagejs')
 <script>
 $(document).ready(function(){
+    $.ajaxSetup({
+        headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+    });
     $.ajax({
         url: '/dashboard/getgrafikpenjualan',
         type: 'GET',

@@ -99,21 +99,26 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="">
-                                                <p class="text-black">Outlet</p>
+                                            <td class="v-align-middle">
+                                                <p class="text-black no-margin">Outlet</p>
                                             </td>
-                                            <td class="">
-                                                <select class="full-width" data-init-plugin="select2" name="outlet" id="outlet" onchange="pilihOutlet()" required>
-                                                    <option value="" selected disabled>Pilih Outlet</option>
-                                                    @foreach ($outlets as $outlet)
-                                                        <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
-                                                    @endforeach
-                                                </select>
+                                            <td class="v-align-middle">
+                                                @if (session('user')->getTable() == 'user_pegawais')
+                                                    {{ Helper::getPegawaiOutletNama(session('user')->id) }}
+                                                    <input type="hidden" name="outlet" value="{{ Helper::getPegawaiOutletId(session('user')->id) }}" id="outlet">
+                                                @else
+                                                    <select class="full-width" data-init-plugin="select2" name="outlet" id="outlet" onchange="pilihOutlet()" required>
+                                                        <option value="" selected disabled>Pilih Outlet</option>
+                                                        @foreach ($outlets as $outlet)
+                                                            <option value="{{ $outlet->id }}">{{ $outlet->outlet_name }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                @endif     
                                             </td>
                                         </tr>
                                         <tr>
-                                            <td class="">
-                                                <p class="text-black">Pelanggan</p>
+                                            <td class="v-align-middle">
+                                                <p class="text-black no-margin">Pelanggan</p>
                                             </td>
                                             <td class="w-75">
                                                 <div class="row">
@@ -224,7 +229,21 @@
         ajax();
         getPelanggan();
         getKeranjang();
+        cekPegawai();
     })
+
+    function cekPegawai(){
+        $.ajax({
+            url: '/pos/cekpegawai',
+            type: 'GET',
+            success: function(response)
+            {
+                if (response == 1) {
+                    document.getElementById('cariproduktampil').disabled = false;            
+                }
+            }
+        })
+    }
 
     // Outlet
     function pilihOutlet(){
@@ -364,6 +383,10 @@
 
     function resetForm(id){
         document.getElementById(id).reset();
+    }
+
+    function test(){
+        console.log('test');
     }
 </script>
     {{-- <script type="text/javascript">

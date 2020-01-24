@@ -296,6 +296,7 @@ class PosController extends Controller
         $totalAkhir = $total - $diskon;
         
         return view('pos.bayar', [
+            'title' => 'Pembayaran',
             'keranjang' => $cart,
             'user' => $user,
             'diskon' => $diskon,
@@ -407,5 +408,12 @@ class PosController extends Controller
         return view('pos.bayar_selesai', [
             'kembali' => $model->cash - $model->total,
         ]);
+    }
+
+    public function cekPegawai()
+    {
+        if (session('user')->getTable() == 'user_pegawais') {
+            return 1;
+        } else return 0;
     }
 }

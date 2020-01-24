@@ -14,7 +14,7 @@
                 {{ $produk->product_name }}
             </td>
             <td class="v-align-middle">
-                {{ $produk->category->category_name }}
+                {{ Helper::getKategoriProduk($produk->id) }}
             </td>
             <td class="v-align-middle text-right">
                 {{ Helper::getStokAkhir($produk, $outlet, $tanggal)}}

@@ -346,7 +346,7 @@ class AppHelper
     public static function getPenjualanAll($produk, $outlet = "", $tanggal)
     {
         if ($outlet == "") {
-            if (($result = $produk->sales->where('user_id', session('user')->id)->where('tanggal', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -354,7 +354,7 @@ class AppHelper
                 return 0;
             }
         } else {
-            if (($result = $produk->sales->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('tanggal', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('outlet_id', $outlet)->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;
@@ -426,7 +426,7 @@ class AppHelper
     {
         $produk = Product::find($id);
         if (is_null($produk->category_id)) {
-            return '<i>Kosong.</i>';
+            return 'Kosong.';
         } else {
             return $produk->category->category_name;
         }
@@ -439,5 +439,19 @@ class AppHelper
         } else {
             return $data;
         }
+    }
+
+    public static function getPegawaiOutletNama($id)
+    {
+        $model = UserPegawai::find($id);
+
+        return $model->outlet->outlet_name;
+    }
+
+    public static function getPegawaiOutletId($id)
+    {
+        $model = UserPegawai::find($id);
+
+        return $model->outlet->id;
     }
 }   

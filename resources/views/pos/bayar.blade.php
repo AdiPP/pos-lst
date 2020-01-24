@@ -1,6 +1,6 @@
 @extends('layouts.casual')
 
-{{-- @section('title', $title) --}}
+@section('title', $title)
 
 @section('content')
 <form action="/pos/bayar/selesai" method="POST" id="formBayarSelesai" onkeydown="return event.key != 'Enter';">
@@ -16,7 +16,7 @@
                     <div class="card card-transparent">
                         <div style="display:flex; align-items:center;">
                             <div class="pull-left">
-                                {{-- <h5>{{ $title }}</h5> --}}
+                                <h5>{{ $title }}</h5>
                             </div>
                             <div class="ml-auto">
                                 <a href="{{ url()->previous() }}" type="button" class="btn btn-primary btn-cons">Kembali</a>
@@ -102,7 +102,7 @@
                                 <table class="table">
                                     <tbody>
                                         <tr>
-                                            <td class="">
+                                            <td class="v-align-middle">
                                                 <p class="text-black">Admin</p>
                                             </td>
                                             <td class="">

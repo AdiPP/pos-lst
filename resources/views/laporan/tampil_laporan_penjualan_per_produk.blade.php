@@ -16,7 +16,7 @@
                     {{ $produk->product_name }}
                 </td>
                 <td class="v-align-middle">
-                    {{ $produk->category->category_name }}
+                    {{ Helper::getKategoriProduk($produk->id) }}
                 </td>
                 <td class="v-align-middle">
                     {{ Helper::numberToRupiah($produk->product_price) }}

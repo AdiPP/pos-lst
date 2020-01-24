@@ -3,7 +3,7 @@
   <head>
     <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta charset="utf-8" />
-    <title>Pages - Registrasi</title>
+    <title>Sade: Pegawai Panel</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no" />
     <link rel="apple-touch-icon" href="{{ asset('pages/ico/60.png') }}">
     <link rel="apple-touch-icon" sizes="76x76" href="{{ asset('pages/ico/76.png') }}">
@@ -51,7 +51,7 @@
         @csrf
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group form-group-default">
+              <div class="form-group form-group-default required">
                 <label>Username</label>
                 <input type="text" name="username" placeholder="" class="form-control" required>
               </div>
@@ -59,7 +59,7 @@
           </div>
           <div class="row">
             <div class="col-md-12">
-              <div class="form-group form-group-default">
+              <div class="form-group form-group-default required">
                 <label>Password</label>
                 <input type="password" name="password" placeholder="" class="form-control" required>
               </div>
@@ -67,7 +67,7 @@
           </div>
           <div class="row m-t-10">
             <div class="col-lg-12">
-              <a href="#" class="text-info small">Bantuan? Hubungi Admin PT.Lawang Sewu Teknolgi</a>
+              <a href="mailto: pos.lawangsewu@gmail.com" class="text-info small">Bantuan? Hubungi Admin PT.Lawang Sewu Teknolgi</a>
             </div>
           </div>
           <button class="btn btn-primary btn-cons m-t-10" type="submit">Masuk</button>

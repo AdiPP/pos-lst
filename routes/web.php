@@ -61,6 +61,7 @@ Route::get('/pegawai/login', 'PegawaiController@login');
 Route::resource('/pegawai', 'PegawaiController');
 
 // modul transaksi
+Route::get('/pos/cekpegawai', 'PosController@cekPegawai');
 Route::get('/pos/pelanggan/getdiskon', 'PosController@getDiskon');
 Route::post('/pos/pelanggan/tambah', 'PosController@tambahPelanggan');
 Route::get('/pos/pelanggan/reload', 'PosController@reloadPelanggan');
