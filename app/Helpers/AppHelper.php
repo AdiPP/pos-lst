@@ -27,8 +27,9 @@ class AppHelper
 
         //Check the user email verified status
         if (session('user')->getTable() != 'user_pegawais') {
-            if(session('user')->email_verified_at === null)
+            if(is_null(session('user')->email_verified_at))
             {
+                session()->forget('user');
                 return Redirect::to('/login')->with('status', 'Email belum terverifikasi! <a href="'. url('/email/resend') . '">Kirim ulang email verifikasi?</a>')->send();
             }
         }
