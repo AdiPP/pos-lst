@@ -47,32 +47,35 @@
                                     <span class="help"></span>
                                     <input type="text" class="form-control" name="nama_produk" value="{{ $produk->product_name }}" required>
                                 </div>
-                                <div class="form-group">
-                                    <label>Kategori</label>
-                                    <span class="help"></span>
-                                    <select class="full-width required" data-init-plugin="select2" name="kategori_produk">
-                                        <option selected value="">Kosong</option>
-                                        @if (is_null($produk->category_id))
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                            @endforeach
-                                        @else
-                                            @foreach ($categories as $category)
-                                                <option value="{{ $category->id }}"
-                                                <?php if ($produk->category->id === $category->id) {
-                                                    echo 'selected';
-                                                } ?>
-                                                >{{ $category->category_name }}</option>
-                                            @endforeach
-                                        @endif
-                                    </select>
-                                </div>
-                                <div class="padding-10 bg-master-lighter">
-                                    <p>Harga</p>
-                                    <div class="form-group">
-                                        <label class="required-symbol">Harga</label>
-                                        <span class="help"></span>
-                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control" value="{{ $produk->product_price }}" name="harga_produk" required>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Kategori</label>
+                                            <span class="help"></span>
+                                            <select class="full-width required" data-init-plugin="select2" name="kategori_produk">
+                                                <option selected value="">Kosong</option>
+                                                @if (is_null($produk->category_id))
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                    @endforeach
+                                                @else
+                                                    @foreach ($categories as $category)
+                                                        <option value="{{ $category->id }}"
+                                                        <?php if ($produk->category->id === $category->id) {
+                                                            echo 'selected';
+                                                        } ?>
+                                                        >{{ $category->category_name }}</option>
+                                                    @endforeach
+                                                @endif
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="required-symbol">Harga</label>
+                                            <span class="help"></span>
+                                            <input type="text" data-a-sign="Rp " class="autonumeric form-control" value="{{ $produk->product_price }}" name="harga_produk" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -81,20 +84,26 @@
                                     <div class="m-b-10">
                                         <img src="{{ asset('storage/img/product/'.$produk->product_pict) }}" alt="" width="50%">
                                     </div>
-                                    <label>Ubah Foto Produk</label>
-                                    <input type="file" class="form-control" name="foto_produk">
+                                    <label>Ubah Foto Produk</label> <br>
+                                    <input type="file" class="" name="foto_produk">
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
-                                <div class="form-group">
-                                    <label>SKU</label>
-                                    <span class="help"></span>
-                                    <input type="text" class="form-control" name="sku_produk" value="{{ $produk->product_sku }}">
-                                </div>
-                                <div class="form-group">
-                                    <label>Barcode</label>
-                                    <span class="help"></span>
-                                    <input type="text" class="form-control" name="barcode_produk" value="{{ $produk->product_barcode }}">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>SKU</label>
+                                            <span class="help"></span>
+                                            <input type="text" class="form-control" name="sku_produk" value="{{ $produk->product_sku }}">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Barcode</label>
+                                            <span class="help"></span>
+                                            <input type="text" class="form-control" name="barcode_produk" value="{{ $produk->product_barcode }}">
+                                        </div>  
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="required-symbol">Satuan</label>

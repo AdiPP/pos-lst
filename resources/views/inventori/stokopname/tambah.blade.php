@@ -47,7 +47,7 @@
                         <form action="/inventori/stokopname" method="post" id="formUtama">
                         @csrf
                         <div class="row">
-                            <div class="col-lg-12 padding-10">
+                            <div class="col-lg-6 padding-10">
                                 <div class="form-group">
                                     <label class="required-symbol">Outlet</label>
                                     <span class="help"></span>
@@ -59,7 +59,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-lg-12 padding-10">
+                            <div class="col-lg-6 padding-10">
                                 <div class="form-group">
                                     <label>Catatan</label>
                                     <span class="help"></span>

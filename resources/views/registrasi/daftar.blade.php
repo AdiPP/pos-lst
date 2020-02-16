@@ -91,15 +91,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group form-group-default required">
                         <label>Username</label>
                         <input type="text" name="uname" placeholder="" class="form-control" required>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="form-group form-group-default required">
                         <label>Password</label>
                         <input type="password" name="pass" placeholder="" class="form-control" required>

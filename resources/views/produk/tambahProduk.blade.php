@@ -46,22 +46,25 @@
                                     <span class="help"></span>
                                     <input type="text" class="form-control" name="nama_produk" required>
                                 </div>
-                                <div class="form-group">
-                                    <label>Kategori</label>
-                                    <span class="help"></span>
-                                    <select class="full-width required" data-init-plugin="select2" name="kategori_produk">
-                                        <option selected value="">Kosong</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->category_name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-                                <div class="padding-10 bg-master-lighter">
-                                    <p>Harga</p>
-                                    <div class="form-group">
-                                        <label class="required-symbol">Harga</label>
-                                        <span class="help"></span>
-                                        <input type="text" data-a-sign="Rp " class="autonumeric form-control" name="harga_produk" required>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Kategori</label>
+                                            <span class="help"></span>
+                                            <select class="full-width required" data-init-plugin="select2" name="kategori_produk">
+                                                <option selected value="">Kosong</option>
+                                                @foreach ($categories as $category)
+                                                    <option value="{{ $category->id }}">{{ $category->category_name }}</option>
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label class="required-symbol">Harga</label>
+                                            <span class="help"></span>
+                                            <input type="text" data-a-sign="Rp " class="autonumeric form-control" name="harga_produk" required>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -71,15 +74,21 @@
                                 </div>
                             </div>
                             <div class="col-lg-6 padding-10">
-                                <div class="form-group">
-                                    <label>SKU</label>
-                                    <span class="help"></span>
-                                    <input type="text" class="form-control" name="sku_produk">
-                                </div>
-                                <div class="form-group">
-                                    <label>Barcode</label>
-                                    <span class="help"></span>
-                                    <input type="text" class="form-control" name="barcode_produk">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>SKU</label>
+                                            <span class="help"></span>
+                                            <input type="text" class="form-control" name="sku_produk">
+                                        </div>  
+                                    </div>
+                                    <div class="col-lg-6">
+                                        <div class="form-group">
+                                            <label>Barcode</label>
+                                            <span class="help"></span>
+                                            <input type="text" class="form-control" name="barcode_produk">
+                                        </div>  
+                                    </div>
                                 </div>
                                 <div class="form-group">
                                     <label class="required-symbol">Satuan</label>
