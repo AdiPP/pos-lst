@@ -9,6 +9,11 @@
     <p>
         Silahkan periksa email yang bersangkutan.
     </p>
+    <div class="row">
+      <div class="col-lg-10">
+        <a href="/login" class="btn btn-primary">Kembali</a>
+      </div>
+    </div>
   </div>
 </div>
 @endsection

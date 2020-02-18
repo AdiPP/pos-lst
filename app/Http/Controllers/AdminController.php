@@ -146,6 +146,17 @@ class AdminController extends Controller
         return view('admin.mastering.tampilUnit', ['models' => $model]);
     }
 
+    public function unitUbah(Request $request)
+    {
+        $unit = Unit::find($request->id);
+        $unit->nama = $request->nama;
+        $unit->singkatan = $request->singkatan;
+        $unit->deskripsi = $request->deskripsi;
+        $unit->save();
+
+        return back();
+    }
+
     public function unitHapus()
     {
         $id = $_GET['id'];

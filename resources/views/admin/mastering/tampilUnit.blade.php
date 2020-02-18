@@ -17,7 +17,7 @@
                 </td>
                 <td class="v-align-middle">
                     <div class="d-flex justify-content-center">
-                        <button href="" class="btn btn-xs btn-success mx-1" data-target="" data-toggle="modal" id=""><i class="fa fa-pencil"></i></button>
+                        <button href="" class="btn btn-xs btn-success mx-1" data-target="#satuanUbah{{ $model->id }}" data-toggle="modal" id=""><i class="fa fa-pencil"></i></button>
                         <button class="btn btn-xs btn-complete mx-1" data-target="#satuanLihat{{ $model->id }}" data-toggle="modal" id=""><i class="fa fa-eye"></i></button>
                         <button class="btn btn-xs btn-danger mx-1" data-target="#satuanHapus{{ $model->id }}" data-toggle="modal" id=""><i class="fa fa-trash-o"></i></button>
                     </div>

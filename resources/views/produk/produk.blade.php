@@ -188,6 +188,7 @@
                             <th class="w-50">Nama Produk</th>
                             <th>Kategori</th>
                             <th class="text-right w-25">Harga</th>
+                            <th>Satuan</th>
                             <th class="invisible" style="width: 1%;">Aksi</th>
                         </tr>
                         </thead>
@@ -209,6 +210,9 @@
                                 </td>
                                 <td class="v-align-middle text-right semi-bold">
                                     Rp. {{ number_format($produk->product_price, 2,',','.') }}
+                                </td>
+                                <td class="v-align-middle">
+                                    {{ $produk->unit->singkatan }}
                                 </td>
                                 <td class="v-align-middle">
                                     <div class="d-flex justify-content-center">

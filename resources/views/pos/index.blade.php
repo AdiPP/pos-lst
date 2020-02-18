@@ -127,7 +127,7 @@
                                                         </div>
                                                     </div>
                                                     <div class="col-lg-2">
-                                                        <button data-target="#modalTambahPelanggan" data-toggle="modal" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
+                                                        <button type="button" data-target="#modalTambahPelanggan" data-toggle="modal" class="btn btn-default btn-sm"><i class="fa fa-plus"></i></button>
                                                     </div>
                                                 </div>
                                             </td>

@@ -35,6 +35,7 @@ Route::get('/login', function () {
 
 Route::get('/logout', function () {
     Session::flush();
+    Session::regenerate();
     
     return redirect('/login');
 });
@@ -46,6 +47,7 @@ Route::get('/dashboard', 'HomeController@index')->name('home');
 
 // modul super admin
 Route::get('/admin/master/modals', 'AdminController@modals');
+Route::put('/admin/master/unit/ubah', 'AdminController@unitUbah');
 Route::get('/admin/master/unit/hapus', 'AdminController@unitHapus');
 Route::get('/admin/master/unit/tampil', 'AdminController@unitTampil');
 Route::post('/admin/master/unit/tambah', 'AdminController@unitTambah');

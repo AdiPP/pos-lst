@@ -10,55 +10,55 @@
 
 {{-- Satuan Tambah --}}
 <div class="modal fade slide-up disable-scroll" id="satuanTambah" tabindex="-1" role="dialog" aria-hidden="false">
-<div class="modal-dialog ">
-    <div class="modal-content-wrapper">
-    <div class="modal-content">
-        <div class="modal-header clearfix text-left">
-        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
-        </button>
-        <h5>Tambah <span class="semi-bold">Jenis Satuan</span></h5>
-        <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah satuan</p>
-        </div>
-        <div class="modal-body">
-        <form role="form" id="formSatuan">
-            @csrf
-            <div class="form-group-attached">
+    <div class="modal-dialog ">
+        <div class="modal-content-wrapper">
+        <div class="modal-content">
+            <div class="modal-header clearfix text-left">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
+            </button>
+            <h5>Tambah <span class="semi-bold">Jenis Satuan</span></h5>
+            <p class="p-b-10">Silahkan mengisi form berikut, untuk menambah satuan</p>
+            </div>
+            <div class="modal-body">
+            <form role="form" id="formSatuan">
+                @csrf
+                <div class="form-group-attached">
+                    <div class="row">
+                        <div class="col-md-8">
+                        <div class="form-group form-group-default">
+                            <label>Nama Satuan</label>
+                            <input type="text" class="form-control" name="nama">
+                        </div>
+                        </div>
+                        <div class="col-md-4">
+                        <div class="form-group form-group-default">
+                            <label>Singkatan</label>
+                            <input type="text" class="form-control" name="singkatan" id="phoneTambah">
+                        </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                        <div class="form-group form-group-default">
+                            <label>Deskripsi</label>
+                            <textarea class="form-control" placeholder="" name="deskripsi"></textarea>
+                        </div>
+                        </div>
+                    </div>
+                </div>
                 <div class="row">
                     <div class="col-md-8">
-                    <div class="form-group form-group-default">
-                        <label>Nama Satuan</label>
-                        <input type="text" class="form-control" name="nama">
                     </div>
-                    </div>
-                    <div class="col-md-4">
-                    <div class="form-group form-group-default">
-                        <label>Singkatan</label>
-                        <input type="text" class="form-control" name="singkatan" id="phoneTambah">
-                    </div>
+                    <div class="col-md-4 m-t-10 sm-m-t-10">
+                    <button type="submit" class="btn btn-primary btn-block m-t-5">Simpan</button>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12">
-                    <div class="form-group form-group-default">
-                        <label>Deskripsi</label>
-                        <textarea class="form-control" placeholder="Briefly Describe your Abilities" name="deskripsi"></textarea>
-                    </div>
-                    </div>
-                </div>
+            </form>
             </div>
-            <div class="row">
-                <div class="col-md-8">
-                </div>
-                <div class="col-md-4 m-t-10 sm-m-t-10">
-                <button type="submit" class="btn btn-primary btn-block m-t-5">Simpan</button>
-                </div>
-            </div>
-        </form>
         </div>
+        </div>
+        <!-- /.modal-content -->
     </div>
-    </div>
-    <!-- /.modal-content -->
-</div>
 </div>
 
 <!-- START JUMBOTRON -->

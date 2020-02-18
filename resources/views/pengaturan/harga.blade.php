@@ -11,7 +11,7 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                 </button>
                 <h5>Informasi <span class="semi-bold">Harga</span></h5>
-                <p class="p-b-10">Berikut informasi Harga Akun <strong>{{ $user->info->firstname }}</strong>.</p>
+                <p class="p-b-10">Tuliskan harga potongan pelanggan dalam rupiah.</p>
                 </div>
                 <form role="form" action="/pengaturan/perbaruiharga" method="POST">
                 @csrf

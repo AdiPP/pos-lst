@@ -63,14 +63,14 @@
         <div class="modal-dialog">
             <div class="modal-content-wrapper">
                 <div class="modal-content">
-                        <div class="modal-header clearfix text-left">
+                    <div class="modal-header clearfix text-left">
                         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"><i class="pg-close fs-14"></i>
                         </button>
                         <h5>Perbarui <span class="semi-bold">Outlet</span></h5>
                         <p class="p-b-10">Silahkan mengisi form berikut, untuk memperbarui Outlet <strong>{{ $outlet->outlet_name }}</strong>.</p>
-                        </div>
+                    </div>
+                    <form role="form" action="/outlet/{{ $outlet->id }}" method="POST">
                         <div class="modal-body">
-                        <form role="form" action="/outlet/{{ $outlet->id }}" method="POST">
                             @csrf
                             <input name="_method" type="hidden" value="PUT">
                             <div class="form-group-attached">
@@ -100,16 +100,17 @@
                                 <div class="col-md-12">
                                 <div class="form-group form-group-default">
                                     <label class="required-symbol">Alamat</label>
-                                    <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" required>{{ $outlet->outlet_address }}</textarea>
+                                    <textarea class="form-control" id="name" placeholder="" name="alamat" required>{{ $outlet->outlet_address }}</textarea>
                                 </div>
                                 </div>
                             </div>
                             </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-primary btn-cons no-margin pull-left inline" data-dismiss="modal">Selesai</button>
-                    </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-default btn-cons pull-left inline" data-dismiss="modal">Batal</button>
+                            <button type="submit" class="btn btn-primary btn-cons pull-left inline" >Selesai</button>
+                        </div>
+                    </form>
                 </div>
             </div>
             <!-- /.modal-content -->
@@ -185,7 +186,7 @@
                     <div class="col-md-12">
                     <div class="form-group form-group-default">
                         <label class="required-symbol">Alamat</label>
-                        <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" required></textarea>
+                        <textarea class="form-control" id="name" placeholder="" name="alamat" required></textarea>
                     </div>
                     </div>
                 </div>

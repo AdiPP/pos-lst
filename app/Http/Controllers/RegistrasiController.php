@@ -198,10 +198,14 @@ class RegistrasiController extends Controller
 
     public function pemulihanKataSandiAction(Request $request)
     {
-        $user = User::find($request->id);
-        $user->password = Hash::make($request->password);
-        if ($user->save()) {
-            return view('registrasi.katasandiberhasildiubah');
-        } else return 'Password gagal diubah';
+        if ($request->password != $request->retype) {
+            return back()->with('error', 'Password tidak sesuai!');
+        } else {
+            $user = User::find($request->id);
+            $user->password = Hash::make($request->password);
+            if ($user->save()) {
+                return view('registrasi.katasandiberhasildiubah');
+            } else return 'Password gagal diubah';
+        }
     }
 }
