@@ -106,7 +106,7 @@
                                         <input type="number" class="form-control input-sm text-right" name="jumlahSistem[]" placeholder="0" readonly>
                                     </td>
                                     <td class="v-align-middle">
-                                        <input type="number" class="form-control input-sm text-right" onkeyup="selisihByJumlah(this)" name="jumlah[]" placeholder="0" disabled>
+                                        <input type="number" class="form-control input-sm text-right" onclick="selisihByJumlah(this)" onkeyup="selisihByJumlah(this)" name="jumlah[]" placeholder="0" disabled>
                                     </td>
                                     <td class="v-align-middle text-right">
                                         <input type="number" class="form-control input-sm text-right" name="selisih[]" placeholder="0" readonly>

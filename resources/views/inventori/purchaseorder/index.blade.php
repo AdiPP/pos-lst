@@ -47,7 +47,7 @@
                                 <div class="col-md-12">
                                     <div class="form-group form-group-default">
                                         <label>Catatan</label>
-                                        <textarea class="form-control" id="name" placeholder="Briefly Describe your Abilities" name="alamat" readonly>{{ $po->catatan }}</textarea>
+                                        <textarea class="form-control" id="name" placeholder="" name="alamat" readonly>{{ $po->catatan }}</textarea>
                                     </div>
                                 </div>
                             </div>
