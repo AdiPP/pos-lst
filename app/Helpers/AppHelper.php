@@ -265,7 +265,7 @@ class AppHelper
     public static function getPenjualan($produk, $outlet = "", $tanggal)
     {
         if ($outlet == "") {
-            if (($result = $produk->sales->where('user_id', session('user')->id)->where('tanggal', '>', date('Y-m-d', strtotime('-1 day', strtotime($tanggal))))->where('tanggal', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            if (($result = $produk->sales->where('user_id', session('user')->id)->where('created_at', '>', date('Y-m-d', strtotime('-1 day', strtotime($tanggal))))->where('created_at', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
                 return $carry + $item->pivot->jumlah;
             })) != null) {
                 return $result;

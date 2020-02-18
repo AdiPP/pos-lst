@@ -14,6 +14,11 @@
     </thead>
     <tbody>
         @foreach ($produks as $produk)
+        {{-- @php
+        dd(($result = $produk->stokkeluars->where('user_id', session('user')->id)->where('tanggal', '>', date('Y-m-d', strtotime('-1 day', strtotime($tanggal))))->where('tanggal', '<', date('Y-m-d', strtotime('+1 day', strtotime($tanggal))))->reduce(function($carry, $item){
+            return $carry + $item->pivot->jumlah;
+        })))
+        @endphp --}}
         <tr>
             <td class="v-align-middle">
                 {{ $produk->product_name }}
