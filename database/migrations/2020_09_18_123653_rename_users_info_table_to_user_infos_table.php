@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class ChangeHargaPlangganColumnNameOnUserInfosTable extends Migration
+class RenameUsersInfoTableToUserInfosTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,7 @@ class ChangeHargaPlangganColumnNameOnUserInfosTable extends Migration
      */
     public function up()
     {
-        Schema::table('users_info', function (Blueprint $table) {
-            $table->renameColumn('harga_planggan', 'harga_pelanggan');
-        });
+        Schema::rename('users_info', 'user_infos');
     }
 
     /**
@@ -25,8 +23,6 @@ class ChangeHargaPlangganColumnNameOnUserInfosTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_info', function (Blueprint $table) {
-            //
-        });
+        Schema::rename('user_infos', 'users_info');
     }
 }

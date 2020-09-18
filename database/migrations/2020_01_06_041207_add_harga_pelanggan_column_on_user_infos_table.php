@@ -13,7 +13,7 @@ class AddHargaPelangganColumnOnUserInfosTable extends Migration
      */
     public function up()
     {
-        Schema::table('user_infos', function (Blueprint $table) {
+        Schema::table('users_info', function (Blueprint $table) {
             $table->bigInteger('harga_planggan')->nullable();
         });
     }
@@ -25,7 +25,7 @@ class AddHargaPelangganColumnOnUserInfosTable extends Migration
      */
     public function down()
     {
-        Schema::table('user_infos', function (Blueprint $table) {
+        Schema::table('users_info', function (Blueprint $table) {
             //
         });
     }

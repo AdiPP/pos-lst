@@ -28,9 +28,6 @@ class AddAddInfosToOutletsTable extends Migration
     public function down()
     {
         Schema::table('outlets', function (Blueprint $table) {
-            $table->dropColumn('telepon');
-            $table->dropColumn('kota');
-            $table->dropColumn('alamat');
         });
     }
 }
